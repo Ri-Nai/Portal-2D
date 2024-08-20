@@ -1,0 +1,32 @@
+{
+    "layers": [
+        {
+            "tiles": [
+                {
+                    "type": 1,
+                    "position": { "x": 0, "y": 0 },
+                    "size": { "x": 25, "y": 25 },
+                    "passable": true
+                },
+                {
+                    "type": 2,
+                    "position": { "x": 25, "y": 0 },
+                    "size": { "x": 25, "y": 25 },
+                    "passable": false
+                }
+            ],
+            "opacity": 1.0
+        },
+        {
+            "tiles": [
+                {
+                    "type": 3,
+                    "position": { "x": 0, "y": 25 },
+                    "size": { "x": 25, "y": 25 },
+                    "passable": true
+                }
+            ],
+            "opacity": 0.5
+        }
+    ]
+}

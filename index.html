@@ -11,7 +11,15 @@
 <body>
     <span class="fps-count">FPS: <span id="fps"></span></span>
     <div id="game">
-        <canvas id="game-canvas" width="1200" height="675"></canvas>
+        <canvas id="game-canvas" width="1280" height="720"="black"></canvas>
+        <script>
+            let c = document.getElementById("game-canvas");
+            let ctx = c.getContext("2d");
+            console.log(ctx)
+			ctx.fillStyle='black';
+            ctx.fillRect(0, 0, 1280, 720);
+        </script>
+
     </div>
 
     <script type="text/javascript" src="script/utils/FrameRate.js"></script>
@@ -27,7 +35,7 @@
             const game = new Game();
             game.load().then(() => {
                 game.start();
-            })
+            });
         }
     </script>
 </body>
