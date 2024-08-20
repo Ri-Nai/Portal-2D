@@ -9,9 +9,27 @@
 </head>
 
 <body>
+    <span class="fps-count">FPS: <span id="fps"></span></span>
     <div id="game">
         <canvas id="game-canvas" width="1200" height="675"></canvas>
     </div>
+
+    <script type="text/javascript" src="script/utils/FrameRate.js"></script>
+    <script type="text/javascript" src="script/Game.js"></script>
+    <script type="text/javascript" src="script/Tiles.js"></script>
+    <script type="text/javascript" src="script/Map.js"></script>
+
+    <script type="text/javascript" src="script/Entity.js"></script>
+    <script type="text/javascript" src="script/Player.js"></script>
+
+    <script type="text/javascript">
+        window.onload = () => {
+            const game = new Game();
+            game.load().then(() => {
+                game.start();
+            })
+        }
+    </script>
 </body>
 
 </html>
