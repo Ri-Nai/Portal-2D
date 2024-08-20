@@ -4,9 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "pnpm vite build",
+    "dev": "pnpm vite dev"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^22.4.1",
+    "less": "^4.2.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.1"
+  },
+  "devDependencies": {
+    "@parcel/transformer-less": "2.12.0"
+  }
 }
