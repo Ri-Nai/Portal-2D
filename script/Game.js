@@ -12,7 +12,9 @@ class Game {
     loaded = false
 
     constructor() {
+        const fps = new FrameRate()
 
+        this.computations.push((t) => fps.display(t.timestamp))
     }
 
     async load() {
@@ -28,13 +30,12 @@ class Game {
     }
 
     /**
-     * 
      * @param {number} timestamp frame interval in milliseconds
      * @param {number} prev previous frame timestamp
      */
     loop(timestamp, prev) {
         const interval = timestamp - prev;
-        this.computations.forEach((comp) => comp(interval))
+        this.computations.forEach((comp) => comp({timestamp, interval}))
 
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, timestamp))
     }
