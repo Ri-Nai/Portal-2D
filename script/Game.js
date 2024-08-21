@@ -9,12 +9,13 @@ class Game {
      */
     computations = [];
 
-    loaded = false
+    loaded = false;
 
     constructor() {
-        const fps = new FrameRate()
-
-        this.computations.push((t) => fps.display(t.timestamp))
+        const fps = new FrameRate();
+        this.computations.push((t) => fps.display(t.timestamp));
+        this.map = new Map();
+        this.player = new Player();
     }
 
     async load() {
@@ -26,7 +27,7 @@ class Game {
             console.error('Game not loaded');
             return;
         }
-        window.requestAnimationFrame((timestamp) => this.loop(timestamp, 0))
+        window.requestAnimationFrame((timestamp) => this.loop(timestamp, 0));
     }
 
     /**
@@ -35,9 +36,10 @@ class Game {
      */
     loop(timestamp, prev) {
         const interval = timestamp - prev;
-        this.computations.forEach((comp) => comp({timestamp, interval}))
+        this.computations.forEach((comp) => comp({ timestamp, interval }));
 
-        window.requestAnimationFrame((timestamp) => this.loop(timestamp, timestamp))
+        window.requestAnimationFrame((timestamp) => this.loop(timestamp, timestamp));
     }
 }
 
+let game = new Game();
