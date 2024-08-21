@@ -12,10 +12,21 @@ class Game {
     loaded = false;
 
     constructor() {
+        /**
+         * @type {KeyboardMananger}
+         */
+        this.keyboard = new KeyboardMananger();
+        this.computations.push((t) => {
+            if (this.keyboard.isKeyDown('Enter')) {
+                console.debug("Enter key is pressed");
+            }
+        });
+
         const fps = new FrameRate();
         this.computations.push((t) => fps.display(t.timestamp));
-        this.map = new Map();
-        this.player = new Player();
+
+        this.map = new MapManager();
+        // this.player = new Player();
     }
 
     async load() {

@@ -23,8 +23,9 @@
     </div>
 
     <script type="text/javascript" src="script/utils/FrameRate.js"></script>
+    <script type="text/javascript" src="script/utils/Keyboard.js"></script>
+
     <script type="text/javascript" src="script/Game.js"></script>
-    <script type="text/javascript" src="script/Tiles.js"></script>
     <script type="text/javascript" src="script/Map.js"></script>
 
     <script type="text/javascript" src="script/Entity.js"></script>
@@ -32,9 +33,9 @@
 
     <script type="text/javascript">
         window.onload = () => {
-            const game = new Game();
-            game.load().then(() => {
-                game.start();
+            window.$game = new Game();
+            window.$game.load().then(() => {
+                window.$game.start();
             });
         }
     </script>

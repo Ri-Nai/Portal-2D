@@ -11,7 +11,7 @@ class Layer {
         this.opacity = 1;
     }
 }
-class Map {
+class MapManager {
     constructor() {
         /**
          * @type {Layer[]}
