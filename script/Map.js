@@ -29,7 +29,7 @@ class Map {
             ));
             return layer;
         });
-        this.blocks = this.layers[2]
+        this.blocks = this.layers[4]
     }
 
     async loadFromURL(url) {

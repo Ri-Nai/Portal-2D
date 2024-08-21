@@ -96,12 +96,18 @@ class Player extends Entity {
                 return True;
         return False;
     }
-
-    update(deltaTime) {
-        this.jumping.canJump(this.isOnGround(), deltaTime)
+    updateJumping(deltaTime) {
+        this.jumping.canJump(this.isOnGround(), deltaTime);
         //TODO:
-        this.jumping.updateJump()
+        this.jumping.updateJump();
+    }
+    updateX(deltaTime) {
 
-
+        if (
+    }
+    update(deltaTime) {
+        this.updateJumping();
+        nextVelocityY = this.jumping;
+        nextVelocityX = updateX(deltaTime);
     }
 }
