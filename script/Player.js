@@ -89,7 +89,7 @@ class Player extends Entity {
 
     isOnGround() {
         let hitbox = this.hitbox;
-        let hitboxes = game.map.blocks;
+        let hitboxes = window.$game.map.blocks;
         ++hitbox.position.y;
         for (let hit of hitboxes)
             if (hit.hit(hitbox))
@@ -102,8 +102,7 @@ class Player extends Entity {
         this.jumping.updateJump();
     }
     updateX(deltaTime) {
-
-        if (
+        
     }
     update(deltaTime) {
         this.updateJumping();
