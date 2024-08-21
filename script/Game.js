@@ -17,8 +17,8 @@ class Game {
          */
         this.keyboard = new KeyboardMananger();
         this.computations.push((t) => {
-            if (this.keyboard.isKeyDown('Enter')) {
-                console.debug("Enter key is pressed");
+            if (this.keyboard.isKeyDown('Space')) {
+                console.debug("Space key is pressed");
             }
         });
 
