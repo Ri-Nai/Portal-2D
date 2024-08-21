@@ -14,6 +14,7 @@ class Layer {
 class Map {
     constructor() {
         this.layers = [];
+        this.blocks = [];
     }
     loadFromJSON(jsonData) {
         const data = JSON.parse(jsonData);
@@ -28,6 +29,7 @@ class Map {
             ));
             return layer;
         });
+        this.blocks = this.layers[2]
     }
 
     async loadFromURL(url) {

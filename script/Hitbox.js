@@ -4,35 +4,48 @@ class Hitbox {
         this.size = size;          // 宽度和高度作为一个 Vector
     }
 
-    // 获取左下角点的位置（就是 position）
+    // 获取左上角点的位置（就是 position）
     getBottomLeft() {
         return this.position;
     }
 
-    // 获取右上角点的位置
-    getTopRight() {
+    // 获取右下角点的位置
+    getBottomRight() {
         return this.position.plus(this.size);
-    }
-
-    // 移动 hitbox，更新左下角位置
-    move(newPosition) {
-        this.position = newPosition;
     }
 
     // 检查某点是否在 hitbox 内
     contains(point) {
-        const bottomLeft = this.getBottomLeft();
-        const topRight = this.getTopRight();
+        const topLeft = this.getTopLeft();
+        const bottomRight = this.getBottomLeft();
 
         return (
-            point.x >= bottomLeft.x && point.x <= topRight.x &&
-            point.y >= bottomLeft.y && point.y <= topRight.y
+            point.x >= topLeft.x && point.x <= bottomRight.x &&
+            point.y >= topLeft.y && point.y <= bottomRight.y
         );
     }
 
-    toString() {
-        const bottomLeft = this.getBottomLeft();
-        const topRight = this.getTopRight();
-        return `Hitbox(BottomLeft: ${bottomLeft}, TopRight: ${topRight})`;
+    hit(other) {
+        const thisLeft = this.getBottomLeft().x;
+        const thisRight = this.getBottomRight().x;
+        const thisTop = this.getTopLeft().y;
+        const thisBottom = this.getBottomLeft().y;
+
+        const otherLeft = other.getBottomLeft().x;
+        const otherRight = other.getBottomRight().x;
+        const otherTop = other.getTopLeft().y;
+        const otherBottom = other.getBottomLeft().y;
+
+        // 检查是否不相交
+        if (
+            thisRight < otherLeft ||  // this 在 other 的左边
+            thisLeft > otherRight ||  // this 在 other 的右边
+            thisTop < otherBottom ||  // this 在 other 的下面
+            thisBottom > otherTop     // this 在 other 的上面
+        ) {
+            return false;  // 没有碰撞
+        }
+
+        return true;  // 有碰撞
     }
 }

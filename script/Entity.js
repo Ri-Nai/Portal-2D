@@ -1,5 +1,5 @@
 class Entity {
-    constructor(position, size, velocity = new Vector(0, 0), acceleration = new Vector(0, 0)) {
+    constructor(position, size, velocity = new Vector()) {
         this.position = position;  // 实体的当前位置
         this.velocity = velocity;  // 实体的速度
         this.acceleration = acceleration;  // 实体的加速度
