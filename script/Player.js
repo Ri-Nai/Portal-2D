@@ -108,7 +108,11 @@ class Player extends Entity {
             hitbox.position.addEqual(delta);
             let collided = false;
             for (let j of hitboxes) {
+<<<<<<< HEAD
                 if (hitbox.hit(j)) {
+=======
+                if (hitbox.containsRect(j)) {
+>>>>>>> f6ad0b5fa0591c0ff6a31ec0ecf63541a9e8426e
                     collided = true;
                     break;
                 }
