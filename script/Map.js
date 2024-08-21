@@ -13,7 +13,14 @@ class Layer {
 }
 class Map {
     constructor() {
+        /**
+         * @type {Layer[]}
+         */
         this.layers = [];
+
+        /**
+         * @type {Tile[]}
+         */
         this.blocks = [];
     }
     loadFromJSON(jsonData) {
