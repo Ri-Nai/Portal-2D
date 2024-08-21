@@ -1,17 +1,22 @@
 class Hitbox {
+    /**
+     *
+     * @param {Vector} position
+     * @param {Vector} size
+     */
     constructor(position, size) {
         this.position = position;  // 左下角位置
         this.size = size;          // 宽度和高度作为一个 Vector
     }
 
     // 获取左上角点的位置（就是 position）
-    getBottomLeft() {
+    getTopLeft() {
         return this.position;
     }
 
     // 获取右下角点的位置
     getBottomRight() {
-        return this.position.plus(this.size);
+        return this.position.add(this.size);
     }
 
     // 检查某点是否在 hitbox 内
@@ -26,15 +31,15 @@ class Hitbox {
     }
 
     hit(other) {
-        const thisLeft = this.getBottomLeft().x;
+        const thisLeft = this.getTopLeft().x;
         const thisRight = this.getBottomRight().x;
         const thisTop = this.getTopLeft().y;
-        const thisBottom = this.getBottomLeft().y;
+        const thisBottom = this.getBottomRight().y;
 
-        const otherLeft = other.getBottomLeft().x;
+        const otherLeft = other.getTopLeft().x;
         const otherRight = other.getBottomRight().x;
         const otherTop = other.getTopLeft().y;
-        const otherBottom = other.getBottomLeft().y;
+        const otherBottom = other.getBottomRight().y;
 
         // 检查是否不相交
         if (
