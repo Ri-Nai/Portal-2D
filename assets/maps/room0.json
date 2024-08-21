@@ -1,3 +1,4 @@
+window.$game.dataManager.resolve(
 {
     "layers": [
         {
@@ -30,3 +31,4 @@
         }
     ]
 }
+)
