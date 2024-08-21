@@ -25,6 +25,10 @@ class MapManager {
     }
     loadFromJSON(jsonData) {
         const data = JSON.parse(jsonData);
+        this.load(data)
+    }
+
+    load(data) {
         this.layers = data.layers.map(layerData => {
             const layer = new Layer();
             layer.opacity = layerData.opacity;
@@ -41,12 +45,8 @@ class MapManager {
 
     async loadFromURL(url) {
         try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const jsonData = await response.json();
-            this.loadFromJSON(JSON.stringify(jsonData));
+            const response = await window.$game.dataManager.loadJSON(url);
+            this.load(response);
             console.log(this);
         } catch (error) {
             console.error('There has been a problem with your fetch operation:', error);

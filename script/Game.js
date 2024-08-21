@@ -22,14 +22,18 @@ class Game {
             }
         });
 
+        this.dataManager = new DataManager();
+
         const fps = new FrameRate();
         this.computations.push((t) => fps.display(t.timestamp));
 
         this.map = new MapManager();
+
         // this.player = new Player();
     }
 
     async load() {
+        await this.map.loadFromURL('./assets/maps/room0.json');
         this.loaded = true;
     }
 
