@@ -41,5 +41,3 @@ class Game {
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, timestamp));
     }
 }
-
-let game = new Game();
