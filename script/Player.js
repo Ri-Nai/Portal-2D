@@ -85,6 +85,9 @@ class Player extends Entity {
         super(position, size);
         //this.velocity.y === -this.jumping.jumpVelocity
         this.jumping = new Jumping();
+        this.facing = 1;
+        this.isSpaceHeld = false;
+        this.MaxSpeed = 6;
     }
 
     isOnGround() {
@@ -97,17 +100,35 @@ class Player extends Entity {
         return False;
     }
     updateJumping(deltaTime) {
+        if (window.$game.keyboard.isKeyDown("Space")) {
+            if (!this.isSpaceHeld)
+                this.jumping.setJumpBuffer();
+            this.isSpaceHeld = true;
+        }
+        else
+            this.isSpaceHeld = false;
         this.jumping.canJump(this.isOnGround(), deltaTime);
-        //TODO:
-        this.jumping.updateJump();
+        this.jumping.updateJump(this.isSpaceHeld, deltaTime);
     }
     updateX(deltaTime) {
-
+        let moveLeft = window.$game.keyboard.isKeysDown([ "A", "Left" ]);
+        let moveRight = window.$game.keyboard.isKeysDown([ "D", "Right" ]);
+        let move = 0;
+        if (moveLeft)
+            this.facing = move = 1;
+        if (moveRight)
+            this.facing = move = -1;
+        nextVelocityX = this.velocity.x;
+        if (move == 0)
+            nextVelocityX = nextVelocityX * Math.exp(-0.5);
+        else {
+            nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10) * deltaTime, this.MaxSpeed);
+        }
 
     }
     update(deltaTime) {
-        this.updateJumping();
-        nextVelocityY = this.jumping;
+        this.updateJumping(deltaTime);
+        nextVelocityY = this.jumping.jumpVelocity;
         nextVelocityX = updateX(deltaTime);
     }
 }
