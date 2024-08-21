@@ -4,14 +4,38 @@ class Vector {
         this.y = y;
     }
 
-    // 向量加法
-    add(v) {
-        return new Vector(this.x + v.x, this.y + v.y);
+    // 向量加法（传入标量）
+    add(x, y) {
+        return new Vector(this.x + x, this.y + y);
     }
 
-    // 向量减法
-    subtract(v) {
-        return new Vector(this.x - v.x, this.y - v.y);
+    // 向量加法（传入向量）
+    addVector(v) {
+        return this.add(v.x, v.y);
+    }
+
+    // 向量减法（传入标量）
+    sub(x, y) {
+        return this.add(-x, -y);
+    }
+
+    // 向量减法（传入向量）
+    subVector(v) {
+        return this.sub(v.x, v.y);
+    }
+
+    // 原地加法（加向量并更新自身值）
+    addEqual(v) {
+        this.x += v.x;
+        this.y += v.y;
+        return this;  // 为了链式调用
+    }
+
+    // 原地减法（减向量并更新自身值）
+    subEqual(v) {
+        this.x -= v.x;
+        this.y -= v.y;
+        return this;  // 为了链式调用
     }
 
     // 标量乘法
@@ -50,5 +74,7 @@ class Vector {
     angle() {
         return Math.atan2(this.y, this.x);
     }
-
+    round() {
+        return new Vector(Math.round(this.x), Math.round(this.y));
+    }
 }
