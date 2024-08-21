@@ -65,10 +65,10 @@ class Jumping {
     setJumpBuffer() {
         this.jumpBuffer = this.jumpBufferTime;
     }
-    setFalling(x) {
-        this.isFalling = x;
+    setFalling() {
+        this.isFalling = true;
+        this.isJumping = false;
     }
-
     resetJump() {
         this.isJumping = false;
         this.isFalling = false;
@@ -99,6 +99,43 @@ class Player extends Entity {
                 return True;
         return False;
     }
+    moveHitbox(move, hitboxes) {
+        let dir = Math.sign(move.x);
+        let pos = this.position;
+        let hitbox = this.hitbox;
+        let flag = 0;
+        let fun = (delta, value) => {
+            hitbox.position.addEqual(delta);
+            let collided = false;
+            for (let j of hitboxes) {
+                if (hitbox.containsRect(j)) {
+                    collided = true;
+                    break;
+                }
+            }
+            pos.addEqual(dir, 0);
+            if (collided) {
+                flag |= value;
+                return false;
+            }
+            return true
+        }
+        for (let i = 0; i != move.x; i += dir) {
+            if (!fun(new Vector(dir, 0), 1))
+                break;
+        }
+        dir = Math.sign(move.y);
+        for (let i = 0; i != move.y; i += dir) {
+            if (!fun(new Vector(0, dir), 2))
+                break;
+        }
+        return flag;
+    }
+
+    rigidMove(velocity, callback) {
+        let move = velocity.round();
+        callback(this.moveHitbox(move));
+    }
     updateJumping(deltaTime) {
         if (window.$game.keyboard.isKeyDown("Space")) {
             if (!this.isSpaceHeld)
@@ -124,11 +161,23 @@ class Player extends Entity {
         else {
             nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10) * deltaTime, this.MaxSpeed);
         }
-
+        return nextVelocityX;
     }
     update(deltaTime) {
         this.updateJumping(deltaTime);
         nextVelocityY = this.jumping.jumpVelocity;
         nextVelocityX = updateX(deltaTime);
+        this.rigidMove(new Vector(nextVelocityY, nextVelocityX), (side) => {
+            if (side & 1)
+                nextVelocityX = 0;
+            if (side & 2)
+                nextVelocityY = 0;
+        });
+        this.velocity.x = nextVelocityX;
+        this.velocity.y = nextVelocityY;
+        if (nextVelocityY == 0) {
+            this.jumping.jumpVelocity = 0;
+            this.jumping.setFalling();
+        }
     }
 }
