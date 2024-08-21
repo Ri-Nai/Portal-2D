@@ -32,9 +32,9 @@
 
     <script type="text/javascript">
         window.onload = () => {
-            const game = new Game();
-            game.load().then(() => {
-                game.start();
+            window.$game = new Game();
+            window.$game.load().then(() => {
+                window.$game.start();
             });
         }
     </script>
