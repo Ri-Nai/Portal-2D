@@ -103,7 +103,6 @@ class Player extends Entity {
     }
     updateX(deltaTime) {
 
-        if (
     }
     update(deltaTime) {
         this.updateJumping();
