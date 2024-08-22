@@ -12,6 +12,9 @@ class Game {
     loaded = false;
 
     constructor() {
+        this.canvas = document.querySelector("canvas");
+        this.ctx = this.canvas.getContext('2d');
+
         /**
          * @type {KeyboardMananger}
          */
@@ -22,9 +25,14 @@ class Game {
             }
         });
 
+        /**
+         * @type {MouseManager}
+         */
+        this.mouse = new MouseManager(this.canvas);
+        this.computations.push(() => this.mouse.draw());
+
         this.dataManager = new DataManager();
-        this.canvas = document.querySelector("canvas");
-        this.ctx = this.canvas.getContext('2d');
+
         const fps = new FrameRate();
         this.computations.push((t) => fps.display(t.timestamp));
         this.map = new MapManager();
@@ -52,6 +60,8 @@ class Game {
      */
     loop(timestamp, prev) {
         const interval = timestamp - prev;
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
         this.computations.forEach((comp) => comp({ timestamp, interval }));
 
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, timestamp));
