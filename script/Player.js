@@ -178,4 +178,7 @@ class Player extends Entity {
             this.jumping.setFalling();
         }
     }
+    draw() {
+        
+    }
 }

@@ -42,7 +42,7 @@ class Game {
     }
 
     async load() {
-        await this.map.loadFromURL('./assets/maps/room0.json');
+        await this.map.loadFromURL('./assets/maps/Test.json');
         this.loaded = true;
     }
 

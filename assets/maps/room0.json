@@ -4,16 +4,14 @@ window.$game.dataManager.resolve(
         {
             "tiles": [
                 {
-                    "type": 1,
+                    "type": 2,
                     "position": { "x": 0, "y": 0 },
                     "size": { "x": 40, "y": 40 },
-                    "passable": true
                 },
                 {
                     "type": 2,
                     "position": { "x": 40, "y": 0 },
                     "size": { "x": 40, "y": 40 },
-                    "passable": false
                 }
             ],
             "opacity": 1.0
@@ -21,10 +19,9 @@ window.$game.dataManager.resolve(
         {
             "tiles": [
                 {
-                    "type": 3,
+                    "type": 4,
                     "position": { "x": 0, "y": 40 },
                     "size": { "x": 40, "y": 40 },
-                    "passable": true
                 }
             ],
             "opacity": 0.5
