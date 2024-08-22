@@ -77,8 +77,6 @@ class Jumping {
 }
 
 
-
-
 class Player extends Entity {
 
     constructor(position, size) {

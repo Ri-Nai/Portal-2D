@@ -23,11 +23,12 @@ class Game {
         });
 
         this.dataManager = new DataManager();
-
+        this.canvas = document.querySelector("canvas");
+        this.ctx = this.canvas.getContext('2d');
         const fps = new FrameRate();
         this.computations.push((t) => fps.display(t.timestamp));
-
         this.map = new MapManager();
+        this.computations.push(() => this.map.draw());
 
         // this.player = new Player();
     }

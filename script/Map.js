@@ -1,14 +1,33 @@
+const BasicSize = 40;
 class Tile {
     constructor(type, position, size, passable) {
         this.type = type;  // 纹理
         this.hitbox = new Hitbox(position, size); // 每个 Tile 有一个 Hitbox
         this.passable = passable;  // 是否可通过
     }
+    draw() {
+        for (let i = 0; i < this.hitbox.size.x; i += BasicSize)
+            for (let j = 0; j < this.hitbox.size.y; j += BasicSize) {
+                window.$game.ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+                window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, BasicSize, BasicSize);
+                // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, BasicSize,);
+            }
+    }
 }
 class Layer {
     constructor() {
+        /**
+         * @type {Tile[]}
+        */
         this.tiles = [];
+        /**
+         * @type {number}
+         */
         this.opacity = 1;
+    }
+    draw() {
+        for (let i of this.tiles)
+            i.draw();
     }
 }
 class MapManager {
@@ -25,7 +44,7 @@ class MapManager {
     }
     loadFromJSON(jsonData) {
         const data = JSON.parse(jsonData);
-        this.load(data)
+        this.load(data);
     }
 
     load(data) {
@@ -40,7 +59,7 @@ class MapManager {
             ));
             return layer;
         });
-        this.blocks = this.layers[4]
+        this.blocks = this.layers[ 4 ];
     }
 
     async loadFromURL(url) {
@@ -51,5 +70,9 @@ class MapManager {
         } catch (error) {
             console.error('There has been a problem with your fetch operation:', error);
         }
+    }
+    draw() {
+        for (let i of this.layers)
+            i.draw();
     }
 }
