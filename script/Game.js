@@ -45,7 +45,6 @@ class Game {
         this.computations.push((t) => this.player.update(t.interval));
         this.computations.push(() => this.map.draw());
         this.computations.push(() => this.player.draw());
-        // this.player = new Player();
         this.computations.push(() => this.mouse.draw());
     }
 

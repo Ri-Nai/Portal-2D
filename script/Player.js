@@ -82,7 +82,7 @@ class Player extends Entity {
     constructor(position, size) {
         super(position, size);
         //this.velocity.y === -this.jumping.jumpVelocity
-        this.jumping = new Jumping();
+        this.jumping = new Jumping(5, 10, 0.5, 10, 5);
         this.facing = 1;
         this.isSpaceHeld = false;
         this.MaxSpeed = 6;
@@ -111,7 +111,7 @@ class Player extends Entity {
                     break;
                 }
             }
-            pos.addEqual(dir, 0);
+            this.hitbox.position.addEqual(dir, 0);
             if (collided) {
                 flag |= value;
                 return false;
@@ -165,7 +165,7 @@ class Player extends Entity {
         this.updateJumping(deltaTime);
         let nextVelocityY = this.jumping.jumpVelocity;
         let nextVelocityX = this.updateX(deltaTime);
-        this.rigidMove(new Vector(nextVelocityY, nextVelocityX), (side) => {
+        this.rigidMove(new Vector(nextVelocityX, nextVelocityY), (side) => {
             if (side & 1)
                 nextVelocityX = 0;
             if (side & 2)
