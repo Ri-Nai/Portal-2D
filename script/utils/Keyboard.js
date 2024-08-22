@@ -150,4 +150,17 @@ class KeyboardMananger {
     isKeyDown(key) {
         return this.status.get(key) || false
     }
+
+    /**
+     *
+     * @param {string[]} keys
+     * @returns
+     */
+    isKeysDown(keys) {
+        ans = false
+        keys.forEach((key) => {
+            ans = ans || this.isKeyDown(key)
+        })
+        return ans
+    }
 }

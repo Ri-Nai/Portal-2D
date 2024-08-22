@@ -29,12 +29,15 @@ class Game {
          * @type {MouseManager}
          */
         this.mouse = new MouseManager(this.canvas);
-        this.computations.push(() => this.mouse.draw());
 
         this.dataManager = new DataManager();
 
         const fps = new FrameRate();
         this.computations.push((t) => fps.display(t.timestamp));
+
+        /**
+         * @type {MapManager}
+         */
         this.map = new MapManager();
         this.player = new Player(
             new Vector(4 * BasicSize, 10 * BasicSize),
@@ -43,6 +46,7 @@ class Game {
         this.computations.push(() => this.map.draw());
         this.computations.push(() => this.player.draw());
         // this.player = new Player();
+        this.computations.push(() => this.mouse.draw());
     }
 
     async load() {
