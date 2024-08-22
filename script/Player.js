@@ -108,7 +108,7 @@ class Player extends Entity {
             hitbox.position.addEqual(delta);
             let collided = false;
             for (let j of hitboxes) {
-                if (hitbox.containsRect(j)) {
+                if (hitbox.hit(j)) {
                     collided = true;
                     break;
                 }
@@ -134,7 +134,7 @@ class Player extends Entity {
 
     rigidMove(velocity, callback) {
         let move = velocity.round();
-        callback(this.moveHitbox(move));
+        callback(this.moveHitbox(move, window.$game.map.blocks));
     }
     updateJumping(deltaTime) {
         if (window.$game.keyboard.isKeyDown("Space")) {
