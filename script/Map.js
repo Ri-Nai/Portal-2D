@@ -1,14 +1,13 @@
 const BasicSize = 40;
 class Tile {
-    constructor(type, position, size, passable) {
+    constructor(type, position, size) {
         this.type = type;  // 纹理
         this.hitbox = new Hitbox(position, size); // 每个 Tile 有一个 Hitbox
-        this.passable = passable;  // 是否可通过
     }
     draw() {
         for (let i = 0; i < this.hitbox.size.x; i += BasicSize)
             for (let j = 0; j < this.hitbox.size.y; j += BasicSize) {
-                window.$game.ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+                window.$game.ctx.fillStyle = `rgba(0, 0, ${this.type * 50}, 0.5)`;
                 window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, BasicSize, BasicSize);
                 // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, BasicSize,);
             }
@@ -54,8 +53,7 @@ class MapManager {
             layer.tiles = layerData.tiles.map(tileData => new Tile(
                 tileData.type,
                 tileData.position,
-                tileData.size,
-                tileData.passable
+                tileData.size
             ));
             return layer;
         });
