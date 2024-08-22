@@ -47,7 +47,7 @@ class Jumping {
                 // console.log("jumpingnow", this.chargeTime);
                 this.chargeTime += deltaTime;
                 this.jumpVelocity = Math.min(this.baseJump + (this.chargeTime / this.maxJump) * (this.maxJump - this.baseJump), this.maxJump);
-            //蓄力跳
+                //蓄力跳
             } else {
                 this.isFalling = true;
                 this.jumpVelocity -= this.gravity * deltaTime;
@@ -112,7 +112,7 @@ class Player extends Entity {
     moveHitbox(move, hitboxes) {
         let dir = Math.sign(move.x);
         let copy_hitbox = this.hitbox;
-        let flag = 0
+        let flag = 0;
 
         let move_direction = (delta, value) => {
             copy_hitbox.position.addEqual(delta);
@@ -167,8 +167,8 @@ class Player extends Entity {
         this.jumping.updateJump(this.isSpaceHeld, deltaTime);
     }
     updateX(deltaTime) {
-        let moveLeft = window.$game.keyboard.isKeysDown([ "A", "Left" ]);
-        let moveRight = window.$game.keyboard.isKeysDown([ "D", "Right" ]);
+        let moveLeft = window.$game.keyboard.isKeysDown(["A", "Left"]);
+        let moveRight = window.$game.keyboard.isKeysDown(["D", "Right"]);
         if (moveRight)
             console.debug("Write");
         let move = 0;
@@ -181,13 +181,12 @@ class Player extends Entity {
             nextVelocityX = nextVelocityX * Math.exp(-0.5);
         else {
             /*TODO:修改超速时在地面减速 */
-            nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10 * deltaTime) , this.MaxSpeed);
-
+            nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10 * deltaTime), this.MaxSpeed);
         }
         return nextVelocityX;
     }
     update(deltaTime) {
-        // deltaTime;
+        deltaTime = 60 * deltaTime / 1000;
         this.updateJumping(deltaTime);
         let nextVelocityY = -this.jumping.jumpVelocity;
         let nextVelocityX = this.updateX(deltaTime);

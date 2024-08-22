@@ -66,12 +66,13 @@ class Game {
      * @param {number} prev previous frame timestamp
      */
     loop(timestamp, prev) {
-        timestamp = performance.now()
+        // timestamp = performance.now()
         const interval = timestamp - prev;
+        const now = timestamp;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.computations.forEach((comp) => comp({ timestamp, interval }));
 
-        window.requestAnimationFrame((timestamp) => this.loop(timestamp, timestamp));
+        window.requestAnimationFrame((timestamp) => this.loop(timestamp, now));
     }
 }
