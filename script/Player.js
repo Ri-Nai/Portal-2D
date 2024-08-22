@@ -151,7 +151,14 @@ class Player extends Entity {
         return flag;
     }
 
-    rigidMove(velocity) {
+    /**
+     *
+     * @param {Vector} velocity
+     * @param {number} deltaTime
+     * @returns {number}
+     */
+    rigidMove(velocity, deltaTime) {
+        velocity = velocity.scale(deltaTime);
         let move = velocity.round();
         return this.moveHitbox(move, window.$game.map.blocks);
     }
@@ -190,7 +197,7 @@ class Player extends Entity {
         this.updateJumping(deltaTime);
         let nextVelocityY = -this.jumping.jumpVelocity;
         let nextVelocityX = this.updateX(deltaTime);
-        let side = this.rigidMove(new Vector(nextVelocityX, nextVelocityY));
+        let side = this.rigidMove(new Vector(nextVelocityX, nextVelocityY), deltaTime);
         if (side & 1)
             nextVelocityX = 0;
         if (side & 2)
