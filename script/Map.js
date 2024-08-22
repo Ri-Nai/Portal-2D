@@ -52,12 +52,12 @@ class MapManager {
             layer.opacity = layerData.opacity;
             layer.tiles = layerData.tiles.map(tileData => new Tile(
                 tileData.type,
-                tileData.position,
-                tileData.size
+                new Vector(tileData.position.x, tileData.position.y),
+                new Vector(tileData.size.x, tileData.size.y)
             ));
             return layer;
         });
-        this.blocks = this.layers[ 4 ];
+        this.blocks = this.layers[ 4 ].tiles;
     }
 
     async loadFromURL(url) {

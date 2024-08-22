@@ -92,10 +92,10 @@ class Player extends Entity {
         let hitbox = this.hitbox;
         let hitboxes = window.$game.map.blocks;
         ++hitbox.position.y;
-        for (let hit of hitboxes)
-            if (hit.hit(hitbox))
-                return True;
-        return False;
+        for (let tile of hitboxes)
+            if (tile.hitbox.hit(hitbox))
+                return true;
+        return false;
     }
     moveHitbox(move, hitboxes) {
         let dir = Math.sign(move.x);
@@ -105,8 +105,8 @@ class Player extends Entity {
         let fun = (delta, value) => {
             hitbox.position.addEqual(delta);
             let collided = false;
-            for (let j of hitboxes) {
-                if (hitbox.hit(j)) {
+            for (let tile of hitboxes) {
+                if (hitbox.hit(tile.hitbox)) {
                     collided = true;
                     break;
                 }
@@ -153,7 +153,7 @@ class Player extends Entity {
             this.facing = move = 1;
         if (moveRight)
             this.facing = move = -1;
-        nextVelocityX = this.velocity.x;
+        let nextVelocityX = this.velocity.x;
         if (move == 0)
             nextVelocityX = nextVelocityX * Math.exp(-0.5);
         else {
@@ -163,8 +163,8 @@ class Player extends Entity {
     }
     update(deltaTime) {
         this.updateJumping(deltaTime);
-        nextVelocityY = this.jumping.jumpVelocity;
-        nextVelocityX = updateX(deltaTime);
+        let nextVelocityY = this.jumping.jumpVelocity;
+        let nextVelocityX = this.updateX(deltaTime);
         this.rigidMove(new Vector(nextVelocityY, nextVelocityX), (side) => {
             if (side & 1)
                 nextVelocityX = 0;
@@ -179,6 +179,11 @@ class Player extends Entity {
         }
     }
     draw() {
-        
+        for (let i = 0; i < this.hitbox.size.x; i += BasicSize)
+            for (let j = 0; j < this.hitbox.size.y; j += BasicSize) {
+                window.$game.ctx.fillStyle = `rgba(221, 100, 0, 1)`;
+                window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, BasicSize, BasicSize);
+                // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, BasicSize,);
+            }
     }
 }

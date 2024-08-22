@@ -36,8 +36,12 @@ class Game {
         const fps = new FrameRate();
         this.computations.push((t) => fps.display(t.timestamp));
         this.map = new MapManager();
+        this.player = new Player(
+            new Vector(4 * BasicSize, 10 * BasicSize),
+            new Vector(2 * BasicSize, 3 * BasicSize));
+        this.computations.push((t) => this.player.update(t.interval));
         this.computations.push(() => this.map.draw());
-
+        this.computations.push(() => this.player.draw());
         // this.player = new Player();
     }
 
