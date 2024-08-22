@@ -42,19 +42,20 @@ class Jumping {
 
     updateJump(isSpaceHeld, deltaTime) {
         if (this.isJumping) {
-            console.log("jiangp")
             //蓄力跳
-            if (isSpaceHeld && this.chargeTime < this.maxJump) {
+            if (!this.isFalling && isSpaceHeld && this.chargeTime < this.maxJump) {
+                // console.log("jumpingnow", this.chargeTime);
                 this.chargeTime += deltaTime;
                 this.jumpVelocity = Math.min(this.baseJump + (this.chargeTime / this.maxJump) * (this.maxJump - this.baseJump), this.maxJump);
             //蓄力跳
             } else {
+                this.isFalling = true;
                 this.jumpVelocity -= this.gravity * deltaTime;
             }
-            console.log("jumpingV", this.jumpVelocity);
         } else if (this.isFalling) {
             this.jumpVelocity -= this.gravity * deltaTime;
         }
+        this.reduceJumpBuffer(deltaTime);
     }
 
     applyJump(position, deltaTime) {
@@ -86,7 +87,7 @@ class Player extends Entity {
     constructor(position, size) {
         super(position, size);
         //this.velocity.y === -this.jumping.jumpVelocity
-        this.jumping = new Jumping(5, 10, 0.5, 10, 5);
+        this.jumping = new Jumping(5, 10, 0.5, 10, 1);
         this.facing = 1;
         this.isSpaceHeld = false;
         this.MaxSpeed = 6;
@@ -96,6 +97,7 @@ class Player extends Entity {
         let hitbox = this.hitbox;
         let hitboxes = window.$game.map.blocks;
         hitbox.position.y += 1;
+        // console.log(hitbox.position.y)
         for (let tile of hitboxes) {
 
             if (tile.hitbox.hit(hitbox)) {
@@ -118,7 +120,13 @@ class Player extends Entity {
             for (let tile of hitboxes) {
                 if (copy_hitbox.hit(tile.hitbox)) {
                     collided = true;
-                    copy_hitbox.position.add(new Vector(-delta.x, -delta.y));
+                    if (value == 0)
+                        console.log(copy_hitbox.position.x, copy_hitbox.position.y, tile.hitbox.position.x, tile.hitbox.position.y);
+                    console.log("1", copy_hitbox.position.x, copy_hitbox.position.y, tile.hitbox.position.x, tile.hitbox.position.y);
+                    copy_hitbox.position.addEqual(new Vector(-delta.x, -delta.y));
+                    // copy_hitbox.position.addEqual(new Vector(-delta.x, -delta.y));
+                    console.log("2", copy_hitbox.position.x, copy_hitbox.position.y, tile.hitbox.position.x, tile.hitbox.position.y);
+
                     break;
                 }
             }
@@ -172,7 +180,8 @@ class Player extends Entity {
         if (move == 0)
             nextVelocityX = nextVelocityX * Math.exp(-0.5);
         else {
-            nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10) * deltaTime, this.MaxSpeed);
+            /*TODO:修改超速时在地面减速 */
+            nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10 * deltaTime) , this.MaxSpeed);
 
         }
         return nextVelocityX;
