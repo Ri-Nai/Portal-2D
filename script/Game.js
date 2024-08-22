@@ -29,7 +29,6 @@ class Game {
          * @type {MouseManager}
          */
         this.mouse = new MouseManager(this.canvas);
-        // this.computations.push(() => this.mouse.draw());
 
         this.dataManager = new DataManager();
 
@@ -43,6 +42,7 @@ class Game {
         this.computations.push(() => this.map.draw());
 
         // this.player = new Player();
+        this.computations.push(() => this.mouse.draw());
     }
 
     async load() {
