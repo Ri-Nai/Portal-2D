@@ -40,7 +40,7 @@ class Game {
          */
         this.map = new MapManager();
         this.player = new Player(
-            new Vector(4 * BasicSize, 10 * BasicSize),
+            new Vector(4 * BasicSize, 4 * BasicSize),
             new Vector(2 * BasicSize, 3 * BasicSize));
         this.computations.push((t) => this.player.update(t.interval));
         this.computations.push(() => this.map.draw());
@@ -58,7 +58,7 @@ class Game {
             console.error('Game not loaded');
             return;
         }
-        window.requestAnimationFrame((timestamp) => this.loop(timestamp, 0));
+        window.requestAnimationFrame((timestamp) => this.loop(timestamp, performance.now()));
     }
 
     /**
@@ -66,6 +66,7 @@ class Game {
      * @param {number} prev previous frame timestamp
      */
     loop(timestamp, prev) {
+        timestamp = performance.now()
         const interval = timestamp - prev;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 

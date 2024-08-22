@@ -42,14 +42,18 @@ class Jumping {
 
     updateJump(isSpaceHeld, deltaTime) {
         if (this.isJumping) {
+            console.log("jiangp")
+            //蓄力跳
             if (isSpaceHeld && this.chargeTime < this.maxJump) {
                 this.chargeTime += deltaTime;
                 this.jumpVelocity = Math.min(this.baseJump + (this.chargeTime / this.maxJump) * (this.maxJump - this.baseJump), this.maxJump);
+            //蓄力跳
             } else {
                 this.jumpVelocity -= this.gravity * deltaTime;
             }
+            console.log("jumpingV", this.jumpVelocity);
         } else if (this.isFalling) {
-            this.jumpVelocity += this.gravity * deltaTime;
+            this.jumpVelocity -= this.gravity * deltaTime;
         }
     }
 
@@ -91,48 +95,57 @@ class Player extends Entity {
     isOnGround() {
         let hitbox = this.hitbox;
         let hitboxes = window.$game.map.blocks;
-        hitbox.position.y;
-        for (let tile of hitboxes)
-            if (tile.hitbox.hit(hitbox))
+        hitbox.position.y += 1;
+        for (let tile of hitboxes) {
+
+            if (tile.hitbox.hit(hitbox)) {
+                hitbox.position.y -= 1;
                 return true;
+            }
+        }
+        hitbox.position.y -= 1;
+
         return false;
     }
     moveHitbox(move, hitboxes) {
         let dir = Math.sign(move.x);
-        let pos = this.position;
-        let hitbox = this.hitbox;
-        let flag = 0;
-        let fun = (delta, value) => {
-            hitbox.position.addEqual(delta);
+        let copy_hitbox = this.hitbox;
+        let flag = 0
+
+        let move_direction = (delta, value) => {
+            copy_hitbox.position.addEqual(delta);
             let collided = false;
             for (let tile of hitboxes) {
-                if (hitbox.hit(tile.hitbox)) {
+                if (copy_hitbox.hit(tile.hitbox)) {
                     collided = true;
+                    copy_hitbox.position.add(new Vector(-delta.x, -delta.y));
                     break;
                 }
             }
-            this.hitbox.position.addEqual(dir, 0);
+            // this.hitbox.position.addEqual(delta);
             if (collided) {
-                flag |= value;
+                flag |= 1 << value;
+                // & 1代表与x碰撞
+                // & 2代表与y碰撞
                 return false;
             }
-            return true
-        }
+            return true;
+        };
         for (let i = 0; i != move.x; i += dir) {
-            if (!fun(new Vector(dir, 0), 1))
+            if (!move_direction(new Vector(dir, 0), 0))
                 break;
         }
         dir = Math.sign(move.y);
         for (let i = 0; i != move.y; i += dir) {
-            if (!fun(new Vector(0, dir), 2))
+            if (!move_direction(new Vector(0, dir), 1))
                 break;
         }
         return flag;
     }
 
-    rigidMove(velocity, callback) {
+    rigidMove(velocity) {
         let move = velocity.round();
-        callback(this.moveHitbox(move, window.$game.map.blocks));
+        return this.moveHitbox(move, window.$game.map.blocks);
     }
     updateJumping(deltaTime) {
         if (window.$game.keyboard.isKeyDown("Space")) {
@@ -148,29 +161,32 @@ class Player extends Entity {
     updateX(deltaTime) {
         let moveLeft = window.$game.keyboard.isKeysDown([ "A", "Left" ]);
         let moveRight = window.$game.keyboard.isKeysDown([ "D", "Right" ]);
+        if (moveRight)
+            console.debug("Write");
         let move = 0;
         if (moveLeft)
-            this.facing = move = 1;
-        if (moveRight)
             this.facing = move = -1;
+        if (moveRight)
+            this.facing = move = 1;
         let nextVelocityX = this.velocity.x;
         if (move == 0)
             nextVelocityX = nextVelocityX * Math.exp(-0.5);
         else {
             nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10) * deltaTime, this.MaxSpeed);
+
         }
         return nextVelocityX;
     }
     update(deltaTime) {
+        // deltaTime;
         this.updateJumping(deltaTime);
-        let nextVelocityY = this.jumping.jumpVelocity;
+        let nextVelocityY = -this.jumping.jumpVelocity;
         let nextVelocityX = this.updateX(deltaTime);
-        this.rigidMove(new Vector(nextVelocityX, nextVelocityY), (side) => {
-            if (side & 1)
-                nextVelocityX = 0;
-            if (side & 2)
-                nextVelocityY = 0;
-        });
+        let side = this.rigidMove(new Vector(nextVelocityX, nextVelocityY));
+        if (side & 1)
+            nextVelocityX = 0;
+        if (side & 2)
+            nextVelocityY = 0;
         this.velocity.x = nextVelocityX;
         this.velocity.y = nextVelocityY;
         if (nextVelocityY == 0) {

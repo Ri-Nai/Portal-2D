@@ -43,10 +43,10 @@ class Hitbox {
 
         // 检查是否不相交
         if (
-            thisRight < otherLeft ||  // this 在 other 的左边
-            thisLeft > otherRight ||  // this 在 other 的右边
-            thisTop < otherBottom ||  // this 在 other 的下面
-            thisBottom > otherTop     // this 在 other 的上面
+            thisRight <= otherLeft ||  // this 在 other 的左边
+            thisLeft >= otherRight ||  // this 在 other 的右边
+            thisTop >= otherBottom ||  // this 在 other 的下面
+            thisBottom <= otherTop     // this 在 other 的上面
         ) {
             return false;  // 没有碰撞
         }
