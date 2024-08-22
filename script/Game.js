@@ -29,12 +29,16 @@ class Game {
          * @type {MouseManager}
          */
         this.mouse = new MouseManager(this.canvas);
-        this.computations.push(() => this.mouse.draw());
+        // this.computations.push(() => this.mouse.draw());
 
         this.dataManager = new DataManager();
 
         const fps = new FrameRate();
         this.computations.push((t) => fps.display(t.timestamp));
+
+        /**
+         * @type {MapManager}
+         */
         this.map = new MapManager();
         this.computations.push(() => this.map.draw());
 
