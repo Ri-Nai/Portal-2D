@@ -157,7 +157,7 @@ class KeyboardMananger {
      * @returns
      */
     isKeysDown(keys) {
-        ans = false
+        let ans = false
         keys.forEach((key) => {
             ans = ans || this.isKeyDown(key)
         })

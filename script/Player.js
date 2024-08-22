@@ -91,7 +91,7 @@ class Player extends Entity {
     isOnGround() {
         let hitbox = this.hitbox;
         let hitboxes = window.$game.map.blocks;
-        ++hitbox.position.y;
+        hitbox.position.y;
         for (let tile of hitboxes)
             if (tile.hitbox.hit(hitbox))
                 return true;

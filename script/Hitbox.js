@@ -16,13 +16,13 @@ class Hitbox {
 
     // 获取右下角点的位置
     getBottomRight() {
-        return this.position.add(this.size);
+        return this.position.addVector(this.size);
     }
 
     // 检查某点是否在 hitbox 内
     contains(point) {
         const topLeft = this.getTopLeft();
-        const bottomRight = this.getBottomLeft();
+        const bottomRight = this.getBottomRight();
 
         return (
             point.x >= topLeft.x && point.x <= bottomRight.x &&
