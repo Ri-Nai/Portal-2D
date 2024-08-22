@@ -21,6 +21,4 @@ body, html {
 
 #game > canvas {
     height: calc(min(100vh, calc(100vw / 16 * 9)) - 20px);
-    border: 10px solid pink;
-    border-radius: 10px;
 }
