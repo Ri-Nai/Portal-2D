@@ -18,3 +18,7 @@ body, html {
     top: 0;
     left: 0;
 }
+
+#game > canvas {
+    height: calc(min(100vh, calc(100vw / 16 * 9)) - 20px)
+}
