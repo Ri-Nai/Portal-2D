@@ -1,19 +1,33 @@
-const BasicSize = 40;
+const basicSize = 40;
+const halfSize = 20;
 class Tile {
     constructor(type, position, size) {
         this.type = type;  // 纹理
         this.hitbox = new Hitbox(position, size); // 每个 Tile 有一个 Hitbox
     }
     draw() {
-        for (let i = 0; i < this.hitbox.size.x; i += BasicSize / 2)
-            for (let j = 0; j < this.hitbox.size.y; j += BasicSize / 2) {
-                window.$game.ctx.fillStyle = `rgba(0, ${this.type % 4 * 100}, ${0}, 1)`;
-                window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, BasicSize / 2, BasicSize / 2);
-                // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, BasicSize,);
+        for (let i = 0; i < this.hitbox.size.x; i += basicSize)
+            for (let j = 0; j < this.hitbox.size.y; j += basicSize) {
+                window.$game.ctx.fillStyle = `rgba(0, ${0}, ${this.type * 100}, 1)`;
+                window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, basicSize, basicSize);
+                // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, basicSize,);
             }
     }
 }
-
+class Edge extends Tile {
+    constructor(type, position, size, facing) {
+        super(type, position, size);
+        this.facing = facing;
+    }
+    draw() {
+        for (let i = 0; i < this.hitbox.size.x; i += halfSize)
+            for (let j = 0; j < this.hitbox.size.y; j += halfSize) {
+                window.$game.ctx.fillStyle = `rgba(0, ${(this.facing + 3) * 50}, ${this.type * 100}, 1)`;
+                window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, halfSize, halfSize);
+                // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, basicSize,);
+            }
+    }
+}
 class Layer {
     constructor() {
         /**
@@ -53,28 +67,25 @@ class MapManager {
     }
 
     load(data) {
+        let constructTile = tileData => {
+            return new Tile(tileData.type,
+                new Vector(tileData.position.x, tileData.position.y),
+                new Vector(tileData.size.x, tileData.size.y));
+        };
         this.layers = data.layers.map(layerData => {
             const layer = new Layer();
             layer.opacity = layerData.opacity;
-            layer.tiles = layerData.tiles.map(tileData => {
-                if (tileData.facing) {
-                    return new Edge(
-                        tileData.type,
-                        new Vector(tileData.position.x, tileData.position.y),
-                        new Vector(tileData.size.x, tileData.size.y),
-                        tileData.facing
-                    )
-                }
-                return new Tile(
-                    tileData.type,
-                    new Vector(tileData.position.x, tileData.position.y),
-                    new Vector(tileData.size.x, tileData.size.y)
-                )
-            })
+            layer.tiles = layerData.tiles.map(constructTile);
             return layer;
         });
-        this.blocks = this.layers[ 4 ].tiles;
-        this.edges = this.layers[ 5 ].tiles;
+        this.blocks = data.blocks.map(blockData => {
+            return constructTile(blockData);
+        });
+        this.edges = data.edges.map(edgeData => {
+            return new Edge(edgeData.type,
+                new Vector(edgeData.position.x, edgeData.position.y),
+                new Vector(edgeData.size.x, edgeData.size.y), edgeData.facing);
+        });
     }
 
     async loadFromURL(url) {
@@ -89,5 +100,9 @@ class MapManager {
     draw() {
         for (let i of this.layers)
             i.draw();
+        for (let i of this.blocks)
+            i.draw()
+        for (let i of this.edges)
+            i.draw()
     }
 }

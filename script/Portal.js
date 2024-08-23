@@ -1,7 +1,7 @@
 class Portal extends Tile {
     //传送门半径1.5格
-    static portalRadius = 1.5 * BasicSize
-    static portalWidth = 0.5 * BasicSize
+    static portalRadius = 1.5 * basicSize
+    static portalWidth = 0.5 * basicSize
     static portalDirection = [
         new Vector(-Portal.portalRadius, 0),
         new Vector(0, -Portal.portalRadius),

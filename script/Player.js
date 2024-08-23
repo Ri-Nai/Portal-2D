@@ -219,11 +219,11 @@ class Player extends Entity {
         }
     }
     draw() {
-        for (let i = 0; i < this.hitbox.size.x; i += BasicSize)
-            for (let j = 0; j < this.hitbox.size.y; j += BasicSize) {
+        for (let i = 0; i < this.hitbox.size.x; i += basicSize)
+            for (let j = 0; j < this.hitbox.size.y; j += basicSize) {
                 window.$game.ctx.fillStyle = `rgba(221, 100, 0, 1)`;
-                window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, BasicSize, BasicSize);
-                // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, BasicSize,);
+                window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, basicSize, basicSize);
+                // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, basicSize,);
             }
     }
 }

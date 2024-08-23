@@ -47,8 +47,8 @@ class PortalView extends View {
         super(map)
 
         this.player = new Player(
-            new Vector(4 * BasicSize, 4 * BasicSize),
-            new Vector(2 * BasicSize, 3 * BasicSize));
+            new Vector(4 * basicSize, 4 * basicSize),
+            new Vector(2 * basicSize, 3 * basicSize));
 
         this.computations.push((t) => this.player.update(t.interval));
 
