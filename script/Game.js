@@ -9,6 +9,11 @@ class Game {
      */
     computations = [];
 
+    /**
+     * @type {Array<Computation>}
+     */
+    renderings = [];
+
     loaded = false;
 
     constructor() {
@@ -42,10 +47,13 @@ class Game {
         this.player = new Player(
             new Vector(4 * BasicSize, 4 * BasicSize),
             new Vector(2 * BasicSize, 3 * BasicSize));
+
         this.computations.push((t) => this.player.update(t.interval));
-        this.computations.push(() => this.map.draw());
-        this.computations.push(() => this.player.draw());
-        this.computations.push(() => this.mouse.draw());
+
+        // 在这里执行所有渲染便于控制渲染顺序
+        this.renderings.push(() => this.map.draw());
+        this.renderings.push(() => this.player.draw());
+        this.renderings.push(() => this.mouse.draw());
     }
 
     async load() {
@@ -72,6 +80,7 @@ class Game {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.computations.forEach((comp) => comp({ timestamp, interval }));
+        this.renderings.forEach((render) => render());
 
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, now));
     }
