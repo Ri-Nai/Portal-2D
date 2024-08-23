@@ -32,9 +32,9 @@ class MouseManager {
         document.addEventListener('pointerlockchange', () => this.uncapture())
     }
 
-    capture() {
+    async capture() {
         if (!this.isCapture) {
-            this.ctx.requestPointerLock({
+            await this.ctx.requestPointerLock({
                 unadjustedMovement: false,
             })
 
