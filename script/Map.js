@@ -5,10 +5,10 @@ class Tile {
         this.hitbox = new Hitbox(position, size); // 每个 Tile 有一个 Hitbox
     }
     draw() {
-        for (let i = 0; i < this.hitbox.size.x; i += BasicSize)
-            for (let j = 0; j < this.hitbox.size.y; j += BasicSize) {
-                window.$game.ctx.fillStyle = `rgba(0, 0, ${this.type * 50}, 1)`;
-                window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, BasicSize, BasicSize);
+        for (let i = 0; i < this.hitbox.size.x; i += BasicSize / 2)
+            for (let j = 0; j < this.hitbox.size.y; j += BasicSize / 2) {
+                window.$game.ctx.fillStyle = `rgba(0, ${this.type * 100}, ${this.type * 200}, 1)`;
+                window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, BasicSize / 2, BasicSize / 2);
                 // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, BasicSize,);
             }
     }
@@ -72,5 +72,6 @@ class MapManager {
     draw() {
         for (let i of this.layers)
             i.draw();
+        this.layers[5].draw();
     }
 }

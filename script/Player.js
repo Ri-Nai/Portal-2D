@@ -86,7 +86,7 @@ class Player extends Entity {
 
     constructor(position, size) {
         super(position, size);
-        //this.velocity.y === -this.jumping.jumpVelocity
+        //this.velocity.y === -this.jumping.jumpVelocity恒成立
         this.jumping = new Jumping(5, 10, 0.5, 10, 1);
         this.facing = 1;
         this.isSpaceHeld = false;
@@ -96,8 +96,8 @@ class Player extends Entity {
     isOnGround() {
         let hitbox = this.hitbox;
         let hitboxes = window.$game.map.blocks;
+        //试着判断y轴向下+1是否会与地碰撞
         hitbox.position.y += 1;
-        // console.log(hitbox.position.y)
         for (let tile of hitboxes) {
 
             if (tile.hitbox.hit(hitbox)) {
@@ -111,30 +111,24 @@ class Player extends Entity {
     }
     moveHitbox(move, hitboxes) {
         let dir = Math.sign(move.x);
-        let copy_hitbox = this.hitbox;
         let flag = 0;
 
         let move_direction = (delta, value) => {
-            copy_hitbox.position.addEqual(delta);
+            this.hitbox.position.addEqual(delta);
             let collided = false;
+            // 判断在这个方向上是否发生碰撞，如果未发生碰撞就向前move
             for (let tile of hitboxes) {
-                if (copy_hitbox.hit(tile.hitbox)) {
+                if (this.hitbox.hit(tile.hitbox)) {
                     collided = true;
-                    if (value == 0)
-                        console.log(copy_hitbox.position.x, copy_hitbox.position.y, tile.hitbox.position.x, tile.hitbox.position.y);
-                    console.log("1", copy_hitbox.position.x, copy_hitbox.position.y, tile.hitbox.position.x, tile.hitbox.position.y);
-                    copy_hitbox.position.addEqual(new Vector(-delta.x, -delta.y));
-                    // copy_hitbox.position.addEqual(new Vector(-delta.x, -delta.y));
-                    console.log("2", copy_hitbox.position.x, copy_hitbox.position.y, tile.hitbox.position.x, tile.hitbox.position.y);
-
+                    this.hitbox.position.addEqual(new Vector(-delta.x, -delta.y));
+                    //撤回move操作
                     break;
                 }
             }
-            // this.hitbox.position.addEqual(delta);
             if (collided) {
                 flag |= 1 << value;
-                // & 1代表与x碰撞
-                // & 2代表与y碰撞
+                // 两位二进制代表发生碰撞的维度（状态压缩）
+                // & 1代表与x碰撞，& 2代表与y碰撞
                 return false;
             }
             return true;
@@ -158,8 +152,9 @@ class Player extends Entity {
      * @returns {number}
      */
     rigidMove(velocity, deltaTime) {
-        velocity = velocity.scale(deltaTime);
-        let move = velocity.round();
+        //移动路程需要乘上deltaTime
+        //round是因为，如果沾上浮点数判断，这辈子有了
+        let move = velocity.scale(deltaTime).round();
         return this.moveHitbox(move, window.$game.map.blocks);
     }
     updateJumping(deltaTime) {
@@ -174,10 +169,8 @@ class Player extends Entity {
         this.jumping.updateJump(this.isSpaceHeld, deltaTime);
     }
     updateX(deltaTime) {
-        let moveLeft = window.$game.keyboard.isKeysDown(["A", "Left"]);
-        let moveRight = window.$game.keyboard.isKeysDown(["D", "Right"]);
-        if (moveRight)
-            console.debug("Write");
+        let moveLeft = window.$game.keyboard.isKeysDown([ "A", "Left" ]);
+        let moveRight = window.$game.keyboard.isKeysDown([ "D", "Right" ]);
         let move = 0;
         if (moveLeft)
             this.facing = move = -1;
@@ -188,11 +181,23 @@ class Player extends Entity {
             nextVelocityX = nextVelocityX * Math.exp(-0.5);
         else {
             /*TODO:修改超速时在地面减速 */
-            nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10 * deltaTime), this.MaxSpeed);
+            if (Math.abs(nextVelocityX) < this.MaxSpeed) {
+                nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10 * deltaTime), this.MaxSpeed);
+            }
+            else {
+                if (this.isOnGround()) {
+                    nextVelocityX -= (nextVelocityX - this.MaxSpeed * move) * 0.05;
+                } else {
+                    nextVelocityX = (nextVelocityX - this.MaxSpeed * move) * 0.01;
+                }
+            }
         }
         return nextVelocityX;
     }
     update(deltaTime) {
+
+        //此时的deltaTime当前环境下的1帧，在60帧环境下走了多少帧
+        //于是在moveRigid函数中，需要将velocity乘上deltaTime代表在当前环境下走过的路程
         deltaTime = 60 * deltaTime / 1000;
         this.updateJumping(deltaTime);
         let nextVelocityY = -this.jumping.jumpVelocity;
