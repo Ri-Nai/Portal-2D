@@ -1,6 +1,12 @@
 const basicSize = 40;
 const halfSize = 20;
 class Tile {
+    /**
+     *
+     * @param {number} type
+     * @param {Vector} position
+     * @param {Vector} size
+     */
     constructor(type, position, size) {
         this.type = type;  // 纹理
         this.hitbox = new Hitbox(position, size); // 每个 Tile 有一个 Hitbox
@@ -15,6 +21,13 @@ class Tile {
     }
 }
 class Edge extends Tile {
+    /**
+     *
+     * @param {number} type
+     * @param {Vector} position
+     * @param {Vector} size
+     * @param {number} facing
+     */
     constructor(type, position, size, facing) {
         super(type, position, size);
         this.facing = facing;

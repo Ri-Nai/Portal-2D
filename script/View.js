@@ -48,7 +48,7 @@ class PortalView extends View {
 
         this.player = new Player(
             new Vector(4 * basicSize, 4 * basicSize),
-            new Vector(2 * basicSize, 3 * basicSize));
+            new Vector(1.8 * basicSize, 2.8 * basicSize));
 
         this.computations.push((t) => this.player.update(t.interval));
 
@@ -58,6 +58,9 @@ class PortalView extends View {
         this.portalGun = new PortalGun();
         // TODO: 在这里实现Portal类
         this.portal = new Vector();
+        this.portals = [];
+        this.portals.push(new Portal(0, new Vector(1000, 560), 0, 0));
+        this.portals.push(new Portal(1, new Vector(80, 220), 3, 1));
         this.computations.push((t) => {
             this.portalGun.update(this.player.getCenter(), this.mouse.position);
             if (this.mouse.left) {
@@ -74,6 +77,8 @@ class PortalView extends View {
         // 在这里执行所有渲染便于控制渲染顺序
         this.renderings.push(() => this.map.draw());
         this.renderings.push(() => this.player.draw());
+        this.renderings.push(() => this.portals[0].draw());
+        this.renderings.push(() => this.portals[1].draw());
         this.renderings.push((t) => {
             this.portalGun.draw(t);
             if (this.portal.x !== 0 && this.portal.y !== 0) {

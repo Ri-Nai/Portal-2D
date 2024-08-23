@@ -55,6 +55,7 @@ class Jumping {
         } else if (this.isFalling) {
             this.jumpVelocity -= this.gravity * deltaTime;
         }
+        this.jumpVelocity = Math.max(-5 * this.baseJump, this.jumpVelocity);
         this.reduceJumpBuffer(deltaTime);
     }
 
@@ -97,9 +98,10 @@ class Player extends Entity {
         let hitbox = this.hitbox;
         let hitboxes = window.$game.map.blocks;
         //试着判断y轴向下+1是否会与地碰撞
+        if (this.checkPortal(new Vector(0, 1)))
+            return false;
         hitbox.position.y += 1;
         for (let tile of hitboxes) {
-
             if (tile.hitbox.hit(hitbox)) {
                 hitbox.position.y -= 1;
                 return true;
@@ -109,18 +111,56 @@ class Player extends Entity {
 
         return false;
     }
+    /**
+     *
+     * @param {Portal} portal
+     */
+    moveOutPortalPosition(portal, diff) {
+        //从碰撞箱顶点开始的offsets
+        let offsets = [
+            new Vector(0, -this.hitbox.size.y),
+            new Vector(-this.hitbox.size.x, 0),
+            new Vector(0, Portal.portalWidth),
+            new Vector(Portal.portalWidth, 0)
+        ];
+        let newPosition = new Vector(portal.hitbox.position.x, portal.hitbox.position.y).addVector(offsets[ portal.facing ]);
+        newPosition.addEqual(diff);
+        return newPosition;
+    }
+    rotateVelocity(infacing, outfacing) {
+        let angle = Math.PI / 2 * ((infacing - outfacing + 4) % 4);
+        this.velocity = this.velocity.rotate(angle);
+        this.jumping.jumpVelocity = -this.velocity.y;
+    }
+    checkPortal(delta) {
+        // return false;
+        this.hitbox.position.addEqual(delta);
+        let portals = window.$game.view.portals;
+        for (let i = 0; i < 2; ++i) {
+            let diff = portals[ i ].isMoveIn(this.hitbox);
+            if (diff) {
+                this.hitbox.position = this.moveOutPortalPosition(portals[ i ^ 1 ], diff);
+                this.rotateVelocity(portals[ i ].infacing, portals[ i ^ 1 ].facing);
+                return true;
+            }
+        }
+        this.hitbox.position.addEqual(delta.scale(-1));
+    }
     moveHitbox(move, hitboxes) {
         let dir = Math.sign(move.x);
         let flag = 0;
 
         let move_direction = (delta, value) => {
+            if (this.checkPortal(delta)) {
+                return false;
+            }
             this.hitbox.position.addEqual(delta);
             let collided = false;
             // 判断在这个方向上是否发生碰撞，如果未发生碰撞就向前move
             for (let tile of hitboxes) {
                 if (this.hitbox.hit(tile.hitbox)) {
                     collided = true;
-                    this.hitbox.position.addEqual(new Vector(-delta.x, -delta.y));
+                    this.hitbox.position.addEqual(delta.scale(-1));
                     //撤回move操作
                     break;
                 }
@@ -177,20 +217,30 @@ class Player extends Entity {
         if (moveRight)
             this.facing = move = 1;
         let nextVelocityX = this.velocity.x;
-        if (move == 0)
-            nextVelocityX = nextVelocityX * Math.exp(-0.5);
-        else {
-            /*TODO:修改超速时在地面减速 */
-            if (Math.abs(nextVelocityX) < this.MaxSpeed) {
+        if (Math.abs(nextVelocityX) <= this.MaxSpeed) {
+            if (move == 0)
+                nextVelocityX = nextVelocityX * Math.exp(-0.5 * deltaTime);
+            else
                 nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10 * deltaTime), this.MaxSpeed);
+        }
+        else
+        {
+            if (move == 0)
+            {
+                if (this.isOnGround())
+                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.32 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
+                else
+                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.02 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
             }
-            else {
-                if (this.isOnGround()) {
-                    nextVelocityX -= (nextVelocityX - this.MaxSpeed * move) * 0.05;
-                } else {
-                    nextVelocityX = (nextVelocityX - this.MaxSpeed * move) * 0.01;
-                }
+            else if (move * nextVelocityX > 0)
+            {
+                if (this.isOnGround())
+                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.3 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
+                else
+                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.01 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
             }
+            else
+                nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10 * deltaTime), this.MaxSpeed);
         }
         return nextVelocityX;
     }
@@ -206,24 +256,21 @@ class Player extends Entity {
         this.updateJumping(deltaTime);
         let nextVelocityY = -this.jumping.jumpVelocity;
         let nextVelocityX = this.updateX(deltaTime);
-        let side = this.rigidMove(new Vector(nextVelocityX, nextVelocityY), deltaTime);
-        if (side & 1)
-            nextVelocityX = 0;
-        if (side & 2)
-            nextVelocityY = 0;
         this.velocity.x = nextVelocityX;
         this.velocity.y = nextVelocityY;
-        if (nextVelocityY == 0) {
+        let side = this.rigidMove(new Vector(nextVelocityX, nextVelocityY), deltaTime);
+        if (side & 1)
+            this.velocity.x = 0;
+        if (side & 2)
+            this.velocity.y = 0;
+        if (this.velocity.y == 0) {
             this.jumping.jumpVelocity = 0;
             this.jumping.setFalling();
         }
     }
     draw() {
-        for (let i = 0; i < this.hitbox.size.x; i += basicSize)
-            for (let j = 0; j < this.hitbox.size.y; j += basicSize) {
-                window.$game.ctx.fillStyle = `rgba(221, 100, 0, 1)`;
-                window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, basicSize, basicSize);
-                // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, basicSize,);
-            }
+        window.$game.ctx.fillStyle = `rgba(221, 100, 0, 1)`;
+        window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
+
     }
 }
