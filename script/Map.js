@@ -7,7 +7,7 @@ class Tile {
     draw() {
         for (let i = 0; i < this.hitbox.size.x; i += BasicSize / 2)
             for (let j = 0; j < this.hitbox.size.y; j += BasicSize / 2) {
-                window.$game.ctx.fillStyle = `rgba(0, ${this.type * 100}, ${this.type * 200}, 1)`;
+                window.$game.ctx.fillStyle = `rgba(0, ${this.type % 4 * 100}, ${0}, 1)`;
                 window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, BasicSize / 2, BasicSize / 2);
                 // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, BasicSize,);
             }
