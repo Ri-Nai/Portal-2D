@@ -194,8 +194,12 @@ class Player extends Entity {
         }
         return nextVelocityX;
     }
-    update(deltaTime) {
 
+    getCenter() {
+        return this.hitbox.position.addVector(this.hitbox.size.scale(0.5));
+    }
+
+    update(deltaTime) {
         //此时的deltaTime当前环境下的1帧，在60帧环境下走了多少帧
         //于是在moveRigid函数中，需要将velocity乘上deltaTime代表在当前环境下走过的路程
         deltaTime = 60 * deltaTime / 1000;

@@ -22,6 +22,8 @@ class MouseManager {
          */
         this.right = false
 
+        this.clickable = false
+
         this.ctx.addEventListener('click', () => this.capture());
         this.ctx.addEventListener('mousemove', (e) => this.move(e))
         this.ctx.addEventListener('mousedown', (e) => this.mouseDown(e))
@@ -37,6 +39,9 @@ class MouseManager {
             })
 
             this.isCapture = true;
+            setTimeout(() => {
+                this.clickable = true
+            }, 200)
         }
     }
 
@@ -46,6 +51,7 @@ class MouseManager {
         if (document.pointerLockElement !== this.ctx) {
             this.isCapture = false;
         }
+        this.clickable = false;
     }
 
     /**
@@ -53,7 +59,8 @@ class MouseManager {
      * @param {MouseEvent} e
      */
     mouseDown(e) {
-        if (e.button === 1) {
+        if (!this.clickable) return ;
+        if (e.button === 0) {
             this.left = true;
         }
         if (e.button === 2) {
@@ -62,7 +69,7 @@ class MouseManager {
     }
 
     mouseUp(e) {
-        if (e.button === 1) {
+        if (e.button === 0) {
             this.left = false;
         }
         if (e.button === 2) {
@@ -91,8 +98,6 @@ class MouseManager {
             if (this.y > this.ctx.height) {
                 this.y = this.ctx.height;
             }
-
-            console.debug(`Mouse position: ${this.x}, ${this.y}`);
         }
     }
 
@@ -101,5 +106,9 @@ class MouseManager {
         window.$game.ctx.fillRect(this.x, this.y, 6, 6);
         window.$game.ctx.fillStyle = 'black';
         window.$game.ctx.fillRect(this.x + 1, this.y + 1, 4, 4);
+    }
+
+    get position() {
+        return new Vector(this.x, this.y);
     }
 }
