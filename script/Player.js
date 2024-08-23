@@ -196,7 +196,7 @@ class Player extends Entity {
     }
 
     getCenter() {
-        return this.hitbox.position.add(this.hitbox.size.scale(0.5));
+        return this.hitbox.position.addVector(this.hitbox.size.scale(0.5));
     }
 
     update(deltaTime) {
