@@ -90,7 +90,6 @@ class MouseManager {
      * @param {MouseEvent} e
      */
     move(e) {
-        console.debug("move: ", e.movementX, " ", e.movementY);
         if (this.isCapture) {
             this.x += e.movementX;
             this.y += e.movementY;
