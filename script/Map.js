@@ -72,6 +72,5 @@ class MapManager {
     draw() {
         for (let i of this.layers)
             i.draw();
-        this.layers[5].draw();
     }
 }
