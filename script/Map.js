@@ -7,12 +7,13 @@ class Tile {
     draw() {
         for (let i = 0; i < this.hitbox.size.x; i += BasicSize / 2)
             for (let j = 0; j < this.hitbox.size.y; j += BasicSize / 2) {
-                window.$game.ctx.fillStyle = `rgba(${Math.floor(this.type / 4) * 15},0, ${this.type % 4 * 40},  1)`;
+                window.$game.ctx.fillStyle = `rgba(0, ${this.type % 4 * 100}, ${0}, 1)`;
                 window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, BasicSize / 2, BasicSize / 2);
                 // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, BasicSize,);
             }
     }
 }
+
 class Layer {
     constructor() {
         /**
@@ -42,7 +43,7 @@ class MapManager {
         this.blocks = [];
 
         /**
-         * @type {Tile[]}
+         * @type {Edge[]}
          */
         this.edges = [];
     }
@@ -55,11 +56,21 @@ class MapManager {
         this.layers = data.layers.map(layerData => {
             const layer = new Layer();
             layer.opacity = layerData.opacity;
-            layer.tiles = layerData.tiles.map(tileData => new Tile(
-                tileData.type,
-                new Vector(tileData.position.x, tileData.position.y),
-                new Vector(tileData.size.x, tileData.size.y)
-            ));
+            layer.tiles = layerData.tiles.map(tileData => {
+                if (tileData.facing) {
+                    return new Edge(
+                        tileData.type,
+                        new Vector(tileData.position.x, tileData.position.y),
+                        new Vector(tileData.size.x, tileData.size.y),
+                        tileData.facing
+                    )
+                }
+                return new Tile(
+                    tileData.type,
+                    new Vector(tileData.position.x, tileData.position.y),
+                    new Vector(tileData.size.x, tileData.size.y)
+                )
+            })
             return layer;
         });
         this.blocks = this.layers[ 4 ].tiles;
