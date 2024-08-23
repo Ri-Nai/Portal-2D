@@ -24,11 +24,6 @@ class Game {
          * @type {KeyboardMananger}
          */
         this.keyboard = new KeyboardMananger();
-        this.computations.push((t) => {
-            if (this.keyboard.isKeyDown('Space')) {
-                console.debug("Space key is pressed");
-            }
-        });
 
         /**
          * @type {MouseManager}
@@ -44,48 +39,16 @@ class Game {
          * @type {MapManager}
          */
         this.map = new MapManager();
-        this.player = new Player(
-            new Vector(4 * BasicSize, 4 * BasicSize),
-            new Vector(2 * BasicSize, 3 * BasicSize));
-
-        this.computations.push((t) => this.player.update(t.interval));
-
-        /**
-         * @type {PortalGun}
-         */
-        this.portalGun = new PortalGun();
-        // TODO: 在这里实现Portal类
-        this.portal = new Vector();
-        this.computations.push((t) => {
-            this.portalGun.update(this.player.getCenter(), this.mouse.position);
-            if (this.mouse.left) {
-                this.portalGun.shot(this.player.getCenter(), 'orange', t);
-            }
-            if (this.portalGun.isHit) {
-                const position = this.portalGun.position
-                if (position && position.x !== this.portal.x && position.y !== this.portal.y) {
-                    this.portal = position;
-                }
-            }
-        });
-
-        // 在这里执行所有渲染便于控制渲染顺序
-        this.renderings.push(() => this.map.draw());
-        this.renderings.push(() => this.player.draw());
-        this.renderings.push((t) => {
-            this.portalGun.draw(t)
-            if (this.portal.x !== 0 && this.portal.y !== 0) {
-                this.ctx.fillStyle = 'orange';
-                this.ctx.fillRect(this.portal.x, this.portal.y, 4, 4);
-            }
-        });
-
-        this.renderings.push(() => this.mouse.draw());
     }
 
     async load() {
-        await this.map.loadFromURL('./assets/maps/Test2.json');
+        const defaultUrl = './assets/maps/Test2.json'
+        await this.map.loadFromURL(defaultUrl);
         this.loaded = true;
+
+        this.view = new PortalView(this.map);
+        this.computations.push((t) => this.view.compute(t));
+        this.renderings.push(() => this.view.draw())
     }
 
     start() {
@@ -93,6 +56,7 @@ class Game {
             console.error('Game not loaded');
             return;
         }
+        this.renderings.push(() => this.mouse.draw());
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, performance.now()));
     }
 
