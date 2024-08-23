@@ -97,7 +97,9 @@ class MouseManager {
     }
 
     draw() {
+        window.$game.ctx.fillStyle = 'white';
+        window.$game.ctx.fillRect(this.x, this.y, 6, 6);
         window.$game.ctx.fillStyle = 'black';
-        window.$game.ctx.fillRect(this.x, this.y, 5, 5);
+        window.$game.ctx.fillRect(this.x + 1, this.y + 1, 4, 4);
     }
 }
