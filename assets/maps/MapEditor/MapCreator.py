@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import openpyxl as op
 import json
 import os
 name = input()
