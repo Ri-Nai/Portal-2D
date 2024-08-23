@@ -30,6 +30,7 @@ class MouseManager {
         this.ctx.addEventListener('mouseup', (e) => this.mouseUp(e))
 
         document.addEventListener('pointerlockchange', () => this.uncapture())
+        document.addEventListener('visibilitychange', () => this.blur())
     }
 
     async capture() {
@@ -42,6 +43,13 @@ class MouseManager {
             setTimeout(() => {
                 this.clickable = true
             }, 200)
+        }
+    }
+
+    blur() {
+        if (document.visibilityState === 'hidden') {
+            document.exitPointerLock();
+            this.uncapture();
         }
     }
 
@@ -82,6 +90,7 @@ class MouseManager {
      * @param {MouseEvent} e
      */
     move(e) {
+        console.debug("move: ", e.movementX, " ", e.movementY);
         if (this.isCapture) {
             this.x += e.movementX;
             this.y += e.movementY;
