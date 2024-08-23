@@ -57,20 +57,21 @@ class PortalView extends View {
          */
         this.portalGun = new PortalGun();
         // TODO: 在这里实现Portal类
-        this.portal = new Vector();
+        this.portal_positions = [new Vector(0, 0), new Vector(0, 0)];
         this.portals = [];
         this.portals.push(new Portal(0, new Vector(1000, 560), 0, 0));
         this.portals.push(new Portal(1, new Vector(80, 580), 3, 1));
         this.computations.push((t) => {
             this.portalGun.update(this.player.getCenter(), this.mouse.position);
             if (this.mouse.left) {
-                this.portalGun.shot(this.player.getCenter(), 'orange', t);
+                this.portalGun.shot(this.player.getCenter(), 0, t);
+            }
+            if (this.mouse.right) {
+                this.portalGun.shot(this.player.getCenter(), 1, t);
             }
             if (this.portalGun.isHit) {
                 const position = this.portalGun.position;
-                if (position && position.x !== this.portal.x && position.y !== this.portal.y) {
-                    this.portal = position;
-                }
+                this.portal_positions[this.portalGun.flyingType] = position;
             }
         });
 
@@ -81,10 +82,13 @@ class PortalView extends View {
         this.renderings.push(() => this.portals[1].draw());
         this.renderings.push((t) => {
             this.portalGun.draw(t);
-            if (this.portal.x !== 0 && this.portal.y !== 0) {
-                this.ctx.fillStyle = 'orange';
-                this.ctx.fillRect(this.portal.x, this.portal.y, 4, 4);
-            }
+            this.portal_positions.forEach((pos, index) => {
+                if (pos.x === 0 && pos.y === 0) {
+                    return ;
+                }
+                this.ctx.fillStyle = this.portalGun.COLOR[index];
+                this.ctx.fillRect(pos.x, pos.y, 4, 4);
+            })
         });
     }
 }
