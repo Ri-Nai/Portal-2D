@@ -54,11 +54,12 @@ def fill_edge():
             B[i + 1][j + 1] = A[i][j]
     print(B)
 
-    def write_seg(i, j, last, type, diff, axis):
+    def write_seg(i, j, last, type, facing, diff, axis):
         now_pos = (i - 1) * BasicSize + (1 + diff) * BasicSize // 4
         layers[layer_edge]["tiles"].append(
         {
             "type" : type,
+            "facing": facing,
             "position" :
             {
                 "xy"[axis] : (last - 1) * BasicSize,
@@ -78,18 +79,18 @@ def fill_edge():
             last = 0
             for j in range(1, 33):
                 facing = (1 + diff) // 2 * 2
-                type = (B[i][j - 1] + 4) * 4 + facing
+                type = B[i][j - 1]
                 if B[i][j] == 0 or B[i + diff][j] != 0:
                     # 非露出
                     if flag:
                         # draw j - 1 ~ last
-                        write_seg(i, j, last, type, diff, 0)
+                        write_seg(i, j, last, type, facing, diff, 0)
                     flag = False
                 else:
                     if not flag:
                         last = j
                     elif B[i][j] != B[i][j - 1]:
-                        write_seg(i, j, last, type, diff, 0)
+                        write_seg(i, j, last, type, facing, diff, 0)
                         last = j
                     flag = True
     def make_edge_x(diff):
@@ -97,17 +98,17 @@ def fill_edge():
             flag = False
             last = 0
             for j in range(1, 19):
-                facing = (1 + diff) // 2 * 2
-                type = (B[j - 1][i] + 4) * 4 + facing + 1
+                facing = (1 + diff) // 2 * 2 + 1
+                type = B[j - 1][i]
                 if B[j][i] == 0 or B[j][i + diff] != 0:
                     if flag:
-                        write_seg(i, j, last, type, diff, 1)
+                        write_seg(i, j, last, type, facing, diff, 1)
                     flag = False
                 else:
                     if not flag:
                         last = j
                     elif B[j][i] != B[j - 1][i]:
-                        write_seg(i, j, last, type, diff, 1)
+                        write_seg(i, j, last, type, facing, diff, 1)
                         last = j
                     flag = True
     make_edge_x(1)
