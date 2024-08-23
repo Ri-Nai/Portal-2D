@@ -5,7 +5,14 @@ class Hitbox {
      * @param {Vector} size
      */
     constructor(position, size) {
+        /**
+         *  @type {Vector}
+         */
         this.position = position;  // 左下角位置
+
+        /**
+         * @type {Vector}
+         */
         this.size = size;          // 宽度和高度作为一个 Vector
     }
 

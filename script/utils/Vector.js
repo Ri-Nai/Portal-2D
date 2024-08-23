@@ -4,22 +4,40 @@ class Vector {
         this.y = y;
     }
 
-    // 向量加法（传入标量）
+    /**
+     * 向量加法（传入标量）
+     * @param {number} x
+     * @param {number} y
+     * @returns {Vector}
+     */
     add(x, y) {
         return new Vector(this.x + x, this.y + y);
     }
 
-    // 向量加法（传入向量）
+    /**
+     * 向量加法（传入向量）
+     * @param {Vector} v
+     * @returns {Vector}
+     */
     addVector(v) {
         return this.add(v.x, v.y);
     }
 
-    // 向量减法（传入标量）
+    /**
+     * 向量减法（传入标量）
+     * @param {number} x
+     * @param {number} y
+     * @returns {Vector}
+     */
     sub(x, y) {
         return this.add(-x, -y);
     }
 
-    // 向量减法（传入向量）
+    /**
+     * 向量减法（传入向量）
+     * @param {Vector} v
+     * @returns {Vector}
+     */
     subVector(v) {
         return this.sub(v.x, v.y);
     }

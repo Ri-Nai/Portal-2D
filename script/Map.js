@@ -40,6 +40,11 @@ class MapManager {
          * @type {Tile[]}
          */
         this.blocks = [];
+
+        /**
+         * @type {Tile[]}
+         */
+        this.edges = [];
     }
     loadFromJSON(jsonData) {
         const data = JSON.parse(jsonData);
@@ -58,6 +63,7 @@ class MapManager {
             return layer;
         });
         this.blocks = this.layers[ 4 ].tiles;
+        this.edges = this.layers[5].tiles;
     }
 
     async loadFromURL(url) {
