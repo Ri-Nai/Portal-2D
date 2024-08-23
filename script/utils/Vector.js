@@ -4,6 +4,9 @@ class Vector {
         this.y = y;
     }
 
+    getAxis(axis) {
+        return axis === 0 ? this.x : this.y;
+    }
     /**
      * 向量加法（传入标量）
      * @param {number} x

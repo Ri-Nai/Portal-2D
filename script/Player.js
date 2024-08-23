@@ -119,12 +119,16 @@ class Player extends Entity {
         //从碰撞箱顶点开始的offsets
         let offsets = [
             new Vector(0, -this.hitbox.size.y - 1),
-            new Vector(-this.hitbox.size.x, 0),
-            new Vector(0, Portal.portalWidth),
-            new Vector(Portal.portalWidth, 0)
+            new Vector(-this.hitbox.size.x - 1, 0),
+            new Vector(0, Portal.portalWidth + 1),
+            new Vector(Portal.portalWidth + 1, 0)
         ];
         let newPosition = new Vector(portal.hitbox.position.x, portal.hitbox.position.y).addVector(offsets[ portal.facing ]);
-        newPosition.addEqual(diff);
+        // newPosition.addEqual(diff);
+        if (portal.facing & 1)
+            newPosition.addEqual(new Vector(0, Portal.portalRadius - 0.5 * this.hitbox.size.y));
+        else
+            newPosition.addEqual(new Vector(Portal.portalRadius - 0.5 * this.hitbox.size.x, 0));
         return newPosition;
     }
     rotateVelocity(infacing, outfacing) {
@@ -141,7 +145,6 @@ class Player extends Entity {
             if (diff) {
                 this.hitbox.position = this.moveOutPortalPosition(portals[ i ^ 1 ], diff);
                 this.rotateVelocity(portals[ i ].infacing, portals[ i ^ 1 ].facing);
-                console.log(this.hitbox.position);
                 return true;
             }
         }
@@ -224,17 +227,14 @@ class Player extends Entity {
             else
                 nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10 * deltaTime), this.MaxSpeed);
         }
-        else
-        {
-            if (move == 0)
-            {
+        else {
+            if (move == 0) {
                 if (this.isOnGround())
                     nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.32 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
                 else
                     nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.02 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
             }
-            else if (move * nextVelocityX > 0)
-            {
+            else if (move * nextVelocityX > 0) {
                 if (this.isOnGround())
                     nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.3 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
                 else
