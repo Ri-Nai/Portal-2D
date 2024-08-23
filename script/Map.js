@@ -63,7 +63,7 @@ class MapManager {
             return layer;
         });
         this.blocks = this.layers[ 4 ].tiles;
-        this.edges = this.layers[5].tiles;
+        this.edges = this.layers[ 5 ].tiles;
     }
 
     async loadFromURL(url) {
