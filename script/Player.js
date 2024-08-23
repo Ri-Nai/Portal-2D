@@ -118,7 +118,7 @@ class Player extends Entity {
     moveOutPortalPosition(portal, diff) {
         //从碰撞箱顶点开始的offsets
         let offsets = [
-            new Vector(0, -this.hitbox.size.y),
+            new Vector(0, -this.hitbox.size.y - 1),
             new Vector(-this.hitbox.size.x, 0),
             new Vector(0, Portal.portalWidth),
             new Vector(Portal.portalWidth, 0)
@@ -141,6 +141,7 @@ class Player extends Entity {
             if (diff) {
                 this.hitbox.position = this.moveOutPortalPosition(portals[ i ^ 1 ], diff);
                 this.rotateVelocity(portals[ i ].infacing, portals[ i ^ 1 ].facing);
+                console.log(this.hitbox.position);
                 return true;
             }
         }
