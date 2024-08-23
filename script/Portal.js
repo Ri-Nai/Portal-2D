@@ -32,9 +32,8 @@ class Portal extends Edge {
      * @param {number} facing
      */
     //类型，中心位置，朝向，idNumber
-    constructor(type, position, facing, idNumber) {
+    constructor(type, position, facing) {
         super(type, position.addVector(Portal.portalDirection[facing]), Portal.portalSize[facing & 1], facing);
-        this.idNumber = idNumber;
         this.infacing = facing + 2 & 3;
     }
     isMoveIn(hitbox) {
@@ -64,5 +63,19 @@ class Portal extends Edge {
                 window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, halfSize, halfSize);
                 // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, basicSize,);
             }
+    }
+
+    /**
+     *
+     * @param {Vector} position
+     * @param {Edge} edge
+     */
+    static valid(position, edge) {
+        const leftUp = position.addVector(Portal.portalDirection[edge.facing]);
+        const rightDown = leftUp.addVector(Portal.portalSize[edge.facing & 1]);
+
+        console.debug(leftUp, rightDown, edge.hitbox);
+
+        return (edge.hitbox.contains(leftUp) && edge.hitbox.contains(rightDown));
     }
 }

@@ -17,6 +17,7 @@ class PortalGun {
 
         this.flyingType = 0
         this.COLOR = ['blue', 'orange']
+        this.edge = null
     }
 
     /**
@@ -52,6 +53,7 @@ class PortalGun {
 
             this.target = this.direction.scale(SPEED * frameRatio).magnitude();
             this.flyingType = type;
+            this.edge = null;
         }
     }
 
@@ -63,7 +65,7 @@ class PortalGun {
         window.$game.ctx.fillRect(this.position.x, this.position.y, 4, 4);
 
         /**
-         * @type {Tile[]}
+         * @type {Edge[]}
          */
         const edges = window.$game.map.edges;
 
@@ -79,6 +81,9 @@ class PortalGun {
                 if (edge.hitbox.contains(this.position)) {
                     this.isShot = false;
                     this.isHit = true;
+                    this.edge = edge;
+
+                    this.position = fixPosition(this.position, edge);
                     return;
                 }
             }
@@ -89,4 +94,19 @@ class PortalGun {
 const validPosition = (position) => {
     return position.x >= 0 && position.x <= window.$game.canvas.width &&
         position.y >= 0 && position.y <= window.$game.canvas.height;
+}
+
+/**
+ *
+ * @param {Vector} position
+ * @param {Edge} edge
+ */
+const fixPosition = (position, edge) => {
+    const fix = [
+        new Vector(position.x, edge.hitbox.getTopLeft().y),
+        new Vector(edge.hitbox.getTopLeft().x, position.y),
+        new Vector(position.x, edge.hitbox.getBottomRight().y),
+        new Vector(edge.hitbox.getBottomRight().x, position.y),
+    ]
+    return fix[edge.facing];
 }
