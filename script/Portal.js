@@ -55,17 +55,23 @@ class Portal extends Edge {
     }
 
     /**
-     *
+     * @param {Vector} position
      * @param {Edge} edge
+     * @param {Portal} anotherPortal
      */
-    static valid(edge) {
+    static valid(position, edge, anotherPortal) {
         const portalSize = Portal.portalSize[edge.facing & 1];
         const edgeSize = edge.hitbox.size
 
         const edgeLength = edge.facing & 1 ? edgeSize.y : edgeSize.x;
         const portalLength = edge.facing & 1 ? portalSize.y : portalSize.x;
 
-        return edgeLength >= portalLength
+        const leftUp = position.addVector(Portal.portalDirection[edge.facing]);
+        const rightDown = leftUp.addVector(Portal.portalSize[edge.facing & 1]);
+
+        const hitAnother = anotherPortal.hitbox.contains(leftUp) || anotherPortal.hitbox.contains(rightDown);
+
+        return edgeLength >= portalLength && !hitAnother;
     }
 
     /**
@@ -88,7 +94,12 @@ class Portal extends Edge {
         }
 
         else {
-            const delta = [new Vector(-this.portalRadius, -this.portalWidth), new Vector(-this.portalWidth, -this.portalRadius), new Vector(-this.portalRadius, 0), new Vector(0, -this.portalRadius)];
+            const delta = [
+                new Vector(-this.portalRadius, -this.portalWidth),
+                new Vector(-this.portalWidth, -this.portalRadius),
+                new Vector(-this.portalRadius, 0),
+                new Vector(0, -this.portalRadius)
+            ];
             return edge.hitbox.position.addVector(edge.hitbox.size).addVector(delta[edge.facing]);
         }
     }

@@ -76,7 +76,7 @@ class PortalView extends View {
 
                 this.portalGun.isHit = false;
 
-                if (Portal.valid(edge)) {
+                if (Portal.valid(position, edge, this.portals[this.portalGun.flyingType ^ 1])) {
                     position = Portal.fixPosition(position, edge)
 
                     this.portals[this.portalGun.flyingType] = new Portal(this.portalGun.flyingType, position, edge.facing);
