@@ -58,9 +58,7 @@ class PortalView extends View {
         this.portalGun = new PortalGun();
         // TODO: 在这里实现Portal类
         this.portal_positions = [new Vector(0, 0), new Vector(0, 0)];
-        this.portals = [];
-        this.portals.push(new Portal(0, new Vector(1000, 560), 0));
-        this.portals.push(new Portal(1, new Vector(80, 580), 3));
+        this.portals = [new Portal(-1, new Vector(), 0), new Portal(-1, new Vector(), 0)];
         this.computations.push((t) => {
             this.portalGun.update(this.player.getCenter(), this.mouse.position);
             if (this.mouse.left) {

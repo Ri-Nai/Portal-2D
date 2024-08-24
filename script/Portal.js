@@ -49,7 +49,11 @@ class Portal extends Edge {
 
     }
     draw() {
-            window.$game.ctx.fillStyle = `rgba(114, 14, 233, 1)`;
+            // window.$game.ctx.fillStyle = `rgba(114, 14, 233, 1)`;
+            if (this.type == -1)
+                return;
+            let color = this.type ? "orange" : "red";
+            window.$game.ctx.fillStyle = color;
             window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
             // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, basicSize,);
     }
@@ -60,6 +64,8 @@ class Portal extends Edge {
      * @param {Portal} anotherPortal
      */
     static valid(position, edge, anotherPortal) {
+        if (anotherPortal.type == -1)
+            return true;
         const portalSize = Portal.portalSize[edge.facing & 1];
         const edgeSize = edge.hitbox.size
 

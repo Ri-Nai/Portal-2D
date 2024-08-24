@@ -153,8 +153,11 @@ class Player extends Entity {
     }
     checkPortal(delta) {
         // return false;
-        this.hitbox.position.addEqual(delta);
+
         let portals = window.$game.view.portals;
+        if (portals[0].type == -1 || portals[1].type == -1)
+            return false;
+        this.hitbox.position.addEqual(delta);
         for (let i = 0; i < 2; ++i) {
             let flag = portals[ i ].isMoveIn(this.hitbox);
             if (flag) {
@@ -180,7 +183,17 @@ class Player extends Entity {
         this.hitbox.position.addEqual(delta.scale(-1));
         return false;
     }
-    moveHitbox(move) {
+
+    /**
+     *
+     * @param {Vector} velocity
+     * @param {number} deltaTime
+     * @returns {number}
+     */
+    rigidMove(deltaTime) {
+        //移动路程需要乘上deltaTime
+        //round是因为，如果沾上浮点数判断，这辈子有了
+        let move = this.velocity.scale(deltaTime).round();
         let flag = 0;
         let moveDirection = (delta, value) => {
             if (this.checkPortal(delta)) {
@@ -200,25 +213,13 @@ class Player extends Entity {
             if (!moveDirection(new Vector(dir, 0), 0))
                 break;
         }
+        move = this.velocity.scale(deltaTime).round();
         dir = Math.sign(move.y);
         for (let i = 0; i != move.y; i += dir) {
             if (!moveDirection(new Vector(0, dir), 1))
                 break;
         }
         return flag;
-    }
-
-    /**
-     *
-     * @param {Vector} velocity
-     * @param {number} deltaTime
-     * @returns {number}
-     */
-    rigidMove(velocity, deltaTime) {
-        //移动路程需要乘上deltaTime
-        //round是因为，如果沾上浮点数判断，这辈子有了
-        let move = velocity.scale(deltaTime).round();
-        return this.moveHitbox(move);
     }
     updateJumping(deltaTime) {
         if (window.$game.keyboard.isKeyDown("Space")) {
@@ -287,7 +288,7 @@ class Player extends Entity {
             nextVelocityX = this.updateX(deltaTime);
         this.velocity.x = nextVelocityX;
         this.velocity.y = nextVelocityY;
-        let side = this.rigidMove(new Vector(nextVelocityX, nextVelocityY), deltaTime);
+        let side = this.rigidMove(deltaTime);
         if (side & 1)
             this.velocity.x = 0, this.isflying = 0;
         if (side & 2)
