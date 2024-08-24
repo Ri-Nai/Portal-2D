@@ -96,10 +96,10 @@ class Player extends Entity {
         this.inPortal = 0;
     }
 
-    checkHit(operate) {
+    checkHit(hitbox, operate) {
         let hitboxes = window.$game.map.blocks;
         for (let tile of hitboxes) {
-            if (tile.hitbox.hit(this.hitbox)) {
+            if (tile.hitbox.hit(hitbox)) {
                 operate();
                 return true;
             }
@@ -113,7 +113,7 @@ class Player extends Entity {
         if (this.checkPortal(new Vector(0, 1)))
             return false;
         this.hitbox.position.y += 1;
-        let collided = this.checkHit(() => {});
+        let collided = this.checkHit(this.hitbox, () => {});
         this.hitbox.position.y -= 1;
         return collided;
     }
@@ -135,9 +135,10 @@ class Player extends Entity {
             newPosition.addEqual(new Vector(0, Portal.portalRadius - 0.5 * this.hitbox.size.y));
         else
             newPosition.addEqual(new Vector(Portal.portalRadius - 0.5 * this.hitbox.size.x, 0));
-        this.inPortal = this.portalBuffer;
         newPosition = newPosition.round();
-
+        if (this.checkHit(new Hitbox(newPosition, this.hitbox.size), () => {}))
+            return null;
+        this.inPortal = this.portalBuffer;
         return newPosition;
     }
     rotateVelocity(infacing, outfacing) {
@@ -153,20 +154,24 @@ class Player extends Entity {
             let flag = portals[ i ].isMoveIn(this.hitbox);
             if (flag) {
                 let infacing = portals[ i ].infacing;
+                let newPosition = this.moveOutPortalPosition(portals[ i ^ 1 ]);
+                if (newPosition == null)
+                    break;
                 if (this.velocity.dot(Portal.unitDirection[infacing]) <= this.MaxSpeed * 1.2)
-                {
-                    if (Portal.unitDirection[infacing].x != 0)
-                        this.velocity.x = Portal.unitDirection[infacing].x * this.MaxSpeed * 1.2;
-                    else
-                        this.velocity.y = Portal.unitDirection[infacing].y * this.MaxSpeed * 1.2;
+                    {
+                        if (Portal.unitDirection[infacing].x != 0)
+                            this.velocity.x = Portal.unitDirection[infacing].x * this.MaxSpeed * 1.2;
+                        else
+                            this.velocity.y = Portal.unitDirection[infacing].y * this.MaxSpeed * 1.2;
                 }
                 this.velocity = Portal.unitDirection[infacing].scale(this.velocity.magnitude());
                 this.rotateVelocity(infacing, portals[ i ^ 1 ].facing);
-                this.hitbox.position = this.moveOutPortalPosition(portals[ i ^ 1 ]);
+                this.hitbox.position = newPosition;
                 return true;
             }
         }
         this.hitbox.position.addEqual(delta.scale(-1));
+        return false;
     }
     moveHitbox(move) {
         let flag = 0;
@@ -176,7 +181,7 @@ class Player extends Entity {
             }
             this.hitbox.position.addEqual(delta);
             // 判断在这个方向上是否发生碰撞，如果未发生碰撞就向前move
-            let collided = this.checkHit(() => {this.hitbox.position.addEqual(delta.scale(-1));});
+            let collided = this.checkHit(this.hitbox, () => {this.hitbox.position.addEqual(delta.scale(-1));});
             if (collided)
                 flag |= 1 << value;
                 // 两位二进制代表发生碰撞的维度（状态压缩）
