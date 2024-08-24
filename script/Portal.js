@@ -25,7 +25,7 @@ class Portal extends Edge {
      * @param {Vector} idNumber
      * @param {number} facing
      */
-    //类型，中心位置，朝向，idNumber
+    //类型，中心位置，朝向
     constructor(type, position, facing) {
         super(type, position.addVector(Portal.portalDirection[ facing ]), Portal.portalSize[ facing & 1 ], facing);
         this.infacing = facing + 2 & 3;

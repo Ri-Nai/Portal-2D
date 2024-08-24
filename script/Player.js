@@ -55,7 +55,7 @@ class Jumping {
         } else if (this.isFalling) {
             this.jumpVelocity -= this.gravity * deltaTime;
         }
-        this.jumpVelocity = Math.max(-7 * this.baseJump, this.jumpVelocity);
+        this.jumpVelocity = Math.max(-5 * this.baseJump, this.jumpVelocity);
         this.reduceJumpBuffer(deltaTime);
     }
 
@@ -92,26 +92,30 @@ class Player extends Entity {
         this.facing = 1;
         this.isSpaceHeld = false;
         this.MaxSpeed = 6;
+        this.portalBuffer = 3;
+        this.inPortal = 0;
     }
 
-    isOnGround() {
-        let hitbox = this.hitbox;
+    checkHit(operate) {
         let hitboxes = window.$game.map.blocks;
+        for (let tile of hitboxes) {
+            if (tile.hitbox.hit(this.hitbox)) {
+                operate();
+                return true;
+            }
+        }
+        return false;
+    }
+    isOnGround() {
         //试着判断y轴向下+1是否会与地碰撞
         if (this.velocity.y < 0)
             return false;
         if (this.checkPortal(new Vector(0, 1)))
             return false;
-        hitbox.position.y += 1;
-        for (let tile of hitboxes) {
-            if (tile.hitbox.hit(hitbox)) {
-                hitbox.position.y -= 1;
-                return true;
-            }
-        }
-        hitbox.position.y -= 1;
-
-        return false;
+        this.hitbox.position.y += 1;
+        let collided = this.checkHit(() => {});
+        this.hitbox.position.y -= 1;
+        return collided;
     }
     /**
      *
@@ -120,10 +124,10 @@ class Player extends Entity {
     moveOutPortalPosition(portal) {
         //从碰撞箱顶点开始的offsets
         let offsets = [
-            new Vector(0, -this.hitbox.size.y - 10),
-            new Vector(-this.hitbox.size.x - 1, 0),
-            new Vector(0, Portal.portalWidth + 1),
-            new Vector(Portal.portalWidth + 1, 0)
+            new Vector(0, -this.hitbox.size.y),
+            new Vector(-this.hitbox.size.x, 0),
+            new Vector(0, Portal.portalWidth),
+            new Vector(Portal.portalWidth, 0)
         ];
         let newPosition = new Vector(portal.hitbox.position.x, portal.hitbox.position.y).addVector(offsets[ portal.facing ]);
         // newPosition.addEqual(diff);
@@ -131,6 +135,9 @@ class Player extends Entity {
             newPosition.addEqual(new Vector(0, Portal.portalRadius - 0.5 * this.hitbox.size.y));
         else
             newPosition.addEqual(new Vector(Portal.portalRadius - 0.5 * this.hitbox.size.x, 0));
+        this.inPortal = this.portalBuffer;
+        newPosition = newPosition.round();
+
         return newPosition;
     }
     rotateVelocity(infacing, outfacing) {
@@ -153,6 +160,7 @@ class Player extends Entity {
                     else
                         this.velocity.y = Portal.unitDirection[infacing].y * this.MaxSpeed * 1.2;
                 }
+                this.velocity = Portal.unitDirection[infacing].scale(this.velocity.magnitude());
                 this.rotateVelocity(infacing, portals[ i ^ 1 ].facing);
                 this.hitbox.position = this.moveOutPortalPosition(portals[ i ^ 1 ]);
                 return true;
@@ -160,30 +168,20 @@ class Player extends Entity {
         }
         this.hitbox.position.addEqual(delta.scale(-1));
     }
-    moveHitbox(move, hitboxes) {
+    moveHitbox(move) {
         let flag = 0;
         let moveDirection = (delta, value) => {
             if (this.checkPortal(delta)) {
                 return false;
             }
             this.hitbox.position.addEqual(delta);
-            let collided = false;
             // 判断在这个方向上是否发生碰撞，如果未发生碰撞就向前move
-            for (let tile of hitboxes) {
-                if (this.hitbox.hit(tile.hitbox)) {
-                    collided = true;
-                    this.hitbox.position.addEqual(delta.scale(-1));
-                    //撤回move操作
-                    break;
-                }
-            }
-            if (collided) {
+            let collided = this.checkHit(() => {this.hitbox.position.addEqual(delta.scale(-1));});
+            if (collided)
                 flag |= 1 << value;
                 // 两位二进制代表发生碰撞的维度（状态压缩）
                 // & 1代表与x碰撞，& 2代表与y碰撞
-                return false;
-            }
-            return true;
+            return !collided;
         };
         let dir = Math.sign(move.x);
         for (let i = 0; i != move.x; i += dir) {
@@ -208,7 +206,7 @@ class Player extends Entity {
         //移动路程需要乘上deltaTime
         //round是因为，如果沾上浮点数判断，这辈子有了
         let move = velocity.scale(deltaTime).round();
-        return this.moveHitbox(move, window.$game.map.blocks);
+        return this.moveHitbox(move);
     }
     updateJumping(deltaTime) {
         if (window.$game.keyboard.isKeyDown("Space")) {
@@ -268,9 +266,12 @@ class Player extends Entity {
         //此时的deltaTime当前环境下的1帧，在60帧环境下走了多少帧
         //于是在moveRigid函数中，需要将velocity乘上deltaTime代表在当前环境下走过的路程
         deltaTime = 60 * deltaTime / 1000;
+        this.inPortal = Math.max(this.inPortal - deltaTime, 0);
         this.updateJumping(deltaTime);
         let nextVelocityY = -this.jumping.jumpVelocity;
-        let nextVelocityX = this.updateX(deltaTime);
+        let nextVelocityX = this.velocity.x;
+        if (!this.inPortal)
+            nextVelocityX = this.updateX(deltaTime);
         this.velocity.x = nextVelocityX;
         this.velocity.y = nextVelocityY;
         let side = this.rigidMove(new Vector(nextVelocityX, nextVelocityY), deltaTime);

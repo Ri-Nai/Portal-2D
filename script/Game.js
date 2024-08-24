@@ -42,7 +42,7 @@ class Game {
     }
 
     async load() {
-        const defaultUrl = './assets/maps/Test2.json'
+        const defaultUrl = './assets/maps/Test.json'
         await this.map.loadFromURL(defaultUrl);
         this.loaded = true;
 
