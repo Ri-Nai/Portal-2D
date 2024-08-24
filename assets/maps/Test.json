@@ -503,6 +503,17 @@ window.$game.dataManager.resolve(
         {
             "type": 2,
             "position": {
+                "x": 920,
+                "y": 440
+            },
+            "size": {
+                "x": 80,
+                "y": 40
+            }
+        },
+        {
+            "type": 2,
+            "position": {
                 "x": 1120,
                 "y": 440
             },
@@ -770,6 +781,18 @@ window.$game.dataManager.resolve(
         },
         {
             "type": 2,
+            "facing": 3,
+            "position": {
+                "y": 440,
+                "x": 980
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": 2,
             "facing": 2,
             "position": {
                 "x": 80,
@@ -801,6 +824,18 @@ window.$game.dataManager.resolve(
             },
             "size": {
                 "x": 120,
+                "y": 20
+            }
+        },
+        {
+            "type": 2,
+            "facing": 2,
+            "position": {
+                "x": 920,
+                "y": 460
+            },
+            "size": {
+                "x": 80,
                 "y": 20
             }
         },
@@ -844,6 +879,18 @@ window.$game.dataManager.resolve(
             "type": 2,
             "facing": 1,
             "position": {
+                "y": 440,
+                "x": 920
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": 2,
+            "facing": 1,
+            "position": {
                 "y": 160,
                 "x": 1120
             },
@@ -861,6 +908,18 @@ window.$game.dataManager.resolve(
             },
             "size": {
                 "x": 120,
+                "y": 20
+            }
+        },
+        {
+            "type": 2,
+            "facing": 0,
+            "position": {
+                "x": 920,
+                "y": 440
+            },
+            "size": {
+                "x": 80,
                 "y": 20
             }
         },

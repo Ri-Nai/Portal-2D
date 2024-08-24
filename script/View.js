@@ -70,13 +70,15 @@ class PortalView extends View {
                 this.portalGun.shot(this.player.getCenter(), 1, t);
             }
             if (this.portalGun.isHit) {
-                const position = this.portalGun.position;
+                let position = this.portalGun.position;
                 const edge = this.portalGun.edge;
                 this.portal_positions[this.portalGun.flyingType] = position;
 
                 this.portalGun.isHit = false;
 
-                if (Portal.valid(position, edge)) {
+                if (Portal.valid(edge)) {
+                    position = Portal.fixPosition(position, edge)
+
                     this.portals[this.portalGun.flyingType] = new Portal(this.portalGun.flyingType, position, edge.facing);
                 }
             }
