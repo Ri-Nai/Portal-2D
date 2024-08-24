@@ -55,7 +55,7 @@ class Jumping {
         } else if (this.isFalling) {
             this.jumpVelocity -= this.gravity * deltaTime;
         }
-        this.jumpVelocity = Math.max(-5 * this.baseJump, this.jumpVelocity);
+        this.jumpVelocity = Math.max(-7 * this.baseJump, this.jumpVelocity);
         this.reduceJumpBuffer(deltaTime);
     }
 
@@ -98,6 +98,8 @@ class Player extends Entity {
         let hitbox = this.hitbox;
         let hitboxes = window.$game.map.blocks;
         //试着判断y轴向下+1是否会与地碰撞
+        if (this.velocity.y < 0)
+            return false;
         if (this.checkPortal(new Vector(0, 1)))
             return false;
         hitbox.position.y += 1;
@@ -115,10 +117,10 @@ class Player extends Entity {
      *
      * @param {Portal} portal
      */
-    moveOutPortalPosition(portal, diff) {
+    moveOutPortalPosition(portal) {
         //从碰撞箱顶点开始的offsets
         let offsets = [
-            new Vector(0, -this.hitbox.size.y - 1),
+            new Vector(0, -this.hitbox.size.y - 10),
             new Vector(-this.hitbox.size.x - 1, 0),
             new Vector(0, Portal.portalWidth + 1),
             new Vector(Portal.portalWidth + 1, 0)
@@ -141,10 +143,13 @@ class Player extends Entity {
         this.hitbox.position.addEqual(delta);
         let portals = window.$game.view.portals;
         for (let i = 0; i < 2; ++i) {
-            let diff = portals[ i ].isMoveIn(this.hitbox);
-            if (diff) {
-                this.hitbox.position = this.moveOutPortalPosition(portals[ i ^ 1 ], diff);
-                this.rotateVelocity(portals[ i ].infacing, portals[ i ^ 1 ].facing);
+            let flag = portals[ i ].isMoveIn(this.hitbox);
+            if (flag) {
+                let infacing = portals[ i ].infacing;
+                if (this.velocity.dot(Portal.unitDirection[infacing]) <= this.MaxSpeed * 1.2)
+                    this.velocity.addEqual(Portal.unitDirection[infacing].scale(this.MaxSpeed * 1.2));
+                this.rotateVelocity(infacing, portals[ i ^ 1 ].facing);
+                this.hitbox.position = this.moveOutPortalPosition(portals[ i ^ 1 ]);
                 return true;
             }
         }
@@ -241,7 +246,12 @@ class Player extends Entity {
                     nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.01 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
             }
             else
-                nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10 * deltaTime), this.MaxSpeed);
+            {
+                if (this.isOnGround())
+                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.5 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
+                else
+                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.1 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
+            }
         }
         return nextVelocityX;
     }
