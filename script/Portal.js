@@ -88,8 +88,8 @@ class Portal extends Edge {
         }
 
         else {
-            const delta = [new Vector(-this.portalRadius, 0), new Vector(0, -this.portalRadius)];
-            return edge.hitbox.position.addVector(edge.hitbox.size).addVector(delta[edge.facing & 1]);
+            const delta = [new Vector(-this.portalRadius, -this.portalWidth), new Vector(-this.portalWidth, -this.portalRadius), new Vector(-this.portalRadius, 0), new Vector(0, -this.portalRadius)];
+            return edge.hitbox.position.addVector(edge.hitbox.size).addVector(delta[edge.facing]);
         }
     }
 }
