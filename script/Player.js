@@ -147,7 +147,12 @@ class Player extends Entity {
             if (flag) {
                 let infacing = portals[ i ].infacing;
                 if (this.velocity.dot(Portal.unitDirection[infacing]) <= this.MaxSpeed * 1.2)
-                    this.velocity.addEqual(Portal.unitDirection[infacing].scale(this.MaxSpeed * 1.2));
+                {
+                    if (Portal.unitDirection[infacing].x != 0)
+                        this.velocity.x = Portal.unitDirection[infacing].x * this.MaxSpeed * 1.2;
+                    else
+                        this.velocity.y = Portal.unitDirection[infacing].y * this.MaxSpeed * 1.2;
+                }
                 this.rotateVelocity(infacing, portals[ i ^ 1 ].facing);
                 this.hitbox.position = this.moveOutPortalPosition(portals[ i ^ 1 ]);
                 return true;
@@ -156,10 +161,8 @@ class Player extends Entity {
         this.hitbox.position.addEqual(delta.scale(-1));
     }
     moveHitbox(move, hitboxes) {
-        let dir = Math.sign(move.x);
         let flag = 0;
-
-        let move_direction = (delta, value) => {
+        let moveDirection = (delta, value) => {
             if (this.checkPortal(delta)) {
                 return false;
             }
@@ -182,13 +185,14 @@ class Player extends Entity {
             }
             return true;
         };
+        let dir = Math.sign(move.x);
         for (let i = 0; i != move.x; i += dir) {
-            if (!move_direction(new Vector(dir, 0), 0))
+            if (!moveDirection(new Vector(dir, 0), 0))
                 break;
         }
         dir = Math.sign(move.y);
         for (let i = 0; i != move.y; i += dir) {
-            if (!move_direction(new Vector(0, dir), 1))
+            if (!moveDirection(new Vector(0, dir), 1))
                 break;
         }
         return flag;
