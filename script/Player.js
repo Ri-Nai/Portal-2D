@@ -94,6 +94,9 @@ class Player extends Entity {
         this.MaxSpeed = 6;
         this.portalBuffer = 3;
         this.inPortal = 0;
+        this.flyingBuffer = 240;
+        this.isflying = 0;
+
     }
 
     checkHit(hitbox, operate) {
@@ -115,6 +118,8 @@ class Player extends Entity {
         this.hitbox.position.y += 1;
         let collided = this.checkHit(this.hitbox, () => {});
         this.hitbox.position.y -= 1;
+        if (collided)
+            this.isflying = 0;
         return collided;
     }
     /**
@@ -166,6 +171,8 @@ class Player extends Entity {
                 }
                 this.velocity = Portal.unitDirection[infacing].scale(this.velocity.magnitude());
                 this.rotateVelocity(infacing, portals[ i ^ 1 ].facing);
+                if (portals[ i ^ 1 ].facing & 1)
+                    this.isflying = this.flyingBuffer;
                 this.hitbox.position = newPosition;
                 return true;
             }
@@ -233,7 +240,7 @@ class Player extends Entity {
         if (moveRight)
             this.facing = move = 1;
         let nextVelocityX = this.velocity.x;
-        if (Math.abs(nextVelocityX) <= this.MaxSpeed) {
+        if (!this.isflying && Math.abs(nextVelocityX) <= this.MaxSpeed) {
             if (move == 0)
                 nextVelocityX = nextVelocityX * Math.exp(-0.5 * deltaTime);
             else
@@ -272,6 +279,7 @@ class Player extends Entity {
         //于是在moveRigid函数中，需要将velocity乘上deltaTime代表在当前环境下走过的路程
         deltaTime = 60 * deltaTime / 1000;
         this.inPortal = Math.max(this.inPortal - deltaTime, 0);
+        this.isflying = Math.max(this.isflying - deltaTime, 0);
         this.updateJumping(deltaTime);
         let nextVelocityY = -this.jumping.jumpVelocity;
         let nextVelocityX = this.velocity.x;
@@ -281,7 +289,7 @@ class Player extends Entity {
         this.velocity.y = nextVelocityY;
         let side = this.rigidMove(new Vector(nextVelocityX, nextVelocityY), deltaTime);
         if (side & 1)
-            this.velocity.x = 0;
+            this.velocity.x = 0, this.isflying = 0;
         if (side & 2)
             this.velocity.y = 0;
         if (this.velocity.y == 0) {
