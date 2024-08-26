@@ -32,13 +32,14 @@ class Game {
 
         this.dataManager = new DataManager();
 
-        const fps = new FrameRate();
-        this.computations.push((t) => fps.display(t.timestamp));
-
         /**
          * @type {MapManager}
          */
         this.map = new MapManager();
+
+        this.stop = false;
+        this.restartBtn = document.querySelector('#control-restart')
+        this.restartBtn.addEventListener('click', () => this.restart())
     }
 
     async load() {
@@ -47,15 +48,23 @@ class Game {
         this.loaded = true;
 
         this.view = new PortalView(this.map);
-        this.computations.push((t) => this.view.compute(t));
-        this.renderings.push(() => this.view.draw())
     }
 
     start() {
+        this.stop = false;
+        this.computations = [];
+        this.renderings = [];
         if (!this.loaded) {
             console.error('Game not loaded');
             return;
         }
+
+        this.computations.push((t) => this.view.compute(t));
+        this.renderings.push(() => this.view.draw())
+
+        const fps = new FrameRate();
+        this.computations.push((t) => fps.display(t.timestamp));
+
         this.renderings.push(() => this.mouse.draw());
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, performance.now()));
     }
@@ -65,7 +74,6 @@ class Game {
      * @param {number} prev previous frame timestamp
      */
     loop(timestamp, prev) {
-        // timestamp = performance.now()
         const interval = timestamp - prev;
         const now = timestamp;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -73,6 +81,17 @@ class Game {
         this.computations.forEach((comp) => comp({ timestamp, interval }));
         this.renderings.forEach((render) => render({ timestamp, interval }));
 
+        if (this.stop) {
+            this.start();
+            return;
+        }
+
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, now));
+    }
+
+    restart() {
+        this.stop = true;
+        this.view = new PortalView(this.map);
+        this.restartBtn.blur();
     }
 }

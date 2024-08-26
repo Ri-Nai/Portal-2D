@@ -20,5 +20,16 @@ body, html {
 }
 
 #game > canvas {
-    height: calc(min(100vh, calc(100vw / 16 * 9)) - 20px);
+    --padding: 40px;
+    height: calc(min(100vh, calc(100vw / 16 * 9)) - var(--padding));
+}
+
+.control {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
