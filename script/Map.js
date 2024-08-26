@@ -52,7 +52,7 @@ class MapManager {
          */
         this.edges = [];
 
-        this.events = new Events()
+        this.events = new EventManager()
     }
     loadFromJSON(jsonData) {
         const data = JSON.parse(jsonData);
