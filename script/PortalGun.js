@@ -68,6 +68,7 @@ class PortalGun {
          * @type {Edge[]}
          */
         const edges = window.$game.map.edges;
+        const blocks = window.$game.map.blocks;
 
         for (let i = 0; i < this.target; i++) {
             this.position.addEqual(this.direction);
@@ -84,6 +85,13 @@ class PortalGun {
                     this.edge = edge;
 
                     this.position = fixPosition(this.position, edge);
+                    return;
+                }
+            }
+
+            for (let block of blocks) {
+                if (block.hitbox.contains(this.position)) {
+                    this.isShot = false;
                     return;
                 }
             }
