@@ -17,18 +17,26 @@ class Jumping {
 
     // Check if player can jump, manage coyote time and jump buffer
     canJump(onGround, deltaTime) {
+        // 检查是否在地面上
         if (onGround) {
-            this.coyoteTimer = this.coyoteTime;
+            this.coyoteTimer = this.coyoteTime; // 重置coyote时间
             this.isJumping = false;
             this.isFalling = false;
             this.jumpVelocity = 0;
+
+            // 如果跳跃缓冲器大于0，落地后立即跳跃
+            if (this.jumpBuffer > 0) {
+                this.startJump();
+            }
         } else {
             if (!this.isJumping)
                 this.isFalling = true;
             this.coyoteTimer = Math.max(this.coyoteTimer - deltaTime, 0);
-        }
-        if (!this.isJumping && this.jumpBuffer > 0 && (this.isFalling && this.coyoteTimer > 0 || onGround)) {
-            this.startJump();
+
+            // 当仍有coyote时间且已经按下空格时跳跃
+            if (!this.isJumping && this.jumpBuffer > 0 && this.coyoteTimer > 0) {
+                this.startJump();
+            }
         }
     }
 
@@ -103,7 +111,7 @@ class Entity {
         /**
          * @type {Hitbox}
          */
-        this.jumping = new Jumping(5, 10, 0.5, 10, 1);
+        this.jumping = new Jumping(5, 10, 0.5, 10, 15);
         this.hitbox = new Hitbox(position, size);  // 实体的碰撞盒
         this.MaxSpeed = 6;
         this.portalBuffer = 3;
@@ -258,12 +266,12 @@ class Entity {
         return flag;
     }
 
-    updateJumping(deltaTime, controller) {
+    updateJumping(deltaTime, control) {
         this.jumping.canJump(this.isOnGround(), deltaTime);
-        this.jumping.updateJump(controller(), deltaTime);
+        this.jumping.updateJump(control, deltaTime);
     }
-    updateX(deltaTime, controller) {
-        let move = controller();
+    updateX(deltaTime, control) {
+        let move = control;
         let nextVelocityX = this.velocity.x;
         if (!this.isflying && Math.abs(nextVelocityX) <= this.MaxSpeed) {
             if (move == 0)
@@ -301,11 +309,11 @@ class Entity {
         //于是在moveRigid函数中，需要将velocity乘上deltaTime代表在当前环境下走过的路程
         this.inPortal = Math.max(this.inPortal - deltaTime, 0);
         this.isflying = Math.max(this.isflying - deltaTime, 0);
-        this.updateJumping(deltaTime, controllerY);
+        this.updateJumping(deltaTime, controllerY());
         let nextVelocityY = -this.jumping.jumpVelocity;
         let nextVelocityX = this.velocity.x;
         if (!this.inPortal)
-            nextVelocityX = this.updateX(deltaTime, controllerX);
+            nextVelocityX = this.updateX(deltaTime, controllerX());
         this.velocity.x = nextVelocityX;
         this.velocity.y = nextVelocityY;
         let side = this.rigidMove(deltaTime);
