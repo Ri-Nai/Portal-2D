@@ -30,9 +30,5 @@ class Player extends Entity {
                 return this.isSpaceHeld;
             });
     }
-    draw() {
-        window.$game.ctx.fillStyle = `rgba(221, 100, 0, 1)`;
-        window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
 
-    }
 }

@@ -50,12 +50,16 @@ class PortalView extends View {
             new Vector(4 * basicSize, 4 * basicSize),
             new Vector(1.8 * basicSize, 2.8 * basicSize));
 
+        this.cube = new Cube(
+            new Vector(7 * basicSize, 4 * basicSize),
+            new Vector(1 * basicSize, 1 * basicSize));
         this.computations.push((t) => this.player.update(t.interval));
+        this.computations.push((t) => this.cube.update(t.interval));
 
         /**
          * @type {Entity[]}
          */
-        this.entities = [this.player];
+        this.entities = [this.player, this.cube];
 
         /**
          * @type {EventManager}
@@ -69,7 +73,6 @@ class PortalView extends View {
         this.portalGun = new PortalGun();
         this.portal_positions = [new Vector(0, 0), new Vector(0, 0)];
         this.portals = [new Portal(-1, new Vector(), 0), new Portal(-1, new Vector(), 0)];
-
         this.computations.push((t) => {
             this.portalGun.update(this.player.getCenter(), this.mouse.position);
             if (this.mouse.left) {
@@ -96,6 +99,7 @@ class PortalView extends View {
         // 在这里执行所有渲染便于控制渲染顺序
         this.renderings.push(() => this.map.draw());
         this.renderings.push(() => this.player.draw());
+        this.renderings.push(() => this.cube.draw());
         this.renderings.push(() => this.portals[0].draw());
         this.renderings.push(() => this.portals[1].draw());
         this.renderings.push((t) => {
