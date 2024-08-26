@@ -64,8 +64,6 @@ class Portal extends Edge {
      * @param {Portal} anotherPortal
      */
     static valid(position, edge, anotherPortal) {
-        if (anotherPortal.type == -1)
-            return true;
         const portalSize = Portal.portalSize[edge.facing & 1];
         const edgeSize = edge.hitbox.size
 
@@ -75,7 +73,12 @@ class Portal extends Edge {
         const leftUp = position.addVector(Portal.portalDirection[edge.facing]);
         const rightDown = leftUp.addVector(Portal.portalSize[edge.facing & 1]);
 
-        const hitAnother = anotherPortal.hitbox.contains(leftUp) || anotherPortal.hitbox.contains(rightDown);
+        if (anotherPortal.type === -1) {
+            return edgeLength >= portalLength;
+        }
+
+        const hitAnother = anotherPortal.hitbox.contains(leftUp)
+            || anotherPortal.hitbox.contains(rightDown)
 
         return edgeLength >= portalLength && !hitAnother;
     }
