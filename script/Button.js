@@ -15,11 +15,11 @@ class Button extends Tile {
 
     onActivate() {
         console.debug('Button activated')
-        // this.hitbox = new Hitbox(this.position, new Vector(this.size.x, 5));
+        this.hitbox = new Hitbox(new Vector(this.position.x, this.position.y + this.size.y - 20), new Vector(this.size.x, 20));
     }
 
     onDeactivate() {
-        // this.hitbox = new Hitbox(this.position, this.size);
+        this.hitbox = new Hitbox(this.position, this.size);
     }
 
     draw() {
@@ -53,7 +53,12 @@ class ButtonEvent extends GameEvent {
     update() {
         let isActivate = false
         this.entities.forEach((entity) => {
-            if (this.hitbox.hit(entity.hitbox)) {
+            if (
+                this.hitbox.hit(new Hitbox(
+                    new Vector(entity.hitbox.position.x, entity.hitbox.position.y + 1),
+                    entity.hitbox.size
+                ))
+            ) {
                 this.activate();
                 isActivate = true
             }
