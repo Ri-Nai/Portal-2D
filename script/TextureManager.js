@@ -18,18 +18,19 @@ class TextureManager {
             resources.set(url, await createImageBitmap(ctx));
         })
 
-        Promise.all(tasks).then(() => {
-            Object.keys(this.texturesURL).forEach(async (kind) => {
-                this.textures[kind] = {};
-                Object.keys(this.texturesURL[kind]).forEach(async (id) => {
-                    this.textures[kind][id] = resources.get(this.texturesURL[kind][id]);
-                });
-            });
+        await Promise.all(tasks)
 
-            console.log(this.textures);
-        })
+        Object.keys(this.texturesURL).forEach(async (kind) => {
+            this.textures[kind] = {};
+            Object.keys(this.texturesURL[kind]).forEach(async (id) => {
+                this.textures[kind][id] = resources.get(this.texturesURL[kind][id]);
+            });
+        });
+
+        console.log("texture: ", this.textures);
     }
     getTexture(kind, id) {
+        console.debug("getTexture: ", kind, id);
         return this.textures[ kind ][ id ];
     }
 }
