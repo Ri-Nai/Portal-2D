@@ -1,19 +1,16 @@
 window.$game.dataManager.resolve(
 {
-    "blocks" :
-    {
+    "blocks": {
         1 : "./assets/imgs/textures/Blocks/Black.png",
         2 : "./assets/imgs/textures/Blocks/White.png",
     },
-    "edges" :
-    {
-        1 : "",
-        2 : "",
+    "edges": {
+        1 : "./assets/imgs/textures/Blocks/Black.png",
+        2 : "./assets/imgs/textures/Blocks/White.png",
     },
-    "portals" :
-    {
-        0 : "",
-        1 : "",
+    "portals": {
+        1 : "./assets/imgs/textures/Blocks/Black.png",
+        2 : "./assets/imgs/textures/Blocks/White.png",
     }
 }
 )
