@@ -58,7 +58,7 @@ class PortalView extends View {
         this.entities = [this.player];
 
         /**
-         * @type {Events}
+         * @type {EventManager}
          */
         this.events = this.map.events;
         this.computations.push((t) => this.events.update(t));

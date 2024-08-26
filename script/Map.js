@@ -52,7 +52,7 @@ class MapManager {
          */
         this.edges = [];
 
-        this.events = new Events()
+        this.events = new EventManager()
     }
     load(data) {
         let constructTile = tileData => {

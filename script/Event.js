@@ -1,4 +1,4 @@
-class Event extends Tile {
+class GameEvent extends Tile {
     /**
      *
      * @param {number} type
@@ -33,8 +33,9 @@ class Event extends Tile {
     }
 
     activate() {
+        if (!this.activated)
+            this.onActivate();
         this.activated = true;
-        this.onActivate();
         this.affect.forEach((id) => {
             const event = window.$game.view.events.getEvent(id);
             event.activate();
@@ -42,8 +43,9 @@ class Event extends Tile {
     }
 
     deactivate() {
+        if (this.activated)
+            this.onDeactivate();
         this.activated = false;
-        this.onDeactivate();
         this.affect.forEach((id) => {
             const event = window.$game.view.events.getEvent(id);
             event.deactivate();
@@ -58,61 +60,5 @@ class Event extends Tile {
 
     draw() {
 
-    }
-}
-
-class Events {
-    /**
-     * @typedef IEvent
-     * @type {
-     *   {
-     *     [k: string]: {
-     *       type: number,
-     *       position: { x: number, y: number},
-     *       size: {x: number, y: number},
-     *       affect: string[]
-     *     }
-     *   }
-     * }
-     */
-
-    /**
-     *
-     * @param {IEvent} events
-     */
-    constructor(events) {
-        if (events)
-            this.init(events)
-    }
-
-    /**
-     *
-     * @param {IEvent} events
-     */
-    init(events) {
-        /**
-         * @type {Map<string, Event>}
-         */
-        this.events = new Map();
-
-        for (let [k, v] of Object.entries(events)) {
-            this.events.set(k, new Event(
-                k,
-                v.type,
-                new Vector(v.position.x, v.position.y),
-                new Vector(v.size.x, v.size.y),
-                v.affect
-            ));
-        }
-    }
-
-    update(t) {
-        this.events.forEach((event) => {
-            event.update(t);
-        })
-    }
-
-    getEvent(id) {
-        return this.events.get(id);
     }
 }

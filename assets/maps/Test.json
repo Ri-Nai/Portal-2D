@@ -953,11 +953,11 @@ window.$game.dataManager.resolve(
             "type": 1,
             "position": {
                 "x": 80,
-                "y": 520
+                "y": 600
             },
             "size": {
                 "x": 200,
-                "y": 120
+                "y": 40
             },
             "affect": [
                 "event-area-0002"
