@@ -1,0 +1,61 @@
+body {
+    height: 100vh;
+}
+
+.dialogue-container {
+    position: absolute;
+    bottom: 1%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    /* background-color: #f0f0f0; */
+    font-family: 'Noto Serif SC', serif; /* 默认字体设置为思源宋体 */
+}
+
+/* 外层的白色边框 */
+
+.character-name {
+    position: absolute;
+    top: -0.625rem; /* -10px / 16 */
+    left: 1.875rem; /* 30px / 16 */
+    background-color: black;
+    color: white;
+    padding: 0.625rem 1.25rem; /* 10px 20px */
+    font-size: 1rem; /* 16px / 16 */
+    border-radius: 0.625rem 0.625rem 0 0; /* 10px / 16 */
+    box-shadow: 0px 0.25rem 0.625rem rgba(0, 0, 0, 0.2); /* 4px 10px */
+    z-index: 1; /* 确保名字框在前面 */
+    text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.5); /* 字体阴影 */
+    font-weight: 900; /* 加粗字体 */
+    height: 1rem;
+    width: 5rem;
+    text-align: center;
+}
+
+/* 内层的对话框 */
+.dialogue-box {
+    background-color: white;
+    color: black;
+    border: 0.875rem solid black; /* 14px / 16 */
+    border-radius: 3.125rem; /* 50px / 16 */
+    padding: 1.875rem 3.75rem; /* 30px 60px */
+    font-size: 1.125rem; /* 18px / 16 */
+    /* text-align: center; */
+    max-width: 37.5rem; /* 600px / 16 */
+    position: relative;
+    z-index: 0; /* 确保对话框在后面 */
+    margin-top: 1.25rem; /* 20px / 16 */
+    text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.2); /* 字体阴影 */
+    font-size: 1.25rem; /* 20px / 16 */
+    font-weight: 600; /* 加粗字体 */
+    height: 2rem; /* 固定高度的对话框 */
+    width: 15rem; /* 固定宽度的对话框 */
+}
+
+
+p {
+    margin: 0;
+}
