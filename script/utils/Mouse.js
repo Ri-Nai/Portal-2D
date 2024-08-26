@@ -67,6 +67,7 @@ class MouseManager {
      * @param {MouseEvent} e
      */
     mouseDown(e) {
+        e.preventDefault()
         if (!this.clickable) return ;
         if (e.button === 0) {
             this.left = true;
@@ -77,6 +78,7 @@ class MouseManager {
     }
 
     mouseUp(e) {
+        e.preventDefault()
         if (e.button === 0) {
             this.left = false;
         }
@@ -90,6 +92,7 @@ class MouseManager {
      * @param {MouseEvent} e
      */
     move(e) {
+        e.preventDefault()
         if (this.isCapture) {
             this.x += e.movementX;
             this.y += e.movementY;
