@@ -123,16 +123,7 @@ class Entity {
     getCenter() {
         return this.hitbox.position.addVector(this.hitbox.size.scale(0.5));
     }
-    checkHit(hitbox, operate) {
-        let hitboxes = window.$game.map.blocks;
-        for (let tile of hitboxes) {
-            if (tile.hitbox.hit(hitbox)) {
-                operate();
-                return true;
-            }
-        }
-        return false;
-    }
+
 
     checkPortal(delta) {
         // return false;
@@ -180,7 +171,7 @@ class Entity {
         else
             newPosition.addEqual(new Vector(Portal.portalRadius - 0.5 * this.hitbox.size.x, 0));
         newPosition = newPosition.round();
-        if (this.checkHit(new Hitbox(newPosition, this.hitbox.size), () => { }))
+        if (new Hitbox(newPosition, this.hitbox.size).checkHits(window.$game.map.blocks, () => { }))
             return null;
         this.inPortal = this.portalBuffer;
         return newPosition;
@@ -204,7 +195,7 @@ class Entity {
         else
             newPosition.addEqual(new Vector(Portal.portalRadius - 0.5 * this.hitbox.size.x, 0));
         newPosition = newPosition.round();
-        if (this.checkHit(new Hitbox(newPosition, this.hitbox.size), () => { }))
+        if (new Hitbox(newPosition, this.hitbox.size).checkHits(window.$game.map.blocks, () => { }))
             return null;
         this.inPortal = this.portalBuffer;
         return newPosition;
@@ -221,7 +212,7 @@ class Entity {
         if (this.checkPortal(new Vector(0, 1)))
             return false;
         this.hitbox.position.y += 1;
-        let collided = this.checkHit(this.hitbox, () => { });
+        let collided = this.hitbox.checkHits(window.$game.map.blocks, () => { });
         this.hitbox.position.y -= 1;
         if (collided)
             this.isflying = 0;
@@ -245,7 +236,9 @@ class Entity {
 
             this.hitbox.position.addEqual(delta);
             // 判断在这个方向上是否发生碰撞，如果未发生碰撞就向前move
-            let collided = this.checkHit(this.hitbox, () => { this.hitbox.position.addEqual(delta.scale(-1)); });
+            let collided = this.hitbox.checkHits(window.$game.map.blocks, () => {
+                this.hitbox.position.addEqual(delta.scale(-1));
+            });
             if (collided)
                 flag |= 1 << value;
             // 两位二进制代表发生碰撞的维度（状态压缩）

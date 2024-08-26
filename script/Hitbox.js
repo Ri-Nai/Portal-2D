@@ -60,4 +60,14 @@ class Hitbox {
 
         return true;  // 有碰撞
     }
+
+    checkHits(tiles, operate) {
+        for (let tile of tiles) {
+            if (this.hit(tile.hitbox)) {
+                operate();
+                return true;
+            }
+        }
+        return false;
+    }
 }
