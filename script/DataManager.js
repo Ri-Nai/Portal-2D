@@ -19,6 +19,7 @@ class DataManager {
         let img = await new Promise(resolve => {
             let img = new Image();
             img.src = src;
+            document.getElementById('resource').appendChild(img);
             img.onload = () => resolve(img);
         });
         return img;

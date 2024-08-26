@@ -36,7 +36,7 @@ class Game {
          * @type {MapManager}
          */
         this.map = new MapManager();
-
+        this.textureManager = new TextureManager();
         this.stop = false;
         this.restartBtn = document.querySelector('#control-restart')
         this.restartBtn.addEventListener('click', () => this.restart())
@@ -46,7 +46,7 @@ class Game {
         const defaultUrl = './assets/maps/Test.json'
         await this.map.loadFromURL(defaultUrl);
         this.loaded = true;
-
+        await this.textureManager.load();
         this.view = new PortalView(this.map);
     }
 

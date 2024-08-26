@@ -11,12 +11,12 @@ class Edge extends Tile {
         this.facing = facing;
     }
     draw() {
-        for (let i = 0; i < this.hitbox.size.x; i += halfSize)
-            for (let j = 0; j < this.hitbox.size.y; j += halfSize) {
-                window.$game.ctx.fillStyle = `rgba(0, ${(this.facing + 3) * 50}, ${this.type * 100}, 1)`;
-                window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, halfSize, halfSize);
-                // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, basicSize,);
-            }
+        // for (let i = 0; i < this.hitbox.size.x; i += halfSize)
+        //     for (let j = 0; j < this.hitbox.size.y; j += halfSize) {
+        //         window.$game.ctx.fillStyle = `rgba(0, ${(this.facing + 3) * 50}, ${this.type * 100}, 1)`;
+        //         window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, halfSize, halfSize);
+        //         // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, basicSize,);
+        //     }
     }
 }
 class Layer {
@@ -54,11 +54,6 @@ class MapManager {
 
         this.events = new Events()
     }
-    loadFromJSON(jsonData) {
-        const data = JSON.parse(jsonData);
-        this.load(data);
-    }
-
     load(data) {
         let constructTile = tileData => {
             return new Tile(tileData.type,
@@ -95,7 +90,7 @@ class MapManager {
         for (let i of this.layers)
             i.draw();
         for (let i of this.blocks)
-            i.draw()
+            i.draw("blocks")
         for (let i of this.edges)
             i.draw()
     }
