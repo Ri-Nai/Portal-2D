@@ -18,22 +18,55 @@ window.$game.dataManager.resolve(
                 {
                     "type": 1,
                     "position": {
-                        "x": 480,
-                        "y": 200
+                        "x": 80,
+                        "y": 80
                     },
                     "size": {
-                        "x": 40,
+                        "x": 760,
                         "y": 40
                     }
                 },
                 {
                     "type": 1,
                     "position": {
-                        "x": 480,
+                        "x": 80,
+                        "y": 120
+                    },
+                    "size": {
+                        "x": 760,
+                        "y": 40
+                    }
+                },
+                {
+                    "type": 1,
+                    "position": {
+                        "x": 80,
+                        "y": 160
+                    },
+                    "size": {
+                        "x": 1040,
+                        "y": 40
+                    }
+                },
+                {
+                    "type": 1,
+                    "position": {
+                        "x": 80,
+                        "y": 200
+                    },
+                    "size": {
+                        "x": 1040,
+                        "y": 40
+                    }
+                },
+                {
+                    "type": 1,
+                    "position": {
+                        "x": 80,
                         "y": 240
                     },
                     "size": {
-                        "x": 40,
+                        "x": 1040,
                         "y": 40
                     }
                 },
@@ -44,7 +77,7 @@ window.$game.dataManager.resolve(
                         "y": 280
                     },
                     "size": {
-                        "x": 200,
+                        "x": 640,
                         "y": 40
                     }
                 }
@@ -802,30 +835,6 @@ window.$game.dataManager.resolve(
             }
         },
         {
-            "type": -1,
-            "facing": 3,
-            "position": {
-                "y": 200,
-                "x": 500
-            },
-            "size": {
-                "y": 80,
-                "x": 20
-            }
-        },
-        {
-            "type": -1,
-            "facing": 3,
-            "position": {
-                "y": 280,
-                "x": 660
-            },
-            "size": {
-                "y": 40,
-                "x": 20
-            }
-        },
-        {
             "type": 2,
             "facing": 3,
             "position": {
@@ -874,18 +883,6 @@ window.$game.dataManager.resolve(
             }
         },
         {
-            "type": -1,
-            "facing": 2,
-            "position": {
-                "x": 480,
-                "y": 300
-            },
-            "size": {
-                "x": 200,
-                "y": 20
-            }
-        },
-        {
             "type": 2,
             "facing": 2,
             "position": {
@@ -918,18 +915,6 @@ window.$game.dataManager.resolve(
             },
             "size": {
                 "y": 80,
-                "x": 20
-            }
-        },
-        {
-            "type": -1,
-            "facing": 1,
-            "position": {
-                "y": 200,
-                "x": 480
-            },
-            "size": {
-                "y": 120,
                 "x": 20
             }
         },
@@ -979,30 +964,6 @@ window.$game.dataManager.resolve(
             "size": {
                 "y": 400,
                 "x": 20
-            }
-        },
-        {
-            "type": -1,
-            "facing": 0,
-            "position": {
-                "x": 480,
-                "y": 200
-            },
-            "size": {
-                "x": 40,
-                "y": 20
-            }
-        },
-        {
-            "type": -1,
-            "facing": 0,
-            "position": {
-                "x": 520,
-                "y": 280
-            },
-            "size": {
-                "x": 160,
-                "y": 20
             }
         },
         {

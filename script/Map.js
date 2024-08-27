@@ -30,12 +30,14 @@ class Layer {
          */
         this.opacity = 1;
     }
-    draw() {
-        for (let i of this.tiles)
-            i.draw();
+    draw(typename) {
+        for (let i of this.tiles) {
+            i.draw(typename);
+        }
     }
 }
 class MapManager {
+    static typename = ["backgrounds", "", "", "backgroundTextures", "", "", ""];
     constructor() {
         /**
          * @type {Layer[]}
@@ -87,9 +89,10 @@ class MapManager {
         }
     }
     draw() {
-        // for (let i of this.layers)
-        //     i.draw();
-        this.layers[0].tiles[0].draw("backgrounds");
+        for (let i = 0; i < this.layers.length; ++i)
+        {
+            this.layers[i].draw(MapManager.typename[i]);
+        }
         for (let i of this.blocks)
             i.draw("blocks")
         for (let i of this.edges)

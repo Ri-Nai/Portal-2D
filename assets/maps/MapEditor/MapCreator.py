@@ -84,16 +84,16 @@ def fill_edge():
             for j in range(1, 33):
                 type = B[i][j - 1]
                 facing = (1 + diff) // 2 * 2
-                if B[i][j] == 0 or B[i + diff][j] != 0:
+                if B[i][j] <= 0 or B[i + diff][j] > 0:
                     # 非露出
-                    if flag:
+                    if flag and type > 0:
                         # draw j - 1 ~ last
                         write_seg(i, j, last, type, facing, diff, 0)
                     flag = False
                 else:
                     if not flag:
                         last = j
-                    elif B[i][j] != B[i][j - 1]:
+                    elif B[i][j] != B[i][j - 1] and type > 0:
                         write_seg(i, j, last, type, facing, diff, 0)
                         last = j
                     flag = True
@@ -104,14 +104,14 @@ def fill_edge():
             for j in range(1, 19):
                 type = B[j - 1][i]
                 facing = (1 + diff) // 2 * 2 + 1
-                if B[j][i] == 0 or B[j][i + diff] != 0:
-                    if flag:
+                if B[j][i] <= 0 or B[j][i + diff] > 0:
+                    if flag and type > 0:
                         write_seg(i, j, last, type, facing, diff, 1)
                     flag = False
                 else:
                     if not flag:
                         last = j
-                    elif B[j][i] != B[j - 1][i]:
+                    elif B[j][i] != B[j - 1][i] and type > 0:
                         write_seg(i, j, last, type, facing, diff, 1)
                         last = j
                     flag = True
