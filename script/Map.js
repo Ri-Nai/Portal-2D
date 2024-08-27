@@ -95,6 +95,7 @@ class MapManager {
         }
         for (let i of this.blocks)
             i.draw("blocks")
+        this.events.draw();
         for (let i of this.edges)
             i.draw()
     }

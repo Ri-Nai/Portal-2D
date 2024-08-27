@@ -140,11 +140,23 @@ events = {
     "event-area-0002": {
         "type": 2,
         "position": {
+            "x": 160,
+            "y": 640
+        },
+        "size": {
             "x": 40,
             "y": 40
         },
+        "affect": ["event-area-0003"]
+    },
+    "event-area-0003": {
+        "type": 2,
+        "position": {
+            "x": 160,
+            "y": 680
+        },
         "size": {
-            "x": 1200,
+            "x": 40,
             "y": 40
         },
         "affect": []

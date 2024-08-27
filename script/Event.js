@@ -33,9 +33,10 @@ class GameEvent extends Tile {
     }
 
     activate() {
-        if (!this.activated)
+        if (!this.activated) {
+            this.activated = true;
             this.onActivate();
-        this.activated = true;
+        }
         this.affect.forEach((id) => {
             const event = window.$game.view.events.getEvent(id);
             event.activate();

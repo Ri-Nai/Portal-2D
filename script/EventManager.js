@@ -28,7 +28,7 @@ class EventManager {
      */
     init(events) {
         /**
-         * @type {Map<string, Event>}
+         * @type {Map<string, GameEvent>}
          */
         this.events = new Map();
 
@@ -46,6 +46,12 @@ class EventManager {
     getEvent(id) {
         return this.events.get(id);
     }
+
+    draw() {
+        this.events.forEach((event) => {
+            event.draw();
+        });
+    }
 }
 
 const createEvent = (id, event) => {
@@ -62,6 +68,16 @@ const createEvent = (id, event) => {
         window.$game.map.blocks.push(e.block);
 
         return e;
+    }
+    // Wire
+    if (event.type === 2) {
+        return new Wire(
+            id,
+            event.type,
+            new Vector(event.position.x, event.position.y),
+            new Vector(event.size.x, event.size.y),
+            event.affect
+        );
     }
     return new GameEvent(
         id,
