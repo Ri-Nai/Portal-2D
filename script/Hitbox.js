@@ -21,6 +21,9 @@ class Hitbox {
     {
         return new Hitbox(positiondiff.addVector(this.position), sizediff.addVector(this.size));
     }
+    getCenter() {
+        return this.position.addVector(this.size.scale(0.5));
+    }
     getTopLeft() {
         return this.position;
     }
