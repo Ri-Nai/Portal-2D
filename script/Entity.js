@@ -58,12 +58,11 @@ class Jumping {
                 //蓄力跳
             } else {
                 this.isFalling = true;
-                this.jumpVelocity -= this.gravity * deltaTime;
+                this.updateFalling(deltaTime);
             }
         } else if (this.isFalling) {
-            this.jumpVelocity -= this.gravity * deltaTime;
+            this.updateFalling(deltaTime);
         }
-        this.jumpVelocity = Math.max(-6 * this.baseJump, this.jumpVelocity);
         this.reduceJumpBuffer(deltaTime);
     }
 
@@ -87,6 +86,11 @@ class Jumping {
         this.isJumping = false;
         this.isFalling = false;
         this.jumpVelocity = 0;
+    }
+    updateFalling(deltaTime) {
+        this.jumpVelocity -= this.gravity * deltaTime;
+        this.jumpVelocity = Math.max(-6 * this.baseJump, this.jumpVelocity);
+
     }
 }
 

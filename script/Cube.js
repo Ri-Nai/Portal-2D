@@ -1,4 +1,5 @@
 class Cube extends Entity {
+    static cubeSize = 0.8 * basicSize;
     constructor(position, size) {
         super(position, size);
         this.canPick = false;
@@ -20,7 +21,7 @@ class Cube extends Entity {
         if (this.isPicked) {
             this.hitbox.position.x = player.hitbox.position.x;
             this.hitbox.position.y = player.hitbox.position.y;
-            let offset = new Vector(-0.5 * basicSize + (player.facing + 1) * (Player.PlayerSize.x) / 2, 0.2 * Player.PlayerSize.y);
+            let offset = new Vector(-0.5 * Cube.cubeSize + (player.facing + 1) * (Player.PlayerSize.x) / 2, 0.2 * Player.PlayerSize.y);
             this.hitbox.position.addEqual(offset);
             this.velocity.x = player.velocity.x;
             this.velocity.y = player.velocity.y;
@@ -38,7 +39,7 @@ class Cube extends Entity {
             window.$game.textureManager.getTexture("entities", 1 + (!this.isPicked && this.canPick)),
             this.hitbox.position.x - offsetSize,
             this.hitbox.position.y - offsetSize,
-            basicSize + offsetSize * 2,
-            basicSize + offsetSize * 2);
+            Cube.cubeSize + offsetSize * 2,
+            Cube.cubeSize + offsetSize * 2);
     }
 }

@@ -69,9 +69,9 @@ class Hitbox {
         for (let tile of tiles) {
             if (this.hit(tile.hitbox)) {
                 operate();
-                return true;
+                return tile;
             }
         }
-        return false;
+        return null;
     }
 }

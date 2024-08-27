@@ -47,12 +47,13 @@ class PortalView extends View {
         super(map)
 
         this.player = new Player(new Vector(4 * basicSize, 4 * basicSize));
-
+        this.gel = new Gel(new Vector(13 * basicSize, 5 * basicSize), new Vector(5, 0));
         this.cube = new Cube(
             new Vector(7 * basicSize, 4 * basicSize),
-            new Vector(1 * basicSize, 1 * basicSize));
+            new Vector(Cube.cubeSize, Cube.cubeSize));
         this.computations.push((t) => this.player.update(t.interval));
         this.computations.push((t) => this.cube.update(t.interval));
+        this.computations.push((t) => this.gel.update(t.interval));
 
         /**
          * @type {Entity[]}
@@ -96,6 +97,7 @@ class PortalView extends View {
 
         // 在这里执行所有渲染便于控制渲染顺序
         this.renderings.push(() => this.map.draw());
+        this.renderings.push(() => this.gel.draw());
         this.renderings.push(() => this.player.draw());
         this.renderings.push(() => this.cube.draw());
         this.renderings.push(() => this.portals[0].draw());
