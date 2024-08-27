@@ -17,7 +17,7 @@ class Hitbox {
     }
 
     // 获取左上角点的位置（就是 position）
-    add(positiondiff, sizediff)
+    add(positiondiff, sizediff = new Vector(0,0))
     {
         return new Hitbox(positiondiff.addVector(this.position), sizediff.addVector(this.size));
     }

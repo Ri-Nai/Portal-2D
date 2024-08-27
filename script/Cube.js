@@ -13,7 +13,7 @@ class Cube extends Entity {
             this.canPick = true;
         }
         else this.canPick = false;
-        window.$game.inputmanager.firstDown("E", () => {
+        window.$game.inputManager.firstDown("E", () => {
             if (this.canPick)
                 this.isPicked = !this.isPicked;
         });

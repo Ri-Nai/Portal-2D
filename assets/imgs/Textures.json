@@ -1,8 +1,11 @@
 window.$game.dataManager.resolve(
 {
+    "backgrounds" : {
+        1 : "./assets/imgs/textures/backgrounds/poster_sciencefair_07.png",
+    },
     "blocks": {
-        1 : "./assets/imgs/textures/blocks/Black.png",
-        2 : "./assets/imgs/textures/blocks/White.png",
+        1 : "./assets/imgs/textures/blocks/black-wall11.png",
+        2 : "./assets/imgs/textures/blocks/white-wall1.png",
     },
     "edges": {
         1 : "./assets/imgs/textures/blocks/Black.png",

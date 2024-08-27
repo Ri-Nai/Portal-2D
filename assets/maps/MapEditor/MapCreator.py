@@ -17,10 +17,11 @@ for i in range(len(A)):
             A[i][j] = 0  # 将 NaN 转换为 0
         else:
             A[i][j] = int(A[i][j])  # 将浮点数转换为整数
-    A[i].append(-1)
+    A[i].append(-1.5)
 print(A)
 print(len(A), len(A[0]))
 basicSize = 40
+layer_background_texture = 3
 layer_block = 4
 layer_edge = 5
 layers = [{"tiles" : [], "opacity" : 1} for i in range(6)]
@@ -33,10 +34,8 @@ def fill_block():
             if not j or A[i][j] == A[i][j - 1]:
                 len += 1
             else:
-                if A[i][j - 1]:
-                    blocks.append(
-                        {
-                            "type" : A[i][j - 1],
+                item = {
+                            "type" : abs(A[i][j - 1]),
                             "position" :
                             {
                                 "x" : (j - len) * basicSize,
@@ -47,7 +46,11 @@ def fill_block():
                                 "x" : len * basicSize,
                                 "y" : basicSize,
                             }
-                        })
+                        }
+                if A[i][j - 1] > 0:
+                    blocks.append(item)
+                elif A[i][j - 1] < 0:
+                    layers[layer_background_texture]["tiles"].append(item)
                 len = 1
 def fill_edge():
     B = [[-1] * 34 for i in range(20)]

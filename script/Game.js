@@ -32,7 +32,7 @@ class Game {
         /**
         * @type {InputManager}
         */
-       this.inputmanager = new InputManager(keyboard, mouse);
+       this.inputManager = new InputManager(keyboard, mouse);
         /**
         * @type {DataManager}
         */
@@ -75,7 +75,7 @@ class Game {
         const fps = new FrameRate();
         this.computations.push((t) => fps.display(t.timestamp));
 
-        this.renderings.push(() => this.inputmanager.mouse.draw());
+        this.renderings.push(() => this.inputManager.mouse.draw());
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, performance.now()));
     }
 

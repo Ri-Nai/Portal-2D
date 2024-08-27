@@ -67,9 +67,6 @@ class Dialog {
     getSkip() {}
     // 打印缓冲区中的文本
     async _prints() {
-        let isEntered = false;
-        let isSpaced = false;
-        let isClicked = false;
         while (true) {
             if (this.buffer.length === 0) return; // 缓冲区为空时返回
 
@@ -81,9 +78,9 @@ class Dialog {
             }
             let getEnd = () => {
                 let res = false;
-                window.$game.inputmanager.firstDown("Enter", () => {res = true;});
-                window.$game.inputmanager.firstDown("Space", () => {res = true;});
-                window.$game.inputmanager.firstDown("ClickLeft", () => {res = true;});
+                window.$game.inputManager.firstDown("Enter", () => {res = true;});
+                window.$game.inputManager.firstDown("Space", () => {res = true;});
+                window.$game.inputManager.firstDown("ClickLeft", () => {res = true;});
                 return res;
             };
             let toEnd = false;

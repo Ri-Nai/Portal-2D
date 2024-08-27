@@ -87,8 +87,9 @@ class MapManager {
         }
     }
     draw() {
-        for (let i of this.layers)
-            i.draw();
+        // for (let i of this.layers)
+        //     i.draw();
+        this.layers[0].tiles[0].draw("backgrounds");
         for (let i of this.blocks)
             i.draw("blocks")
         for (let i of this.edges)

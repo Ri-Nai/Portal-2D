@@ -14,7 +14,41 @@ window.$game.dataManager.resolve(
             "opacity": 1
         },
         {
-            "tiles": [],
+            "tiles": [
+                {
+                    "type": 1,
+                    "position": {
+                        "x": 480,
+                        "y": 200
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 40
+                    }
+                },
+                {
+                    "type": 1,
+                    "position": {
+                        "x": 480,
+                        "y": 240
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 40
+                    }
+                },
+                {
+                    "type": 1,
+                    "position": {
+                        "x": 480,
+                        "y": 280
+                    },
+                    "size": {
+                        "x": 200,
+                        "y": 40
+                    }
+                }
+            ],
             "opacity": 1
         },
         {
@@ -768,6 +802,30 @@ window.$game.dataManager.resolve(
             }
         },
         {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 200,
+                "x": 500
+            },
+            "size": {
+                "y": 80,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 280,
+                "x": 660
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
             "type": 2,
             "facing": 3,
             "position": {
@@ -816,6 +874,18 @@ window.$game.dataManager.resolve(
             }
         },
         {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 480,
+                "y": 300
+            },
+            "size": {
+                "x": 200,
+                "y": 20
+            }
+        },
+        {
             "type": 2,
             "facing": 2,
             "position": {
@@ -848,6 +918,18 @@ window.$game.dataManager.resolve(
             },
             "size": {
                 "y": 80,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 200,
+                "x": 480
+            },
+            "size": {
+                "y": 120,
                 "x": 20
             }
         },
@@ -900,6 +982,30 @@ window.$game.dataManager.resolve(
             }
         },
         {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 480,
+                "y": 200
+            },
+            "size": {
+                "x": 40,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 520,
+                "y": 280
+            },
+            "size": {
+                "x": 160,
+                "y": 20
+            }
+        },
+        {
             "type": 2,
             "facing": 0,
             "position": {
@@ -947,34 +1053,6 @@ window.$game.dataManager.resolve(
                 "y": 20
             }
         }
-    ],
-    "events": {
-        "event-area-0001": {
-            "type": 1,
-            "position": {
-                "x": 80,
-                "y": 600
-            },
-            "size": {
-                "x": 200,
-                "y": 40
-            },
-            "affect": [
-                "event-area-0002"
-            ]
-        },
-        "event-area-0002": {
-            "type": 2,
-            "position": {
-                "x": 40,
-                "y": 40
-            },
-            "size": {
-                "x": 1200,
-                "y": 40
-            },
-            "affect": []
-        }
-    }
+    ]
 }
 )

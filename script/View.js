@@ -34,7 +34,7 @@ class View {
     }
 
     get mouse() {
-        return window.$game.inputmanager.mouse
+        return window.$game.inputManager.mouse
     }
 
     get ctx() {
