@@ -6,7 +6,7 @@ class Portal extends Edge {
         new Vector(1, 0)
     ];
     //传送门半径1.5格
-    static portalRadius = 1.5 * basicSize;
+    static portalRadius = 1 * basicSize;
     static portalWidth = 0.5 * basicSize;
     static portalDirection = [
         new Vector(-Portal.portalRadius, 0),

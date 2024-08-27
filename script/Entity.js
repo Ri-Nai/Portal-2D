@@ -63,7 +63,7 @@ class Jumping {
         } else if (this.isFalling) {
             this.jumpVelocity -= this.gravity * deltaTime;
         }
-        this.jumpVelocity = Math.max(-7 * this.baseJump, this.jumpVelocity);
+        this.jumpVelocity = Math.max(-6 * this.baseJump, this.jumpVelocity);
         this.reduceJumpBuffer(deltaTime);
     }
 
@@ -111,7 +111,7 @@ class Entity {
         /**
          * @type {Hitbox}
          */
-        this.jumping = new Jumping(4, 10, 0.5, 10, 15);
+        this.jumping = new Jumping(4, 9, 0.5, 10, 15);
         this.hitbox = new Hitbox(position, size);  // 实体的碰撞盒
         this.MaxSpeed = 6;
         this.portalBuffer = 3;
