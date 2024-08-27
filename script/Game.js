@@ -29,8 +29,13 @@ class Game {
          * @type {MouseManager}
         */
        let mouse = new MouseManager(this.canvas);
-
+        /**
+        * @type {InputManager}
+        */
        this.inputmanager = new InputManager(keyboard, mouse);
+        /**
+        * @type {DataManager}
+        */
        this.dataManager = new DataManager();
 
         /**
@@ -38,6 +43,7 @@ class Game {
          */
         this.map = new MapManager();
         this.textureManager = new TextureManager();
+
         this.stop = false;
         this.restartBtn = document.querySelector('#control-restart')
         this.restartBtn.addEventListener('click', () => this.restart())

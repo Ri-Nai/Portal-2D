@@ -3,7 +3,6 @@ class Player extends Entity {
     constructor(position, size) {
         super(position, size);
         this.facing = 1;
-        this.isSpaceHeld = false;
     }
 
     update(deltaTime) {
