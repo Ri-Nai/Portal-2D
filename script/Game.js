@@ -47,6 +47,9 @@ class Game {
         this.stop = false;
         this.isPaused = false;
 
+        this.controlMenu = document.querySelector('.control')
+        this.resumeBtn = document.querySelector('#control-resume');
+        this.resumeBtn.addEventListener('click', () => this.resume())
         this.restartBtn = document.querySelector('#control-restart')
         this.restartBtn.addEventListener('click', () => this.restart())
         this.logoutBtn = document.querySelector('#control-logout')
@@ -78,6 +81,8 @@ class Game {
         this.renderings.push(() => this.inputManager.mouse.draw());
 
         this.isPaused = false;
+        this.computations.push((t) => { if (this.inputManager.keyboard.isKeyDown('Esc')) { this.pause() } });
+
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, prev));
     }
 
@@ -122,10 +127,12 @@ class Game {
     }
 
     pause() {
+        this.controlMenu.classList.remove('hidden');
         this.isPaused = true;
     }
 
     resume() {
+        this.controlMenu.classList.add('hidden');
         this.isPaused = false;
     }
 }

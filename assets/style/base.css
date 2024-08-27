@@ -27,9 +27,21 @@ body, html {
 .control {
     position: absolute;
     top: 0px;
+    bottom: 0px;
+    left: 0px;
     right: 0px;
+
+    background: #88888888;
+
     padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    flex-direction: column;
+}
+
+.control.hidden {
+    display: none;
+    visibility: hidden;
 }

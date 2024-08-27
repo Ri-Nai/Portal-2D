@@ -58,6 +58,7 @@ class MouseManager {
         console.debug("uncapture: ", document.pointerLockElement !== this.ctx)
         if (document.pointerLockElement !== this.ctx) {
             this.isCapture = false;
+            window.$game.pause();
         }
         this.clickable = false;
     }

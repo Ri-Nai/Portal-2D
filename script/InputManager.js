@@ -6,6 +6,11 @@ class InputManager {
         "ClickLeft" : false,
         "ClickRight" : false,
     }
+    /**
+     *
+     * @param {KeyboardManager} keyboard
+     * @param {MouseManager} mouse
+     */
     constructor(keyboard, mouse) {
         this.keyboard = keyboard;
         this.mouse = mouse;
