@@ -124,7 +124,11 @@ class Entity {
         return this.hitbox.position.addVector(this.hitbox.size.scale(0.5));
     }
 
-
+    rotateVelocity(infacing, outfacing) {
+        let angle = Math.PI / 2 * ((infacing - outfacing + 4) % 4);
+        this.velocity = this.velocity.rotate(angle);
+        this.jumping.jumpVelocity = -this.velocity.y;
+    }
     checkPortal(delta) {
         // return false;
 
@@ -200,11 +204,7 @@ class Entity {
         this.inPortal = this.portalBuffer;
         return newPosition;
     }
-    rotateVelocity(infacing, outfacing) {
-        let angle = Math.PI / 2 * ((infacing - outfacing + 4) % 4);
-        this.velocity = this.velocity.rotate(angle);
-        this.jumping.jumpVelocity = -this.velocity.y;
-    }
+
     isOnGround() {
         //试着判断y轴向下+1是否会与地碰撞
         if (this.velocity.y < 0)
