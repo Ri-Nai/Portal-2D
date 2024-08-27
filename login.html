@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Portal: It's MyGO!!!!!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scale=no">
+    <link rel="stylesheet" type="text/css" href="./assets/style/base.css">
+</head>
+
+<body>
+    <div id="game">
+        <div>
+            <div class="title">
+                <div class="small">Portal: It's MyGO!!!!!</div>
+                <div class="big">乐奈与抹茶奇境: 传送</div>
+            </div>
+            <button id="login">登录</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="script/utils/Store.js"></script>
+    <script type="text/javascript" src="script/utils/Auth.js"></script>
+
+    <script type="text/javascript">
+        window.onload = () => {
+            window.$store = new Store();
+            document.querySelector("#login").addEventListener("click", () => {
+                Auth.login()
+                window.location.href = `./start.html?${window.$store.encode()}`
+            })
+        }
+    </script>
+</body>
+
+</html>

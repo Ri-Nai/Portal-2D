@@ -24,6 +24,8 @@
 
     <div id="resource" style="display: none;"></div>
 
+    <script type="text/javascript" src="script/utils/Store.js"></script>
+    <script type="text/javascript" src="script/utils/Auth.js"></script>
     <script type="text/javascript" src="script/utils/FrameRate.js"></script>
     <script type="text/javascript" src="script/DataManager.js"></script>
     <script type="text/javascript" src="script/TextureManager.js"></script>
@@ -53,6 +55,13 @@
     <script type="text/javascript" src="script/Game.js"></script>
     <script type="text/javascript">
         window.onload = () => {
+            const store = new Store();
+            window.$store = store;
+
+            if (!Auth.isAuthenticated()) {
+                Auth.toLogin();
+            }
+
             window.$game = new Game();
             window.$game.load().then(() => {
                 window.$game.start();
