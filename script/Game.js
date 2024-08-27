@@ -45,6 +45,7 @@ class Game {
         this.textureManager = new TextureManager();
 
         this.stop = false;
+        this.isPaused = false;
 
         this.restartBtn = document.querySelector('#control-restart')
         this.restartBtn.addEventListener('click', () => this.restart())
@@ -75,14 +76,16 @@ class Game {
         this.computations.push((t) => fps.display(t.timestamp));
 
         this.renderings.push(() => this.inputManager.mouse.draw());
-        window.requestAnimationFrame((timestamp) => this.loop(timestamp, performance.now()));
+
+        this.isPaused = false;
+        window.requestAnimationFrame((timestamp) => this.loop(timestamp, 0));
     }
 
     /**
      * @param {number} timestamp frame interval in milliseconds
      * @param {number} prev previous frame timestamp
      */
-    loop(timestamp, prev) {
+    async loop(timestamp, prev) {
         const interval = timestamp - prev;
         const now = timestamp;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -95,7 +98,13 @@ class Game {
             return;
         }
 
-        window.requestAnimationFrame((timestamp) => this.loop(timestamp, now));
+        const beforePause = performance.now();
+        while (this.isPaused) {
+            await wait(100);
+        }
+        const pauseTime = performance.now() - beforePause;
+
+        window.requestAnimationFrame((timestamp) => this.loop(timestamp, now + pauseTime));
     }
 
     restart() {
@@ -109,6 +118,16 @@ class Game {
         this.loaded = false;
         this.map = new MapManager();
         await this.load(url);
-        this.restart()
+        this.restart();
+    }
+
+    pause() {
+        this.isPaused = true;
+    }
+
+    resume() {
+        this.isPaused = false;
     }
 }
+
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
