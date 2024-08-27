@@ -52,9 +52,8 @@ class Game {
         this.logoutBtn.addEventListener('click', () => { Auth.logout(); })
     }
 
-    async load() {
-        const defaultUrl = './assets/maps/Test.json'
-        await this.map.loadFromURL(defaultUrl);
+    async load(url = './assets/maps/Test.json') {
+        await this.map.loadFromURL(url);
         this.loaded = true;
         await this.textureManager.load();
         this.view = new PortalView(this.map);
@@ -103,5 +102,13 @@ class Game {
         this.stop = true;
         this.view = new PortalView(this.map);
         this.restartBtn.blur();
+    }
+
+    async switchView(url) {
+        this.stop = true;
+        this.loaded = false;
+        this.map = new MapManager();
+        await this.load(url);
+        this.restart()
     }
 }

@@ -1082,6 +1082,34 @@ window.$game.dataManager.resolve(
                 "y": 20
             }
         }
-    ]
+    ],
+    "events": {
+        "event-area-0001": {
+            "type": 1,
+            "position": {
+                "x": 80,
+                "y": 600
+            },
+            "size": {
+                "x": 200,
+                "y": 40
+            },
+            "affect": [
+                "event-area-0002"
+            ]
+        },
+        "event-area-0002": {
+            "type": 2,
+            "position": {
+                "x": 40,
+                "y": 40
+            },
+            "size": {
+                "x": 1200,
+                "y": 40
+            },
+            "affect": []
+        }
+    }
 }
 )
