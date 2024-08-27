@@ -27,10 +27,10 @@ class TextureManager {
             });
         });
 
-        console.log("texture: ", this.textures);
+        // console.log("texture: ", this.textures);
     }
     getTexture(kind, id) {
-        console.debug("getTexture: ", kind, id);
+        // console.debug("getTexture: ", kind, id);
         return this.textures[ kind ][ id ];
     }
 }

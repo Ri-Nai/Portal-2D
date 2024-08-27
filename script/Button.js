@@ -14,7 +14,7 @@ class Button extends Tile {
     }
 
     onActivate() {
-        console.debug('Button activated')
+        // console.debug('Button activated')
         this.hitbox = new Hitbox(new Vector(this.position.x, this.position.y + this.size.y - 20), new Vector(this.size.x, 20));
     }
 

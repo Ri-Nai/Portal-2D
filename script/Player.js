@@ -28,7 +28,9 @@ class Player extends Entity {
                 else
                     this.isSpaceHeld = false;
                 return this.isSpaceHeld;
-            });
+            },
+            true
+        );
     }
 
 }

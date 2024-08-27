@@ -1,16 +1,20 @@
 window.$game.dataManager.resolve(
 {
     "blocks": {
-        1 : "./assets/imgs/textures/Blocks/Black.png",
-        2 : "./assets/imgs/textures/Blocks/White.png",
+        1 : "./assets/imgs/textures/blocks/Black.png",
+        2 : "./assets/imgs/textures/blocks/White.png",
     },
     "edges": {
-        1 : "./assets/imgs/textures/Blocks/Black.png",
-        2 : "./assets/imgs/textures/Blocks/White.png",
+        1 : "./assets/imgs/textures/blocks/Black.png",
+        2 : "./assets/imgs/textures/blocks/White.png",
     },
     "portals": {
-        1 : "./assets/imgs/textures/Blocks/Black.png",
-        2 : "./assets/imgs/textures/Blocks/White.png",
+        1 : "./assets/imgs/textures/blocks/Black.png",
+        2 : "./assets/imgs/textures/blocks/White.png",
+    },
+    "entities": {
+        1 : "./assets/imgs/textures/entities/Cube.png",
+        2 : "./assets/imgs/textures/entities/CubeBordered.png"
     }
 }
 )

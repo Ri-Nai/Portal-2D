@@ -263,10 +263,10 @@ class Entity {
         this.jumping.canJump(this.isOnGround(), deltaTime);
         this.jumping.updateJump(control, deltaTime);
     }
-    updateX(deltaTime, control) {
+    updateX(deltaTime, control, isPlayer) {
         let move = control;
         let nextVelocityX = this.velocity.x;
-        if (!this.isflying && Math.abs(nextVelocityX) <= this.MaxSpeed) {
+        if (isPlayer && !this.isflying && Math.abs(nextVelocityX) <= this.MaxSpeed) {
             if (move == 0)
                 nextVelocityX = nextVelocityX * Math.exp(-0.5 * deltaTime);
             else
@@ -275,9 +275,9 @@ class Entity {
         else {
             if (move == 0) {
                 if (this.isOnGround())
-                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.32 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
+                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - (1 + isPlayer) * (0.16) * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
                 else
-                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.02 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
+                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - (1 + isPlayer) * (0.01) * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
             }
             else if (move * nextVelocityX > 0) {
                 if (this.isOnGround())
@@ -297,16 +297,18 @@ class Entity {
 
 
 
-    updateXY(deltaTime, controllerX, controllerY) {
+    updateXY(deltaTime, controllerX, controllerY, isPlayer) {
         //此时的deltaTime当前环境下的1帧，在60帧环境下走了多少帧
         //于是在moveRigid函数中，需要将velocity乘上deltaTime代表在当前环境下走过的路程
         this.inPortal = Math.max(this.inPortal - deltaTime, 0);
         this.isflying = Math.max(this.isflying - deltaTime, 0);
+        if (!isPlayer)
+            this.isflying = 1;
         this.updateJumping(deltaTime, controllerY());
         let nextVelocityY = -this.jumping.jumpVelocity;
         let nextVelocityX = this.velocity.x;
         if (!this.inPortal)
-            nextVelocityX = this.updateX(deltaTime, controllerX());
+            nextVelocityX = this.updateX(deltaTime, controllerX(), isPlayer);
         this.velocity.x = nextVelocityX;
         this.velocity.y = nextVelocityY;
         let side = this.rigidMove(deltaTime);
@@ -321,7 +323,7 @@ class Entity {
     }
     update(deltaTime) {
         deltaTime = 60 * deltaTime / 1000;
-        this.updateXY(deltaTime, () => { return 0; }, () => { return 0; });
+        this.updateXY(deltaTime, () => { return 0; }, () => { return 0; }, false);
     }
     draw() {
         window.$game.ctx.fillStyle = `rgba(221, 100, 0, 1)`;

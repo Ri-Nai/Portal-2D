@@ -17,6 +17,10 @@ class Hitbox {
     }
 
     // 获取左上角点的位置（就是 position）
+    add(positiondiff, sizediff)
+    {
+        return new Hitbox(positiondiff.addVector(this.position), sizediff.addVector(this.size));
+    }
     getTopLeft() {
         return this.position;
     }

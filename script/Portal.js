@@ -92,7 +92,7 @@ class Portal extends Edge {
         const leftUp = position.addVector(Portal.portalDirection[edge.facing]);
         const rightDown = leftUp.addVector(Portal.portalSize[edge.facing & 1]);
 
-        console.debug(leftUp, rightDown, edge.hitbox);
+        // console.debug(leftUp, rightDown, edge.hitbox);
 
         if (edge.hitbox.contains(leftUp) && edge.hitbox.contains(rightDown)) {
             return position;
