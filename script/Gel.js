@@ -1,15 +1,16 @@
 class Gel extends Entity {
     constructor(position, velocity) {
-        super(position, new Vector(basicSize, basicSize), velocity); // 设定一个默认的炮弹大小为5x5
+        super(position, new Vector(4, 4), velocity); // 设定一个默认的炮弹大小为5x5
+        this.destroyed = false;
     }
 
     update(deltaTime) {
+        if (this.destroyed) return;
         deltaTime = 60 * deltaTime / 1000;
         // this.updateXY(deltaTime, () => { return 0; }, () => { return 0; }, false);
         this.inPortal = Math.max(this.inPortal - deltaTime, 0);
-        this.isflying = Math.max(this.isflying - deltaTime, 0);
         this.isflying = 1;
-        this.updateJumping(deltaTime, 0);
+        this.jumping.updateFalling(deltaTime);
         let nextVelocityY = -this.jumping.jumpVelocity;
         let nextVelocityX = this.velocity.x;
         if (!this.inPortal)
@@ -35,6 +36,8 @@ class Gel extends Entity {
     destroy() {
         // 当炮弹飞出边界时销毁
         // window.$game.projectiles = window.$game.projectiles.filter(p => p !== this);
+        this.velocity = new Vector(0, 0);
+        this.destroyed = true;
     }
 
     draw() {

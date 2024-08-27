@@ -82,7 +82,6 @@ class PortalGun {
                     this.isShot = false;
                     this.isHit = true;
                     this.edge = edge;
-
                     this.position = fixPosition(this.position, edge);
                     return;
                 }
