@@ -60,7 +60,7 @@ class Game {
         this.view = new PortalView(this.map);
     }
 
-    start() {
+    start(prev = 0) {
         this.stop = false;
         this.computations = [];
         this.renderings = [];
@@ -78,7 +78,7 @@ class Game {
         this.renderings.push(() => this.inputManager.mouse.draw());
 
         this.isPaused = false;
-        window.requestAnimationFrame((timestamp) => this.loop(timestamp, 0));
+        window.requestAnimationFrame((timestamp) => this.loop(timestamp, prev));
     }
 
     /**
@@ -94,7 +94,7 @@ class Game {
         this.renderings.forEach((render) => render({ timestamp, interval }));
 
         if (this.stop) {
-            this.start();
+            this.start(timestamp);
             return;
         }
 
