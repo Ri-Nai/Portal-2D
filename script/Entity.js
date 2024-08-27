@@ -273,23 +273,27 @@ class Entity {
                 nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10 * deltaTime), this.MaxSpeed);
         }
         else {
+            let decelerate = (now, deceleration) => {
+                return Math.sqrt(Math.max(now * now - deceleration * deltaTime * now * now , 0)) * Math.sign(now);
+            }
             if (move == 0) {
                 if (this.isOnGround())
-                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - (1 + isPlayer) * (0.16) * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
+                    nextVelocityX = decelerate(nextVelocityX, (0.16) * (1 + isPlayer));
                 else
-                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - (1 + isPlayer) * (0.01) * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
+                    nextVelocityX = decelerate(nextVelocityX, (0.01) * (1 + isPlayer));
             }
             else if (move * nextVelocityX > 0) {
                 if (this.isOnGround())
-                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.3 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
+                    nextVelocityX = decelerate(nextVelocityX, 0.3);
                 else
-                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.01 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
+                    nextVelocityX = decelerate(nextVelocityX, 0.01);
             }
             else {
                 if (this.isOnGround())
-                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.5 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
+                    nextVelocityX = decelerate(nextVelocityX, 0.5);
                 else
-                    nextVelocityX = Math.sqrt(nextVelocityX * nextVelocityX - 0.1 * deltaTime * nextVelocityX * nextVelocityX) * Math.sign(nextVelocityX);
+                    nextVelocityX = decelerate(nextVelocityX, 0.1);
+
             }
         }
         return nextVelocityX;
