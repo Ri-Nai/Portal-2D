@@ -1,0 +1,125 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+    display: none;
+}
+
+.form h2 {
+    text-align: center;
+}
+
+.form input {
+    display: block;
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+}
+
+.form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.form p {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.psc {
+    display: flex;
+    justify-content: center;
+}
+
+/* 模拟alert */
+.custom-alert {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    padding: 20px;
+    z-index: 1000;
+
+    opacity: 1;
+
+    border-radius: 4px;
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
+
+    animation: fadeIn 0.233s;
+}
+
+.custom-alert.hiding {
+    animation: fadeOut 0.233s;
+}
+
+.custom-alert.hidden {
+    opacity: 0;
+}
+
+.custom-alert .message {
+    margin-bottom: 10px;
+}
+
+.custom-alert .countdown {
+    text-align: right;
+}
+
+
+.tip {
+    font-size: 14px;
+}
+
+.psc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+    margin: 1rem 0;
+}
+.psc > .bar {
+    height: 1rem;
+    border: 1px solid #88888888;
+    display: none;
+    width: 80px;
+    justify-content: space-between;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
