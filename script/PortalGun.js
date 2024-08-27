@@ -2,22 +2,22 @@ class PortalGun {
     /**
      * @type {Vector}
      */
-    direction
+    direction;
 
     constructor() {
-        this.status = [false, false]
+        this.status = [false, false];
         this.direction = new Vector(1, 0);
-        this.prev = 0
+        this.prev = 0;
 
         // 发射间隔
         this.INTERVAL = 500;
-        this.isShot = false
-        this.isHit = false
-        this.target = 0
+        this.isShot = false;
+        this.isHit = false;
+        this.target = 0;
 
-        this.flyingType = 0
-        this.COLOR = ['blue', 'orange']
-        this.edge = null
+        this.flyingType = 0;
+        this.COLOR = ["blue", "orange"];
+        this.edge = null;
     }
 
     /**
@@ -28,28 +28,27 @@ class PortalGun {
     update(player, mouse) {
         // 如果已发射, 不更新飞行方向
         if (this.isShot) {
-            return ;
+            return;
         }
         this.direction = mouse.subVector(player).normalize();
     }
-
 
     /**
      * @param {Vector} player Player center position
      * @param {number} type Portal type
      */
     shot(player, type, t) {
-        const frameRatio = t.interval / 1000 * 60;
+        const frameRatio = (t.interval / 1000) * 60;
         const SPEED = 10;
         if (this.status[type]) {
-            return ;
+            return;
         }
 
         if (t.timestamp - this.prev >= this.INTERVAL && this.isShot === false) {
-            this.prev = t.timestamp
+            this.prev = t.timestamp;
             this.position = new Vector(player.x, player.y);
-            this.isShot = true
-            this.isHit = false
+            this.isShot = true;
+            this.isHit = false;
 
             this.target = this.direction.scale(SPEED * frameRatio).magnitude();
             this.flyingType = type;
@@ -59,7 +58,7 @@ class PortalGun {
 
     draw(t) {
         if (!this.isShot) {
-            return ;
+            return;
         }
         window.$game.ctx.fillStyle = this.COLOR[this.flyingType];
         window.$game.ctx.fillRect(this.position.x, this.position.y, 4, 4);
@@ -100,9 +99,13 @@ class PortalGun {
 }
 
 const validPosition = (position) => {
-    return position.x >= 0 && position.x <= window.$game.canvas.width &&
-        position.y >= 0 && position.y <= window.$game.canvas.height;
-}
+    return (
+        position.x >= 0 &&
+        position.x <= window.$game.canvas.width &&
+        position.y >= 0 &&
+        position.y <= window.$game.canvas.height
+    );
+};
 
 /**
  *
@@ -115,6 +118,6 @@ const fixPosition = (position, edge) => {
         new Vector(edge.hitbox.getTopLeft().x, position.y),
         new Vector(position.x, edge.hitbox.getBottomRight().y),
         new Vector(edge.hitbox.getBottomRight().x, position.y),
-    ]
+    ];
     return fix[edge.facing];
-}
+};

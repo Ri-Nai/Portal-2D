@@ -3,7 +3,6 @@ class Cube extends Entity {
         super(position, size);
         this.canPick = false;
         this.isPicked = false;
-        this.isE = false;
     }
     hitRange() {
         return this.hitbox.add(new Vector(-basicSize / 2, -basicSize / 2), new Vector(basicSize, basicSize));
@@ -14,16 +13,10 @@ class Cube extends Entity {
             this.canPick = true;
         }
         else this.canPick = false;
-        if (window.$game.keyboard.isKeyDown("E")) {
-            if (!this.isE)
-            {
-                if (this.canPick)
-                    this.isPicked = !this.isPicked;
-            }
-            this.isE = true;
-        }
-        else
-            this.isE = false;
+        window.$game.inputmanager.firstDown("E", () => {
+            if (this.canPick)
+                this.isPicked = !this.isPicked;
+        });
         if (this.isPicked) {
             this.hitbox.position.x = player.hitbox.position.x;
             this.hitbox.position.y = player.hitbox.position.y;

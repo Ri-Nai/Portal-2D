@@ -81,15 +81,9 @@ class Dialog {
             }
             let getEnd = () => {
                 let res = false;
-                if (window.$game.keyboard.isKeyDown("Enter")) {
-                    if (!isEntered) (isEntered = true), (res = true);
-                } else isEntered = false;
-                if (window.$game.keyboard.isKeyDown("Space")) {
-                    if (!isSpaced) (isSpaced = true), (res = true);
-                } else isSpaced = false;
-                if (window.$game.mouse.left) {
-                    if (!isClicked) (isClicked = true), (res = true);
-                } else isClicked = false;
+                window.$game.inputmanager.firstDown("Enter", () => {res = true;});
+                window.$game.inputmanager.firstDown("Space", () => {res = true;});
+                window.$game.inputmanager.firstDown("ClickLeft", () => {res = true;});
                 return res;
             };
             let toEnd = false;

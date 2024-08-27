@@ -10,8 +10,8 @@ class Player extends Entity {
         deltaTime = 60 * deltaTime / 1000;
         this.updateXY(deltaTime,
             () => {
-                let moveLeft = window.$game.keyboard.isKeysDown([ "A", "Left" ]);
-                let moveRight = window.$game.keyboard.isKeysDown([ "D", "Right" ]);
+                let moveLeft = window.$game.inputmanager.isKeysDown([ "A", "Left" ]);
+                let moveRight = window.$game.inputmanager.isKeysDown([ "D", "Right" ]);
                 let move = 0;
                 if (moveLeft)
                     this.facing = move = -1;
@@ -20,14 +20,9 @@ class Player extends Entity {
                 return move;
             },
             () => {
-                if (window.$game.keyboard.isKeyDown("Space")) {
-                    if (!this.isSpaceHeld)
-                        this.jumping.setJumpBuffer();
-                    this.isSpaceHeld = true;
-                }
-                else
-                    this.isSpaceHeld = false;
-                return this.isSpaceHeld;
+                return window.$game.inputmanager.firstDown("Space", () => {
+                    this.jumping.setJumpBuffer();
+                });
             },
             true
         );

@@ -23,14 +23,15 @@ class Game {
         /**
          * @type {KeyboardMananger}
          */
-        this.keyboard = new KeyboardMananger();
+        let keyboard = new KeyboardMananger();
 
         /**
          * @type {MouseManager}
-         */
-        this.mouse = new MouseManager(this.canvas);
+        */
+       let mouse = new MouseManager(this.canvas);
 
-        this.dataManager = new DataManager();
+       this.inputmanager = new InputManager(keyboard, mouse);
+       this.dataManager = new DataManager();
 
         /**
          * @type {MapManager}
@@ -65,7 +66,7 @@ class Game {
         const fps = new FrameRate();
         this.computations.push((t) => fps.display(t.timestamp));
 
-        this.renderings.push(() => this.mouse.draw());
+        this.renderings.push(() => this.inputmanager.mouse.draw());
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, performance.now()));
     }
 
