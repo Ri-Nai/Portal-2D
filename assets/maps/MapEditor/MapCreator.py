@@ -122,7 +122,36 @@ def fill_edge():
 fill_block()
 fill_edge()
 
-answer = {"layers" : layers, "blocks" : blocks, "edges" : edges}
+events = {
+    "event-area-0001": {
+        "type": 1,
+        "position": {
+            "x": 80,
+            "y": 600
+        },
+        "size": {
+            "x": 200,
+            "y": 40
+        },
+        "affect": [
+            "event-area-0002"
+        ]
+    },
+    "event-area-0002": {
+        "type": 2,
+        "position": {
+            "x": 40,
+            "y": 40
+        },
+        "size": {
+            "x": 1200,
+            "y": 40
+        },
+        "affect": []
+    }
+}
+
+answer = {"layers" : layers, "blocks" : blocks, "edges" : edges, "events" : events}
 s = json.dumps(answer, indent = 4)
 with open(os.path.join(father, name + ".json"), "w") as f:
     f.write("window.$game.dataManager.resolve(\n" + s + '\n)\n')
