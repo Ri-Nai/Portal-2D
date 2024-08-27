@@ -1,7 +1,9 @@
 class Gel extends Entity {
-    constructor(position, velocity) {
-        super(position, new Vector(40, 40), velocity); // 设定一个默认的炮弹大小为5x5
+    static gelSize = new Vector(0.8 * basicSize, 0.8 * basicSize);
+    constructor(position, size, velocity, type) {
+        super(position, size, velocity); // 设定一个默认的炮弹大小为5x5
         this.destroyed = false;
+        this.type = type;
     }
 
     update(deltaTime) {
@@ -66,7 +68,7 @@ class GelDispenser {
         this.now = Math.max(0, this.now - deltaTime);
         if (this.now == 0)
         {
-            this.gels.push(new Gel(new Vector(13 * basicSize, 5 * basicSize), new Vector(5, 0)));
+            this.gels.push(new Gel(new Vector(13 * basicSize, 5 * basicSize), Gel.gelSize, new Vector(5, 0), 1));
             this.now = this.bufferTime;
         }
         for (let i of this.gels) {
@@ -78,5 +80,19 @@ class GelDispenser {
     draw() {
         for (let i of this.gels)
             i.draw();
+    }
+}
+class GelledEdge {
+    constructor(position, edge) {
+
+        const edgeSize = edge.hitbox.size
+
+        const edgeLength = edge.facing & 1 ? edgeSize.y : edgeSize.x;
+        const portalLength = edge.facing & 1 ? portalSize.y : portalSize.x;
+
+        const leftUp = position.addVector(Portal.portalDirection[edge.facing]);
+        const rightDown = leftUp.addVector(Portal.portalSize[edge.facing & 1]);
+
+
     }
 }
