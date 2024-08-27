@@ -46,9 +46,7 @@ class PortalView extends View {
     constructor(map) {
         super(map)
 
-        this.player = new Player(
-            new Vector(4 * basicSize, 4 * basicSize),
-            new Vector(1.8 * basicSize, 2.8 * basicSize));
+        this.player = new Player(new Vector(4 * basicSize, 4 * basicSize));
 
         this.cube = new Cube(
             new Vector(7 * basicSize, 4 * basicSize),

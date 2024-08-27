@@ -1,7 +1,7 @@
 class Player extends Entity {
-
-    constructor(position, size) {
-        super(position, size);
+    static PlayerSize = new Vector(1.2 * basicSize, 1.8 * basicSize);
+    constructor(position) {
+        super(position, Player.PlayerSize);
         this.facing = 1;
     }
 
