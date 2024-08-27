@@ -17,6 +17,10 @@ class Store {
         localStorage.setItem(key, value);
     }
 
+    static remove(key) {
+        localStorage.removeItem(key);
+    }
+
     export() {
         let data = new Map();
         for (let i = 0; i < localStorage.length; i++) {

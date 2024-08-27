@@ -10,4 +10,9 @@ class Auth {
     static login() {
         localStorage.setItem('token', 'test');
     }
+
+    static logout() {
+        localStorage.removeItem('token');
+        this.toLogin()
+    }
 }

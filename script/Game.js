@@ -45,8 +45,11 @@ class Game {
         this.textureManager = new TextureManager();
 
         this.stop = false;
+
         this.restartBtn = document.querySelector('#control-restart')
         this.restartBtn.addEventListener('click', () => this.restart())
+        this.logoutBtn = document.querySelector('#control-logout')
+        this.logoutBtn.addEventListener('click', () => { Auth.logout(); })
     }
 
     async load() {
