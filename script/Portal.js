@@ -65,6 +65,8 @@ class Portal extends Edge {
      */
     static valid(position, edge, anotherPortal) {
         const portalSize = Portal.portalSize[edge.facing & 1];
+        if (edge.type != 2)
+            return false;
         const edgeSize = edge.hitbox.size
 
         const edgeLength = edge.facing & 1 ? edgeSize.y : edgeSize.x;
