@@ -80,7 +80,6 @@ class Game {
 
         this.renderings.push(() => this.inputManager.mouse.draw());
 
-        this.isPaused = false;
         this.computations.push((t) => { if (this.inputManager.keyboard.isKeyDown('Esc')) { this.pause() } });
 
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, prev));
@@ -116,6 +115,7 @@ class Game {
         this.stop = true;
         this.view = new PortalView(this.map);
         this.restartBtn.blur();
+        this.resume();
     }
 
     async switchView(url) {
@@ -127,13 +127,17 @@ class Game {
     }
 
     pause() {
-        this.controlMenu.classList.remove('hidden');
-        this.isPaused = true;
+        if (!this.isPaused) {
+            this.controlMenu.classList.remove('hidden');
+            this.isPaused = true;
+        }
     }
 
     resume() {
-        this.controlMenu.classList.add('hidden');
-        this.isPaused = false;
+        if (this.isPaused) {
+            this.controlMenu.classList.add('hidden');
+            this.isPaused = false;
+        }
     }
 }
 
