@@ -1,26 +1,64 @@
 window.$game.dataManager.resolve(
 {
     "backgrounds" : {
-        1 : "./assets/imgs/textures/backgrounds/poster_sciencefair_07.png",
     },
     "backgroundTextures" : {
-        1 : "./assets/imgs/textures/blocks/black_floor.png",
+        "2" : "./assets/imgs/textures/background-textures/black_floor.png",
+        "1" : "./assets/imgs/textures/background-textures/white_floor.png",
     },
     "blocks": {
-        1 : "./assets/imgs/textures/blocks/black-wall11.png",
-        2 : "./assets/imgs/textures/blocks/white-wall1.png",
+        "1" : "./assets/imgs/textures/blocks/black-wall11.png",
+        "2" : "./assets/imgs/textures/blocks/white-wall1.png",
     },
     "edges": {
-        1 : "./assets/imgs/textures/blocks/Black.png",
-        2 : "./assets/imgs/textures/blocks/White.png",
+        "1" : "./assets/imgs/textures/blocks/Black.png",
+        "2" : "./assets/imgs/textures/blocks/White.png",
     },
     "portals": {
-        1 : "./assets/imgs/textures/blocks/Black.png",
-        2 : "./assets/imgs/textures/blocks/White.png",
+        "1" : "./assets/imgs/textures/blocks/Black.png",
+        "2" : "./assets/imgs/textures/blocks/White.png",
     },
     "entities": {
-        1 : "./assets/imgs/textures/entities/companion-cube.png",
-        2 : "./assets/imgs/textures/entities/companion-cube-bordered.png"
+        "1" : "./assets/imgs/textures/entities/companion-cube.png",
+        "2" : "./assets/imgs/textures/entities/companion-cube-bordered.png"
+    },
+    "run" : {
+        "1" : "./assets/imgs/textures/player/runs/right/run1.png",
+        "2" : "./assets/imgs/textures/player/runs/right/run2.png",
+        "3" : "./assets/imgs/textures/player/runs/right/run3.png",
+        "4" : "./assets/imgs/textures/player/runs/right/run4.png",
+        "5" : "./assets/imgs/textures/player/runs/right/run5.png",
+        "6" : "./assets/imgs/textures/player/runs/right/run6.png",
+        "-1" : "./assets/imgs/textures/player/runs/left/run1.png",
+        "-2" : "./assets/imgs/textures/player/runs/left/run2.png",
+        "-3" : "./assets/imgs/textures/player/runs/left/run3.png",
+        "-4" : "./assets/imgs/textures/player/runs/left/run4.png",
+        "-5" : "./assets/imgs/textures/player/runs/left/run5.png",
+        "-6" : "./assets/imgs/textures/player/runs/left/run6.png",
+
+    },
+    "jump" : {
+        "1" : "./assets/imgs/textures/player/jumps/right/jump-right1.png",
+        "2" : "./assets/imgs/textures/player/jumps/right/jump-right2.png",
+        "3" : "./assets/imgs/textures/player/jumps/right/jump-right3.png",
+        "4" : "./assets/imgs/textures/player/jumps/right/jump-right4.png",
+
+        "-1" : "./assets/imgs/textures/player/jumps/left/jump-left1.png",
+        "-2" : "./assets/imgs/textures/player/jumps/left/jump-left2.png",
+        "-3" : "./assets/imgs/textures/player/jumps/left/jump-left3.png",
+        "-4" : "./assets/imgs/textures/player/jumps/left/jump-left4.png",
+
+    },
+    "fall" : {
+        "1" : "./assets/imgs/textures/player/jumps/right/jump-right5.png",
+        "2" : "./assets/imgs/textures/player/jumps/right/jump-right6.png",
+
+        "-1" : "./assets/imgs/textures/player/jumps/left/jump-left5.png",
+        "-2" : "./assets/imgs/textures/player/jumps/left/jump-left6.png",
+    },
+    "stand" : {
+        "1" : "./assets/imgs/textures/player/runs/right/run3.png",
+        "-1" : "./assets/imgs/textures/player/runs/left/run3.png",
     }
 }
 )
