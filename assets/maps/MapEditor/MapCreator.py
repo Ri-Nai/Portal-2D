@@ -122,63 +122,132 @@ def fill_edge():
 fill_block()
 fill_edge()
 
-events = {
-    "event-area-0001": {
-        "type": 1,
-        "position": {
-            "x": 120,
-            "y": 600
-        },
-        "size": {
-            "x": 120,
-            "y": 40
-        },
-        "affect": [
-            "event-area-0002"
-        ]
-    },
-    "event-area-0002": {
-        "type": 2,
-        "position": {
-            "x": 160,
-            "y": 640
-        },
-        "size": {
-            "x": 40,
-            "y": 40
-        },
-        "affect": [
-            "event-area-0003"
-        ]
-    },
-    "event-area-0003": {
-        "type": 2,
-        "position": {
-            "x": 160,
-            "y": 680
-        },
-        "size": {
-            "x": 40,
-            "y": 40
-        },
-        "affect": []
-    },
-    "view-switch": {
-        "type": 3,
-        "position": {
-            "x": 1240,
-            "y": 400
-        },
-        "size": {
-            "x": 40,
-            "y": 160
-        },
-        "affect": [],
-        "toUrl": "Test.json"
-    },
-}
 
-answer = {"layers" : layers, "blocks" : blocks, "edges" : edges, "events" : events}
+def get_events():
+    df = pd.read_excel(path_filename, index_col = None, header = None, sheet_name='EventArea')
+    A = df.values.tolist()
+    for i in range(len(A)):
+        for j in range(len(A[i])):
+            if np.isnan(A[i][j]):
+                A[i][j] = 0  # 将 NaN 转换为 0
+            else:
+                A[i][j] = int(A[i][j])  # 将浮点数转换为整数
+    print(A)
+    print(len(A), len(A[0]))
+    events = {}
+    dx = [-1, 0, 1, 0]
+    dy = [0, -1, 0, 1]
+    basicSize = 40
+    def get_id(x, y):
+        return x * 32 + y
+    fa = [i for i in range(18 * 32)]
+    vis = [False] * (18 * 32)
+    def get_fa(x):
+        while x != fa[x]:
+            x = fa[x] = fa[fa[x]]
+        return x
+    def valid(x, y):
+        return x >= 0 and x < 18 and y >= 0 and y < 32
+    rect = []
+    for i in range(18):
+        for j in range(32):
+            rect.append([i, j, i, j])
+    for i in range(18):
+        for j in range(32):
+            if A[i][j] == 0 or A[i][j] == 2:
+                continue
+            for k in range(4):
+                nx = i + dx[k]
+                ny = j + dy[k]
+                now = get_fa(get_id(i, j))
+                nxt = get_fa(get_id(nx, ny))
+                if fa[now] != fa[nxt]:
+                    if valid(nx, ny) and A[nx][ny] == A[i][j]:
+                        fa[nxt] = now
+                        rect[now][0] = min(rect[now][0], rect[nxt][0])
+                        rect[now][1] = min(rect[now][1], rect[nxt][1])
+                        rect[now][2] = max(rect[now][2], rect[nxt][2])
+                        rect[now][3] = max(rect[now][3], rect[nxt][3])
+    def get_event_name(x, y):
+        f = get_fa(get_id(x, y))
+        midx = (rect[f][0] + rect[f][2]) // 2
+        midy = (rect[f][1] + rect[f][3]) // 2
+        return f"event-area-{midy:02d}-{midx:02d}"
+    def get_event(type, x, y, affects):
+        f = get_fa(get_id(x, y))
+        item = {
+            "type" : type,
+            "position" :
+            {
+                "x" : rect[f][1] * basicSize,
+                "y" : rect[f][0] * basicSize
+            },
+            "size" :
+            {
+                "x" : (rect[f][3] - rect[f][1] + 1) * basicSize,
+                "y" : (rect[f][2] - rect[f][0] + 1) * basicSize
+            },
+            "affect" : affects
+        }
+        return item
+    def bfs(SX, SY, predir):
+        import queue
+        print(SX, SY, predir)
+        q = queue.Queue()
+        q.put((SX, SY, predir))
+        while not q.empty():
+            u = q.get()
+            x = u[0]
+            y = u[1]
+            predir = u[2]
+            print(x, y)
+            for k in range(4):
+                if k == (predir + 2 & 3):
+                    continue
+                nx = x + dx[k]
+                ny = y + dy[k]
+                if not valid(nx, ny):
+                    continue
+                if A[nx][ny] == 0:
+                    continue
+                if A[nx][ny] == A[x][y]:
+                    q.put((nx, ny, k))
+                print(x, y, nx, ny)
+                events[get_event_name(x, y)] = get_event(A[x][y], x, y, [get_event_name(nx, ny)])
+                events[get_event_name(x, y)]["nxtdir"] = k
+            event_name = get_event_name(x, y)
+            if event_name not in events:
+                events[event_name] = get_event(A[x][y], x, y, [])
+                events[event_name]["nxtdir"] = -1
+            events[event_name]["predir"] = predir
+    for i in range(18):
+        for j in range(32):
+            if A[i][j] == 0 or A[i][j] == 2:
+                continue
+            f = get_fa(get_id(i, j))
+            if vis[f]:
+                continue
+            vis[f] = True
+            # 二维数组的x, y
+            x = (rect[f][0] + rect[f][2]) // 2
+            y = (rect[f][1] + rect[f][3]) // 2
+            print(i, j, f, rect[f], x, y)
+            if A[x][y] == 1:
+                bfs(x + 1, y, 2)
+                events[get_event_name(x, y)] = get_event(A[x][y], x, y, [get_event_name(x + 1, y)])
+            else:
+                events[get_event_name(x, y)] = get_event(A[x][y], x, y, [])
+                if A[x][y] == 3:
+                    import re
+                    s = filename
+                    match = re.match(r"([a-zA-Z]+)(\d+)", s)
+                    if match:
+                        name = match.group(1)  # 提取name部分
+                        number = int(match.group(2))  # 提取number部分
+                    events[get_event_name(x, y)]["toUrl"] =  f"{name}{number + 1}.json"
+    return events
+
+answer = {"layers" : layers, "blocks" : blocks, "edges" : edges, "events" : get_events()}
 s = json.dumps(answer, indent = 4)
 with open(os.path.join(father, name + ".json"), "w") as f:
     f.write("window.$game.dataManager.resolve(\n" + s + '\n)\n')

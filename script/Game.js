@@ -59,12 +59,12 @@ class Game {
         this.logoutBtn.addEventListener('click', () => { Auth.logout(); })
     }
 
-    async init(filename = 'Test.json') {
+    async init(filename = 'Test1.json') {
         await this.textureManager.load();
         await this.load(filename);
     }
 
-    async load(filename = 'Test.json') {
+    async load(filename = 'Test1.json') {
         await this.map.loadFromURL('./assets/maps/' + filename);
         await this.dialogManager.loadFromURL('./assets/dialogs/' + filename);
         this.loaded = true;
