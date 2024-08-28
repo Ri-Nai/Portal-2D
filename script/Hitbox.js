@@ -17,9 +17,11 @@ class Hitbox {
     }
 
     // 获取左上角点的位置（就是 position）
-    add(positiondiff, sizediff = new Vector(0,0))
-    {
+    add(positiondiff, sizediff = new Vector(0, 0)) {
         return new Hitbox(positiondiff.addVector(this.position), sizediff.addVector(this.size));
+    }
+    getCenter() {
+        return this.position.addVector(this.size.scale(0.5));
     }
     getTopLeft() {
         return this.position;
@@ -74,4 +76,21 @@ class Hitbox {
         }
         return null;
     }
+    merge(other) {
+        let newLeftup = new Vector(Math.min(this.position.x, other.position.x), Math.min(this.position.y, other.position.y));
+        let newRightdown = new Vector(Math.max(this.position.x + this.size.x, other.position.x + other.size.x), Math.max(this.position.y + this.size.y, other.position.y + other.size.y));
+        return createHitbox(newLeftup, newRightdown);
+    }
+    clip(other) {
+        let newLeftup = new Vector(Math.max(this.position.x, other.position.x), Math.max(this.position.y, other.position.y));
+        let newRightdown = new Vector(Math.min(this.position.x + this.size.x, other.position.x + other.size.x), Math.min(this.position.y + this.size.y, other.position.y + other.size.y));
+        return createHitbox(newLeftup, newRightdown);
+
+    }
+}
+const createHitbox = (leftUp, rightDown) => {
+    if (leftUp.x >= rightDown.x || leftUp.y >= rightDown.y) {
+        return null;
+    }
+    return new Hitbox(leftUp, rightDown.subVector(leftUp));
 }

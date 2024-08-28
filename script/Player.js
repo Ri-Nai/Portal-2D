@@ -9,6 +9,7 @@ class Player extends Entity {
         deltaTime = 60 * deltaTime / 1000;
         this.updateXY(deltaTime,
             () => {
+                if (window.$game.dialogManager.isReading) return 0;
                 let moveLeft = window.$game.inputManager.isKeysDown([ "A", "Left" ]);
                 let moveRight = window.$game.inputManager.isKeysDown([ "D", "Right" ]);
                 let move = 0;
@@ -19,6 +20,7 @@ class Player extends Entity {
                 return move;
             },
             () => {
+                if (window.$game.dialogManager.isReading) return 0;
                 return window.$game.inputManager.firstDown("Space", () => {
                     this.jumping.setJumpBuffer();
                 });

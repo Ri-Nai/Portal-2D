@@ -102,10 +102,6 @@ class Entity {
      * @param {Vector} velocity
      */
     constructor(position, size, velocity = new Vector()) {
-        /**
-         * @type {Vector}
-         */
-        this.position = position;  // 实体的当前位置
 
         /**
          * @type {Vector}
@@ -115,8 +111,8 @@ class Entity {
         /**
          * @type {Hitbox}
          */
-        this.jumping = new Jumping(4, 9, 0.5, 10, 15);
         this.hitbox = new Hitbox(position, size);  // 实体的碰撞盒
+        this.jumping = new Jumping(4, 9, 0.5, 10, 15);
         this.MaxSpeed = 6;
         this.portalBuffer = 3;
         this.inPortal = 0;
@@ -125,7 +121,7 @@ class Entity {
 
     }
     getCenter() {
-        return this.hitbox.position.addVector(this.hitbox.size.scale(0.5));
+        return this.hitbox.getCenter();
     }
 
     rotateVelocity(infacing, outfacing) {
@@ -134,8 +130,6 @@ class Entity {
         this.jumping.jumpVelocity = -this.velocity.y;
     }
     checkPortal(delta) {
-        // return false;
-
         let portals = window.$game.view.portals;
         if (portals[ 0 ].type == -1 || portals[ 1 ].type == -1)
             return false;
@@ -270,11 +264,11 @@ class Entity {
     updateX(deltaTime, control, isPlayer) {
         let move = control;
         let nextVelocityX = this.velocity.x;
-        if (isPlayer && !this.isflying && Math.abs(nextVelocityX) <= this.MaxSpeed) {
+        if (isPlayer && !this.isflying && Math.abs(this.velocity.x) <= this.MaxSpeed) {
             if (move == 0)
-                nextVelocityX = nextVelocityX * Math.exp(-0.5 * deltaTime);
+                nextVelocityX = this.velocity.x * Math.exp(-0.5 * deltaTime);
             else
-                nextVelocityX = move * Math.min(Math.sqrt(nextVelocityX * nextVelocityX + 10 * deltaTime), this.MaxSpeed);
+                nextVelocityX = move * Math.min(Math.sqrt(this.velocity.x * this.velocity.x + 10 * deltaTime), this.MaxSpeed);
         }
         else {
             let decelerate = (now, deceleration) => {
@@ -282,21 +276,21 @@ class Entity {
             }
             if (move == 0) {
                 if (this.isOnGround())
-                    nextVelocityX = decelerate(nextVelocityX, (0.16) * (1 + isPlayer));
+                    nextVelocityX = decelerate(this.velocity.x, (0.16) * (1 + isPlayer));
                 else
-                    nextVelocityX = decelerate(nextVelocityX, (0.01) * (1 + isPlayer));
+                    nextVelocityX = decelerate(this.velocity.x, (0.01) * (1 + isPlayer));
             }
-            else if (move * nextVelocityX > 0) {
+            else if (move * this.velocity.x > 0) {
                 if (this.isOnGround())
-                    nextVelocityX = decelerate(nextVelocityX, 0.3);
+                    nextVelocityX = decelerate(this.velocity.x, 0.3);
                 else
-                    nextVelocityX = decelerate(nextVelocityX, 0.01);
+                    nextVelocityX = decelerate(this.velocity.x, 0.01);
             }
             else {
                 if (this.isOnGround())
-                    nextVelocityX = decelerate(nextVelocityX, 0.5);
+                    nextVelocityX = decelerate(this.velocity.x, 0.5);
                 else
-                    nextVelocityX = decelerate(nextVelocityX, 0.1);
+                    nextVelocityX = decelerate(this.velocity.x, 0.1);
 
             }
         }

@@ -41,6 +41,9 @@ class Game {
         /**
          * @type {MapManager}
          */
+
+        this.dialogManager = new DialogManager();
+
         this.map = new MapManager();
         this.textureManager = new TextureManager();
 
@@ -56,10 +59,11 @@ class Game {
         this.logoutBtn.addEventListener('click', () => { Auth.logout(); })
     }
 
-    async load(url = './assets/maps/Test.json') {
-        await this.map.loadFromURL(url);
+    async load(filename = 'Test.json') {
+        await this.map.loadFromURL('./assets/maps/' + filename);
         this.loaded = true;
         await this.textureManager.load();
+        await this.dialogManager.loadFromURL('./assets/dialogs/' + filename);
         this.view = new PortalView(this.map);
     }
 
@@ -81,7 +85,7 @@ class Game {
         this.renderings.push(() => this.inputManager.mouse.draw());
 
         this.computations.push((t) => { if (this.inputManager.keyboard.isKeyDown('Esc')) { this.pause() } });
-
+        this.dialogManager.prints();
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, prev));
     }
 
