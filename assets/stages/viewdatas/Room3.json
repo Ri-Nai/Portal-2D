@@ -1,0 +1,29 @@
+window.$game.dataManager.resolve(
+{
+    "player": {
+        "x": 80,
+        "y": 568
+    },
+    "cubes": [
+    ],
+    "gelDispensers": [],
+    "portals": [
+        {
+            "type": 0,
+            "position": {
+                "x": 1200,
+                "y": 600
+            },
+            "facing": 1
+        },
+        {
+            "type": 1,
+            "position": {
+                "x": 80,
+                "y": 200
+            },
+            "facing": 3
+        }
+    ]
+}
+)

@@ -1,0 +1,7 @@
+window.$game.dataManager.resolve(
+{
+    "texts" : [
+        "【要乐奈】看来。。。只能使用我的传送门之力了",
+    ]
+}
+)
