@@ -13,6 +13,7 @@ class Jumping {
         this.coyoteTimer = 0;
         this.jumpBuffer = 0;
         this.isSpaceHeld = false;
+        this.times = 1;
     }
 
     // Check if player can jump, manage coyote time and jump buffer
@@ -22,9 +23,13 @@ class Jumping {
             this.coyoteTimer = this.coyoteTime; // 重置coyote时间
             this.isJumping = false;
             this.isFalling = false;
-            this.jumpVelocity = 0;
-
+            if (!onGround & 2)
+                this.jumpVelocity = 0;
             // 如果跳跃缓冲器大于0，落地后立即跳跃
+            if (onGround & 2)
+                this.times = 1.5;
+            else
+                this.times = 1;
             if (this.jumpBuffer > 0) {
                 this.startJump();
             }
@@ -51,10 +56,10 @@ class Jumping {
     updateJump(isSpaceHeld, deltaTime) {
         if (this.isJumping) {
             //蓄力跳
-            if (!this.isFalling && isSpaceHeld && this.chargeTime < this.maxJump) {
+            if (!this.isFalling && isSpaceHeld && this.chargeTime < this.maxJump * this.times) {
                 // console.log("jumpingnow", this.chargeTime);
                 this.chargeTime += deltaTime;
-                this.jumpVelocity = Math.min(this.baseJump + (this.chargeTime / this.maxJump) * (this.maxJump - this.baseJump), this.maxJump);
+                this.jumpVelocity = Math.min(this.baseJump + (this.chargeTime / this.maxJump * this.times) * (this.maxJump * this.times - this.baseJump), this.maxJump * this.times);
                 //蓄力跳
             } else {
                 this.isFalling = true;
@@ -215,7 +220,9 @@ class Entity {
         if (this.checkPortal(new Vector(0, 1)))
             return false;
         this.hitbox.position.y += 1;
-        let collided = this.hitbox.checkHits(window.$game.map.blocks, () => { });
+        let collided = !!this.hitbox.checkHits(window.$game.map.blocks, () => { });
+        collided |= !!(this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[0], () => { })) << 1;
+        collided |= !!(this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[1], () => { })) << 2;
         this.hitbox.position.y -= 1;
         if (collided)
             this.isflying = 0;
@@ -238,9 +245,28 @@ class Entity {
             }
 
             this.hitbox.position.addEqual(delta);
+            if (this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[0], () => {}))
+            {
+                if (this.isOnGround())
+                {
+                    this.jumping.coyoteTimer = this.jumping.coyoteTime * 1.5; // 重置coyote时间
+                    this.jumping.times = 1.5;
+                    this.jumping.isJumping = false;
+                }
+                this.hitbox.position.addEqual(delta.scale(-2));
+                if (value) {
+                    this.velocity.y = -this.velocity.y * 0.95;
+                    this.jumping.jumpVelocity = -this.velocity.y * 0.95;
+                    console.log("collided");
+                }
+                else
+                    this.velocity.x = -this.velocity.x * 0.95;
+                return true;
+            };
             // 判断在这个方向上是否发生碰撞，如果未发生碰撞就向前move
             let collided = this.hitbox.checkHits(window.$game.map.blocks, () => {
                 this.hitbox.position.addEqual(delta.scale(-1));
+                console.log("here");
             });
             if (collided)
                 flag |= 1 << value;
@@ -248,15 +274,15 @@ class Entity {
             // & 1代表与x碰撞，& 2代表与y碰撞
             return !collided;
         };
-        let dir = Math.sign(move.x);
-        for (let i = 0; i != move.x; i += dir) {
-            if (!moveDirection(new Vector(dir, 0), 0))
+        let lengthX = Math.abs(move.x);
+        for (let i = 0; i < lengthX; ++i) {
+            if (!moveDirection(new Vector(Math.sign(this.velocity.x), 0), 0))
                 break;
         }
         move = this.velocity.scale(deltaTime).round();
-        dir = Math.sign(move.y);
-        for (let i = 0; i != move.y; i += dir) {
-            if (!moveDirection(new Vector(0, dir), 1))
+        let lengthY = Math.abs(move.y);
+        for (let i = 0; i < lengthY; ++i) {
+            if (!moveDirection(new Vector(0, Math.sign(this.velocity.y)), 1))
                 break;
         }
         return flag;
@@ -274,8 +300,7 @@ class Entity {
                 nextVelocityX = this.velocity.x * Math.exp(-0.5 * deltaTime);
             else
                 nextVelocityX = move * Math.min(Math.sqrt(this.velocity.x * this.velocity.x + 10 * deltaTime), this.MaxSpeed);
-        }
-        else {
+        } else {
             let decelerate = (now, deceleration) => {
                 return Math.sqrt(Math.max(now * now - deceleration * deltaTime * now * now , 0)) * Math.sign(now);
             }
@@ -321,8 +346,10 @@ class Entity {
         let side = this.rigidMove(deltaTime);
         if (side & 1)
             this.velocity.x = 0, this.isflying = 0;
-        if (side & 2)
+        if (side & 2) {
             this.velocity.y = 0;
+            console.log("我是0");
+        }
         if (this.velocity.y == 0) {
             this.jumping.jumpVelocity = 0;
             this.jumping.setFalling();
