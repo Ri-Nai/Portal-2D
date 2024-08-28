@@ -7,19 +7,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scale=no">
     <link rel="stylesheet" type="text/css" href="./assets/style/base.css">
+    <link rel="stylesheet" type="text/css" href="./assets/style/start.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    <div id="game">
-        <div>
-            <div class="title">
-                <div class="small">Portal: It's MyGO!!!!!</div>
-                <div class="big">乐奈与抹茶奇境: 传送</div>
-            </div>
-            <button id="start">开始新游戏</button>
-            <button id="load">读取游戏</button>
-            <button id="about">关于</button>
+    <div class="title">
+        <div class="vertical">
+            <div>传</div>
+            <div>送</div>
         </div>
+        <div class="horizontal">
+            <div class="text">
+                乐奈与抹茶奇境
+            </div>
+        </div>
+    </div>
+    <div class="button-container">
+        <div class="button" id="start">开始新游戏</div>
+        <div class="button" id="load">加载存档</div>
+        <div class="button" id="about">关于</div>
+        <div class="button" id="exit">退出</div>
+    </div>
+    <div class="side">
+        Portal! It's MyGO!!!!!
     </div>
 
     <script type="text/javascript" src="script/utils/Store.js"></script>

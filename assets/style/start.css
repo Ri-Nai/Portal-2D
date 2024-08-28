@@ -1,0 +1,142 @@
+html,
+body {
+    height: 100vh;
+    width: 100vw;
+    padding: unset;
+    margin: unset;
+    font-family: "Noto Serif", "Noto Serif SC", serif;
+    font-weight: 500;
+    overflow: hidden;
+}
+
+:root {
+    --theme: #3388BB;
+}
+
+.title {
+    display: flex;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+    width: 100vw;
+    background: var(--theme);
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    user-select: none;
+}
+
+.title .vertical {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    font-size: 4rem;
+    gap: 12rem;
+    transform: skew(0, -10deg);
+}
+
+.title .vertical>* {
+    font-weight: 100;
+}
+
+.title .horizontal {
+    font-size: 6rem;
+    font-weight: 300;
+    color: var(--theme);
+    transform: skew(0, -10deg);
+}
+
+.title .horizontal::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    animation: 1s spreadIn 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.title .horizontal>.text {
+    margin: 0 1rem 0.5rem 1rem;
+    transform: skew(0, 0deg);
+}
+
+@keyframes spreadIn {
+    from {
+        width: 0px;
+        background: #FFFFFF;
+    }
+
+    to {
+        width: 100%;
+        background: #FFFFFF;
+    }
+}
+
+.button-container {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    padding: 10vh 10vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    transform: skew(0, -10deg);
+    user-select: none;
+}
+
+.button-container .button {
+    padding: 0.5rem 5rem 0.5rem 2rem;
+    text-align: start;
+    font-family: "Noto Serif", "Noto Serif SC", serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    background: var(--theme);
+    border: unset;
+    color: #ffffff;
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.button-container .button::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0.25rem;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: #ffffff;
+}
+
+.button-container .button:hover {
+    color: var(--theme);
+    animation: 0.5s spreadBg cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    background: linear-gradient(90deg, #ffffff 0 50%, var(--theme) 50% 100%);
+    background-size: 200% 100%;
+}
+
+.side {
+    position: absolute;
+    top: 1rem;
+    left: -5px;
+    color: #ffffff;
+    font-size: 4rem;
+    font-weight: 900;
+    font-style: italic;
+    font-family: "Inter", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    letter-spacing: 0.05rem;
+    writing-mode: vertical-rl;
+}
+
+@keyframes spreadBg {
+    0% {
+        background-position: 100%;
+    }
+
+    100% {
+        background-position: 0%;
+    }
+}
