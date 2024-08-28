@@ -89,6 +89,19 @@ const createEvent = (id, event) => {
             event.toUrl
         );
     }
+    // DoorEvent
+    if (event.type === 4) {
+        const e = new DoorEvent(
+            id,
+            event.type,
+            new Vector(event.position.x, event.position.y),
+            new Vector(event.size.x, event.size.y),
+            event.affect
+        );
+
+        window.$game.map.blocks.push(e.block);
+        return e;
+    }
     return new GameEvent(
         id,
         event.type,

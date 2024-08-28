@@ -1101,6 +1101,18 @@ window.$game.dataManager.resolve(
             "affect": [],
             "toUrl": "Test2.json"
         },
+        "event-area-30-12": {
+            "type": 4,
+            "position": {
+                "x": 1200,
+                "y": 440
+            },
+            "size": {
+                "x": 40,
+                "y": 120
+            },
+            "affect": []
+        },
         "event-area-04-16": {
             "type": 2,
             "position": {
@@ -1591,8 +1603,10 @@ window.$game.dataManager.resolve(
                 "x": 40,
                 "y": 40
             },
-            "affect": [],
-            "nxtdir": -1,
+            "affect": [
+                "event-area-30-12"
+            ],
+            "nxtdir": 0,
             "predir": 0
         },
         "event-area-04-15": {
