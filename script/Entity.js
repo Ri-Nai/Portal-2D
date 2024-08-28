@@ -123,7 +123,10 @@ class Entity {
     getCenter() {
         return this.hitbox.getCenter();
     }
-
+    checkOutOfMap() {
+        if (this.hitbox.outofMap())
+            window.$game.restart();
+    }
     rotateVelocity(infacing, outfacing) {
         let angle = Math.PI / 2 * ((infacing - outfacing + 4) % 4);
         this.velocity = this.velocity.rotate(angle);

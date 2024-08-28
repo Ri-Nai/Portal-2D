@@ -27,6 +27,7 @@ class Player extends Entity {
             },
             true
         );
+        this.checkOutOfMap();
     }
 
 }

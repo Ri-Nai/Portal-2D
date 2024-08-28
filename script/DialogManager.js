@@ -70,13 +70,14 @@ class DialogManager {
     }
 
     // 打印文本
-    async prints() {
+    async prints(texts = []) {
+        this.buffer.push(...texts);
+        if (this.buffer.length == 0)
+            return;
         await this.open(); // 打开对话框
         await this._prints(); // 打印文本
         await this.close(); // 关闭对话框
     }
-
-    getSkip() {}
     // 打印缓冲区中的文本
     async _prints() {
         while (true) {
@@ -101,19 +102,25 @@ class DialogManager {
                 let span = document.createElement("span");
                 span.textContent = i;
                 this.text.appendChild(span); // 逐字显示文本
+                if (window.$game.inputManager.isKeyDown("Ctrl"))
+                {
+                    await delay(10); // 控制打印速度
+                    continue;
+                }
                 if (toEnd) continue;
                 toEnd = getEnd();
                 await delay(50); // 控制打印速度
             }
 
             // 等待用户输入
-
-            while (
-                await (async () => {
-                    await delay(50);
-                    return !getEnd();
-                })()
-            );
+            if (!window.$game.inputManager.isKeyDown("Ctrl"))
+                while (
+                    await (async () => {
+                        await delay(100);
+                        return !getEnd();
+                    })()
+                );
+            else await delay(100);
             this.name.innerHTML = ""; // 清空名称和文本
             this.text.innerHTML = "";
         }

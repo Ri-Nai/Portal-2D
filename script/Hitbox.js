@@ -76,6 +76,9 @@ class Hitbox {
         }
         return null;
     }
+    outofMap() {
+        return !this.hit(MapManager.mapHitbox);
+    }
     merge(other) {
         let newLeftup = new Vector(Math.min(this.position.x, other.position.x), Math.min(this.position.y, other.position.y));
         let newRightdown = new Vector(Math.max(this.position.x + this.size.x, other.position.x + other.size.x), Math.max(this.position.y + this.size.y, other.position.y + other.size.y));

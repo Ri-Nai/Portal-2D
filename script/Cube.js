@@ -33,6 +33,7 @@ class Cube extends Entity {
             this.updateXY(deltaTime, () => { return 0; }, () => { return 0; }, false);
         }
         this.hitbox.position = this.hitbox.position.round();
+        this.checkOutOfMap();
     }
     draw() {
         window.$game.ctx.drawImage(

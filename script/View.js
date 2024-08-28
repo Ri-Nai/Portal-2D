@@ -75,11 +75,14 @@ class PortalView extends View {
         this.portals = [ new Portal(-1, new Vector(), 0), new Portal(-1, new Vector(), 0) ];
         this.computations.push((t) => {
             this.portalGun.update(this.player.getCenter(), this.mouse.position);
-            if (this.mouse.left) {
-                this.portalGun.shot(this.player.getCenter(), 0, t);
-            }
-            if (this.mouse.right) {
-                this.portalGun.shot(this.player.getCenter(), 1, t);
+            if (!window.$game.dialogManager.isReading)
+            {
+                if (this.mouse.left) {
+                    this.portalGun.shot(this.player.getCenter(), 0, t);
+                }
+                if (this.mouse.right) {
+                    this.portalGun.shot(this.player.getCenter(), 1, t);
+                }
             }
             if (this.portalGun.isHit) {
                 let position = this.portalGun.position;

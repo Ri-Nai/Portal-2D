@@ -37,6 +37,7 @@ class Layer {
     }
 }
 class MapManager {
+    static mapHitbox = createHitbox(new Vector(0, 0), new Vector(1280, 720));
     static typename = ["backgrounds", "", "", "backgroundTextures", "", "", ""];
     constructor() {
         /**

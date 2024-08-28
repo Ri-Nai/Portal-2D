@@ -126,11 +126,11 @@ events = {
     "event-area-0001": {
         "type": 1,
         "position": {
-            "x": 80,
+            "x": 120,
             "y": 600
         },
         "size": {
-            "x": 200,
+            "x": 120,
             "y": 40
         },
         "affect": [
