@@ -1,6 +1,6 @@
 目前点击`index.html`就可以运行demo了  
 修改地图可以修改`assets/maps/Test.xlsx`  
-地图大小为$32 \times 18$, 支持读取1 / 2 / 空值  
+地图大小为 $32 \times 18$ , 支持读取1 / 2 / 空值  
 分别代表不可生成传送门的方块 / 生成传送门的方块 / 空心区域  
 然后在`assets/maps/MapCreator.py`里输入Test即可生成地图  
 

@@ -152,8 +152,10 @@ class Entity {
                 }
                 this.velocity = Portal.unitDirection[ infacing ].scale(this.velocity.magnitude());
                 this.rotateVelocity(infacing, portals[ i ^ 1 ].facing);
-                if (portals[ i ^ 1 ].facing & 1)
+                if (portals[ i ^ 1 ].facing & 1) {
                     this.isflying = this.flyingBuffer;
+                    this.facing = portals[ i ^ 1 ].facing - 2;
+                }
                 this.hitbox.position = newPosition;
                 return true;
             }

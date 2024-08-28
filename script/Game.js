@@ -45,6 +45,7 @@ class Game {
         this.dialogManager = new DialogManager();
 
         this.map = new MapManager();
+        this.initalDatas = null;
         this.textureManager = new TextureManager();
 
         this.stop = false;
@@ -65,8 +66,9 @@ class Game {
     }
 
     async load(filename = 'Test1.json') {
-        await this.map.loadFromURL('./assets/maps/' + filename);
-        await this.dialogManager.loadFromURL('./assets/dialogs/' + filename);
+        await this.map.loadFromURL('./assets/stages/maps/' + filename);
+        await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
+
         this.loaded = true;
         this.view = new PortalView(this.map);
     }
