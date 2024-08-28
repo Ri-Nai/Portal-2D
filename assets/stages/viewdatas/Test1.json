@@ -22,7 +22,7 @@ window.$game.dataManager.resolve(
             },
             "facing" : 3,
             "times" : 6,
-            "type" : -1
+            "type" : 1
 
         }
     ],

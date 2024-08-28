@@ -221,8 +221,8 @@ class Entity {
             return false;
         this.hitbox.position.y += 1;
         let collided = !!this.hitbox.checkHits(window.$game.map.blocks, () => { });
-        collided |= !!(this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[0], () => { })) << 1;
-        collided |= !!(this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[1], () => { })) << 2;
+        collided |= !!(this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[ 0 ], () => { })) << 1;
+        collided |= !!(this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[ 1 ], () => { })) << 2;
         this.hitbox.position.y -= 1;
         if (collided)
             this.isflying = 0;
@@ -245,10 +245,8 @@ class Entity {
             }
 
             this.hitbox.position.addEqual(delta);
-            if (this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[0], () => {}))
-            {
-                if (this.isOnGround())
-                {
+            if (this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[ 0 ], () => { })) {
+                if (this.isOnGround()) {
                     this.jumping.coyoteTimer = this.jumping.coyoteTime * 1.5; // 重置coyote时间
                     this.jumping.times = 1.5;
                     this.jumping.isJumping = false;
@@ -295,15 +293,22 @@ class Entity {
     updateX(deltaTime, control, isPlayer) {
         let move = control;
         let nextVelocityX = this.velocity.x;
-        if (isPlayer && !this.isflying && Math.abs(this.velocity.x) <= this.MaxSpeed) {
+        let decelerate = (now, deceleration) => {
+            return Math.sqrt(Math.max(now * now - deceleration * deltaTime * now * now, 0)) * Math.sign(now);
+        };
+        let onGround = this.isOnGround();
+        if (isPlayer && (onGround & 4) && move) {
+            nextVelocityX = move * Math.min(Math.sqrt(Math.abs(this.velocity.x * this.velocity.x * this.velocity.x) + 3 * deltaTime), this.MaxSpeed * 3);
+        }
+        else if (move == 0 && (onGround & 4)) {
+            nextVelocityX = decelerate(this.velocity.x, 0.1);
+        } else if (isPlayer && !this.isflying && Math.abs(this.velocity.x) <= this.MaxSpeed) {
             if (move == 0)
                 nextVelocityX = this.velocity.x * Math.exp(-0.5 * deltaTime);
             else
                 nextVelocityX = move * Math.min(Math.sqrt(this.velocity.x * this.velocity.x + 10 * deltaTime), this.MaxSpeed);
         } else {
-            let decelerate = (now, deceleration) => {
-                return Math.sqrt(Math.max(now * now - deceleration * deltaTime * now * now , 0)) * Math.sign(now);
-            }
+
             if (move == 0) {
                 if (this.isOnGround())
                     nextVelocityX = decelerate(this.velocity.x, (0.16) * (1 + isPlayer));
