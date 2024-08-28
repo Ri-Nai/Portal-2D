@@ -1,6 +1,6 @@
 class Cube extends Entity {
     static cubeSize = 0.8 * basicSize;
-    constructor(position, size) {
+    constructor(position, size = new Vector(Cube.cubeSize, Cube.cubeSize)) {
         super(position, size);
         this.canPick = false;
         this.isPicked = false;
@@ -14,10 +14,10 @@ class Cube extends Entity {
             this.canPick = true;
         }
         else this.canPick = false;
-        window.$game.inputManager.firstDown("E", () => {
-            if (this.canPick)
-                this.isPicked = !this.isPicked;
-        });
+        if (this.canPick)
+            window.$game.inputManager.firstDown("E", () => {
+                    this.isPicked = !this.isPicked;
+            });
         if (this.isPicked) {
             this.hitbox.position.x = player.hitbox.position.x;
             this.hitbox.position.y = player.hitbox.position.y;

@@ -45,7 +45,7 @@ class Game {
         this.dialogManager = new DialogManager();
 
         this.map = new MapManager();
-        this.initalDatas = null;
+        this.viewData = new ViewData();
         this.textureManager = new TextureManager();
 
         this.stop = false;
@@ -68,9 +68,9 @@ class Game {
     async load(filename = 'Test1.json') {
         await this.map.loadFromURL('./assets/stages/maps/' + filename);
         await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
-
+        await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);
         this.loaded = true;
-        this.view = new PortalView(this.map);
+        this.view = new PortalView(this.map, this.viewData);
     }
 
     start(prev = 0) {
@@ -123,7 +123,7 @@ class Game {
 
     restart() {
         this.stop = true;
-        this.view = new PortalView(this.map);
+        this.view = new PortalView(this.map, this.viewData);
         this.restartBtn.blur();
         this.resume();
     }

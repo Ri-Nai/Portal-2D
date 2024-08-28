@@ -1,3 +1,29 @@
+class ViewData {
+    constructor() {
+        this.player = null;
+        this.cubes = null;
+        this.gelDispensers = null;
+    }
+    load(data) {
+        this.player = copyVector(data.player);
+        this.cubes = data.cubes.map(cubeData => {
+            return copyVector(cubeData);
+        });
+        this.gelDispensers = data.gelDispensers.map(gelDispenserData => {
+            return new GelDispenser(new Vector(gelDispenserData.position.x, gelDispenserData.position.y), gelDispenserData.times, gelDispenserData.facing);
+        });
+    }
+
+    async loadFromURL(url) {
+        try {
+            const response = await window.$game.dataManager.loadJSON(url);
+            this.load(response);
+            console.log(this);
+        } catch (error) {
+            console.error('There has been a problem with your fetch operation:', error);
+        }
+    }
+}
 /**
  * @abstract
  */
@@ -43,28 +69,30 @@ class View {
 }
 
 class PortalView extends View {
-    constructor(map) {
+    constructor(map, viewData) {
         super(map);
 
-        this.player = new Player(new Vector(4 * basicSize, 4 * basicSize));
-        this.gelDispenser = new GelDispenser();
-        this.gelledEdgeList = new GelledEdgeList();
-        this.cube = new Cube(
-            new Vector(7 * basicSize, 4 * basicSize),
-            new Vector(Cube.cubeSize, Cube.cubeSize));
-        this.computations.push((t) => this.player.update(t.interval));
-        this.computations.push((t) => this.cube.update(t.interval));
-        this.computations.push((t) => this.gelDispenser.update(t.interval));
+        this.cubes = [];
+        this.gelDispensers = [];
+        this.player = new Player(viewData.player.copy());
 
+        viewData.cubes.forEach(i => this.cubes.push(new Cube(i.copy())));
+        viewData.gelDispensers.forEach(i => this.gelDispensers.push(new GelDispenser(i.position.copy(), i.times, i.facing)));
+
+        this.gelledEdgeList = new GelledEdgeList();
         /**
          * @type {Entity[]}
-         */
-        this.entities = [ this.player, this.cube ];
-
+        */
+        this.entities = [ this.player ];
+        this.entities.push(...this.cubes);
         /**
          * @type {EventManager}
-         */
+        */
         this.events = this.map.events;
+
+        this.computations.push((t) => this.player.update(t.interval));
+        this.cubes.forEach(i => this.computations.push((t) => i.update(t.interval)));
+        this.gelDispensers.forEach(i => this.computations.push((t) => i.update(t.interval)));
         this.computations.push((t) => this.events.update(t));
 
         /**
@@ -75,8 +103,7 @@ class PortalView extends View {
         this.portals = [ new Portal(-1, new Vector(), 0), new Portal(-1, new Vector(), 0) ];
         this.computations.push((t) => {
             this.portalGun.update(this.player.getCenter(), this.mouse.position);
-            if (!window.$game.dialogManager.isReading)
-            {
+            if (!window.$game.dialogManager.isReading) {
                 if (this.mouse.left) {
                     this.portalGun.shot(this.player.getCenter(), 0, t);
                 }
@@ -101,10 +128,10 @@ class PortalView extends View {
 
         // 在这里执行所有渲染便于控制渲染顺序
         this.renderings.push(() => this.map.draw());
-        this.renderings.push(() => this.gelDispenser.draw());
+        this.gelDispensers.forEach(i => this.renderings.push(() => i.draw()));
+        this.cubes.forEach(i => this.renderings.push(() => i.draw()));
         this.renderings.push(() => this.gelledEdgeList.draw());
         this.renderings.push(() => this.player.draw());
-        this.renderings.push(() => this.cube.draw());
         this.renderings.push(() => this.portals[ 0 ].draw());
         this.renderings.push(() => this.portals[ 1 ].draw());
         this.renderings.push((t) => {

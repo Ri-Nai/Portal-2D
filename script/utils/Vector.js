@@ -3,7 +3,9 @@ class Vector {
         this.x = x;
         this.y = y;
     }
-
+    copy() {
+        return new Vector(this.x, this.y);
+    }
     getAxis(axis) {
         return axis === 0 ? this.x : this.y;
     }
@@ -98,4 +100,7 @@ class Vector {
     round() {
         return new Vector(Math.round(this.x), Math.round(this.y));
     }
+}
+const copyVector = (vector) => {
+    return new Vector(vector.x, vector.y);
 }

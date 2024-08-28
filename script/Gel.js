@@ -58,7 +58,17 @@ class Gel extends Entity {
     }
 }
 class GelDispenser {
-    constructor() {
+    static shootOffset = [
+        new Vector(basicSize / 2, 0),
+        new Vector(0, basicSize / 2),
+        new Vector(basicSize / 2, basicSize),
+        new Vector(basicSize, basicSize / 2)
+    ];
+    constructor(position, times, facing) {
+        this.position = position;
+        this.facing = facing;
+        this.times = times;
+        this.shootPosition = position.addVector(GelDispenser.shootOffset[facing]);
         this.gels = [];
         this.bufferTime = 60;
         this.now = 0;
@@ -69,7 +79,7 @@ class GelDispenser {
         let dels = [];
         this.now = Math.max(0, this.now - deltaTime);
         if (this.now == 0) {
-            this.gels.push(new Gel(new Vector(13 * basicSize, 5 * basicSize), Gel.gelSize, new Vector(5, 0), 2));
+            this.gels.push(new Gel(this.shootPosition.copy(), Gel.gelSize, Portal.unitDirection[this.facing].scale(this.times), 2));
             this.now = this.bufferTime;
         }
         for (let i of this.gels) {
