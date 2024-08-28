@@ -75,7 +75,7 @@ class PortalView extends View {
         this.player = new Player(viewData.player.copy());
 
         viewData.cubes.forEach(i => this.cubes.push(new Cube(copyVector(i))));
-        viewData.gelDispensers.forEach(i => this.gelDispensers.push(new GelDispenser(copy(i.position), i.times, i.facing)));
+        viewData.gelDispensers.forEach(i => this.gelDispensers.push(new GelDispenser(copyVector(i.position), i.times, i.facing, i.type)));
 
         this.gelledEdgeList = new GelledEdgeList();
         /**

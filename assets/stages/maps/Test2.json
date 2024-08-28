@@ -1598,11 +1598,11 @@ window.$game.dataManager.resolve(
         "event-area-04-15": {
             "type": 1,
             "position": {
-                "x": 120,
+                "x": 100,
                 "y": 600
             },
             "size": {
-                "x": 120,
+                "x": 160,
                 "y": 40
             },
             "affect": [

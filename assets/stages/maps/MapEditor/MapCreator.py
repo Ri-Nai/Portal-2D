@@ -241,6 +241,8 @@ def get_events():
             if C[x][y] == 1:
                 bfs(x + 1, y, 2)
                 events[get_event_name(x, y)] = get_event(C[x][y], x, y, [get_event_name(x + 1, y)])
+                events[get_event_name(x, y)]["position"]["x"] -= basicSize // 2;
+                events[get_event_name(x, y)]["size"]["x"] += basicSize;
             else:
                 events[get_event_name(x, y)] = get_event(C[x][y], x, y, [])
                 if C[x][y] == 3:

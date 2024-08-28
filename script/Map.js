@@ -91,9 +91,7 @@ class MapManager {
     }
     draw() {
         for (let i = 0; i < this.layers.length; ++i)
-        {
             this.layers[i].draw(MapManager.typename[i]);
-        }
         for (let i of this.blocks)
             i.draw("blocks")
         this.events.draw();
