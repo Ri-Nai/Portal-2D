@@ -68,6 +68,7 @@ class PortalGun {
          */
         const edges = window.$game.map.edges;
         const blocks = window.$game.map.blocks;
+        const gelledEdgeList = window.$game.view.gelledEdgeList.gelledEdges[2];
 
         for (let i = 0; i < this.target; i++) {
             this.position.addEqual(this.direction);
@@ -76,23 +77,40 @@ class PortalGun {
                 this.isShot = false;
                 return;
             }
-
+            let done = false;
             for (let edge of edges) {
                 if (edge.hitbox.contains(this.position)) {
                     this.isShot = false;
                     this.isHit = true;
                     this.edge = edge;
                     this.position = fixPosition(this.position, edge);
-                    return;
+                    done = true;
+                    break;
                 }
             }
-
+            for (let edge of gelledEdgeList) {
+                if (edge.hitbox.contains(this.position)) {
+                    this.isShot = false;
+                    this.isHit = true;
+                    if (done && this.edge.type != 2) {
+                        this.edge = edge;
+                        this.position = fixPosition(this.position, edge);
+                    }
+                    done = true;
+                    break;
+                }
+            }
+            if (done)
+                return;
             for (let block of blocks) {
                 if (block.hitbox.contains(this.position)) {
                     this.isShot = false;
-                    return;
+                    done = true;
+                    break;
                 }
             }
+            if (done)
+                return;
         }
     }
 }

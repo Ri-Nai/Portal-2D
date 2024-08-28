@@ -1,9 +1,5 @@
 class Gel extends Entity {
-    static gelColors = {
-        1 : "blue",
-        2 : "orange",
-        3 : "white"
-    }
+    static gelColors = ["blue","orange","white"]
 
     static gelSize = new Vector(0.8 * basicSize, 0.8 * basicSize);
     constructor(position, size, velocity, type) {
@@ -73,7 +69,7 @@ class GelDispenser {
         let dels = [];
         this.now = Math.max(0, this.now - deltaTime);
         if (this.now == 0) {
-            this.gels.push(new Gel(new Vector(13 * basicSize, 5 * basicSize), Gel.gelSize, new Vector(5, 0), Math.floor(Math.random() * 3) + 1));
+            this.gels.push(new Gel(new Vector(13 * basicSize, 5 * basicSize), Gel.gelSize, new Vector(5, 0), 2));
             this.now = this.bufferTime;
         }
         for (let i of this.gels) {
@@ -98,54 +94,58 @@ class GelledEdge extends Edge {
 }
 class GelledEdgeList {
     constructor() {
-        this.gelledEdges = [];
+        this.gelledEdges = [[], [], []];
     }
     addEdge(type, position, edge) {
-        let dels = [];
-        let adds = [];
+        let dels = [[], [], []];
+        let adds = [[], [], []];
         let newEdge = new GelledEdge(type, position.addVector(Portal.portalDirection[ edge.facing ]), Portal.portalSize[ edge.facing & 1 ], edge.facing);
         newEdge.hitbox = newEdge.hitbox.clip(edge.hitbox);
-        for (let i of this.gelledEdges) {
-            if (i.facing == newEdge.facing && i.hitbox.hit(newEdge.hitbox)) {
-                if (i.type == type) {
-                    dels.push(i);
-                    newEdge.hitbox = newEdge.hitbox.merge(i.hitbox);
-                } else {
-                    dels.push(i);
-                    let leftUp = newEdge.hitbox.getTopLeft();
-                    let rightDown = newEdge.hitbox.getBottomRight();
-                    let leftDown = new Vector(leftUp.x, rightDown.y);
-                    let rightUp = new Vector(rightDown.x, leftUp.y);
-                    let newEdge1 = null, newEdge2 = null;
-                    if (newEdge.facing & 1) {
-                        if (createHitbox(i.hitbox.getTopLeft(), rightDown))
-                            newEdge1 = new GelledEdge(i.type, i.hitbox.getTopLeft(), rightUp.subVector(i.hitbox.getTopLeft()), i.facing);
-                        if (createHitbox(leftDown, i.hitbox.getBottomRight()))
-                            newEdge2 = new GelledEdge(i.type, leftDown, i.hitbox.getBottomRight().subVector(leftDown), i.facing);
-                    }
-                    else {
-                        if (createHitbox(i.hitbox.getTopLeft(), leftDown))
-                            newEdge1 = new GelledEdge(i.type, i.hitbox.getTopLeft(), leftDown.subVector(i.hitbox.getTopLeft()), i.facing);
-                        if (createHitbox(rightUp, i.hitbox.getBottomRight()))
-                            newEdge2 = new GelledEdge(i.type, rightUp, i.hitbox.getBottomRight().subVector(rightUp), i.facing);
-                    }
-                    if (newEdge1)
-                        adds.push(newEdge1);
-                    if (newEdge2) {
-                        adds.push(newEdge2);
+        for (let now = 0; now < 3; ++now) {
+            for (let i of this.gelledEdges[now]) {
+                if (i.facing == newEdge.facing && i.hitbox.hit(newEdge.hitbox)) {
+                    if (now == type) {
+                        dels[now].push(i);
+                        newEdge.hitbox = newEdge.hitbox.merge(i.hitbox);
+                    } else {
+                        dels[now].push(i);
+                        let leftUp = newEdge.hitbox.getTopLeft();
+                        let rightDown = newEdge.hitbox.getBottomRight();
+                        let leftDown = new Vector(leftUp.x, rightDown.y);
+                        let rightUp = new Vector(rightDown.x, leftUp.y);
+                        let newEdge1 = null, newEdge2 = null;
+                        if (newEdge.facing & 1) {
+                            if (createHitbox(i.hitbox.getTopLeft(), rightDown))
+                                newEdge1 = new GelledEdge(i.type, i.hitbox.getTopLeft(), rightUp.subVector(i.hitbox.getTopLeft()), i.facing);
+                            if (createHitbox(leftDown, i.hitbox.getBottomRight()))
+                                newEdge2 = new GelledEdge(i.type, leftDown, i.hitbox.getBottomRight().subVector(leftDown), i.facing);
+                        }
+                        else {
+                            if (createHitbox(i.hitbox.getTopLeft(), leftDown))
+                                newEdge1 = new GelledEdge(i.type, i.hitbox.getTopLeft(), leftDown.subVector(i.hitbox.getTopLeft()), i.facing);
+                            if (createHitbox(rightUp, i.hitbox.getBottomRight()))
+                                newEdge2 = new GelledEdge(i.type, rightUp, i.hitbox.getBottomRight().subVector(rightUp), i.facing);
+                        }
+                        if (newEdge1)
+                            adds[now].push(newEdge1);
+                        if (newEdge2) {
+                            adds[now].push(newEdge2);
+                        }
                     }
                 }
             }
         }
-        adds.push(newEdge);
-        this.gelledEdges = this.gelledEdges.filter(i => !dels.includes(i));
-        for (let i of adds) {
-            this.gelledEdges.push(i);
+        adds[type].push(newEdge);
+        for (let now = 0; now < 3; ++now) {
+            for (let newEdge of adds[now])
+                this.gelledEdges[now].push(newEdge);
+            this.gelledEdges[now] = this.gelledEdges[now].filter(i => !dels[now].includes(i));
         }
     }
     draw() {
-        for (let i of this.gelledEdges) {
-            i.draw();
-        }
+        for (let now = 0; now < 3; ++now)
+            for (let i of this.gelledEdges[now]) {
+                i.draw();
+            }
     }
 }
