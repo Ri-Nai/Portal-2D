@@ -93,7 +93,7 @@ class PortalView extends View {
         this.computations.push((t) => this.player.update(t.interval));
         this.cubes.forEach(i => this.computations.push((t) => i.update(t.interval)));
         this.gelDispensers.forEach(i => this.computations.push((t) => i.update(t.interval)));
-        this.computations.push((t) => this.events.update(t));
+        this.computations.push((t) => this.events.update(t.interval));
 
         /**
          * @type {PortalGun}
