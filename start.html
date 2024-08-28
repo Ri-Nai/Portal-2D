@@ -48,8 +48,11 @@
             }
 
             document.querySelector("#start").addEventListener("click", () => {
-                window.location.href = `./index.html?${window.$store.encode()}`
-            })
+                window.location.href = `./index.html?${window.$store.encode()}`;
+            });
+            document.querySelector("#about").addEventListener("click", () => {
+                window.location.href = `./pages/about-us/index.htm`;
+            });
         }
     </script>
 </body>

@@ -129,6 +129,7 @@ body {
     font-family: "Inter", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     letter-spacing: 0.05rem;
     writing-mode: vertical-rl;
+    user-select: none;
 }
 
 @keyframes spreadBg {
