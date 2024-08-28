@@ -56,8 +56,8 @@ class Game {
         this.resumeBtn.addEventListener('click', () => this.resume())
         this.restartBtn = document.querySelector('#control-restart')
         this.restartBtn.addEventListener('click', () => this.restart())
-        this.logoutBtn = document.querySelector('#control-logout')
-        this.logoutBtn.addEventListener('click', () => { Auth.logout(); })
+        this.backBtn = document.querySelector('#control-back')
+        this.backBtn.addEventListener('click', () => { window.location.href = './start.html'; })
     }
 
     async init(filename = 'Test1.json') {
@@ -108,6 +108,9 @@ class Game {
         this.renderings.forEach((render) => render({ timestamp, interval }));
 
         if (this.stop) {
+            while (!this.loaded) {
+                await wait(100);
+            }
             this.start(timestamp);
             return;
         }
