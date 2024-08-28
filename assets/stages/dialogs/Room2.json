@@ -1,0 +1,8 @@
+window.$game.dataManager.resolve(
+{
+    "texts" : [
+        "【要乐奈】好像可以跳上去",
+
+    ]
+}
+)

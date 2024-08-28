@@ -125,15 +125,19 @@ fill_edge()
 
 def get_events():
     df = pd.read_excel(path_filename, index_col = None, header = None, sheet_name='EventArea')
-    A = df.values.tolist()
-    for i in range(len(A)):
-        for j in range(len(A[i])):
-            if np.isnan(A[i][j]):
-                A[i][j] = 0  # 将 NaN 转换为 0
+    C = df.values.tolist()
+    for i in range(len(C)):
+        for j in range(len(C[i])):
+            if np.isnan(C[i][j]):
+                C[i][j] = 0  # 将 NaN 转换为 0
             else:
-                A[i][j] = int(A[i][j])  # 将浮点数转换为整数
-    print(A)
-    print(len(A), len(A[0]))
+                C[i][j] = int(C[i][j])  # 将浮点数转换为整数
+        while (len(C[i]) < 32):
+            C[i].append(0)
+    while (len(C) < 18):
+        C.append([0] * 32)
+    print(C)
+    print(len(C), len(C[0]))
     events = {}
     dx = [-1, 0, 1, 0]
     dy = [0, -1, 0, 1]
@@ -154,15 +158,17 @@ def get_events():
             rect.append([i, j, i, j])
     for i in range(18):
         for j in range(32):
-            if A[i][j] == 0 or A[i][j] == 2:
+            if C[i][j] == 0 or C[i][j] == 2:
                 continue
             for k in range(4):
                 nx = i + dx[k]
                 ny = j + dy[k]
+                if not valid(nx, ny):
+                    continue
                 now = get_fa(get_id(i, j))
                 nxt = get_fa(get_id(nx, ny))
                 if fa[now] != fa[nxt]:
-                    if valid(nx, ny) and A[nx][ny] == A[i][j]:
+                    if C[nx][ny] == C[i][j]:
                         fa[nxt] = now
                         rect[now][0] = min(rect[now][0], rect[nxt][0])
                         rect[now][1] = min(rect[now][1], rect[nxt][1])
@@ -208,21 +214,21 @@ def get_events():
                 ny = y + dy[k]
                 if not valid(nx, ny):
                     continue
-                if A[nx][ny] == 0:
+                if C[nx][ny] == 0:
                     continue
-                if A[nx][ny] == A[x][y]:
+                if C[nx][ny] == C[x][y]:
                     q.put((nx, ny, k))
                 print(x, y, nx, ny)
-                events[get_event_name(x, y)] = get_event(A[x][y], x, y, [get_event_name(nx, ny)])
+                events[get_event_name(x, y)] = get_event(C[x][y], x, y, [get_event_name(nx, ny)])
                 events[get_event_name(x, y)]["nxtdir"] = k
             event_name = get_event_name(x, y)
             if event_name not in events:
-                events[event_name] = get_event(A[x][y], x, y, [])
+                events[event_name] = get_event(C[x][y], x, y, [])
                 events[event_name]["nxtdir"] = -1
             events[event_name]["predir"] = predir
     for i in range(18):
         for j in range(32):
-            if A[i][j] == 0 or A[i][j] == 2:
+            if C[i][j] == 0 or C[i][j] == 2:
                 continue
             f = get_fa(get_id(i, j))
             if vis[f]:
@@ -232,12 +238,12 @@ def get_events():
             x = (rect[f][0] + rect[f][2]) // 2
             y = (rect[f][1] + rect[f][3]) // 2
             print(i, j, f, rect[f], x, y)
-            if A[x][y] == 1:
+            if C[x][y] == 1:
                 bfs(x + 1, y, 2)
-                events[get_event_name(x, y)] = get_event(A[x][y], x, y, [get_event_name(x + 1, y)])
+                events[get_event_name(x, y)] = get_event(C[x][y], x, y, [get_event_name(x + 1, y)])
             else:
-                events[get_event_name(x, y)] = get_event(A[x][y], x, y, [])
-                if A[x][y] == 3:
+                events[get_event_name(x, y)] = get_event(C[x][y], x, y, [])
+                if C[x][y] == 3:
                     import re
                     s = filename
                     match = re.match(r"([a-zA-Z]+)(\d+)", s)

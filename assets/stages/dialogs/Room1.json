@@ -1,0 +1,8 @@
+window.$game.dataManager.resolve(
+{
+    "texts" : [
+        "【要乐奈】这是哪，好黑",
+        "【要乐奈】饿了，想吃",
+    ]
+}
+)

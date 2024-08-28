@@ -3,15 +3,13 @@ class ViewData {
         this.player = null;
         this.cubes = null;
         this.gelDispensers = null;
+        this.portals = null;
     }
     load(data) {
         this.player = copyVector(data.player);
-        this.cubes = data.cubes.map(cubeData => {
-            return copyVector(cubeData);
-        });
-        this.gelDispensers = data.gelDispensers.map(gelDispenserData => {
-            return new GelDispenser(new Vector(gelDispenserData.position.x, gelDispenserData.position.y), gelDispenserData.times, gelDispenserData.facing);
-        });
+        this.cubes = data.cubes;
+        this.gelDispensers = data.gelDispensers;
+        this.portals = data.portals;
     }
 
     async loadFromURL(url) {
@@ -76,8 +74,8 @@ class PortalView extends View {
         this.gelDispensers = [];
         this.player = new Player(viewData.player.copy());
 
-        viewData.cubes.forEach(i => this.cubes.push(new Cube(i.copy())));
-        viewData.gelDispensers.forEach(i => this.gelDispensers.push(new GelDispenser(i.position.copy(), i.times, i.facing)));
+        viewData.cubes.forEach(i => this.cubes.push(new Cube(copyVector(i))));
+        viewData.gelDispensers.forEach(i => this.gelDispensers.push(new GelDispenser(copy(i.position), i.times, i.facing)));
 
         this.gelledEdgeList = new GelledEdgeList();
         /**
@@ -100,7 +98,10 @@ class PortalView extends View {
          */
         this.portalGun = new PortalGun();
         this.portal_positions = [ new Vector(0, 0), new Vector(0, 0) ];
-        this.portals = [ new Portal(-1, new Vector(), 0), new Portal(-1, new Vector(), 0) ];
+        this.portals = viewData.portals.map(portalData => {
+            return new Portal(portalData.type, copyVector(portalData.position), portalData.facing);
+
+        });
         this.computations.push((t) => {
             this.portalGun.update(this.player.getCenter(), this.mouse.position);
             if (!window.$game.dialogManager.isReading) {
