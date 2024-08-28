@@ -45,3 +45,69 @@ body, html {
     display: none;
     visibility: hidden;
 }
+:root {
+    --theme: #0b1820;
+}
+@keyframes spreadIn {
+    from {
+        width: 0px;
+        background: #FFFFFF;
+    }
+
+    to {
+        width: 100%;
+        background: #FFFFFF;
+    }
+}
+@keyframes spreadBg {
+    0% {
+        background-position: 100%;
+    }
+
+    100% {
+        background-position: 0%;
+    }
+}
+
+.button-container {
+    position: absolute;
+    padding: 10vh 10vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    /* transform: skew(0, -10deg); */
+    user-select: none;
+}
+
+.button-container .button {
+    padding: 0.5rem 5rem 0.5rem 2rem;
+    text-align: center;
+    font-family: "Noto Serif", "Noto Serif SC", serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    background: var(--theme);
+    border: unset;
+    color: #ffffff;
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.button-container .button::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0.25rem;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: #ffffff;
+}
+
+.button-container .button:hover {
+    color: var(--theme);
+    animation: 0.5s spreadBg cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    background: linear-gradient(90deg, #ffffff 0 50%, var(--theme) 50% 100%);
+    background-size: 200% 100%;
+}
