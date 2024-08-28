@@ -1,7 +1,8 @@
-class Dialog {
+class DialogManager {
     constructor() {
         this.createDialog();
         this.buffer = []; // 文本缓冲区
+        this.isReading = false;
     }
 
     // 创建对话框的 DOM 元素
@@ -36,7 +37,19 @@ class Dialog {
         this.name = name;
         this.text = text;
     }
+    load(data) {
+        this.buffer = data.texts;
+    }
 
+    async loadFromURL(url) {
+        try {
+            const response = await window.$game.dataManager.loadJSON(url);
+            this.load(response);
+            console.log(this);
+        } catch (error) {
+            console.error('There has been a problem with your fetch operation:', error);
+        }
+    }
     // 打开对话框动画
     async open() {
         this.dialog.style.display = "block";
@@ -57,8 +70,7 @@ class Dialog {
     }
 
     // 打印文本
-    async prints(texts) {
-        this.buffer.push(...texts); // 添加文本到缓冲区
+    async prints() {
         await this.open(); // 打开对话框
         await this._prints(); // 打印文本
         await this.close(); // 关闭对话框
@@ -68,7 +80,8 @@ class Dialog {
     // 打印缓冲区中的文本
     async _prints() {
         while (true) {
-            if (this.buffer.length === 0) return; // 缓冲区为空时返回
+            if (this.buffer.length === 0) break; // 缓冲区为空时返回
+            this.isReading = true;
 
             let text = this.buffer.shift(); // 获取缓冲区的第一条文本
             if (text[0] === "【") {
@@ -91,7 +104,6 @@ class Dialog {
                 if (toEnd) continue;
                 toEnd = getEnd();
                 await delay(50); // 控制打印速度
-                if (this.canceled) return; // 如果被取消，退出
             }
 
             // 等待用户输入
@@ -105,6 +117,7 @@ class Dialog {
             this.name.innerHTML = ""; // 清空名称和文本
             this.text.innerHTML = "";
         }
+        this.isReading = false;
     }
 }
 
