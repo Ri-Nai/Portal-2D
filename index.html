@@ -44,6 +44,7 @@
     <script type="text/javascript" src="script/Event.js"></script>
     <script type="text/javascript" src="script/Button.js"></script>
     <script type="text/javascript" src="script/Wire.js"></script>
+    <script type="text/javascript" src="script/ViewSwitch.js"></script>
     <script type="text/javascript" src="script/EventManager.js"></script>
 
     <script type="text/javascript" src="script/Hitbox.js"></script>
@@ -68,7 +69,7 @@
             }
 
             window.$game = new Game();
-            window.$game.load().then(() => {
+            window.$game.init().then(() => {
                 window.$game.start();
             });
         }

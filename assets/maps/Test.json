@@ -1127,7 +1127,20 @@ window.$game.dataManager.resolve(
                 "y": 40
             },
             "affect": []
-        }
+        },
+        "view-switch": {
+            "type": 3,
+            "position": {
+                "x": 1240,
+                "y": 400
+            },
+            "size": {
+                "x": 40,
+                "y": 160
+            },
+            "affect": [],
+            "toUrl": "Test.json"
+        },
     }
 }
 )

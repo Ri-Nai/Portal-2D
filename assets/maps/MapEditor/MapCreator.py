@@ -147,7 +147,9 @@ events = {
             "x": 40,
             "y": 40
         },
-        "affect": ["event-area-0003"]
+        "affect": [
+            "event-area-0003"
+        ]
     },
     "event-area-0003": {
         "type": 2,
@@ -160,7 +162,20 @@ events = {
             "y": 40
         },
         "affect": []
-    }
+    },
+    "view-switch": {
+        "type": 3,
+        "position": {
+            "x": 1240,
+            "y": 400
+        },
+        "size": {
+            "x": 40,
+            "y": 160
+        },
+        "affect": [],
+        "toUrl": "Test.json"
+    },
 }
 
 answer = {"layers" : layers, "blocks" : blocks, "edges" : edges, "events" : events}

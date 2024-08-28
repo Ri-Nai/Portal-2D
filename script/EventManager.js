@@ -79,6 +79,16 @@ const createEvent = (id, event) => {
             event.affect
         );
     }
+    // ViewSwitch
+    if (event.type === 3) {
+        return new ViewSwitch(
+            id,
+            event.type,
+            new Vector(event.position.x, event.position.y),
+            new Vector(event.size.x, event.size.y),
+            event.toUrl
+        );
+    }
     return new GameEvent(
         id,
         event.type,
