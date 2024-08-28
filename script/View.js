@@ -48,6 +48,7 @@ class PortalView extends View {
 
         this.player = new Player(new Vector(4 * basicSize, 4 * basicSize));
         this.gelDispenser = new GelDispenser();
+        this.gelledEdgeList = new GelledEdgeList();
         this.cube = new Cube(
             new Vector(7 * basicSize, 4 * basicSize),
             new Vector(Cube.cubeSize, Cube.cubeSize));
@@ -98,6 +99,7 @@ class PortalView extends View {
         // 在这里执行所有渲染便于控制渲染顺序
         this.renderings.push(() => this.map.draw());
         this.renderings.push(() => this.gelDispenser.draw());
+        this.renderings.push(() => this.gelledEdgeList.draw());
         this.renderings.push(() => this.player.draw());
         this.renderings.push(() => this.cube.draw());
         this.renderings.push(() => this.portals[0].draw());

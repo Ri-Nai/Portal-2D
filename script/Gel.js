@@ -1,4 +1,10 @@
 class Gel extends Entity {
+    static gelColors = {
+        1 : "blue",
+        2 : "orange",
+        3 : "white"
+    }
+
     static gelSize = new Vector(0.8 * basicSize, 0.8 * basicSize);
     constructor(position, size, velocity, type) {
         super(position, size, velocity); // 设定一个默认的炮弹大小为5x5
@@ -20,8 +26,7 @@ class Gel extends Entity {
         let length = this.velocity.scale(deltaTime).magnitude();
         let direction = this.velocity.normalize();
         for (let i = 0; i < length; ++i) {
-            if (this.checkPortal(direction))
-            {
+            if (this.checkPortal(direction)) {
                 direction = this.velocity.normalize();
                 continue;
             }
@@ -32,6 +37,7 @@ class Gel extends Entity {
                 if (edge.hitbox.contains(centeredPosition)) {
                     centeredPosition = fixPosition(centeredPosition, edge);
                     this.hitbox.position.subVector(this.hitbox.size.scale(0.5));
+                    window.$game.view.gelledEdgeList.addEdge(this.type, centeredPosition, edge);
                     this.destroy();
                     return;
                 }
@@ -51,7 +57,7 @@ class Gel extends Entity {
         this.destroyed = true;
     }
     draw() {
-        window.$game.ctx.fillStyle = 'rgba(0, 100, 255, 1)';
+        window.$game.ctx.fillStyle = Gel.gelColors[this.type];
         window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
     }
 }
@@ -66,9 +72,8 @@ class GelDispenser {
         deltaTime = 60 * deltaTime / 1000;
         let dels = [];
         this.now = Math.max(0, this.now - deltaTime);
-        if (this.now == 0)
-        {
-            this.gels.push(new Gel(new Vector(13 * basicSize, 5 * basicSize), Gel.gelSize, new Vector(5, 0), 1));
+        if (this.now == 0) {
+            this.gels.push(new Gel(new Vector(13 * basicSize, 5 * basicSize), Gel.gelSize, new Vector(5, 0), Math.floor(Math.random() * 3) + 1));
             this.now = this.bufferTime;
         }
         for (let i of this.gels) {
@@ -82,17 +87,65 @@ class GelDispenser {
             i.draw();
     }
 }
-class GelledEdge {
-    constructor(position, edge) {
-
-        const edgeSize = edge.hitbox.size
-
-        const edgeLength = edge.facing & 1 ? edgeSize.y : edgeSize.x;
-        const portalLength = edge.facing & 1 ? portalSize.y : portalSize.x;
-
-        const leftUp = position.addVector(Portal.portalDirection[edge.facing]);
-        const rightDown = leftUp.addVector(Portal.portalSize[edge.facing & 1]);
-
-
+class GelledEdge extends Edge {
+    constructor(type, position, size, facing) {
+        super(type, position, size, facing);
+    }
+    draw() {
+        window.$game.ctx.fillStyle = Gel.gelColors[this.type];
+        window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
+    }
+}
+class GelledEdgeList {
+    constructor() {
+        this.gelledEdges = [];
+    }
+    addEdge(type, position, edge) {
+        let dels = [];
+        let adds = [];
+        let newEdge = new GelledEdge(type, position.addVector(Portal.portalDirection[ edge.facing ]), Portal.portalSize[ edge.facing & 1 ], edge.facing);
+        newEdge.hitbox = newEdge.hitbox.clip(edge.hitbox);
+        for (let i of this.gelledEdges) {
+            if (i.facing == newEdge.facing && i.hitbox.hit(newEdge.hitbox)) {
+                if (i.type == type) {
+                    dels.push(i);
+                    newEdge.hitbox = newEdge.hitbox.merge(i.hitbox);
+                } else {
+                    dels.push(i);
+                    let leftUp = newEdge.hitbox.getTopLeft();
+                    let rightDown = newEdge.hitbox.getBottomRight();
+                    let leftDown = new Vector(leftUp.x, rightDown.y);
+                    let rightUp = new Vector(rightDown.x, leftUp.y);
+                    let newEdge1 = null, newEdge2 = null;
+                    if (newEdge.facing & 1) {
+                        if (createHitbox(i.hitbox.getTopLeft(), rightDown))
+                            newEdge1 = new GelledEdge(i.type, i.hitbox.getTopLeft(), rightUp.subVector(i.hitbox.getTopLeft()), i.facing);
+                        if (createHitbox(leftDown, i.hitbox.getBottomRight()))
+                            newEdge2 = new GelledEdge(i.type, leftDown, i.hitbox.getBottomRight().subVector(leftDown), i.facing);
+                    }
+                    else {
+                        if (createHitbox(i.hitbox.getTopLeft(), leftDown))
+                            newEdge1 = new GelledEdge(i.type, i.hitbox.getTopLeft(), leftDown.subVector(i.hitbox.getTopLeft()), i.facing);
+                        if (createHitbox(rightUp, i.hitbox.getBottomRight()))
+                            newEdge2 = new GelledEdge(i.type, rightUp, i.hitbox.getBottomRight().subVector(rightUp), i.facing);
+                    }
+                    if (newEdge1)
+                        adds.push(newEdge1);
+                    if (newEdge2) {
+                        adds.push(newEdge2);
+                    }
+                }
+            }
+        }
+        adds.push(newEdge);
+        this.gelledEdges = this.gelledEdges.filter(i => !dels.includes(i));
+        for (let i of adds) {
+            this.gelledEdges.push(i);
+        }
+    }
+    draw() {
+        for (let i of this.gelledEdges) {
+            i.draw();
+        }
     }
 }
