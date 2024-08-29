@@ -20,7 +20,7 @@ class Door extends Tile {
 
     onActivate() {
         console.debug("Door: activated")
-        this.hitbox = new Hitbox(new Vector(), new Vector());
+        this.hitbox = new Hitbox(new Vector(), new Vector(1, 1));
     }
 
     onDeactivate() {
