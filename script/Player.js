@@ -85,9 +85,9 @@ class Player extends Entity {
             },
             true
         );
-        if (this.jumping.isJumping) {
+        if (this.jumping.jumpVelocity > 0) {
             this.animation.setStatus("jump", this.facing);
-        } else if (!this.isOnGround() && this.jumping.isFalling) {
+        } else if (!this.isOnGround() && this.jumping.jumpVelocity < 0) {
             this.animation.setStatus("fall", this.facing);
         } else {
             if (move) {

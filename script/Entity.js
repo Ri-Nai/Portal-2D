@@ -247,7 +247,7 @@ class Entity {
             this.hitbox.position.addEqual(delta);
             if (this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[ 0 ], () => { })) {
                 if (this.isOnGround()) {
-                    this.jumping.coyoteTimer = this.jumping.coyoteTime * 1.5; // 重置coyote时间
+                    this.jumping.coyoteTimer = this.jumping.coyoteTime * 1; // 重置coyote时间
                     this.jumping.times = 1.5;
                     this.jumping.isJumping = false;
                 }

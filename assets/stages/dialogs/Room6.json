@@ -1,0 +1,7 @@
+window.$game.dataManager.resolve(
+{
+    "texts" : [
+        "【要乐奈】好远，看看能不能直接飞过去",
+    ]
+}
+)

@@ -1,0 +1,8 @@
+window.$game.dataManager.resolve(
+{
+    "texts" : [
+        "【要乐奈】这次能飞的地方更矮了",
+        "【要乐奈】看看能不能借助中间的平台",
+    ]
+}
+)

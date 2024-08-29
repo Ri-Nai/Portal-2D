@@ -76,12 +76,12 @@ def fill_edge():
             }
         })
     def make_edge_y(diff):
-        for i in range(1, 19):
+        for i in range(1, 20):
             # 遍历每一行
             # 求出所有露出的块，且相连
             flag = False
             last = 0
-            for j in range(1, 33):
+            for j in range(1, 34):
                 type = B[i][j - 1]
                 facing = (1 + diff) // 2 * 2
                 if B[i][j] <= 0 or B[i + diff][j] > 0:
@@ -98,10 +98,10 @@ def fill_edge():
                         last = j
                     flag = True
     def make_edge_x(diff):
-        for i in range(1, 33):
+        for i in range(1, 34):
             flag = False
             last = 0
-            for j in range(1, 19):
+            for j in range(1, 20):
                 type = B[j - 1][i]
                 facing = (1 + diff) // 2 * 2 + 1
                 if B[j][i] <= 0 or B[j][i + diff] > 0:
@@ -129,9 +129,7 @@ def get_events():
     for i in range(len(C)):
         for j in range(len(C[i])):
             if np.isnan(C[i][j]):
-                C[i][j] = 0  # 将 NaN 转换为 0
-            else:
-                C[i][j] = int(C[i][j])  # 将浮点数转换为整数
+                C[i][j] = 0  # 将 NaN 转换为 0 # 将浮点数转换为整数
         while (len(C[i]) < 32):
             C[i].append(0)
     while (len(C) < 18):
@@ -238,10 +236,11 @@ def get_events():
             x = (rect[f][0] + rect[f][2]) // 2
             y = (rect[f][1] + rect[f][3]) // 2
             print(i, j, f, rect[f], x, y)
-            if C[x][y] == 1:
+            if C[x][y] == 1 or C[x][y] == 1.5:
                 bfs(x + 1, y, 2)
-                events[get_event_name(x, y)] = get_event(C[x][y], x, y, [get_event_name(x + 1, y)])
-                events[get_event_name(x, y)]["position"]["x"] -= basicSize // 2;
+                events[get_event_name(x, y)] = get_event(int(C[x][y]), x, y, [get_event_name(x + 1, y)])
+                if C[x][y] == 1 :
+                    events[get_event_name(x, y)]["position"]["x"] -= basicSize // 2;
                 events[get_event_name(x, y)]["size"]["x"] += basicSize;
             else:
                 events[get_event_name(x, y)] = get_event(C[x][y], x, y, [])

@@ -1,0 +1,7 @@
+window.$game.dataManager.resolve(
+{
+    "texts" : [
+
+    ]
+}
+)
