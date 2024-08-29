@@ -53,9 +53,34 @@ class Portal extends Edge {
             if (this.type == -1)
                 return;
             let color = this.type ? "orange" : "red";
-            window.$game.ctx.fillStyle = color;
-            window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
-            // window.$game.ctx.drawImage(/*TODO:*/, position.x + i, position.j, basicSize,);
+            if (!this.type || this.facing != 3) {
+                window.$game.ctx.fillStyle = color;
+                window.$game.ctx.fillRect(
+                    this.hitbox.position.x,
+                    this.hitbox.position.y,
+                    this.hitbox.size.x,
+                    this.hitbox.size.y
+            );
+                return ;
+            }
+            window.$game.ctx.drawImage(
+                window.$game.textureManager.getTexture("portals", `${this.type}-in-${this.facing}`),
+                20, 0,
+                20, 80,
+                this.hitbox.position.x,
+                this.hitbox.position.y,
+                this.hitbox.size.x,
+                this.hitbox.size.y
+            );
+        window.$game.ctx.drawImage(
+            window.$game.textureManager.getTexture("portals", `${this.type}-out-${this.facing}`),
+            0, 0,
+            20, 80,
+            this.hitbox.position.x + this.hitbox.size.x,
+            this.hitbox.position.y,
+            this.hitbox.size.x,
+            this.hitbox.size.y
+        );
     }
 
     /**
