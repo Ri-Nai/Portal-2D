@@ -15,8 +15,8 @@ window.$game.dataManager.resolve(
         "2" : "./assets/imgs/textures/blocks/White.png",
     },
     "portals": {
-        "1" : "./assets/imgs/textures/blocks/Black.png",
-        "2" : "./assets/imgs/textures/blocks/White.png",
+        "1-in-3" : "./assets/imgs/textures/portals/orange-portal-inner-3.png",
+        "1-out-3" : "./assets/imgs/textures/portals/orange-portal-outside-3.png",
     },
     "entities": {
         "1" : "./assets/imgs/textures/entities/companion-cube.png",
@@ -59,6 +59,7 @@ window.$game.dataManager.resolve(
     "stand" : {
         "1" : "./assets/imgs/textures/player/runs/right/run3.png",
         "-1" : "./assets/imgs/textures/player/runs/left/run3.png",
-    }
+    },
+
 }
 )
