@@ -115,6 +115,6 @@ for (var i = 0; i < timeStamp.length; i++) {
     var differTime = stamptime - currentTime; // 延迟时间(秒)
     // 如果延迟时间小于0,表示该时间戳已过去,不需要执行
     if (differTime > 0) {
-            setTimeout(releaseNote, delayTime * 1000);
+            setTimeout(releaseNote(trackStamp[i]), delayTime * 1000);
     }
 }
