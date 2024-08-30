@@ -5,7 +5,7 @@ class PortalGun {
     direction;
 
     constructor() {
-        this.status = [false, false];
+        this.status = [ false, false ];
         this.direction = new Vector(1, 0);
         this.prev = 0;
 
@@ -16,7 +16,7 @@ class PortalGun {
         this.target = 0;
 
         this.flyingType = 0;
-        this.COLOR = ["blue", "orange"];
+        this.COLOR = [ "blue", "orange" ];
         this.edge = null;
     }
 
@@ -40,7 +40,7 @@ class PortalGun {
     shot(player, type, t) {
         const frameRatio = (t.interval / 1000) * 60;
         const SPEED = 10;
-        if (this.status[type]) {
+        if (this.status[ type ]) {
             return;
         }
 
@@ -60,7 +60,7 @@ class PortalGun {
         if (!this.isShot) {
             return;
         }
-        window.$game.ctx.fillStyle = this.COLOR[this.flyingType];
+        window.$game.ctx.fillStyle = this.COLOR[ this.flyingType ];
         window.$game.ctx.fillRect(this.position.x, this.position.y, 4, 4);
 
         /**
@@ -68,8 +68,9 @@ class PortalGun {
          */
         const edges = window.$game.map.edges;
         const blocks = window.$game.map.blocks;
-        const gelledEdgeList = window.$game.view.gelledEdgeList.gelledEdges[2];
+        const gelledEdgeList = window.$game.view.gelledEdgeList.gelledEdges[ 2 ];
 
+        let validEdges = edges.filter((edge) => { return edge.type == 2; });
         for (let i = 0; i < this.target; i++) {
             this.position.addEqual(this.direction);
 
@@ -92,10 +93,12 @@ class PortalGun {
                 if (edge.hitbox.contains(this.position)) {
                     this.isShot = false;
                     this.isHit = true;
-                    if (done && this.edge.type != 2) {
-                        this.edge = edge;
-                        this.position = fixPosition(this.position, edge);
-                    }
+                    let newEdge = new Edge(edge.type, edge.hitbox.position.copy(), edge.hitbox.size.copy(), edge.facing);
+                    for (let valid of validEdges)
+                        if (valid.facing == newEdge.facing && valid.hitbox.hit(newEdge.hitbox))
+                            newEdge.hitbox = newEdge.hitbox.merge(valid.hitbox);
+                    this.edge = newEdge;
+                    this.position = fixPosition(this.position, edge);
                     done = true;
                     break;
                 }
@@ -136,5 +139,5 @@ const fixPosition = (position, edge) => {
         new Vector(position.x, edge.hitbox.getBottomRight().y),
         new Vector(edge.hitbox.getBottomRight().x, position.y),
     ];
-    return fix[edge.facing];
+    return fix[ edge.facing ];
 };

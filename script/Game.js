@@ -60,12 +60,12 @@ class Game {
         this.backBtn.addEventListener('click', () => { window.location.href = './start.html'; })
     }
 
-    async init(filename = 'Room11.json') {
+    async init(filename = 'Room13.json') {
         await this.textureManager.load();
         await this.load(filename);
     }
 
-    async load(filename = 'Room11.json') {
+    async load(filename = 'Room13.json') {
         await this.map.loadFromURL('./assets/stages/maps/' + filename);
         await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
         await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);
