@@ -69,6 +69,7 @@ class Portal extends Edge {
         //20, 0, 20, 80
         let positionX = (this.facing >> 1) * (this.facing & 1) * halfSize;
         let positionY = (this.facing >> 1) * (this.facing & 1  ^ 1) * halfSize;
+        // positionY -= (this.facing & 1 ^ 1) * halfSize * Portal.unitDirection[ this.facing ].y;
         //0, 0, 80, 40
         //0, 0, 40, 80
         //0, 0, 80, 40
