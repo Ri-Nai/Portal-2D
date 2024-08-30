@@ -10,6 +10,9 @@ window.$game.dataManager.resolve(
         "1" : "./assets/imgs/textures/blocks/black-floor.png",
         "2" : "./assets/imgs/textures/blocks/white-wall1.png",
         "3" : "./assets/imgs/textures/blocks/black-wall.png",
+        "11" : "./assets/imgs/textures/blocks/window1.png",
+        "12" : "./assets/imgs/textures/blocks/window2.png",
+        "13" : "./assets/imgs/textures/blocks/window3.png",
     },
     "edges": {
         "1" : "./assets/imgs/textures/blocks/Black.png",

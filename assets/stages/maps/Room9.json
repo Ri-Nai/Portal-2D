@@ -756,6 +756,18 @@ window.$game.dataManager.resolve(
         },
         {
             "type": 1,
+            "facing": 3,
+            "position": {
+                "y": 560,
+                "x": 1260
+            },
+            "size": {
+                "y": 160,
+                "x": 20
+            }
+        },
+        {
+            "type": 1,
             "facing": 2,
             "position": {
                 "x": 80,
@@ -815,6 +827,18 @@ window.$game.dataManager.resolve(
             }
         },
         {
+            "type": 1,
+            "facing": 2,
+            "position": {
+                "x": 1200,
+                "y": 380
+            },
+            "size": {
+                "x": 80,
+                "y": 20
+            }
+        },
+        {
             "type": 2,
             "facing": 2,
             "position": {
@@ -848,6 +872,30 @@ window.$game.dataManager.resolve(
             "size": {
                 "x": 80,
                 "y": 20
+            }
+        },
+        {
+            "type": 1,
+            "facing": 2,
+            "position": {
+                "x": 0,
+                "y": 700
+            },
+            "size": {
+                "x": 1280,
+                "y": 20
+            }
+        },
+        {
+            "type": 1,
+            "facing": 1,
+            "position": {
+                "y": 0,
+                "x": 0
+            },
+            "size": {
+                "y": 720,
+                "x": 20
             }
         },
         {
@@ -938,6 +986,18 @@ window.$game.dataManager.resolve(
             "type": 1,
             "facing": 0,
             "position": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1280,
+                "y": 20
+            }
+        },
+        {
+            "type": 1,
+            "facing": 0,
+            "position": {
                 "x": 360,
                 "y": 280
             },
@@ -1003,6 +1063,18 @@ window.$game.dataManager.resolve(
             },
             "size": {
                 "x": 40,
+                "y": 20
+            }
+        },
+        {
+            "type": 1,
+            "facing": 0,
+            "position": {
+                "x": 1200,
+                "y": 560
+            },
+            "size": {
+                "x": 80,
                 "y": 20
             }
         },
