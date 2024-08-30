@@ -49,37 +49,48 @@ class Portal extends Edge {
 
     }
     draw() {
-            // window.$game.ctx.fillStyle = `rgba(114, 14, 233, 1)`;
-            if (this.type == -1)
-                return;
-            let color = this.type ? "orange" : "red";
-            if (!this.type || this.facing != 3) {
-                window.$game.ctx.fillStyle = color;
-                window.$game.ctx.fillRect(
-                    this.hitbox.position.x,
-                    this.hitbox.position.y,
-                    this.hitbox.size.x,
-                    this.hitbox.size.y
-            );
-                return ;
-            }
-            window.$game.ctx.drawImage(
-                window.$game.textureManager.getTexture("portals", `${this.type}-in-${this.facing}`),
-                20, 0,
-                20, 80,
-                this.hitbox.position.x,
-                this.hitbox.position.y,
-                this.hitbox.size.x,
-                this.hitbox.size.y
-            );
+        // window.$game.ctx.fillStyle = `rgba(114, 14, 233, 1)`;
+        if (this.type == -1)
+            return;
+        let color = this.type ? "orange" : "red";
+        // if (!this.type || this.facing != 3) {
+            // window.$game.ctx.fillStyle = color;
+            // window.$game.ctx.fillRect(
+                // this.hitbox.position.x,
+                // this.hitbox.position.y,
+                // this.hitbox.size.x,
+                // this.hitbox.size.y
+            // );
+            // return;
+        // }
+        //0, 0, 80, 20
+        //0, 0, 20, 80
+        //0, 20, 80, 20
+        //20, 0, 20, 80
+        let positionX = (this.facing >> 1) * (this.facing & 1) * halfSize;
+        let positionY = (this.facing >> 1) * (this.facing & 1  ^ 1) * halfSize;
+        // positionY -= (this.facing & 1 ^ 1) * halfSize * Portal.unitDirection[ this.facing ].y;
+        //0, 0, 80, 40
+        //0, 0, 40, 80
+        //0, 0, 80, 40
+        //0, 0, 40, 80
         window.$game.ctx.drawImage(
-            window.$game.textureManager.getTexture("portals", `${this.type}-out-${this.facing}`),
-            0, 0,
-            20, 80,
-            this.hitbox.position.x + this.hitbox.size.x,
+            window.$game.textureManager.getTexture("portals", `${this.type}-in-${this.facing}`),
+            positionX, positionY,
+            this.hitbox.size.x, this.hitbox.size.y,
+            this.hitbox.position.x,
             this.hitbox.position.y,
             this.hitbox.size.x,
             this.hitbox.size.y
+        );
+        let sizeX = (this.facing & 1 ^ 1) * basicSize + basicSize;
+        let sizeY = (this.facing & 1) * basicSize + basicSize;
+        window.$game.ctx.drawImage(
+            window.$game.textureManager.getTexture("portals", `${this.type}-out-${this.facing}`),
+            0, 0, sizeX, sizeY,
+            this.hitbox.position.x + Portal.unitDirection[ this.facing ].x * halfSize * (2 - (this.facing >> 1)),
+            this.hitbox.position.y + Portal.unitDirection[ this.facing ].y * halfSize * (2 - (this.facing >> 1)),
+            sizeX, sizeY
         );
     }
 
@@ -89,23 +100,23 @@ class Portal extends Edge {
      * @param {Portal} anotherPortal
      */
     static valid(position, edge, anotherPortal) {
-        const portalSize = Portal.portalSize[edge.facing & 1];
+        const portalSize = Portal.portalSize[ edge.facing & 1 ];
         if (edge.type != 2)
             return false;
-        const edgeSize = edge.hitbox.size
+        const edgeSize = edge.hitbox.size;
 
         const edgeLength = edge.facing & 1 ? edgeSize.y : edgeSize.x;
         const portalLength = edge.facing & 1 ? portalSize.y : portalSize.x;
 
-        const leftUp = position.addVector(Portal.portalDirection[edge.facing]);
-        const rightDown = leftUp.addVector(Portal.portalSize[edge.facing & 1]);
+        const leftUp = position.addVector(Portal.portalDirection[ edge.facing ]);
+        const rightDown = leftUp.addVector(Portal.portalSize[ edge.facing & 1 ]);
 
         if (anotherPortal.type === -1) {
             return edgeLength >= portalLength;
         }
 
         const hitAnother = anotherPortal.hitbox.contains(leftUp)
-            || anotherPortal.hitbox.contains(rightDown)
+            || anotherPortal.hitbox.contains(rightDown);
 
         return edgeLength >= portalLength && !hitAnother;
     }
@@ -116,8 +127,8 @@ class Portal extends Edge {
      * @param {Edge} edge
      */
     static fixPosition(position, edge) {
-        const leftUp = position.addVector(Portal.portalDirection[edge.facing]);
-        const rightDown = leftUp.addVector(Portal.portalSize[edge.facing & 1]);
+        const leftUp = position.addVector(Portal.portalDirection[ edge.facing ]);
+        const rightDown = leftUp.addVector(Portal.portalSize[ edge.facing & 1 ]);
 
         // console.debug(leftUp, rightDown, edge.hitbox);
 
@@ -126,7 +137,7 @@ class Portal extends Edge {
         }
 
         if (edge.hitbox.contains(rightDown)) {
-            return edge.hitbox.position.subVector(Portal.portalDirection[edge.facing]);
+            return edge.hitbox.position.subVector(Portal.portalDirection[ edge.facing ]);
         }
 
         else {
@@ -136,7 +147,7 @@ class Portal extends Edge {
                 new Vector(-this.portalRadius, 0),
                 new Vector(0, -this.portalRadius)
             ];
-            return edge.hitbox.position.addVector(edge.hitbox.size).addVector(delta[edge.facing]);
+            return edge.hitbox.position.addVector(edge.hitbox.size).addVector(delta[ edge.facing ]);
         }
     }
 }

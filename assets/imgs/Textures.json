@@ -19,8 +19,24 @@ window.$game.dataManager.resolve(
         "2" : "./assets/imgs/textures/blocks/White.png",
     },
     "portals": {
+        "1-in-0" : "./assets/imgs/textures/portals/orange-portal-inner-0.png",
+        "1-out-0" : "./assets/imgs/textures/portals/orange-portal-outside-0.png",
+        "1-in-1" : "./assets/imgs/textures/portals/orange-portal-inner-1.png",
+        "1-out-1" : "./assets/imgs/textures/portals/orange-portal-outside-1.png",
+        "1-in-2" : "./assets/imgs/textures/portals/orange-portal-inner-2.png",
+        "1-out-2" : "./assets/imgs/textures/portals/orange-portal-outside-2.png",
         "1-in-3" : "./assets/imgs/textures/portals/orange-portal-inner-3.png",
         "1-out-3" : "./assets/imgs/textures/portals/orange-portal-outside-3.png",
+
+        "0-in-0" : "./assets/imgs/textures/portals/blue-portal-inner-0.png",
+        "0-out-0" : "./assets/imgs/textures/portals/blue-portal-outside-0.png",
+
+        "0-in-1" : "./assets/imgs/textures/portals/blue-portal-inner-1.png",
+        "0-out-1" : "./assets/imgs/textures/portals/blue-portal-outside-1.png",
+
+        "0-in-2" : "./assets/imgs/textures/portals/blue-portal-inner-2.png",
+        "0-out-2" : "./assets/imgs/textures/portals/blue-portal-outside-2.png",
+
         "0-in-3" : "./assets/imgs/textures/portals/blue-portal-inner-3.png",
         "0-out-3" : "./assets/imgs/textures/portals/blue-portal-outside-3.png",
     },
