@@ -7,8 +7,9 @@ window.$game.dataManager.resolve(
         "1" : "./assets/imgs/textures/background-textures/white_floor.png",
     },
     "blocks": {
-        "1" : "./assets/imgs/textures/blocks/black-wall11.png",
+        "1" : "./assets/imgs/textures/blocks/black-floor.png",
         "2" : "./assets/imgs/textures/blocks/white-wall1.png",
+        "3" : "./assets/imgs/textures/blocks/black-wall.png",
     },
     "edges": {
         "1" : "./assets/imgs/textures/blocks/Black.png",
@@ -17,6 +18,8 @@ window.$game.dataManager.resolve(
     "portals": {
         "1-in-3" : "./assets/imgs/textures/portals/orange-portal-inner-3.png",
         "1-out-3" : "./assets/imgs/textures/portals/orange-portal-outside-3.png",
+        "0-in-3" : "./assets/imgs/textures/portals/blue-portal-inner-3.png",
+        "0-out-3" : "./assets/imgs/textures/portals/blue-portal-outside-3.png",
     },
     "entities": {
         "1" : "./assets/imgs/textures/entities/companion-cube.png",
