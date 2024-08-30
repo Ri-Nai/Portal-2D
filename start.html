@@ -54,6 +54,10 @@
             document.querySelector("#about").addEventListener("click", () => {
                 window.location.href = `./pages/about-us/index.htm`;
             });
+            document.querySelector("#exit").addEventListener("click", () => {
+                Auth.logout();
+                Auth.toLogin()
+            });
         }
     </script>
 </body>
