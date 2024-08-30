@@ -41,8 +41,7 @@ class View {
      */
     renderings = [];
 
-    constructor(map) {
-        this.map = map;
+    constructor() {
     }
 
     async load() {
@@ -68,7 +67,9 @@ class View {
 
 class PortalView extends View {
     constructor(map, viewData) {
-        super(map);
+        super();
+
+        this.map = map;
 
         this.cubes = [];
         this.gelDispensers = [];
