@@ -117,7 +117,7 @@ class DialogManager {
                 while (
                     await (async () => {
                         await delay(100);
-                        return !getEnd();
+                        return !getEnd() && !window.$game.inputManager.isKeyDown("Ctrl");
                     })()
                 );
             else await delay(100);

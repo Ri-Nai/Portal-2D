@@ -1,11 +1,5 @@
 class InputManager {
-    isHeld = {
-        "E" : false,
-        "Space" : false,
-        "Enter" : false,
-        "ClickLeft" : false,
-        "ClickRight" : false,
-    }
+
     /**
      *
      * @param {KeyboardManager} keyboard
@@ -14,6 +8,14 @@ class InputManager {
     constructor(keyboard, mouse) {
         this.keyboard = keyboard;
         this.mouse = mouse;
+        this.isHeld = {
+            "E" : false,
+            "Space" : false,
+            "Enter" : false,
+            "ClickLeft" : false,
+            "ClickRight" : false,
+            "Ctrl" : false,
+        }
     }
     isKeyDown(key) {
         if (key == "ClickLeft")
