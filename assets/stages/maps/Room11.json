@@ -1049,6 +1049,200 @@ window.$game.dataManager.resolve(
             }
         }
     ],
+    "super_edges": [
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 120,
+                "x": 60
+            },
+            "size": {
+                "y": 440,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 0,
+                "x": 340
+            },
+            "size": {
+                "y": 120,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 440,
+                "x": 420
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 0,
+                "x": 1260
+            },
+            "size": {
+                "y": 720,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 80,
+                "y": 100
+            },
+            "size": {
+                "x": 280,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 440,
+                "y": 100
+            },
+            "size": {
+                "x": 760,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 360,
+                "y": 460
+            },
+            "size": {
+                "x": 80,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 0,
+                "y": 700
+            },
+            "size": {
+                "x": 1280,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 0,
+                "x": 0
+            },
+            "size": {
+                "y": 720,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 440,
+                "x": 360
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 0,
+                "x": 440
+            },
+            "size": {
+                "y": 120,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 120,
+                "x": 1200
+            },
+            "size": {
+                "y": 440,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 360,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 440,
+                "y": 0
+            },
+            "size": {
+                "x": 840,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 360,
+                "y": 440
+            },
+            "size": {
+                "x": 80,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 80,
+                "y": 560
+            },
+            "size": {
+                "x": 1120,
+                "y": 20
+            }
+        }
+    ],
     "events": {
         "event-area-09-00": {
             "type": 3.0,

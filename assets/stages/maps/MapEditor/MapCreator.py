@@ -27,6 +27,7 @@ layer_edge = 5
 layers = [{"tiles" : [], "opacity" : 1} for i in range(6)]
 blocks = []
 edges = []
+super_edges = []
 def fill_block():
     for i in range(18):
         len = 0
@@ -60,7 +61,12 @@ def fill_edge():
     print(B)
     def write_seg(i, j, last, type, facing, diff, axis):
         now_pos = (i - 1) * basicSize + (1 + diff) * basicSize // 4
-        edges.append(
+        arr_edges = []
+        if type == -1:
+            arr_edges = super_edges
+        else:
+            arr_edges = edges
+        arr_edges.append(
         {
             "type" : type,
             "facing": facing,
@@ -80,40 +86,46 @@ def fill_edge():
             # 遍历每一行
             # 求出所有露出的块，且相连
             flag = False
-            last = 0
+            last_normal = 0
+            last_super = 0
             for j in range(1, 34):
                 type = B[i][j - 1]
                 facing = (1 + diff) // 2 * 2
                 if B[i][j] <= 0 or B[i + diff][j] > 0:
                     # 非露出
                     if flag and type > 0:
-                        # draw j - 1 ~ last
-                        write_seg(i, j, last, type, facing, diff, 0)
+                        # draw j - 1 ~ last_normal
+                        write_seg(i, j, last_normal, type, facing, diff, 0)
+                        write_seg(i, j, last_super, -1, facing, diff, 0)
                     flag = False
                 else:
                     if not flag:
-                        last = j
+                        last_normal = j
+                        last_super = j
                     elif B[i][j] != B[i][j - 1] and type > 0:
-                        write_seg(i, j, last, type, facing, diff, 0)
-                        last = j
+                        write_seg(i, j, last_normal, type, facing, diff, 0)
+                        last_normal = j
                     flag = True
     def make_edge_x(diff):
         for i in range(1, 34):
             flag = False
-            last = 0
+            last_normal = 0
+            last_super = 0
             for j in range(1, 20):
                 type = B[j - 1][i]
                 facing = (1 + diff) // 2 * 2 + 1
                 if B[j][i] <= 0 or B[j][i + diff] > 0:
                     if flag and type > 0:
-                        write_seg(i, j, last, type, facing, diff, 1)
+                        write_seg(i, j, last_normal, type, facing, diff, 1)
+                        write_seg(i, j, last_super, -1, facing, diff, 1)
                     flag = False
                 else:
                     if not flag:
-                        last = j
+                        last_normal = j
+                        last_super = j
                     elif B[j][i] != B[j - 1][i] and type > 0:
-                        write_seg(i, j, last, type, facing, diff, 1)
-                        last = j
+                        write_seg(i, j, last_normal, type, facing, diff, 1)
+                        last_normal = j
                     flag = True
     make_edge_x(1)
     make_edge_y(1)
@@ -254,7 +266,7 @@ def get_events():
                     events[get_event_name(x, y)]["toUrl"] =  f"{name}{number + 1}.json"
     return events
 
-answer = {"layers" : layers, "blocks" : blocks, "edges" : edges, "events" : get_events()}
+answer = {"layers" : layers, "blocks" : blocks, "edges" : edges, "super_edges" : super_edges, "events" : get_events()}
 s = json.dumps(answer, indent = 4)
 with open(os.path.join(father, name + ".json"), "w") as f:
     f.write("window.$game.dataManager.resolve(\n" + s + '\n)\n')

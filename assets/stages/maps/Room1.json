@@ -1161,6 +1161,200 @@ window.$game.dataManager.resolve(
             }
         }
     ],
+    "super_edges": [
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 200,
+                "x": 300
+            },
+            "size": {
+                "y": 360,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 0,
+                "x": 1260
+            },
+            "size": {
+                "y": 480,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 560,
+                "x": 1260
+            },
+            "size": {
+                "y": 160,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 320,
+                "y": 180
+            },
+            "size": {
+                "x": 520,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 840,
+                "y": 300
+            },
+            "size": {
+                "x": 40,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 880,
+                "y": 340
+            },
+            "size": {
+                "x": 40,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 920,
+                "y": 380
+            },
+            "size": {
+                "x": 40,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 960,
+                "y": 460
+            },
+            "size": {
+                "x": 320,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 0,
+                "y": 700
+            },
+            "size": {
+                "x": 1280,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 0,
+                "x": 0
+            },
+            "size": {
+                "y": 720,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 200,
+                "x": 840
+            },
+            "size": {
+                "y": 120,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 320,
+                "x": 880
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 360,
+                "x": 920
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 400,
+                "x": 960
+            },
+            "size": {
+                "y": 80,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1280,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 320,
+                "y": 560
+            },
+            "size": {
+                "x": 960,
+                "y": 20
+            }
+        }
+    ],
     "events": {
         "event-area-31-12": {
             "type": 3.0,

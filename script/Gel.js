@@ -1,5 +1,5 @@
 class Gel extends Entity {
-    static gelColors = ["blue","orange","white"]
+    static gelColors = [ "blue", "orange", "white" ];
 
     static gelSize = new Vector(0.8 * basicSize, 0.8 * basicSize);
     constructor(position, size, velocity, type) {
@@ -29,7 +29,7 @@ class Gel extends Entity {
             this.hitbox.position.addEqual(direction);
 
             let centeredPosition = this.hitbox.getCenter();
-            for (let edge of window.$game.map.edges) {
+            for (let edge of window.$game.map.superEdges) {
                 if (edge.hitbox.contains(centeredPosition)) {
                     centeredPosition = fixPosition(centeredPosition, edge);
                     this.hitbox.position.subVector(this.hitbox.size.scale(0.5));
@@ -53,7 +53,7 @@ class Gel extends Entity {
         this.destroyed = true;
     }
     draw() {
-        window.$game.ctx.fillStyle = Gel.gelColors[this.type];
+        window.$game.ctx.fillStyle = Gel.gelColors[ this.type ];
         window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
     }
 }
@@ -70,7 +70,7 @@ class GelDispenser {
         this.position = position;
         this.facing = facing;
         this.times = times;
-        this.shootPosition = position.addVector(GelDispenser.shootOffset[facing]);
+        this.shootPosition = position.addVector(GelDispenser.shootOffset[ facing ]);
         this.gels = [];
         this.bufferTime = 60;
         this.now = 0;
@@ -86,7 +86,7 @@ class GelDispenser {
         let dels = [];
         this.now = Math.max(0, this.now - deltaTime);
         if (this.now == 0) {
-            this.gels.push(new Gel(this.shootPosition.copy(), Gel.gelSize, Portal.unitDirection[this.facing].scale(this.times), this.getType()));
+            this.gels.push(new Gel(this.shootPosition.copy(), Gel.gelSize, Portal.unitDirection[ this.facing ].scale(this.times), this.getType()));
             this.now = this.bufferTime;
         }
         for (let i of this.gels) {
@@ -96,7 +96,7 @@ class GelDispenser {
         this.gels = this.gels.filter(i => !dels.includes(i));
     }
     draw() {
-        window.$game.ctx.fillStyle = Gel.gelColors[this.type];
+        window.$game.ctx.fillStyle = Gel.gelColors[ this.type ];
         window.$game.ctx.fillRect(this.position.x, this.position.y, GelDispenser.gelDispenserX, GelDispenser.gelDispenserY);
         for (let i of this.gels)
             i.draw();
@@ -107,27 +107,55 @@ class GelledEdge extends Edge {
         super(type, position, size, facing);
     }
     draw() {
-        window.$game.ctx.fillStyle = Gel.gelColors[this.type];
-        window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
+        let TYPE = 0;
+        if (TYPE == 0) {
+            if (this.facing & 1) {
+                for (let i = 0; i < this.hitbox.size.y; i += basicSize) {
+                    let sizeY = Math.min(basicSize, this.hitbox.size.y - i);
+                    window.$game.ctx.drawImage(
+                        window.$game.textureManager.getTexture("gelledEdges", `${TYPE}-${this.facing}`),
+                        0, 0, basicSize, sizeY,
+                        this.hitbox.position.x - (this.facing >> 1) * halfSize - offsetSize,
+                        this.hitbox.position.y + i - offsetSize,
+                        basicSize + 2 * offsetSize, sizeY + 2 * offsetSize
+                    );
+                }
+            }
+            else for (let i = 0; i < this.hitbox.size.x; i += basicSize) {
+                let sizeX = Math.min(basicSize, this.hitbox.size.x - i);
+                window.$game.ctx.drawImage(
+                    window.$game.textureManager.getTexture("gelledEdges", `${TYPE}-${this.facing}`),
+                    0, 0, sizeX, basicSize,
+                    this.hitbox.position.x + i - offsetSize,
+                    this.hitbox.position.y - (this.facing >> 1) * halfSize - offsetSize,
+                    sizeX + 2 * offsetSize, basicSize + 2 * offsetSize
+                );
+            }
+        }
+        else {
+            window.$game.ctx.fillStyle = Gel.gelColors[this.type];
+            window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
+        }
+
     }
 }
 class GelledEdgeList {
     constructor() {
-        this.gelledEdges = [[], [], []];
+        this.gelledEdges = [ [], [], [] ];
     }
     addEdge(type, position, edge) {
-        let dels = [[], [], []];
-        let adds = [[], [], []];
+        let dels = [ [], [], [] ];
+        let adds = [ [], [], [] ];
         let newEdge = new GelledEdge(type, position.addVector(Portal.portalDirection[ edge.facing ]), Portal.portalSize[ edge.facing & 1 ], edge.facing);
         newEdge.hitbox = newEdge.hitbox.clip(edge.hitbox);
         for (let now = 0; now < 3; ++now) {
-            for (let i of this.gelledEdges[now]) {
+            for (let i of this.gelledEdges[ now ]) {
                 if (i.facing == newEdge.facing && i.hitbox.hit(newEdge.hitbox)) {
                     if (now == type) {
-                        dels[now].push(i);
+                        dels[ now ].push(i);
                         newEdge.hitbox = newEdge.hitbox.merge(i.hitbox);
                     } else {
-                        dels[now].push(i);
+                        dels[ now ].push(i);
                         let leftUp = newEdge.hitbox.getTopLeft();
                         let rightDown = newEdge.hitbox.getBottomRight();
                         let leftDown = new Vector(leftUp.x, rightDown.y);
@@ -146,24 +174,24 @@ class GelledEdgeList {
                                 newEdge2 = new GelledEdge(i.type, rightUp, i.hitbox.getBottomRight().subVector(rightUp), i.facing);
                         }
                         if (newEdge1)
-                            adds[now].push(newEdge1);
+                            adds[ now ].push(newEdge1);
                         if (newEdge2) {
-                            adds[now].push(newEdge2);
+                            adds[ now ].push(newEdge2);
                         }
                     }
                 }
             }
         }
-        adds[type].push(newEdge);
+        adds[ type ].push(newEdge);
         for (let now = 0; now < 3; ++now) {
-            for (let newEdge of adds[now])
-                this.gelledEdges[now].push(newEdge);
-            this.gelledEdges[now] = this.gelledEdges[now].filter(i => !dels[now].includes(i));
+            for (let newEdge of adds[ now ])
+                this.gelledEdges[ now ].push(newEdge);
+            this.gelledEdges[ now ] = this.gelledEdges[ now ].filter(i => !dels[ now ].includes(i));
         }
     }
     draw() {
         for (let now = 0; now < 3; ++now)
-            for (let i of this.gelledEdges[now]) {
+            for (let i of this.gelledEdges[ now ]) {
                 i.draw();
             }
     }

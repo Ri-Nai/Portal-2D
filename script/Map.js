@@ -54,7 +54,10 @@ class MapManager {
          * @type {Edge[]}
          */
         this.edges = [];
-
+        /**
+         * @type {Edge[]}
+         */
+        this.superEdges = [];
         this.events = new EventManager()
     }
     load(data) {
@@ -73,6 +76,11 @@ class MapManager {
             return constructTile(blockData);
         });
         this.edges = data.edges.map(edgeData => {
+            return new Edge(edgeData.type,
+                new Vector(edgeData.position.x, edgeData.position.y),
+                new Vector(edgeData.size.x, edgeData.size.y), edgeData.facing);
+        });
+        this.superEdges = data.super_edges.map(edgeData => {
             return new Edge(edgeData.type,
                 new Vector(edgeData.position.x, edgeData.position.y),
                 new Vector(edgeData.size.x, edgeData.size.y), edgeData.facing);

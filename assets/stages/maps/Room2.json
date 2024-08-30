@@ -1985,6 +1985,584 @@ window.$game.dataManager.resolve(
             }
         }
     ],
+    "super_edges": [
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 80,
+                "x": 60
+            },
+            "size": {
+                "y": 560,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 480,
+                "x": 340
+            },
+            "size": {
+                "y": 80,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 640,
+                "x": 500
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 680,
+                "x": 540
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 400,
+                "x": 580
+            },
+            "size": {
+                "y": 80,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 200,
+                "x": 980
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 400,
+                "x": 980
+            },
+            "size": {
+                "y": 80,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 0,
+                "x": 1060
+            },
+            "size": {
+                "y": 80,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 160,
+                "x": 1140
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 0,
+                "x": 1260
+            },
+            "size": {
+                "y": 720,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 80,
+                "y": 60
+            },
+            "size": {
+                "x": 1000,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 1160,
+                "y": 60
+            },
+            "size": {
+                "x": 40,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 1080,
+                "y": 180
+            },
+            "size": {
+                "x": 80,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 880,
+                "y": 220
+            },
+            "size": {
+                "x": 120,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 1040,
+                "y": 340
+            },
+            "size": {
+                "x": 80,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 1120,
+                "y": 380
+            },
+            "size": {
+                "x": 80,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 440,
+                "y": 460
+            },
+            "size": {
+                "x": 160,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 840,
+                "y": 460
+            },
+            "size": {
+                "x": 160,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 240,
+                "y": 540
+            },
+            "size": {
+                "x": 120,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 0,
+                "y": 700
+            },
+            "size": {
+                "x": 560,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 840,
+                "y": 700
+            },
+            "size": {
+                "x": 440,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 0,
+                "x": 0
+            },
+            "size": {
+                "y": 720,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 520,
+                "x": 240
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 480,
+                "x": 320
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 400,
+                "x": 440
+            },
+            "size": {
+                "y": 80,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 400,
+                "x": 840
+            },
+            "size": {
+                "y": 80,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 680,
+                "x": 840
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 200,
+                "x": 880
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 640,
+                "x": 880
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 320,
+                "x": 1040
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 160,
+                "x": 1080
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 360,
+                "x": 1120
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 0,
+                "x": 1160
+            },
+            "size": {
+                "y": 80,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 80,
+                "x": 1200
+            },
+            "size": {
+                "y": 240,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 400,
+                "x": 1200
+            },
+            "size": {
+                "y": 240,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1080,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 1160,
+                "y": 0
+            },
+            "size": {
+                "x": 120,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 1080,
+                "y": 160
+            },
+            "size": {
+                "x": 80,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 880,
+                "y": 200
+            },
+            "size": {
+                "x": 120,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 1040,
+                "y": 320
+            },
+            "size": {
+                "x": 160,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 440,
+                "y": 400
+            },
+            "size": {
+                "x": 160,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 840,
+                "y": 400
+            },
+            "size": {
+                "x": 160,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 320,
+                "y": 480
+            },
+            "size": {
+                "x": 40,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 240,
+                "y": 520
+            },
+            "size": {
+                "x": 80,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 80,
+                "y": 640
+            },
+            "size": {
+                "x": 440,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 880,
+                "y": 640
+            },
+            "size": {
+                "x": 320,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 520,
+                "y": 680
+            },
+            "size": {
+                "x": 40,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 840,
+                "y": 680
+            },
+            "size": {
+                "x": 40,
+                "y": 20
+            }
+        }
+    ],
     "events": {
         "event-area-27-00": {
             "type": 3.0,

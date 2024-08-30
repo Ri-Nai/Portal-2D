@@ -818,6 +818,176 @@ window.$game.dataManager.resolve(
             }
         }
     ],
+    "super_edges": [
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 80,
+                "x": 60
+            },
+            "size": {
+                "y": 160,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 480,
+                "x": 60
+            },
+            "size": {
+                "y": 160,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 0,
+                "x": 1260
+            },
+            "size": {
+                "y": 160,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
+                "y": 240,
+                "x": 1260
+            },
+            "size": {
+                "y": 480,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 80,
+                "y": 60
+            },
+            "size": {
+                "x": 1120,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 1200,
+                "y": 140
+            },
+            "size": {
+                "x": 80,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 80,
+                "y": 460
+            },
+            "size": {
+                "x": 1120,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 0,
+                "y": 700
+            },
+            "size": {
+                "x": 1280,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 0,
+                "x": 0
+            },
+            "size": {
+                "y": 720,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 80,
+                "x": 1200
+            },
+            "size": {
+                "y": 80,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 480,
+                "x": 1200
+            },
+            "size": {
+                "y": 160,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1280,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 80,
+                "y": 240
+            },
+            "size": {
+                "x": 1200,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 0,
+            "position": {
+                "x": 80,
+                "y": 640
+            },
+            "size": {
+                "x": 1120,
+                "y": 20
+            }
+        }
+    ],
     "events": {
         "event-area-31-04": {
             "type": 3.0,
