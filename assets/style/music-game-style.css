@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    max-width:100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    /* display: flex; */
+    flex-direction: column;
+    /* justify-content: space-around; */
+    height: 100vh;
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+#others {
+    margin: 5vw;
+    display: flex;
+    flex-direction: row;
+}
+#vedio-box {
+    width: 40vw;
+    aspect-ratio: 16/9;
+    background-color: #000000;
+}
+#record {
+    display: flex;
+    flex-direction: column;
+}
+
+#game-container {
+    position: relative;
+    left: 5vw;
+    bottom: 5vh;
+}
+
+#track-container {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    height: 30vh;
+    overflow: hidden;
+    border: 2px solid #000000;
+}
+
+.track {
+    width: 100%;
+    height: 100%;
+}
+
+#track1 {
+    background-color: rgb(244, 130, 17);
+}
+
+#track2 {
+    background-color: rgb(9, 165, 244);
+}
+
+.line {
+    position: absolute;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    width: 3px;
+    top: 0px;
+    left: 50px;
+}
+
+.note {
+    position: absolute;
+    width: 30px;
+    max-height: 40px;
+    background-image: url("../musicGame/note.png");
+}
