@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta viewport="width=device-width, initial-scale=1.0, user-scale=no">
+    <title>Portal 2D</title>
+
+    <link rel="stylesheet" type="text/css" href="./assets/style/base.css">
+    <link rel="stylesheet" type="text/css" href="./assets/style/dialog.css">
+    <link rel="stylesheet" type="text/css" href="./assets/style/save.css">
+    <link rel="Shortcut Icon" href="./assets/ico/RanaLogo.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body style="background-color: black">
+    <span class="fps-count">FPS: <span id="fps"></span></span>
+    <div id="game">
+        <canvas id="game-canvas" width="1280" height="720"></canvas>
+    </div>
+
+    <div class="control hidden" id="control">
+        <div class="button-container">
+            <div class="button" id="control-resume">继续</div>
+            <div class="button" id="control-restart">重新开始</div>
+            <div class="button" id="control-load">加载</div>
+            <div class="button" id="control-save">保存</div>
+            <div class="button" id="control-back">返回菜单</div>
+        </div>
+    </div>
+    <div class="control hidden" id="save-load">
+        <div class="save-container"></div>
+    </div>
+
+    <div id="resource" style="display: none;"></div>
+    <canvas id="buffer" style="display: none;"></canvas>
+
+    <script type="text/javascript" src="script/utils/Store.js"></script>
+    <script type="text/javascript" src="script/utils/Auth.js"></script>
+    <script type="text/javascript" src="script/utils/FrameRate.js"></script>
+    <script type="text/javascript" src="script/utils/Keyboard.js"></script>
+    <script type="text/javascript" src="script/utils/Mouse.js"></script>
+    <script type="text/javascript" src="script/utils/Vector.js"></script>
+    <script type="text/javascript" src="script/utils/Draw.js"></script>
+    <script type="text/javascript" src="script/utils/Hitbox.js"></script>
+    <script type="text/javascript" src="script/utils/Save.js"></script>
+
+
+    <script type="text/javascript" src="script/Tiles/Tile.js"></script>
+    <script type="text/javascript" src="script/Tiles/Edge.js"></script>
+    <script type="text/javascript" src="script/Tiles/Portal.js"></script>
+    <script type="text/javascript" src="script/Tiles/GelDispenser.js"></script>
+    <script type="text/javascript" src="script/Tiles/GelledEdgeList.js"></script>
+
+    <script type="text/javascript" src="script/Entities/Entity.js"></script>
+    <script type="text/javascript" src="script/Entities/Player.js"></script>
+    <script type="text/javascript" src="script/Entities/Cube.js"></script>
+    <script type="text/javascript" src="script/Entities/Gel.js"></script>
+
+    <script type="text/javascript" src="script/Managers/DataManager.js"></script>
+    <script type="text/javascript" src="script/Managers/InputManager.js"></script>
+    <script type="text/javascript" src="script/Managers/TextureManager.js"></script>
+    <script type="text/javascript" src="script/Managers/DialogManager.js"></script>
+    <script type="text/javascript" src="script/Managers/MapManager.js"></script>
+
+    <script type="text/javascript" src="script/Events/Event.js"></script>
+    <script type="text/javascript" src="script/Events/EventList.js"></script>
+    <script type="text/javascript" src="script/Events/Button.js"></script>
+    <script type="text/javascript" src="script/Events/Wire.js"></script>
+    <script type="text/javascript" src="script/Events/Door.js"></script>
+    <script type="text/javascript" src="script/Events/ViewSwitch.js"></script>
+
+
+
+    <script type="text/javascript" src="script/PortalGun.js"></script>
+    <script type="text/javascript" src="script/View.js"></script>
+    <script type="text/javascript" src="script/Game.js"></script>
+    <script type="text/javascript">
+        window.onload = () => {
+            const store = new Store();
+            window.$store = store;
+
+            if (!Auth.isAuthenticated()) {
+                Auth.toLogin();
+            }
+
+            window.$game = new Game();
+            window.$game.init().then(() => {
+                window.$game.start();
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -63,7 +63,7 @@ class Game {
         this.restartBtn = document.querySelector('#control-restart')
         this.restartBtn.addEventListener('click', () => this.restart())
         this.backBtn = document.querySelector('#control-back')
-        this.backBtn.addEventListener('click', () => { window.location.href = `./start.html?${window.$store.encode()}`; })
+        this.backBtn.addEventListener('click', () => { window.location.href = `./index.html?${window.$store.encode()}`; })
         this.saveBtn = document.querySelector('#control-save')
         this.saveBtn.addEventListener('click', () => this.savePopup.show())
         this.loadBtn = document.querySelector('#control-load')
