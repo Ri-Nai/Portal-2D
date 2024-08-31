@@ -51,13 +51,25 @@ class Game {
         this.stop = false;
         this.isPaused = false;
 
-        this.controlMenu = document.querySelector('.control')
+        this.store = new Store();
+        window.$store = this.store;
+
+        this.savePopup = new Save();
+        this.loadPopup = new Load();
+
+        this.controlMenu = document.querySelector('#control')
         this.resumeBtn = document.querySelector('#control-resume');
         this.resumeBtn.addEventListener('click', () => this.resume())
         this.restartBtn = document.querySelector('#control-restart')
         this.restartBtn.addEventListener('click', () => this.restart())
         this.backBtn = document.querySelector('#control-back')
-        this.backBtn.addEventListener('click', () => { window.location.href = './start.html'; })
+        this.backBtn.addEventListener('click', () => { window.location.href = `./start.html?${window.$store.encode()}`; })
+        this.saveBtn = document.querySelector('#control-save')
+        this.saveBtn.addEventListener('click', () => this.savePopup.show())
+        this.loadBtn = document.querySelector('#control-load')
+        this.loadBtn.addEventListener('click', () => this.loadPopup.show())
+
+        this.chapterNow = 'Room5'
     }
 
     async init(filename = 'Room5.json') {
@@ -71,6 +83,8 @@ class Game {
         await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);
         this.loaded = true;
         this.view = new PortalView(this.map, this.viewData);
+
+        this.chapterNow = filename.split('.')[0]
     }
 
     start(prev = 0) {

@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" type="text/css" href="./assets/style/base.css">
     <link rel="stylesheet" type="text/css" href="./assets/style/dialog.css">
+    <link rel="stylesheet" type="text/css" href="./assets/style/save.css">
     <link rel="Shortcut Icon" href="./assets/ico/RanaLogo.png" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,12 +24,17 @@
         <canvas id="game-canvas" width="1280" height="720"></canvas>
     </div>
 
-    <div class="control hidden">
+    <div class="control hidden" id="control">
         <div class="button-container">
             <div class="button" id="control-resume">Resume</div>
             <div class="button" id="control-restart">Restart</div>
+            <div class="button" id="control-load">Load</div>
+            <div class="button" id="control-save">Save</div>
             <div class="button" id="control-back">Back to Menu</div>
         </div>
+    </div>
+    <div class="control hidden" id="save-load">
+        <div class="save-container"></div>
     </div>
 
     <div id="resource" style="display: none;"></div>
@@ -41,7 +47,7 @@
     <script type="text/javascript" src="script/utils/Vector.js"></script>
     <script type="text/javascript" src="script/utils/Draw.js"></script>
     <script type="text/javascript" src="script/utils/Hitbox.js"></script>
-
+    <script type="text/javascript" src="script/utils/Save.js"></script>
 
 
     <script type="text/javascript" src="script/Tiles/Tile.js"></script>
