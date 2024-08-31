@@ -1,7 +1,7 @@
 /* styles.css */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background: var(--theme);
+    color: #ffffff;
 }
 
 .container {
@@ -9,8 +9,8 @@ body {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    transform: skew(0, -10deg);
 }
 
 .form {
@@ -18,25 +18,98 @@ body {
 }
 
 .form h2 {
-    text-align: center;
+    font-size: 5rem;
+    font-weight: 100;
+    margin: unset;
+}
+
+.form > .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: start;
+    height: 250px;
+    padding: 20px 0 0 0;
+    box-sizing: border-box;
+
+    position: relative;
 }
 
 .form input {
     display: block;
-    width: 95%;
     padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+
+    font-family: "Noto Serif", "Noto Serif SC", serif;
+    font-size: 1.2rem;
+    font-weight: 800;;
+
+    color: #ffffff;
+    background-color: transparent;
+
+    border: unset;
+    border-bottom: 3px solid #ffffff;
+
+    outline: none;
 }
 
-.form button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
+.form input::placeholder {
+    opacity: 0.8;
+}
+
+.form .button {
+    padding: 0.5rem 5rem 0.5rem 2rem;
+    text-align: start;
+    font-family: "Noto Serif", "Noto Serif SC", serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    background: var(--theme);
+    border: unset;
+    color: #ffffff;
+    position: relative;
+    display: flex;
+    align-items: center;
     cursor: pointer;
+
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.form .button.primary {
+    background: #ffffff;
+    color: var(--theme);
+    border: 1px solid #ffffff;
+}
+
+.form .button::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0.25rem;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: #ffffff;
+}
+
+.form .button.primary::before {
+    background: var(--theme);
+}
+
+.form .button:hover {
+    color: var(--theme);
+    animation: 0.5s spreadBg cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    background: linear-gradient(90deg, #ffffff 0 50%, var(--theme) 50% 100%);
+    background-size: 200% 100%;
+}
+
+.form .button.primary:hover {
+    color: #ffffff;
+    animation: 0.5s spreadBg cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    background: linear-gradient(90deg, var(--theme) 0 50%, #ffffff 50% 100%);
+    background-size: 200% 100%;
 }
 
 .form p {
@@ -52,33 +125,53 @@ body {
     justify-content: center;
 }
 
+blockquote {
+    position: relative;
+    width: 100%;
+    margin: unset;
+    padding: 0 2rem;
+}
+blockquote::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0.25rem;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: #ffffff;
+}
+
 /* 模拟alert */
 .custom-alert {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: white;
-    padding: 20px;
+    position: fixed;
+    left: 430px;
+    width: 150px;
+    height: 47px;
+    padding: 0px 20px;
     z-index: 1000;
 
     opacity: 1;
+    background-color: #ffffff;
+    color: var(--theme);
 
-    border-radius: 4px;
-    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
+    font-weight: 800;
+    font-size: 1.2rem;
 
-    animation: fadeIn 0.233s;
+    display: flex;
+    align-items: center;
+
+    animation: fadeIn 0.233s forwards;
 }
 
 .custom-alert.hiding {
-    animation: fadeOut 0.233s;
+    animation: fadeOut 0.233s forwards;
 }
 
 .custom-alert.hidden {
     opacity: 0;
-}
-
-.custom-alert .message {
-    margin-bottom: 10px;
+    display: none;
+    visibility: hidden;
 }
 
 .custom-alert .countdown {
@@ -100,7 +193,6 @@ body {
 }
 .psc > .bar {
     height: 1rem;
-    border: 1px solid #88888888;
     display: none;
     width: 80px;
     justify-content: space-between;

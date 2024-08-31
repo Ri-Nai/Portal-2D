@@ -8,42 +8,48 @@
     <title>Login / Signup</title>
     <link rel="stylesheet" href="../../assets/style/base.css">
     <link rel="stylesheet" href="../../assets/style/login.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/style/start.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body id="base">
-    <div class="custom-alert hidden" id="customAlert">
-        <div class="message"></div>
-        <div class="countdown"></div>
-    </div>
     <div class="container">
         <!-- 登录 -->
         <form id="loginForm" class="form">
             <h2>登录</h2>
-            <input id="text" type="text" placeholder="用户名" required>
-            <input id="password" type="password" placeholder="密码" required>
-            <button type="button" onclick="login()">登录</button>
-            <div style="height:16px;"></div>
-            <div id="loginResult"></div>
-            <br>
-            <p>没有账号? <a href="#" id="signupLink">注册</a></p>
+            <div class="inputs">
+                <input id="text" type="text" placeholder="用户名" required>
+                <input id="password" type="password" placeholder="密码" required>
+            </div>
+            <div class="custom-alert hidden">
+                <div class="message"></div>
+            </div>
+            <button class="button primary" onclick="login()">登录</button>
+            <button class="button" id="signupLink">注册</button>
         </form>
         <!-- 注册 -->
         <form id="signupForm" class="form hidden">
             <h2>注册</h2>
-            <input id="text-signup" type="text" placeholder="用户名" required>
-            <input id="password-signup" type="password" placeholder="密码"
+            <div class="inputs">
+                <input id="text-signup" type="text" placeholder="用户名" required>
+                <input id="password-signup" type="password" placeholder="密码"
                 oninput="checkPasswordStrength(this.value)" required>
-            <input id="password-signup-check" type="password" placeholder="确认密码"
+                <input id="password-signup-check" type="password" placeholder="确认密码"
                 oninput="checkSame(this.value)" required>
-            <button type="button" onclick="signup()">注册</button>
-            <!-- 密码强度条 -->
-            <div class="psc">
-                <div id="strength"> </div>
-                <div id='bar0' class="bar"></div>
-                <div id='bar1' class="bar"></div>
-                <div id='bar2' class="bar"></div>
+                <div class="psc">
+                    <div id="strength"> </div>
+                    <div id='bar0' class="bar"></div>
+                    <div id='bar1' class="bar"></div>
+                    <div id='bar2' class="bar"></div>
+                </div>
             </div>
-            <p>已经有账号了? <a href="#" id="loginLink">登录</a></p>
+            <div class="custom-alert hidden">
+                <div class="message"></div>
+            </div>
+            <button class="button primary" onclick="signup()">注册</button>
+            <button class="button" id="loginLink">登录</button>
         </form>
         <blockquote>
             <p>
@@ -58,6 +64,10 @@
                 <li class="tip">密码长度大于10</li>
             </ul>
         </blockquote>
+    </div>
+
+    <div class="side">
+        Portal! It's MyGO!!!!!
     </div>
 
     <script type="text/javascript" src="./login.js"></script>

@@ -59,7 +59,7 @@ function barDisplay(strength) {
         "无效" : -1,
         "" : -1
     }
-    colors = ["red", "yellow", "green"];
+    colors = ["white", "white", "white"];
     for (let i = 0; i < 3; ++i)
     {
         let bar = document.getElementById("bar" + i);
@@ -70,7 +70,7 @@ function barDisplay(strength) {
         if (i <= KeyMap[strength])
             bar.style.backgroundColor = colors[KeyMap[strength]];
         else
-            bar.style.backgroundColor = "white";
+            bar.style.backgroundColor = "#3388BB";
 
     }
 }
@@ -169,32 +169,30 @@ const toLoginPage = (e) => {
 
 //模拟alert
 function showAlertWithCountdown(message, seconds) {
-    const alertElement = document.getElementById("customAlert");
-    const messageElement = alertElement.querySelector(".message");
-    const countdownElement = alertElement.querySelector(".countdown");
+    const alertElements = document.querySelectorAll(".custom-alert");
+    console.debug(alertElements);
+    alertElements.forEach((alertElement) => {
+        const messageElement = alertElement.querySelector(".message");
 
-    messageElement.textContent = message;
-    countdownElement.textContent = ``;
+        messageElement.textContent = message;
 
-    // 显示模态框
-    alertElement.classList.remove("hidden");
+        // 显示模态框
+        alertElement.classList.remove("hidden");
 
-    // 开始倒计时
-    let count = seconds;
-    const countdownInterval = setInterval(() => {
-        countdownElement.textContent = ``;
-        if (--count < 0) {
-            clearInterval(countdownInterval);
+        // 开始倒计时
+        setTimeout(() => {
             hideAlert();
-        }
-    }, 1000);
+        }, seconds * 1000);
+    });
 }
 
 function hideAlert() {
-    const alertElement = document.getElementById("customAlert");
-    alertElement.classList.add("hiding");
-    setTimeout(() => {
-        alertElement.classList.add("hidden");
-        alertElement.classList.remove("hiding");
-    }, 233);
+    const alertElements = document.querySelectorAll(".custom-alert");
+    alertElements.forEach((alertElement) => {
+        alertElement.classList.add("hiding");
+        setTimeout(() => {
+            alertElement.classList.add("hidden");
+            alertElement.classList.remove("hiding");
+        }, 233);
+    });
 }
