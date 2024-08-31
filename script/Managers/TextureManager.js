@@ -2,6 +2,7 @@ class TextureManager {
     constructor() {
     }
     async load() {
+        this.tempCanvas = document.querySelector("canvas#buffer");
         this.texturesURL = await window.$game.dataManager.loadJSON("./assets/imgs/Textures.json");
         this.textures = {};
         let resources = new Map();
@@ -32,5 +33,24 @@ class TextureManager {
     getTexture(kind, id) {
         // console.debug("getTexture: ", kind, id);
         return this.textures[ kind ][ id ];
+    }
+
+    /**
+     *
+     * @param {ImageBitmap} texture
+     * @param {number} angle 0-180
+     */
+    rotateTexture(texture, angle) {
+        const ctx = this.tempCanvas.getContext("2d");
+        this.tempCanvas.width = texture.width;
+        this.tempCanvas.height = texture.height;
+
+        ctx.translate(texture.width / 2, texture.height / 2);
+        ctx.rotate(angle * Math.PI / 180);
+        ctx.translate(-texture.width / 2, -texture.height / 2);
+
+        ctx.drawImage(texture, 0, 0);
+
+        return this.tempCanvas;
     }
 }

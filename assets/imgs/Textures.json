@@ -40,6 +40,10 @@ window.$game.dataManager.resolve(
         "0-in-3" : "./assets/imgs/textures/portals/blue-portal-inner-3.png",
         "0-out-3" : "./assets/imgs/textures/portals/blue-portal-outside-3.png",
     },
+    "portalBullets": {
+        "blue": "./assets/imgs/textures/portalBullets/blue-shot.png",
+        "orange": "./assets/imgs/textures/portalBullets/orange-shot.png",
+    },
     "gelledEdges" : {
         "0-0" : "./assets/imgs/textures/gelledEdges/blue-gelled-edge-0.png",
         "0-1" : "./assets/imgs/textures/gelledEdges/blue-gelled-edge-1.png",

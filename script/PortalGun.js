@@ -60,8 +60,14 @@ class PortalGun {
         if (!this.isShot) {
             return;
         }
-        window.$game.ctx.fillStyle = this.COLOR[ this.flyingType ];
-        window.$game.ctx.fillRect(this.position.x, this.position.y, 4, 4);
+
+        let angle = Math.atan(this.direction.y / this.direction.x) / Math.PI * 180;
+        (this.direction.x < 0) ? (angle > 0) ? angle -= 180 : angle += 180 : angle;
+
+        const texture = window.$game.textureManager.getTexture("portalBullets", this.COLOR[ this.flyingType ]);
+        const rotated = window.$game.textureManager.rotateTexture(texture, angle);
+
+        window.$game.ctx.drawImage(rotated, 10, 10, 20, 20, this.position.x, this.position.y, 20, 20);
 
         /**
          * @type {Edge[]}
