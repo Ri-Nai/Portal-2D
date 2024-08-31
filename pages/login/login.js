@@ -129,7 +129,7 @@ function login() {
         localStorage.setItem("token", username);
 
         // 跳转到主页
-        window.location.href = `./start.html?${window.$store.encode()}`;
+        window.location.href = `../../start.html?${window.$store.encode()}`;
     } else {
         showAlertWithCountdown("密码错误。", 1);
     }

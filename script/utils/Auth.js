@@ -4,7 +4,7 @@ class Auth {
     }
 
     static toLogin() {
-        window.location.href = './login.html';
+        window.location.href = './pages/login/login.html';
     }
 
     static login() {
