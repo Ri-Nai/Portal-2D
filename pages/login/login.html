@@ -17,7 +17,7 @@
 <body id="base">
     <div class="container">
         <!-- 登录 -->
-        <form id="loginForm" class="form">
+        <div id="loginForm" class="form">
             <h2>登录</h2>
             <div class="inputs">
                 <input id="text" type="text" placeholder="用户名" required>
@@ -28,9 +28,9 @@
             </div>
             <button class="button primary" onclick="login()">登录</button>
             <button class="button" id="signupLink">注册</button>
-        </form>
+        </div>
         <!-- 注册 -->
-        <form id="signupForm" class="form hidden">
+        <div id="signupForm" class="form hidden">
             <h2>注册</h2>
             <div class="inputs">
                 <input id="text-signup" type="text" placeholder="用户名" required>
@@ -50,7 +50,7 @@
             </div>
             <button class="button primary" onclick="signup()">注册</button>
             <button class="button" id="loginLink">登录</button>
-        </form>
+        </div>
         <blockquote>
             <p>
                 Tip: 必须包含数字和字母且密码长度大于6
