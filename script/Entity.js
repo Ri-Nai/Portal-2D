@@ -331,9 +331,6 @@ class Entity {
         }
         return nextVelocityX;
     }
-
-
-
     updateXY(deltaTime, controllerX, controllerY, isPlayer) {
         //此时的deltaTime当前环境下的1帧，在60帧环境下走了多少帧
         //于是在moveRigid函数中，需要将velocity乘上deltaTime代表在当前环境下走过的路程
@@ -344,17 +341,15 @@ class Entity {
         this.updateJumping(deltaTime, controllerY());
         let nextVelocityY = -this.jumping.jumpVelocity;
         let nextVelocityX = this.velocity.x;
-        if (!this.inPortal)
+        if (!this.inPortal || this.jumping.jumpVelocity <= -4 * this.jumping.maxJump)
             nextVelocityX = this.updateX(deltaTime, controllerX(), isPlayer);
         this.velocity.x = nextVelocityX;
         this.velocity.y = nextVelocityY;
         let side = this.rigidMove(deltaTime);
         if (side & 1)
             this.velocity.x = 0, this.isflying = 0;
-        if (side & 2) {
+        if (side & 2)
             this.velocity.y = 0;
-            console.log("我是0");
-        }
         if (this.velocity.y == 0) {
             this.jumping.jumpVelocity = 0;
             this.jumping.setFalling();
