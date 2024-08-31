@@ -38,11 +38,39 @@
         Portal! It's MyGO!!!!!
     </div>
 
+    <div class="transition hidden">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
     <script type="text/javascript" src="script/utils/Store.js"></script>
     <script type="text/javascript" src="script/utils/Auth.js"></script>
 
     <script type="text/javascript">
+        const slideIn = () => {
+            const transition = document.querySelector(".transition");
+            transition.classList.remove("hidden");
+            transition.classList.add("slideIn");
+            setTimeout(() => {
+                transition.classList.add("hidden");
+                transition.classList.remove("slideIn");
+            }, 1800);
+        }
+
+        const slideOut = () => {
+            const transition = document.querySelector(".transition");
+            transition.classList.remove("hidden");
+            transition.classList.add("slideOut");
+            setTimeout(() => {
+                transition.classList.add("hidden");
+                transition.classList.remove("slideOut");
+            }, 1800);
+        }
+
         window.onload = () => {
+            slideIn();
             window.$store = new Store();
             if (!Auth.isAuthenticated()) {
                 Auth.toLogin();
@@ -50,6 +78,9 @@
 
             document.querySelector("#start").addEventListener("click", () => {
                 window.location.href = `./game.html?${window.$store.encode()}`;
+            });
+            document.querySelector("#load").addEventListener("click", () => {
+                slideOut()
             });
             document.querySelector("#about").addEventListener("click", () => {
                 window.location.href = `./pages/about-us/index.html`;
