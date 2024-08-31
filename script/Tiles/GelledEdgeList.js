@@ -3,35 +3,29 @@ class GelledEdge extends Edge {
         super(type, position, size, facing);
     }
     draw() {
-        let TYPE = 0;
-        if (TYPE == 0) {
-            if (this.facing & 1) {
-                for (let i = 0; i < this.hitbox.size.y; i += basicSize) {
-                    let sizeY = Math.min(basicSize, this.hitbox.size.y - i);
-                    window.$game.ctx.drawImage(
-                        window.$game.textureManager.getTexture("gelledEdges", `${TYPE}-${this.facing}`),
-                        0, 0, basicSize, sizeY,
-                        this.hitbox.position.x - (this.facing >> 1) * halfSize - offsetSize,
-                        this.hitbox.position.y + i - offsetSize,
-                        basicSize + 2 * offsetSize, sizeY + 2 * offsetSize
-                    );
-                }
+
+        if (this.facing & 1)
+            for (let i = 0; i < this.hitbox.size.y; i += basicSize) {
+                let sizeY = Math.min(basicSize, this.hitbox.size.y - i);
+                window.$game.ctx.drawImage(
+                    window.$game.textureManager.getTexture("gelledEdges", `${this.type}-${this.facing}`),
+                    0, 0, basicSize, sizeY,
+                    this.hitbox.position.x - (this.facing >> 1) * halfSize - offsetSize,
+                    this.hitbox.position.y + i - offsetSize,
+                    basicSize + 2 * offsetSize, sizeY + 2 * offsetSize
+                );
             }
-            else for (let i = 0; i < this.hitbox.size.x; i += basicSize) {
+        else
+            for (let i = 0; i < this.hitbox.size.x; i += basicSize) {
                 let sizeX = Math.min(basicSize, this.hitbox.size.x - i);
                 window.$game.ctx.drawImage(
-                    window.$game.textureManager.getTexture("gelledEdges", `${TYPE}-${this.facing}`),
+                    window.$game.textureManager.getTexture("gelledEdges", `${this.type}-${this.facing}`),
                     0, 0, sizeX, basicSize,
                     this.hitbox.position.x + i - offsetSize,
                     this.hitbox.position.y - (this.facing >> 1) * halfSize - offsetSize,
                     sizeX + 2 * offsetSize, basicSize + 2 * offsetSize
                 );
             }
-        }
-        else {
-            window.$game.ctx.fillStyle = Gel.gelColors[this.type];
-            window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
-        }
 
     }
 }

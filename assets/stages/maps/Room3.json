@@ -1002,6 +1002,7 @@ window.$game.dataManager.resolve(
             "affect": [],
             "toUrl": "Room4.json"
         }
-    }
+    },
+    "drama_events": []
 }
 )

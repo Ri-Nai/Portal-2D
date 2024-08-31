@@ -5,20 +5,17 @@ window.$game.dataManager.resolve(
         "y": 488
     },
     "cubes": [
-        {
-            "x": 160,
-            "y": 528
-        },
+
     ],
     "gelDispensers": [
         {
             "position" : {
-                "x" : 300,
-                "y" : 240,
+                "x" : 600,
+                "y" : 360,
             },
             "facing" : 2,
-            "times" : 6,
-            "type" : 0
+            "times" : 5,
+            "type" : 2
 
         }
     ],

@@ -270,7 +270,10 @@ def get_events():
 def get_drama_events():
     C, fa, rect = read_and_run_DSU("DramaArea", False)
     events = []
-    with open(os.path.join(this_path, "..", "..", ".\\events", name + ".json"), 'r', encoding='utf-8') as f:
+    jsonfile = os.path.join(this_path, "..", "..", ".\\events", name + ".json")
+    if not os.path.exists(jsonfile):
+        return []
+    with open(jsonfile, 'r', encoding='utf-8') as f:
         dialogs = json.load(f)
     def get_event(id, f):
         item = {

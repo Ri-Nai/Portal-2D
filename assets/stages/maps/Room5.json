@@ -1781,6 +1781,7 @@ window.$game.dataManager.resolve(
             "affect": [],
             "toUrl": "Room6.json"
         }
-    }
+    },
+    "drama_events": []
 }
 )

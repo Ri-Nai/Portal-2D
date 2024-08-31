@@ -30,13 +30,10 @@ window.$game.dataManager.resolve(
 
         "0-in-0" : "./assets/imgs/textures/portals/blue-portal-inner-0.png",
         "0-out-0" : "./assets/imgs/textures/portals/blue-portal-outside-0.png",
-
         "0-in-1" : "./assets/imgs/textures/portals/blue-portal-inner-1.png",
         "0-out-1" : "./assets/imgs/textures/portals/blue-portal-outside-1.png",
-
         "0-in-2" : "./assets/imgs/textures/portals/blue-portal-inner-2.png",
         "0-out-2" : "./assets/imgs/textures/portals/blue-portal-outside-2.png",
-
         "0-in-3" : "./assets/imgs/textures/portals/blue-portal-inner-3.png",
         "0-out-3" : "./assets/imgs/textures/portals/blue-portal-outside-3.png",
     },
@@ -49,6 +46,16 @@ window.$game.dataManager.resolve(
         "0-1" : "./assets/imgs/textures/gelledEdges/blue-gelled-edge-1.png",
         "0-2" : "./assets/imgs/textures/gelledEdges/blue-gelled-edge-2.png",
         "0-3" : "./assets/imgs/textures/gelledEdges/blue-gelled-edge-3.png",
+
+        "1-0" : "./assets/imgs/textures/gelledEdges/orange-gelled-edge-0.png",
+        "1-1" : "./assets/imgs/textures/gelledEdges/orange-gelled-edge-1.png",
+        "1-2" : "./assets/imgs/textures/gelledEdges/orange-gelled-edge-2.png",
+        "1-3" : "./assets/imgs/textures/gelledEdges/orange-gelled-edge-3.png",
+
+        "2-0" : "./assets/imgs/textures/gelledEdges/white-gelled-edge-0.png",
+        "2-1" : "./assets/imgs/textures/gelledEdges/white-gelled-edge-1.png",
+        "2-2" : "./assets/imgs/textures/gelledEdges/white-gelled-edge-2.png",
+        "2-3" : "./assets/imgs/textures/gelledEdges/white-gelled-edge-3.png",
     },
     "entities": {
         "1" : "./assets/imgs/textures/entities/companion-cube.png",
