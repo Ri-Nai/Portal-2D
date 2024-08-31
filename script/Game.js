@@ -149,9 +149,8 @@ class Game {
 
     async restart() {
         this.restartBtn.blur();
-
+        this.isPaused = true
         await this.rebuild(async () => {
-            this.isPaused = true
             await this.resetView();
             this.resume();
         })
