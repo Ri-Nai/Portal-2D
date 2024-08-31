@@ -11,6 +11,8 @@ class GameEvent extends Tile {
         this.id = id;
         this.activated = false;
         this.affect = affect;
+        this.onlyPlayer = false;
+        this.canInteract = false;
     }
 
     update(t) {
@@ -18,15 +20,29 @@ class GameEvent extends Tile {
          * @type {Entity[]}
          */
         const entities = window.$game.view.entities;
-        let isActivate = false
-        entities.forEach((entity) => {
+        let player = window.$game.view.player;
+        let isActivate = false;
+        if (this.onlyPlayer) {
+            if (player.hitbox.hit(this.hitbox)) {
+                if (this.canInteract) {
+                    player.onEvent = true;
+                    if (!window.$game.inputManager.firstDown("E"))
+                        return;
+                }
+                else if (this.Activate) return;
+                this.activate();
+                isActivate = true;
+            }
+            player.onEvent = false;
+        }
+        else entities.forEach((entity) => {
             if (this.hitbox.hit(entity.hitbox)) {
                 if (isActivate) return;
                 this.activate();
-                isActivate = true
+                isActivate = true;
             }
-        })
-        this.activated = isActivate
+        });
+        this.activated = isActivate;
         if (!isActivate) {
             this.deactivate();
         }
@@ -40,7 +56,7 @@ class GameEvent extends Tile {
         this.affect.forEach((id) => {
             const event = window.$game.view.events.getEvent(id);
             event.activate();
-        })
+        });
     }
 
     deactivate() {
@@ -50,7 +66,7 @@ class GameEvent extends Tile {
         this.affect.forEach((id) => {
             const event = window.$game.view.events.getEvent(id);
             event.deactivate();
-        })
+        });
     }
 
     onActivate() {

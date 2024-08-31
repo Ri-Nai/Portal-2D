@@ -57,6 +57,8 @@ class Player extends Entity {
         super(position, Player.PlayerSize);
         this.facing = 1;
         this.animation = new Animation();
+        this.blockMove = false;
+        this.onEvent = false;
     }
 
     async update(deltaTime) {
@@ -64,7 +66,7 @@ class Player extends Entity {
         let move = 0;
         this.updateXY(deltaTime,
             () => {
-                if (window.$game.dialogManager.isReading) return 0;
+                if (this.blockMove) return 0;
                 let moveLeft = window.$game.inputManager.isKeysDown([ "A", "Left" ]);
                 let moveRight = window.$game.inputManager.isKeysDown([ "D", "Right" ]);
                 move = 0;
@@ -76,7 +78,7 @@ class Player extends Entity {
                 return move;
             },
             () => {
-                if (window.$game.dialogManager.isReading) return 0;
+                if (this.blockMove) return 0;
                 return window.$game.inputManager.firstDown("Space", () => {
                     this.jumping.setJumpBuffer();
                 });
