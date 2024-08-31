@@ -2,6 +2,8 @@ class ViewSwitch extends GameEvent {
     constructor (id, type, position, size, toUrl) {
         super(id, type, position, size, []);
         this.toUrl = toUrl;
+        this.onlyPlayer = true;
+        this.canInteract = false;
     }
 
     update(t) {

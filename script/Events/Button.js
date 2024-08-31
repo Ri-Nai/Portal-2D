@@ -40,6 +40,8 @@ class ButtonEvent extends GameEvent {
     constructor(id, type, position, size, affect) {
         super(id, type, position, size, affect);
         this.block = new Button(10, position, size, this);
+        this.onlyPlayer = false;
+        this.canInteract = false;
     }
 
     /**

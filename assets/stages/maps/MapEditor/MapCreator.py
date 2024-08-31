@@ -134,49 +134,45 @@ def fill_edge():
 fill_block()
 fill_edge()
 
-
-def get_events():
-    df = pd.read_excel(path_filename, index_col = None, header = None, sheet_name='EventArea')
+dx = [-1, 0, 1, 0]
+dy = [0, -1, 0, 1]
+def get_fa(fa, x):
+    while x != fa[x]:
+        x = fa[x] = fa[fa[x]]
+    return x
+def valid(x, y):
+        return x >= 0 and x < 18 and y >= 0 and y < 32
+def get_id(x, y):
+    return x * 32 + y
+def read_and_run_DSU(sheetname, check2):
+    df = pd.read_excel(path_filename, index_col = None, header = None, sheet_name=sheetname)
     C = df.values.tolist()
-    for i in range(len(C)):
-        for j in range(len(C[i])):
-            if np.isnan(C[i][j]):
-                C[i][j] = 0  # 将 NaN 转换为 0 # 将浮点数转换为整数
-        while (len(C[i]) < 32):
-            C[i].append(0)
     while (len(C) < 18):
         C.append([0] * 32)
+    for i in range(18):
+        while (len(C[i]) < 32):
+            C[i].append(0)
+        for j in range(32):
+            if np.isnan(C[i][j]):
+                C[i][j] = 0  # 将 NaN 转换为 0 # 将浮点数转换为整数
     print(C)
     print(len(C), len(C[0]))
-    events = {}
-    dx = [-1, 0, 1, 0]
-    dy = [0, -1, 0, 1]
-    basicSize = 40
-    def get_id(x, y):
-        return x * 32 + y
     fa = [i for i in range(18 * 32)]
-    vis = [False] * (18 * 32)
-    def get_fa(x):
-        while x != fa[x]:
-            x = fa[x] = fa[fa[x]]
-        return x
-    def valid(x, y):
-        return x >= 0 and x < 18 and y >= 0 and y < 32
     rect = []
     for i in range(18):
         for j in range(32):
             rect.append([i, j, i, j])
     for i in range(18):
         for j in range(32):
-            if C[i][j] == 0 or C[i][j] == 2:
+            if C[i][j] == 0 or check2 and C[i][j] == 2:
                 continue
             for k in range(4):
                 nx = i + dx[k]
                 ny = j + dy[k]
                 if not valid(nx, ny):
                     continue
-                now = get_fa(get_id(i, j))
-                nxt = get_fa(get_id(nx, ny))
+                now = get_fa(fa, get_id(i, j))
+                nxt = get_fa(fa, get_id(nx, ny))
                 if fa[now] != fa[nxt]:
                     if C[nx][ny] == C[i][j]:
                         fa[nxt] = now
@@ -184,13 +180,18 @@ def get_events():
                         rect[now][1] = min(rect[now][1], rect[nxt][1])
                         rect[now][2] = max(rect[now][2], rect[nxt][2])
                         rect[now][3] = max(rect[now][3], rect[nxt][3])
+    return (C, fa, rect)
+def get_events():
+    C, fa, rect = read_and_run_DSU("EventArea", True)
+    events = {}
+    vis = [False] * (18 * 32)
     def get_event_name(x, y):
-        f = get_fa(get_id(x, y))
+        f = get_fa(fa, get_id(x, y))
         midx = (rect[f][0] + rect[f][2]) // 2
         midy = (rect[f][1] + rect[f][3]) // 2
         return f"event-area-{midy:02d}-{midx:02d}"
     def get_event(type, x, y, affects):
-        f = get_fa(get_id(x, y))
+        f = get_fa(fa, get_id(x, y))
         item = {
             "type" : type,
             "position" :
@@ -240,7 +241,7 @@ def get_events():
         for j in range(32):
             if C[i][j] == 0 or C[i][j] == 2:
                 continue
-            f = get_fa(get_id(i, j))
+            f = get_fa(fa, get_id(i, j))
             if vis[f]:
                 continue
             vis[f] = True
@@ -266,7 +267,43 @@ def get_events():
                     events[get_event_name(x, y)]["toUrl"] =  f"{name}{number + 1}.json"
     return events
 
-answer = {"layers" : layers, "blocks" : blocks, "edges" : edges, "super_edges" : super_edges, "events" : get_events()}
-s = json.dumps(answer, indent = 4)
-with open(os.path.join(father, name + ".json"), "w") as f:
+def get_drama_events():
+    C, fa, rect = read_and_run_DSU("DramaArea", False)
+    events = []
+    with open(os.path.join(this_path, "..", "..", ".\\events", name + ".json"), 'r', encoding='utf-8') as f:
+        dialogs = json.load(f)
+    def get_event(id, f):
+        item = {
+            "id" : id,
+            "position" :
+            {
+                "x" : rect[f][1] * basicSize,
+                "y" : rect[f][0] * basicSize
+            },
+            "size" :
+            {
+                "x" : (rect[f][3] - rect[f][1] + 1) * basicSize,
+                "y" : (rect[f][2] - rect[f][0] + 1) * basicSize
+            },
+            "events" : dialogs[str(id)]
+        }
+        return item
+    vis = [False] * (18 * 32)
+    events.append({"id" : 0, "position" : {"x" : 0, "y" : 0}, "size" : {"x" : 1280, "y" : 720}, "events" : dialogs["0"]})
+    for i in range(18):
+        for j in range(32):
+            if C[i][j] == 0:
+                continue
+            f = get_fa(fa, get_id(i, j))
+            if vis[f]:
+                continue
+            vis[f] = True
+            # 二维数组的x, y
+            events.append(get_event(C[i][j], f))
+    return events
+
+answer = {"layers" : layers, "blocks" : blocks, "edges" : edges, "super_edges" : super_edges, "events" : get_events(), "drama_events" : get_drama_events()}
+print(answer["drama_events"])
+s = json.dumps(answer, indent = 4, ensure_ascii=False)
+with open(os.path.join(father, name + ".json"), "w", encoding='utf-8') as f:
     f.write("window.$game.dataManager.resolve(\n" + s + '\n)\n')
