@@ -22,11 +22,11 @@ class Save {
         const title = document.createElement("div")
         title.classList.add("title")
 
-        title.innerText = "Save"
+        title.innerText = "保存"
 
         container.appendChild(title)
 
-        this.getAll().forEach((save) => {
+        this.getAll().forEach((url, save) => {
             const btn = document.createElement("div");
             btn.classList.add("list-item");
             btn.innerHTML = save;
@@ -38,14 +38,15 @@ class Save {
             const empty = document.createElement("div")
             empty.classList.add("empty")
 
-            empty.innerText = "No save available. "
+            empty.innerText = "没有可用的存档"
 
             container.appendChild(empty)
         }
 
         const newBtn = document.createElement("div")
         newBtn.classList.add("list-item");
-        newBtn.innerHTML = "New"
+        newBtn.innerHTML = "新建存档";
+        newBtn.style["fontWeight"] = 800;
 
         newBtn.addEventListener("click", () => {
             this.set(window.$game.chapterNow, `${window.$game.chapterNow}.json`)
@@ -56,7 +57,7 @@ class Save {
 
         const backBtn = document.createElement("div");
         backBtn.classList.add("button");
-        backBtn.innerHTML = "Back";
+        backBtn.innerHTML = "返回";
 
         backBtn.addEventListener("click", () => this.hide())
 
@@ -95,7 +96,7 @@ class Load extends Save {
         const title = document.createElement("div");
         title.classList.add("title");
 
-        title.innerText = "Load";
+        title.innerText = "加载";
 
         container.appendChild(title)
 
@@ -116,14 +117,14 @@ class Load extends Save {
             const empty = document.createElement("div");
             empty.classList.add("empty");
 
-            empty.innerText = "No save available. ";
+            empty.innerText = "没有可用的存档";
 
             container.appendChild(empty)
         }
 
         const backBtn = document.createElement("div");
         backBtn.classList.add("button");
-        backBtn.innerHTML = "Back";
+        backBtn.innerHTML = "返回";
 
         backBtn.addEventListener("click", () => this.hide())
 
