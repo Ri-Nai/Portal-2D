@@ -125,20 +125,18 @@ class Game {
     }
 
     async fadeIn() {
-        if (this.canvas.style.opacity == 1.0) return;
-        for (let i = 1; i <= 10; i++) {
-            this.canvas.style.opacity = i / 10;
-            console.log(1)
-            await wait(30);
-        }
+        this.canvas.classList.remove('fadeOut');
+        this.canvas.classList.add('fadeIn');
+
+        await wait(500);
+        this.canvas.classList.remove('fadeIn');
     }
     async fadeOut() {
-        if (this.canvas.style.opacity == 0.0) return;
-        for (let i = 9; i >= 0; i--) {
-            this.canvas.style.opacity = i / 10;
-            console.log(2)
-            await wait(30);
-        }
+        this.canvas.classList.remove('fadeIn');
+        this.canvas.classList.add('fadeOut');
+
+        await wait(500);
+        this.canvas.classList.remove('fadeOut');
     }
 
     async rebuild(oprerate) {
