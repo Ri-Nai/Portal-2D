@@ -1,0 +1,7 @@
+window.$game.dataManager.resolve(
+{
+    "texts" : [
+        "【要乐奈】白色的凝胶，看着好像可以设置传送门的材质",
+    ]
+}
+)

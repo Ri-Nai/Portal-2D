@@ -2,6 +2,8 @@ window.$game.dataManager.resolve(
 {
     "texts" : [
         "【要乐奈】看来。。。只能使用我的传送门之力了",
+        "【要乐奈】PS：按住鼠标左键和右键可以设置传送门",
+
     ]
 }
 )

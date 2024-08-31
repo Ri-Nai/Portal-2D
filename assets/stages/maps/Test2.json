@@ -1995,6 +1995,7 @@ window.$game.dataManager.resolve(
                 "event-area-04-16"
             ]
         }
-    }
+    },
+    "drama_events": []
 }
 )

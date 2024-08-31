@@ -1,13 +1,13 @@
 window.$game.dataManager.resolve(
 {
     "player": {
-        "x": 240,
-        "y": 568
+        "x": 80,
+        "y": 488
     },
     "cubes": [
         {
-            "x": 968,
-            "y": 368
+            "x": 920,
+            "y": 528
         }
     ],
     "gelDispensers": [],
