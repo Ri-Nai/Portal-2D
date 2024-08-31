@@ -60,12 +60,12 @@ class Game {
         this.backBtn.addEventListener('click', () => { window.location.href = './start.html'; })
     }
 
-    async init(filename = 'Room13.json') {
+    async init(filename = 'Room5.json') {
         await this.textureManager.load();
         await this.load(filename);
     }
 
-    async load(filename = 'Room13.json') {
+    async load(filename = 'Room5.json') {
         await this.map.loadFromURL('./assets/stages/maps/' + filename);
         await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
         await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);
@@ -123,19 +123,48 @@ class Game {
 
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, now + pauseTime));
     }
-
-    restart() {
-        this.stop = true;
-        this.view = new PortalView(this.map, this.viewData);
-        this.restartBtn.blur();
-        this.resume();
+    async fadeIn() {
+        if (this.canvas.style.opacity == 1.0) return;
+        for (let i = 1; i <= 10; i++) {
+            this.canvas.style.opacity = i / 10;
+            console.log(1)
+            await wait(30);
+        }
+    }
+    async fadeOut() {
+        if (this.canvas.style.opacity == 0.0) return;
+        for (let i = 9; i >= 0; i--) {
+            this.canvas.style.opacity = i / 10;
+            console.log(2)
+            await wait(30);
+        }
+    }
+    async rebuild(oprerate) {
+        await this.fadeOut();
+        oprerate();
+        await this.fadeIn();
+    }
+    async rebuildAsync(oprerate) {
+        await this.fadeOut();
+        await oprerate();
+        await this.fadeIn();
+    }
+    async restart() {
+        await this.rebuildAsync(async() => {
+            this.stop = true;
+            this.view = new PortalView(this.map, this.viewData);
+            this.restartBtn.blur();
+            this.resume();}
+        );
     }
 
     async switchView(url) {
-        this.loaded = false;
-        this.map = new MapManager();
-        await this.load(url);
-        this.restart();
+        await this.rebuildAsync(async () => {
+            this.loaded = false;
+            this.map = new MapManager();
+            await this.load(url);
+            await this.restart();
+        });
     }
 
     pause() {

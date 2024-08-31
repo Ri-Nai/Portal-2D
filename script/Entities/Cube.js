@@ -8,7 +8,7 @@ class Cube extends Entity {
     hitRange() {
         return this.hitbox.add(new Vector(-basicSize / 2, -basicSize / 2), new Vector(basicSize, basicSize));
     }
-    update(deltaTime) {
+    async update(deltaTime) {
         let player = window.$game.view.player;
         if (player.hitbox.hit(this.hitRange())) {
             this.canPick = true;

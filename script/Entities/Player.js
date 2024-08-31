@@ -47,8 +47,6 @@ class Animation {
             }
     }
     getFrame() {
-        if (this.status == "run")
-            console.log(this.frame);
         return window.$game.textureManager.getTexture(this.status, this.frame * this.facing);
     }
 }
@@ -61,7 +59,7 @@ class Player extends Entity {
         this.animation = new Animation();
     }
 
-    update(deltaTime) {
+    async update(deltaTime) {
         deltaTime = 60 * deltaTime / 1000;
         let move = 0;
         this.updateXY(deltaTime,

@@ -255,7 +255,6 @@ class Entity {
                 if (value) {
                     this.velocity.y = -this.velocity.y * 0.95;
                     this.jumping.jumpVelocity = -this.velocity.y * 0.95;
-                    console.log("collided");
                 }
                 else
                     this.velocity.x = -this.velocity.x * 0.95;
@@ -264,7 +263,6 @@ class Entity {
             // 判断在这个方向上是否发生碰撞，如果未发生碰撞就向前move
             let collided = this.hitbox.checkHits(window.$game.map.blocks, () => {
                 this.hitbox.position.addEqual(delta.scale(-1));
-                console.log("here");
             });
             if (collided)
                 flag |= 1 << value;
