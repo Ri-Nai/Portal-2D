@@ -52,20 +52,21 @@ class DialogManager {
     }
     // 打开对话框动画
     async open() {
+        this.dialog.classList.remove('fadeOut');
+        this.dialog.classList.add('fadeIn');
         this.dialog.style.display = "block";
-        this.dialog.style.opacity = 0;
-        for (let i = 0; i <= 10; i++) {
-            this.dialog.style.opacity = i / 10;
-            await delay(20);
-        }
+
+        await wait(300);
+        this.dialog.classList.remove('fadeIn');
     }
 
     // 关闭对话框动画
     async close() {
-        for (let i = 10; i >= 0; i--) {
-            this.dialog.style.opacity = i / 10;
-            await delay(20);
-        }
+        this.dialog.classList.remove('fadeIn');
+        this.dialog.classList.add('fadeOut');
+
+        await wait(300);
+        this.dialog.classList.remove('fadeOut');
         this.dialog.style.display = "none";
     }
 
@@ -74,17 +75,16 @@ class DialogManager {
         this.buffer.push(...texts);
         if (this.buffer.length == 0)
             return;
+        window.$game.view.player.blockMove = true;
         await this.open(); // 打开对话框
         await this._prints(); // 打印文本
         await this.close(); // 关闭对话框
+        window.$game.view.player.blockMove = false;
     }
     // 打印缓冲区中的文本
     async _prints() {
-        while (true) {
-            if (this.buffer.length === 0) break; // 缓冲区为空时返回
-            this.isReading = true;
-
-            let text = this.buffer.shift(); // 获取缓冲区的第一条文本
+        this.isReading = true;
+        for (let text of this.buffer) {
             if (text[0] === "【") {
                 let end = text.indexOf("】");
                 this.name.textContent = text.slice(0, end + 1); // 设置角色名称
@@ -124,6 +124,7 @@ class DialogManager {
             this.name.innerHTML = ""; // 清空名称和文本
             this.text.innerHTML = "";
         }
+        this.buffer = [];
         this.isReading = false;
     }
 }

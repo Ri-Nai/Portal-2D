@@ -112,10 +112,10 @@ body, html {
     background-size: 200% 100%;
 }
 
-canvas.fadeOut {
+.fadeOut {
     animation: fadeOut 0.5s forwards;
 }
-canvas.fadeIn {
+.fadeIn {
     animation: fadeIn 0.5s forwards;
 }
 
