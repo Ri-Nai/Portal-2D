@@ -1,4 +1,4 @@
-class EventManager {
+class EventList {
     /**
      * @typedef IEvent
      * @type {

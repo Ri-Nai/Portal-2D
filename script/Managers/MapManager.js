@@ -37,7 +37,7 @@ class MapManager {
          * @type {Edge[]}
          */
         this.superEdges = [];
-        this.events = new EventManager()
+        this.events = new EventList()
     }
     load(data) {
         let constructTile = tileData => {
