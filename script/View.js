@@ -98,7 +98,6 @@ class PortalView extends View {
          * @type {PortalGun}
          */
         this.portalGun = new PortalGun();
-        this.portal_positions = [ new Vector(0, 0), new Vector(0, 0) ];
         this.portals = viewData.portals.map(portalData => {
             return new Portal(portalData.type, copyVector(portalData.position), portalData.facing);
 
@@ -116,7 +115,6 @@ class PortalView extends View {
             if (this.portalGun.isHit) {
                 let position = this.portalGun.position;
                 const edge = this.portalGun.edge;
-                this.portal_positions[ this.portalGun.flyingType ] = position;
 
                 this.portalGun.isHit = false;
 
@@ -138,13 +136,6 @@ class PortalView extends View {
         this.renderings.push(() => this.portals[ 1 ].draw());
         this.renderings.push((t) => {
             this.portalGun.draw(t);
-            this.portal_positions.forEach((pos, index) => {
-                if (pos.x === 0 && pos.y === 0) {
-                    return;
-                }
-                this.ctx.fillStyle = this.portalGun.COLOR[ index ];
-                this.ctx.fillRect(pos.x, pos.y, 4, 4);
-            });
         });
     }
 }
