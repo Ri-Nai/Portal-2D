@@ -63,7 +63,7 @@ class Game {
         this.restartBtn = document.querySelector('#control-restart')
         this.restartBtn.addEventListener('click', () => this.restart())
         this.backBtn = document.querySelector('#control-back')
-        this.backBtn.addEventListener('click', () => { window.location.href = `./start.html?${window.$store.encode()}`; })
+        this.backBtn.addEventListener('click', () => { window.location.href = `./index.html?${window.$store.encode()}`; })
         this.saveBtn = document.querySelector('#control-save')
         this.saveBtn.addEventListener('click', () => this.savePopup.show())
         this.loadBtn = document.querySelector('#control-load')
@@ -72,12 +72,12 @@ class Game {
         this.chapterNow = 'Room5'
     }
 
-    async init(filename = 'Room5.json') {
+    async init(filename = 'Room1.json') {
         await this.textureManager.load();
         await this.load(filename);
     }
 
-    async load(filename = 'Room5.json') {
+    async load(filename = 'Room1.json') {
         await this.map.loadFromURL('./assets/stages/maps/' + filename);
         await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
         await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);

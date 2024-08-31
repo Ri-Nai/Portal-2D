@@ -49,27 +49,14 @@ class Portal extends Edge {
 
     }
     draw() {
-        // window.$game.ctx.fillStyle = `rgba(114, 14, 233, 1)`;
         if (this.type == -1)
             return;
-        let color = this.type ? "orange" : "red";
-        // if (!this.type || this.facing != 3) {
-            // window.$game.ctx.fillStyle = color;
-            // window.$game.ctx.fillRect(
-                // this.hitbox.position.x,
-                // this.hitbox.position.y,
-                // this.hitbox.size.x,
-                // this.hitbox.size.y
-            // );
-            // return;
-        // }
         //0, 0, 80, 20
         //0, 0, 20, 80
         //0, 20, 80, 20
         //20, 0, 20, 80
         let positionX = (this.facing >> 1) * (this.facing & 1) * halfSize;
         let positionY = (this.facing >> 1) * (this.facing & 1  ^ 1) * halfSize;
-        // positionY -= (this.facing & 1 ^ 1) * halfSize * Portal.unitDirection[ this.facing ].y;
         //0, 0, 80, 40
         //0, 0, 40, 80
         //0, 0, 80, 40
@@ -129,8 +116,6 @@ class Portal extends Edge {
     static fixPosition(position, edge) {
         const leftUp = position.addVector(Portal.portalDirection[ edge.facing ]);
         const rightDown = leftUp.addVector(Portal.portalSize[ edge.facing & 1 ]);
-
-        // console.debug(leftUp, rightDown, edge.hitbox);
 
         if (edge.hitbox.contains(leftUp) && edge.hitbox.contains(rightDown)) {
             return position;
