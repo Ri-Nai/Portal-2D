@@ -123,6 +123,7 @@ class Game {
 
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, now + pauseTime));
     }
+
     async fadeIn() {
         if (this.canvas.style.opacity == 1.0) return;
         for (let i = 1; i <= 10; i++) {
@@ -139,31 +140,36 @@ class Game {
             await wait(30);
         }
     }
+
     async rebuild(oprerate) {
-        await this.fadeOut();
-        oprerate();
-        await this.fadeIn();
-    }
-    async rebuildAsync(oprerate) {
         await this.fadeOut();
         await oprerate();
         await this.fadeIn();
     }
+
     async restart() {
-        await this.rebuildAsync(async() => {
-            this.stop = true;
-            this.view = new PortalView(this.map, this.viewData);
-            this.restartBtn.blur();
-            this.resume();}
-        );
+        this.restartBtn.blur();
+
+        await this.rebuild(async () => {
+            this.isPaused = true
+            await this.resetView();
+            this.resume();
+        })
+    }
+
+    resetView() {
+        this.stop = true;
+        this.view = new PortalView(this.map, this.viewData);
     }
 
     async switchView(url) {
-        await this.rebuildAsync(async () => {
+        this.isPaused = true
+        await this.rebuild(async () => {
             this.loaded = false;
             this.map = new MapManager();
             await this.load(url);
-            await this.restart();
+            this.resetView();
+            this.resume();
         });
     }
 
