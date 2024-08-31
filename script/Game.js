@@ -69,15 +69,15 @@ class Game {
         this.loadBtn = document.querySelector('#control-load')
         this.loadBtn.addEventListener('click', () => this.loadPopup.show())
 
-        this.chapterNow = 'Room5'
+        this.chapterNow = 'Room1'
     }
 
-    async init(filename = 'Room5.json') {
+    async init(filename = 'Room1.json') {
         await this.textureManager.load();
         await this.load(filename);
     }
 
-    async load(filename = 'Room5.json') {
+    async load(filename = 'Room1.json') {
         await this.map.loadFromURL('./assets/stages/maps/' + filename);
         await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
         await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);
@@ -155,6 +155,7 @@ class Game {
 
     async rebuild(oprerate) {
         await this.fadeOut();
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         await oprerate();
         await this.fadeIn();
     }
@@ -179,8 +180,8 @@ class Game {
             this.loaded = false;
             this.map = new MapManager();
             await this.load(url);
+            this.isPaused = false;
             this.resetView();
-            this.resume();
         });
     }
 
