@@ -39,7 +39,6 @@ class ButtonEvent extends GameEvent {
      */
     constructor(id, type, position, size, affect) {
         super(id, type, position, size, affect);
-        this.passable = false;
         this.block = new Button(10, position, size, this);
     }
 
