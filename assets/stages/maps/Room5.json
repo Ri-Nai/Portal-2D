@@ -1782,6 +1782,29 @@ window.$game.dataManager.resolve(
             "toUrl": "Room6.json"
         }
     },
-    "drama_events": []
+    "drama_events": [
+        {
+            "id": 0,
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1280,
+                "y": 720
+            },
+            "canInteract": false,
+            "events": [
+                {
+                    "type": "dialog",
+                    "texts": [
+                        "【要乐奈】整个房间都是白色的",
+                        "【要乐奈】是雪呢",
+                        "【要乐奈】看来有好玩的了"
+                    ]
+                }
+            ]
+        }
+    ]
 }
 )

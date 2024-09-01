@@ -1846,6 +1846,25 @@ window.$game.dataManager.resolve(
             ]
         }
     },
-    "drama_events": []
+    "drama_events": [
+        {
+            "id": 0,
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1280,
+                "y": 720
+            },
+            "canInteract": false,
+            "events": [
+                {
+                    "type": "dialog",
+                    "texts": []
+                }
+            ]
+        }
+    ]
 }
 )

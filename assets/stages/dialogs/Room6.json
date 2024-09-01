@@ -1,8 +1,0 @@
-window.$game.dataManager.resolve(
-{
-    "texts" : [
-        "【要乐奈】好远，看看能不能直接飞过去",
-        "【要乐奈】PS：可以试试用重力加速水平速度",
-    ]
-}
-)

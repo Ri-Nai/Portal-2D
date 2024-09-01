@@ -1627,6 +1627,27 @@ window.$game.dataManager.resolve(
             "toUrl": "Room15.json"
         }
     },
-    "drama_events": []
+    "drama_events": [
+        {
+            "id": 0,
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1280,
+                "y": 720
+            },
+            "canInteract": false,
+            "events": [
+                {
+                    "type": "dialog",
+                    "texts": [
+                        "【要乐奈】白色的凝胶，看着好像可以设置传送门的材质"
+                    ]
+                }
+            ]
+        }
+    ]
 }
 )

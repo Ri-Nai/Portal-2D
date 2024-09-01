@@ -2578,6 +2578,28 @@ window.$game.dataManager.resolve(
             "toUrl": "Room3.json"
         }
     },
-    "drama_events": []
+    "drama_events": [
+        {
+            "id": 0,
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1280,
+                "y": 720
+            },
+            "canInteract": false,
+            "events": [
+                {
+                    "type": "dialog",
+                    "texts": [
+                        "【要乐奈】路好远，又好高",
+                        "【要乐奈】不过没关系，好像可以直接跳上去"
+                    ]
+                }
+            ]
+        }
+    ]
 }
 )
