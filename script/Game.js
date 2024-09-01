@@ -28,15 +28,15 @@ class Game {
         /**
          * @type {MouseManager}
         */
-       let mouse = new MouseManager(this.canvas);
+        let mouse = new MouseManager(this.canvas);
         /**
         * @type {InputManager}
         */
-       this.inputManager = new InputManager(keyboard, mouse);
+        this.inputManager = new InputManager(keyboard, mouse);
         /**
         * @type {DataManager}
         */
-       this.dataManager = new DataManager();
+        this.dataManager = new DataManager();
 
         /**
          * @type {MapManager}
@@ -49,6 +49,13 @@ class Game {
         this.textureManager = new TextureManager();
         this.eventManager = new EventManager();
 
+        this.backgroundMusic = new Audio("./assets/audios/backgroundMusic.mp3");
+        this.backgroundMusic.loop = true;
+        this.backgroundMusic.autoplay = true;
+        this.backgroundMusic.volume = 0.5;
+
+        document.addEventListener('click', autoplay);
+
         this.stop = false;
         this.isPaused = false;
 
@@ -58,19 +65,19 @@ class Game {
         this.savePopup = new Save();
         this.loadPopup = new Load();
 
-        this.controlMenu = document.querySelector('#control')
+        this.controlMenu = document.querySelector('#control');
         this.resumeBtn = document.querySelector('#control-resume');
-        this.resumeBtn.addEventListener('click', () => this.resume())
-        this.restartBtn = document.querySelector('#control-restart')
-        this.restartBtn.addEventListener('click', () => this.restart())
-        this.backBtn = document.querySelector('#control-back')
-        this.backBtn.addEventListener('click', () => { window.location.href = `./index.html?${window.$store.encode()}`; })
-        this.saveBtn = document.querySelector('#control-save')
-        this.saveBtn.addEventListener('click', () => this.savePopup.show())
-        this.loadBtn = document.querySelector('#control-load')
-        this.loadBtn.addEventListener('click', () => this.loadPopup.show())
+        this.resumeBtn.addEventListener('click', () => this.resume());
+        this.restartBtn = document.querySelector('#control-restart');
+        this.restartBtn.addEventListener('click', () => this.restart());
+        this.backBtn = document.querySelector('#control-back');
+        this.backBtn.addEventListener('click', () => { window.location.href = `./index.html?${window.$store.encode()}`; });
+        this.saveBtn = document.querySelector('#control-save');
+        this.saveBtn.addEventListener('click', () => this.savePopup.show());
+        this.loadBtn = document.querySelector('#control-load');
+        this.loadBtn.addEventListener('click', () => this.loadPopup.show());
 
-        this.chapterNow = 'Room1'
+        this.chapterNow = 'Room1';
     }
 
     async init(filename = 'Room1.json') {
@@ -85,7 +92,7 @@ class Game {
         this.loaded = true;
         this.view = new PortalView(this.map, this.viewData);
 
-        this.chapterNow = filename.split('.')[0]
+        this.chapterNow = filename.split('.')[ 0 ];
     }
 
     start(prev = 0) {
@@ -98,14 +105,14 @@ class Game {
         }
 
         this.computations.push((t) => this.view.compute(t));
-        this.renderings.push(() => this.view.draw())
+        this.renderings.push(() => this.view.draw());
 
         const fps = new FrameRate();
         this.computations.push((t) => fps.display(t.timestamp));
 
         this.renderings.push(() => this.inputManager.mouse.draw());
 
-        this.computations.push((t) => { if (this.inputManager.keyboard.isKeyDown('Esc')) { this.pause() } });
+        this.computations.push((t) => { if (this.inputManager.keyboard.isKeyDown('Esc')) { this.pause(); } });
         // this.dialogManager.prints();
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, prev));
     }
@@ -163,11 +170,11 @@ class Game {
 
     async restart() {
         this.restartBtn.blur();
-        this.isPaused = true
+        this.isPaused = true;
         await this.rebuild(async () => {
             await this.resetView();
             this.resume();
-        })
+        });
     }
 
     resetView() {
@@ -176,7 +183,7 @@ class Game {
     }
 
     async switchView(url) {
-        this.isPaused = true
+        this.isPaused = true;
         await this.rebuild(async () => {
             this.loaded = false;
             this.map = new MapManager();
@@ -202,3 +209,7 @@ class Game {
 }
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+function autoplay() {
+    window.$game.backgroundMusic.play();
+    removeEventListener('click', autoplay);
+}
