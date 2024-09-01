@@ -26,7 +26,7 @@
         ]
     },
     "2": {
-        "canInteract": false,
+        "canInteract": true,
         "events": [
             {
                 "type": "dialog",

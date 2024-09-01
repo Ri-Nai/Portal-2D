@@ -106,6 +106,12 @@ class Player extends Entity {
             this.hitbox.position.y - 2 * Player.PlayerOffset.y,
             Player.PlayerSize.x + Player.PlayerOffset.x * 2,
             Player.PlayerSize.y + Player.PlayerOffset.y * 2);
+        if (!this.onEvent) return;
+        window.$game.ctx.drawImage(
+            window.$game.textureManager.getTexture("onEvent", 0),
+            this.hitbox.position.x + Player.PlayerSize.x / 2 - halfSize,
+            this.hitbox.position.y - halfSize - basicSize,
+            basicSize, basicSize);
     }
 
 }

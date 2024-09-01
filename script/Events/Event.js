@@ -26,16 +26,19 @@ class GameEvent extends Tile {
             if (player.hitbox.hit(this.hitbox)) {
                 if (this.canInteract) {
                     player.onEvent = true;
-                    if (!window.$game.inputManager.firstDown("E"))
-                        return;
+                    if (window.$game.inputManager.firstDown("E", () => {})) {
+                        isActivate = true;
+                        this.activate();
+                    }
                 }
-                else if (this.activated) return;
-                this.activate();
-                isActivate = true;
+                else  {
+                    if (this.activated) return;
+                    isActivate = true;
+                    this.activate();
+                }
             }
             if (!this.canInteract && this.activated)
                 return;
-            player.onEvent = false;
         }
         else entities.forEach((entity) => {
             if (this.hitbox.hit(entity.hitbox)) {
