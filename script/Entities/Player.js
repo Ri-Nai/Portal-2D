@@ -1,16 +1,16 @@
 class Animation {
     static Framerate = {
-        "run" : 6,
-        "jump" : 30,
-        "fall" : 30,
-        "stand" : 8,
+        "run": 6,
+        "jump": 30,
+        "fall": 30,
+        "stand": 8,
     };
     static Frames = {
-        "run" : 6,
-        "jump" : 4,
-        "fall" : 2,
-        "stand" : 1,
-    }
+        "run": 6,
+        "jump": 4,
+        "fall": 2,
+        "stand": 1,
+    };
     constructor() {
         this.status = "run";
         this.facing = 1;
@@ -18,8 +18,7 @@ class Animation {
         this.frameRun = 0;
     }
     setStatus(status, facing) {
-        if (status != this.status || facing != this.facing)
-        {
+        if (status != this.status || facing != this.facing) {
             this.frame = 1;
             this.frameRun = 0;
             this.status = status;
@@ -28,12 +27,11 @@ class Animation {
     }
     update(deltaTime) {
         this.frameRun += deltaTime;
-        if (this.frameRun > Animation.Framerate[this.status])
-        {
+        if (this.frameRun > Animation.Framerate[ this.status ]) {
             ++this.frame;
             this.frameRun = 0;
         }
-        if (this.frame > Animation.Frames[this.status])
+        if (this.frame > Animation.Frames[ this.status ])
             switch (this.status) {
                 case "run":
                     this.frame = 1;

@@ -166,11 +166,11 @@ class Entity {
                 }
                 this.hitbox.position = newPosition;
                 window.$game.soundManager.playSound("portal-teleporting");
-                return true;
+                return 1 << (i ^ 1);
             }
         }
         this.hitbox.position.addEqual(delta.scale(-1));
-        return false;
+        return 0;
     }
     moveOutPortalPosition(portal) {
         //从碰撞箱顶点开始的offsets
