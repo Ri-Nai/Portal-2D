@@ -106,7 +106,7 @@ class PortalView extends View {
         });
         this.computations.push((t) => {
             this.portalGun.update(this.player.getCenter(), this.mouse.position);
-            if (!window.$game.dialogManager.isReading) {
+            if (!this.player.blockMove) {
                 if (this.mouse.left) {
                     this.portalGun.shot(this.player.getCenter(), 0, t);
                 }

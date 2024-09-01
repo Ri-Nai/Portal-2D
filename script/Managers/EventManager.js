@@ -2,7 +2,7 @@ class EventManager {
     constructor() {
         this.head = null; // 指向队列的第一个元素
         this.tail = null;  // 指向队列的最后一个元素
-        this.startProcessing = false;
+        this.process = false;
     }
 
     add(events) {
@@ -14,13 +14,13 @@ class EventManager {
                 this.tail = event;
             }
         }
-        this.startProcessing = true;
+        this.process = true;
     }
 
     async handle() {
-        if (!this.startProcessing)
+        if (!this.process)
             return;
-        this.startProcessing = false;
+        this.process = false;
         if (this.head === null)
             return;
         let player = window.$game.view.player;
@@ -46,10 +46,9 @@ class EventManager {
                 break;
         }
         this.head = this.head.next; // 移除已处理的事件
-        if (this.head === null) {
+        if (this.head === null)
             this.tail = null;
-        }
-        this.startProcessing = true;
+        this.process = true;
         player.blockMove = false;
     }
 }

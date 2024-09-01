@@ -75,11 +75,9 @@ class DialogManager {
         this.buffer.push(...texts);
         if (this.buffer.length == 0)
             return;
-        window.$game.view.player.blockMove = true;
         await this.open(); // 打开对话框
         await this._prints(); // 打印文本
         await this.close(); // 关闭对话框
-        window.$game.view.player.blockMove = false;
     }
     // 打印缓冲区中的文本
     async _prints() {

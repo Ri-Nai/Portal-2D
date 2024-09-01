@@ -43,8 +43,8 @@ class PortalGun {
         if (this.status[ type ]) {
             return;
         }
-
         if (t.timestamp - this.prev >= this.INTERVAL && this.isShot === false) {
+            window.$game.soundManager.playSound('portal-shooting', type);
             this.prev = t.timestamp;
             this.position = new Vector(player.x, player.y);
             this.isShot = true;

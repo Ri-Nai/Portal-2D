@@ -47,6 +47,7 @@ class Game {
         this.viewData = new ViewData();
         this.dialogManager = new DialogManager();
         this.textureManager = new TextureManager();
+        this.soundManager = new SoundManager();
         this.eventManager = new EventManager();
 
         this.backgroundMusic = new Audio("./assets/audios/backgroundMusic.mp3");
@@ -82,6 +83,7 @@ class Game {
 
     async init(filename = 'Room1.json') {
         await this.textureManager.load();
+        await this.soundManager.load();
         await this.load(filename);
     }
 
@@ -126,8 +128,9 @@ class Game {
         const now = timestamp;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.computations.forEach((comp) => comp({ timestamp, interval }));
         this.eventManager.handle();
+
+        this.computations.forEach((comp) => comp({ timestamp, interval }));
         this.renderings.forEach((render) => render({ timestamp, interval }));
         if (this.stop) {
             while (!this.loaded) {

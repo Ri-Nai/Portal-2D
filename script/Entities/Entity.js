@@ -58,6 +58,8 @@ class Jumping {
             //蓄力跳
             if (!this.isFalling && isSpaceHeld && this.chargeTime < this.maxJump * this.times) {
                 // console.log("jumpingnow", this.chargeTime);
+                if (this.jumpVelocity < 1e-5)
+                    window.$game.soundManager.playSound("jump");
                 this.chargeTime += deltaTime;
                 this.jumpVelocity = Math.min(this.baseJump + (this.chargeTime / this.maxJump * this.times) * (this.maxJump * this.times - this.baseJump), this.maxJump * this.times);
                 //蓄力跳
@@ -162,6 +164,7 @@ class Entity {
                     this.facing = portals[ i ^ 1 ].facing - 2;
                 }
                 this.hitbox.position = newPosition;
+                window.$game.soundManager.playSound("portal-teleporting");
                 return true;
             }
         }
@@ -295,6 +298,8 @@ class Entity {
             return Math.sqrt(Math.max(now * now - deceleration * deltaTime * now * now, 0)) * Math.sign(now);
         };
         let onGround = this.isOnGround();
+        if (isPlayer && onGround && move)
+            window.$game.soundManager.playSound('walk');
         if (isPlayer && (onGround & 4) && move) {
             nextVelocityX = move * Math.min(Math.sqrt(Math.abs(this.velocity.x * this.velocity.x * this.velocity.x) + 3 * deltaTime), this.MaxSpeed * 3);
         }
@@ -346,8 +351,11 @@ class Entity {
         let side = this.rigidMove(deltaTime);
         if (side & 1)
             this.velocity.x = 0, this.isflying = 0;
-        if (side & 2)
+        if (side & 2) {
+            if (isPlayer && this.velocity.y > 0)
+                window.$game.soundManager.playSound("land", 0);
             this.velocity.y = 0;
+        }
         if (this.velocity.y == 0) {
             this.jumping.jumpVelocity = 0;
             this.jumping.setFalling();
