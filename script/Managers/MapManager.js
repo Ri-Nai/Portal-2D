@@ -17,7 +17,7 @@ class Layer {
 }
 class MapManager {
     static mapHitbox = createHitbox(new Vector(0, 0), new Vector(1280, 720));
-    static typename = ["backgrounds", "", "", "backgroundTextures", "", "", ""];
+    static typename = [ "backgrounds", "", "", "backgroundTextures", "", "", "" ];
     constructor() {
         /**
          * @type {Layer[]}
@@ -37,7 +37,8 @@ class MapManager {
          * @type {Edge[]}
          */
         this.superEdges = [];
-        this.events = new EventList()
+        this.events = new EventList();
+        this.dramaEvents = new DramaEventList();
     }
     load(data) {
         let constructTile = tileData => {
@@ -65,6 +66,7 @@ class MapManager {
                 new Vector(edgeData.size.x, edgeData.size.y), edgeData.facing);
         });
         this.events.init(data.events);
+        this.dramaEvents.init(data.drama_events);
     }
 
     async loadFromURL(url) {
@@ -78,11 +80,11 @@ class MapManager {
     }
     draw() {
         for (let i = 0; i < this.layers.length; ++i)
-            this.layers[i].draw(MapManager.typename[i]);
+            this.layers[ i ].draw(MapManager.typename[ i ]);
         for (let i of this.blocks)
-            i.draw("blocks")
+            i.draw("blocks");
         this.events.draw();
         for (let i of this.edges)
-            i.draw()
+            i.draw();
     }
 }

@@ -649,7 +649,7 @@ window.$game.dataManager.resolve(
     ],
     "events": {
         "event-area-30-11": {
-            "type": 4.0,
+            "type": 4,
             "position": {
                 "x": 1200,
                 "y": 400
@@ -661,7 +661,7 @@ window.$game.dataManager.resolve(
             "affect": []
         },
         "event-area-31-11": {
-            "type": 3.0,
+            "type": 3,
             "position": {
                 "x": 1240,
                 "y": 400
@@ -674,7 +674,7 @@ window.$game.dataManager.resolve(
             "toUrl": "Room10.json"
         },
         "event-area-12-14": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 480,
                 "y": 560
@@ -690,7 +690,7 @@ window.$game.dataManager.resolve(
             "predir": 2
         },
         "event-area-12-15": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 480,
                 "y": 600
@@ -706,7 +706,7 @@ window.$game.dataManager.resolve(
             "predir": 2
         },
         "event-area-12-16": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 480,
                 "y": 640
@@ -722,7 +722,7 @@ window.$game.dataManager.resolve(
             "predir": 2
         },
         "event-area-12-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 480,
                 "y": 680
@@ -738,7 +738,7 @@ window.$game.dataManager.resolve(
             "predir": 2
         },
         "event-area-13-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 520,
                 "y": 680
@@ -754,7 +754,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-14-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 560,
                 "y": 680
@@ -770,7 +770,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-15-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 600,
                 "y": 680
@@ -786,7 +786,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-16-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 640,
                 "y": 680
@@ -802,7 +802,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-17-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 680,
                 "y": 680
@@ -818,7 +818,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-18-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 720,
                 "y": 680
@@ -834,7 +834,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-19-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 760,
                 "y": 680
@@ -850,7 +850,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-20-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 800,
                 "y": 680
@@ -866,7 +866,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-21-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 840,
                 "y": 680
@@ -882,7 +882,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-22-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 880,
                 "y": 680
@@ -898,7 +898,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-23-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 920,
                 "y": 680
@@ -914,7 +914,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-24-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 960,
                 "y": 680
@@ -930,7 +930,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-25-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 1000,
                 "y": 680
@@ -946,7 +946,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-26-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 1040,
                 "y": 680
@@ -962,7 +962,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-27-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 1080,
                 "y": 680
@@ -978,7 +978,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-28-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 1120,
                 "y": 680
@@ -994,7 +994,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-29-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 1160,
                 "y": 680
@@ -1010,7 +1010,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-30-17": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 1200,
                 "y": 680
@@ -1026,7 +1026,7 @@ window.$game.dataManager.resolve(
             "predir": 3
         },
         "event-area-30-16": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 1200,
                 "y": 640
@@ -1042,7 +1042,7 @@ window.$game.dataManager.resolve(
             "predir": 0
         },
         "event-area-30-15": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 1200,
                 "y": 600
@@ -1058,7 +1058,7 @@ window.$game.dataManager.resolve(
             "predir": 0
         },
         "event-area-30-14": {
-            "type": 2.0,
+            "type": 2,
             "position": {
                 "x": 1200,
                 "y": 560

@@ -42,11 +42,12 @@ class Game {
          * @type {MapManager}
          */
 
-        this.dialogManager = new DialogManager();
 
         this.map = new MapManager();
         this.viewData = new ViewData();
+        this.dialogManager = new DialogManager();
         this.textureManager = new TextureManager();
+        this.eventManager = new EventManager();
 
         this.stop = false;
         this.isPaused = false;
@@ -79,7 +80,7 @@ class Game {
 
     async load(filename = 'Room1.json') {
         await this.map.loadFromURL('./assets/stages/maps/' + filename);
-        await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
+        // await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
         await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);
         this.loaded = true;
         this.view = new PortalView(this.map, this.viewData);
@@ -105,7 +106,7 @@ class Game {
         this.renderings.push(() => this.inputManager.mouse.draw());
 
         this.computations.push((t) => { if (this.inputManager.keyboard.isKeyDown('Esc')) { this.pause() } });
-        this.dialogManager.prints();
+        // this.dialogManager.prints();
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, prev));
     }
 
@@ -119,8 +120,8 @@ class Game {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.computations.forEach((comp) => comp({ timestamp, interval }));
+        this.eventManager.handle();
         this.renderings.forEach((render) => render({ timestamp, interval }));
-
         if (this.stop) {
             while (!this.loaded) {
                 await wait(100);

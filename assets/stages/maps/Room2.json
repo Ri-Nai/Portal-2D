@@ -2565,7 +2565,7 @@ window.$game.dataManager.resolve(
     ],
     "events": {
         "event-area-27-00": {
-            "type": 3.0,
+            "type": 3,
             "position": {
                 "x": 1080,
                 "y": 0

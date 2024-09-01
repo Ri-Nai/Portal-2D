@@ -192,6 +192,7 @@ def get_events():
         return f"event-area-{midy:02d}-{midx:02d}"
     def get_event(type, x, y, affects):
         f = get_fa(fa, get_id(x, y))
+        type = int(type)
         item = {
             "type" : type,
             "position" :
@@ -288,21 +289,24 @@ def get_drama_events():
                 "x" : (rect[f][3] - rect[f][1] + 1) * basicSize,
                 "y" : (rect[f][2] - rect[f][0] + 1) * basicSize
             },
-            "events" : dialogs[str(id)]
         }
+        item.update(dialogs[str(id)])
         return item
     vis = [False] * (18 * 32)
-    events.append({"id" : 0, "position" : {"x" : 0, "y" : 0}, "size" : {"x" : 1280, "y" : 720}, "events" : dialogs["0"]})
+    item = {"id" : 0, "position" : {"x" : 0, "y" : 0}, "size" : {"x" : 1280, "y" : 720}}
+    item.update(dialogs["0"])
+    events.append(item)
     for i in range(18):
         for j in range(32):
             if C[i][j] == 0:
                 continue
             f = get_fa(fa, get_id(i, j))
+            print(f, i, j, C[i][j])
             if vis[f]:
                 continue
             vis[f] = True
             # 二维数组的x, y
-            events.append(get_event(C[i][j], f))
+            events.append(get_event(int(C[i][j]), f))
     return events
 
 answer = {"layers" : layers, "blocks" : blocks, "edges" : edges, "super_edges" : super_edges, "events" : get_events(), "drama_events" : get_drama_events()}

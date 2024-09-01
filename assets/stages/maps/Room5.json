@@ -1769,7 +1769,7 @@ window.$game.dataManager.resolve(
     ],
     "events": {
         "event-area-31-05": {
-            "type": 3.0,
+            "type": 3,
             "position": {
                 "x": 1240,
                 "y": 160

@@ -1357,7 +1357,7 @@ window.$game.dataManager.resolve(
     ],
     "events": {
         "event-area-31-12": {
-            "type": 3.0,
+            "type": 3,
             "position": {
                 "x": 1240,
                 "y": 480
@@ -1381,19 +1381,61 @@ window.$game.dataManager.resolve(
                 "x": 1280,
                 "y": 720
             },
-            "events": {
-                "canInteract": false,
-                "events": [
-                    {
-                        "type": "dialog",
-                        "texts": [
-                            "【要乐奈】这是哪，好黑",
-                            "【要乐奈】饿了，想吃东西了",
-                            "【要乐奈】我最近老想吃草莓了，但是草莓太贵了"
-                        ]
-                    }
-                ]
-            }
+            "canInteract": false,
+            "events": [
+                {
+                    "type": "dialog",
+                    "texts": [
+                        "【要乐奈】这是哪，好黑",
+                        "【要乐奈】饿了，想吃东西了",
+                        "【要乐奈】我最近老想吃草莓了，但是草莓太贵了"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 160,
+                "y": 360
+            },
+            "canInteract": false,
+            "events": [
+                {
+                    "type": "dialog",
+                    "texts": [
+                        "【要乐奈】这是哪，好黑",
+                        "【要乐奈】饿了，想吃东西了",
+                        "【要乐奈】我最近老想吃草莓了，但是草莓太贵了"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "position": {
+                "x": 880,
+                "y": 400
+            },
+            "size": {
+                "x": 200,
+                "y": 240
+            },
+            "canInteract": false,
+            "events": [
+                {
+                    "type": "dialog",
+                    "texts": [
+                        "【要乐奈】这是哪，好黑",
+                        "【要乐奈】饿了，想吃东西了",
+                        "【要乐奈】我最近老想吃草莓了，但是草莓太贵了"
+                    ]
+                }
+            ]
         }
     ]
 }

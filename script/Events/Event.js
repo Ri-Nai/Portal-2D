@@ -29,10 +29,12 @@ class GameEvent extends Tile {
                     if (!window.$game.inputManager.firstDown("E"))
                         return;
                 }
-                else if (this.Activate) return;
+                else if (this.activated) return;
                 this.activate();
                 isActivate = true;
             }
+            if (!this.canInteract && this.activated)
+                return;
             player.onEvent = false;
         }
         else entities.forEach((entity) => {

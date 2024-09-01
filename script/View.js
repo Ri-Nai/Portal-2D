@@ -88,11 +88,13 @@ class PortalView extends View {
          * @type {EventList}
         */
         this.events = this.map.events;
+        this.dramaEvents = this.map.dramaEvents;
 
         this.computations.push((t) => this.player.update(t.interval));
         this.cubes.forEach(i => this.computations.push((t) => i.update(t.interval)));
         this.gelDispensers.forEach(i => this.computations.push((t) => i.update(t.interval)));
         this.computations.push((t) => this.events.update(t.interval));
+        this.computations.push((t) => this.dramaEvents.update(t.interval));
 
         /**
          * @type {PortalGun}

@@ -1,23 +1,37 @@
 class EventManager {
     constructor() {
-        this.events = [];
+        this.head = null; // 指向队列的第一个元素
+        this.tail = null;  // 指向队列的最后一个元素
+        this.startProcessing = false;
     }
+
     add(events) {
-        this.events.push(...events);
+        for (let event of events) {
+            if (this.tail === null) {
+                this.head = this.tail = event;
+            } else {
+                this.tail.next = event;
+                this.tail = event;
+            }
+        }
+        this.startProcessing = true;
     }
+
     async handle() {
-        if (this.progress != 'start') return;
-        let e = this.event;
-        this.progress = 'processing';
+        if (!this.startProcessing)
+            return;
+        this.startProcessing = false;
+        if (this.head === null)
+            return;
         let player = window.$game.view.player;
         player.blockMove = true;
-
-        switch (e.type) {
+        let event = this.head;
+        switch (event.type) {
             case "delay":
-                await delay(e.time);
+                await wait(event.time);
                 break;
             case "dialog":
-                await window.$game.dialogManager.prints(e.text);
+                await window.$game.dialogManager.prints(event.texts);
                 break;
             case "fadeIn":
                 await window.$game.fadeIn();
@@ -26,55 +40,16 @@ class EventManager {
                 await window.$game.fadeOut();
                 break;
             case "turn":
-                player.facing = e.facing;
+                player.facing = event.facing;
                 break;
-            case "showCG":
-                window.$game.status = "CG";
-                let img = await window.$game.dataManager.loadImg(e.src);
-                window.$game.ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, window.$game.width, window.$game.height);
-                await window.$game.mapManager.fadeIn();
+            default:
                 break;
-            case "addTile":
-                await window.$game.mapManager.addTile(e.tile);
-                break;
-            case "removeTile":
-                window.$game.mapManager.removeTile(e.id);
-                break;
-            case "unlockDash":
-                window.$game.saveManager.data.canDash = true;
-                break;
-            case "achieve":
-                if (!window.$game.saveManager.hasAchieve(e.id)) {
-                    window.$game.saveManager.achieve(e.id);
-                    let achi = new Achieve(e.src, e.title);
-                    await achi.init();
-                }
-                break;
-            case "over":
-                window.$game.status = "end";
-                await over();
-                window.$game.saveManager.addFlag([ 'over' ]);
-                window.$game.saveManager.save(true);
-                window.location.href = "index.html";
-                break;
-            case "end":
-                window.$game.status = "end";
-                await end();
-                window.location.href = "index.html";
-                break;
-            default: break;
         }
-
+        this.head = this.head.next; // 移除已处理的事件
+        if (this.head === null) {
+            this.tail = null;
+        }
+        this.startProcessing = true;
         player.blockMove = false;
-
-        window.$game.saveManager.addFlag(e.flag);
-        if (e.next && e.next.length > 0) {
-            let next = e.next.shift();
-            next.next = e.next;
-            this.set(next);
-        } else {
-            this.event = null;
-            this.progress = 'end';
-        }
     }
 }
