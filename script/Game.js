@@ -81,13 +81,13 @@ class Game {
         this.chapterNow = 'Room1';
     }
 
-    async init(filename = 'Room1.json') {
+    async init(filename = 'Room8.json') {
         await this.textureManager.load();
         await this.soundManager.load();
         await this.load(filename);
     }
 
-    async load(filename = 'Room1.json') {
+    async load(filename = 'Room8.json') {
         await this.map.loadFromURL('./assets/stages/maps/' + filename);
         // await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
         await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);

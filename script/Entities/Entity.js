@@ -187,7 +187,7 @@ class Entity {
         else
             newPosition.addEqual(new Vector(Portal.portalRadius - 0.5 * this.hitbox.size.x, 0));
         newPosition = newPosition.round();
-        if (new Hitbox(newPosition, this.hitbox.size).checkHits(window.$game.map.blocks, () => { }))
+        if (new Hitbox(newPosition, this.hitbox.size).checkHits(window.$game.map.superEdges, () => { }))
             return null;
         this.inPortal = this.portalBuffer;
         return newPosition;
@@ -211,7 +211,7 @@ class Entity {
         else
             newPosition.addEqual(new Vector(Portal.portalRadius - 0.5 * this.hitbox.size.x, 0));
         newPosition = newPosition.round();
-        if (new Hitbox(newPosition, this.hitbox.size).checkHits(window.$game.map.blocks, () => { }))
+        if (new Hitbox(newPosition, this.hitbox.size).checkHits(window.$game.map.superEdges, () => { }))
             return null;
         this.inPortal = this.portalBuffer;
         return newPosition;
@@ -224,7 +224,7 @@ class Entity {
         if (this.checkPortal(new Vector(0, 1)))
             return false;
         this.hitbox.position.y += 1;
-        let collided = !!this.hitbox.checkHits(window.$game.map.blocks, () => { });
+        let collided = !!this.hitbox.checkHits(window.$game.map.superEdges, () => { });
         collided |= !!(this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[ 0 ], () => { })) << 1;
         collided |= !!(this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[ 1 ], () => { })) << 2;
         this.hitbox.position.y -= 1;
@@ -265,7 +265,7 @@ class Entity {
                 return true;
             };
             // 判断在这个方向上是否发生碰撞，如果未发生碰撞就向前move
-            let collided = this.hitbox.checkHits(window.$game.map.blocks, () => {
+            let collided = this.hitbox.checkHits(window.$game.map.superEdges, () => {
                 this.hitbox.position.addEqual(delta.scale(-1));
             });
             if (collided)

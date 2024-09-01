@@ -73,7 +73,7 @@ class PortalGun {
          * @type {Edge[]}
          */
         const edges = window.$game.map.edges;
-        const blocks = window.$game.map.blocks;
+        const superEdges = window.$game.map.superEdges;
         const gelledEdgeList = window.$game.view.gelledEdgeList.gelledEdges[ 2 ];
 
         let validEdges = edges.filter((edge) => { return edge.type == 2; });
@@ -111,8 +111,8 @@ class PortalGun {
             }
             if (done)
                 return;
-            for (let block of blocks) {
-                if (block.hitbox.contains(this.position)) {
+            for (let superEdge of superEdges) {
+                if (superEdge.hitbox.contains(this.position)) {
                     this.isShot = false;
                     done = true;
                     break;

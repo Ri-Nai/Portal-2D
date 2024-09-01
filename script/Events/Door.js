@@ -42,7 +42,9 @@ class DoorEvent extends GameEvent {
     }
 
     update() {}
-
+    draw() {
+        this.block.draw();
+    }
     onActivate() {
         console.debug("DoorEvent: activated")
         this.block.onActivate();
