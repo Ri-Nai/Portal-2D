@@ -16,5 +16,14 @@ window.$game.dataManager.resolve(
     "walk" : {
         "0" : "./assets/audios/player/walk.wav",
     },
+    "pause" : {
+        "0" : "./assets/audios/ui/pause.wav",
+    },
+    "unpause" : {
+        "0" : "./assets/audios/ui/unpause.wav"
+    },
+    "select" : {
+        "0" : "./assets/audios/ui/select.wav"
+    }
 }
 )

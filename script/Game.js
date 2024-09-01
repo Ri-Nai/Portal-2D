@@ -198,6 +198,7 @@ class Game {
 
     pause() {
         if (!this.isPaused) {
+            this.soundManager.playSound('pause');
             this.controlMenu.classList.remove('hidden');
             this.isPaused = true;
         }
@@ -205,6 +206,7 @@ class Game {
 
     resume() {
         if (this.isPaused) {
+            this.soundManager.playSound('unpause');
             this.controlMenu.classList.add('hidden');
             this.isPaused = false;
         }

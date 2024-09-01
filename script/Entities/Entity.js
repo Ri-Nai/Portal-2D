@@ -157,7 +157,8 @@ class Entity {
                     else
                         this.velocity.y = Portal.unitDirection[ infacing ].y * this.MaxSpeed * 1.2;
                 }
-                this.velocity = Portal.unitDirection[ infacing ].scale(this.velocity.magnitude());
+                if (!this.isBullet)
+                    this.velocity = Portal.unitDirection[ infacing ].scale(this.velocity.magnitude());
                 this.rotateVelocity(infacing, portals[ i ^ 1 ].facing);
                 if (portals[ i ^ 1 ].facing & 1) {
                     this.isflying = this.flyingBuffer;
