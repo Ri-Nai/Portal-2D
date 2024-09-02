@@ -214,7 +214,7 @@ class Game {
 
     resume() {
         if (this.isPaused) {
-            this.soundManager.playSound('unpause');
+            this.soundManager.playSound('resume');
             this.controlMenu.classList.add('hidden');
             this.isPaused = false;
         }

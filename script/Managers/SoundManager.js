@@ -14,16 +14,26 @@ class SoundManager {
         });
     }
     async playSound(kind, id = 0) {
+        /**
+         * @type {HTMLAudioElement}
+         */
         const sound = this.sounds[ kind ] && this.sounds[ kind ][ id ];
         if (sound) {
             if (!sound.paused) {
-                sound.pause();
-                if (kind == "pause" || kind == "unpause")
-                    sound.currentTime = 0;
+                /**
+                 * @type {HTMLAudioElement}
+                 */
+                const copy = sound.cloneNode()
+                copy.currentTime = 0;
+                copy.play().catch(error => {
+                    console.error(`Error playing sound: ${kind + id}`, error);
+                });
             }
-            sound.play().catch(error => {
-                console.error(`Error playing sound: ${kind + id}`, error);
-            });
+            else {
+                sound.play().catch(error => {
+                    console.error(`Error playing sound: ${kind + id}`, error);
+                });
+            }
         } else {
             console.warn(`Sound ${id} not found in AudioManager.`);
         }

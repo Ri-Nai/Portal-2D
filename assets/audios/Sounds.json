@@ -19,8 +19,8 @@ window.$game.dataManager.resolve(
     "pause" : {
         "0" : "./assets/audios/ui/pause.wav",
     },
-    "unpause" : {
-        "0" : "./assets/audios/ui/unpause.wav"
+    "resume" : {
+        "0" : "./assets/audios/ui/resume.wav"
     },
     "select" : {
         "0" : "./assets/audios/ui/select.wav"
