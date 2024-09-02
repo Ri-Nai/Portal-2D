@@ -1,7 +1,7 @@
 class Bullet extends Entity {
     static bulletSize = new Vector(0.2 * basicSize, 0.2 * basicSize);
     constructor(position, velocity) {
-        super(position.addVector(bulletSize.scale(0.5)), bulletSize, velocity);
+        super(position.subVector(Bullet.bulletSize.scale(0.5)), Bullet.bulletSize, velocity);
         this.destroyed = false;
         this.isBullet = true;
         this.type = -1;
@@ -19,7 +19,7 @@ class Bullet extends Entity {
             }
             this.hitbox.position.addEqual(direction);
             let centeredPosition = this.hitbox.getCenter();
-            if (glados.hitbox.contains(centeredPosition)) {
+            if (this.type != -1 && glados.hitbox.contains(centeredPosition)) {
                 --glados.blood;
                 this.destroy();
                 return;
@@ -35,13 +35,17 @@ class Bullet extends Entity {
     }
     draw() {
 
-        let angle = Math.atan(this.velocity.y / this.velocity.x) / Math.PI * 180;
-        (this.velocity.x < 0) ? (angle > 0) ? angle -= 180 : angle += 180 : angle;
+        // let angle = Math.atan(this.velocity.y / this.velocity.x) / Math.PI * 180;
+        // (this.velocity.x < 0) ? (angle > 0) ? angle -= 180 : angle += 180 : angle;
+        // let color = "blue";
+        // if (this.type != -1)
+        //     color = ["blue", "orange"][this.type];
+        // const texture = window.$game.textureManager.getTexture("portalBullets", color);
+        // const rotated = window.$game.textureManager.rotateTexture(texture, angle);
 
-        const texture = window.$game.textureManager.getTexture("portalBullets", ["blue", "orange"][this.type]);
-        const rotated = window.$game.textureManager.rotateTexture(texture, angle);
-
-        window.$game.ctx.drawImage(rotated, 10, 10, 20, 20, this.position.x, this.position.y, 20, 20);
+        // window.$game.ctx.drawImage(rotated, 10, 10, 20, 20, this.hitbox.position.x, this.hitbox.position.y, 20, 20);
+        window.$game.ctx.fillStyle = "red";
+        window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
 
     }
     destroy() {
