@@ -47,13 +47,12 @@ class AchievementManager {
     }
 
     onCompleted(achievement) {
-        const achievements = AchievementManager.getAll() ?? this.achievements;
-        achievements.forEach((a) => {
+        this.achievements.forEach((a) => {
             if (a.title === achievement.title) {
                 a.completed = true;
             }
         })
-        localStorage.setItem("achievements", JSON.stringify(achievements));
+        localStorage.setItem("achievements", JSON.stringify(this.achievements));
 
         this.popup.querySelector(".title").innerText = achievement.title;
         this.popup.querySelector(".desc").innerText = achievement.desc;
