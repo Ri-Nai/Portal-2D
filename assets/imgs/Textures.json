@@ -57,13 +57,22 @@ window.$game.dataManager.resolve(
         "2-2" : "./assets/imgs/textures/gelledEdges/white-gelled-edge-2.png",
         "2-3" : "./assets/imgs/textures/gelledEdges/white-gelled-edge-3.png",
     },
-    "entities": {
-        "1" : "./assets/imgs/textures/entities/companion-cube.png",
-        "2" : "./assets/imgs/textures/entities/companion-cube-bordered.png"
+    "cubes": {
+        "0" : "./assets/imgs/textures/cubes/companion-cube.png",
+        "1" : "./assets/imgs/textures/cubes/companion-cube-bordered.png"
     },
     "buttons" : {
         "0" : "./assets/imgs/textures/buttons/button-off.png",
         "1" : "./assets/imgs/textures/buttons/button-on.png",
+    },
+    "doors" : {
+        "1" : "./assets/imgs/textures/doors/door_0001.png",
+        "2" : "./assets/imgs/textures/doors/door_0002.png",
+        "3" : "./assets/imgs/textures/doors/door_0003.png",
+        "4" : "./assets/imgs/textures/doors/door_0004.png",
+        "5" : "./assets/imgs/textures/doors/door_0005.png",
+        "6" : "./assets/imgs/textures/doors/door_0006.png",
+        "7" : "./assets/imgs/textures/doors/door_0007.png",
     },
     "run" : {
         "1" : "./assets/imgs/textures/player/runs/right/run1.png",
@@ -102,8 +111,20 @@ window.$game.dataManager.resolve(
         "-2" : "./assets/imgs/textures/player/jumps/left/jump-left6.png",
     },
     "stand" : {
-        "1" : "./assets/imgs/textures/player/runs/right/run3.png",
-        "-1" : "./assets/imgs/textures/player/runs/left/run3.png",
+        "1" : "./assets/imgs/textures/player/stands/right/stand-right_0001.png",
+        "2" : "./assets/imgs/textures/player/stands/right/stand-right_0002.png",
+        "3" : "./assets/imgs/textures/player/stands/right/stand-right_0003.png",
+        "4" : "./assets/imgs/textures/player/stands/right/stand-right_0004.png",
+        "5" : "./assets/imgs/textures/player/stands/right/stand-right_0005.png",
+        "6" : "./assets/imgs/textures/player/stands/right/stand-right_0006.png",
+        "7" : "./assets/imgs/textures/player/stands/right/stand-right_0007.png",
+        "-1" : "./assets/imgs/textures/player/stands/left/stand_0001.png",
+        "-2" : "./assets/imgs/textures/player/stands/left/stand_0002.png",
+        "-3" : "./assets/imgs/textures/player/stands/left/stand_0003.png",
+        "-4" : "./assets/imgs/textures/player/stands/left/stand_0004.png",
+        "-5" : "./assets/imgs/textures/player/stands/left/stand_0005.png",
+        "-6" : "./assets/imgs/textures/player/stands/left/stand_0006.png",
+        "-7" : "./assets/imgs/textures/player/stands/left/stand_0007.png",
     },
 
 }
