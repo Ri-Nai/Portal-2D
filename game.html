@@ -103,8 +103,12 @@
                 Auth.toLogin();
             }
 
+            let toLoad = Store.get("toLoad") ?? undefined;
+            if (toLoad) {
+                Store.remove("toLoad");
+            }
             window.$game = new Game();
-            window.$game.init().then(() => {
+            window.$game.init(toLoad).then(() => {
                 window.$game.start();
             });
         }

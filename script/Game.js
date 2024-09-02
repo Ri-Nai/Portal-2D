@@ -64,7 +64,10 @@ class Game {
         window.$store = this.store;
 
         this.savePopup = new Save();
-        this.loadPopup = new Load();
+        this.loadPopup = new Load((url) => {
+            window.$game.switchView(url);
+            this.loadPopup.hide();
+        });
 
         this.controlMenu = document.querySelector('#control');
         this.resumeBtn = document.querySelector('#control-resume');

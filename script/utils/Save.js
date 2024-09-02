@@ -86,8 +86,9 @@ class Save {
 }
 
 class Load extends Save {
-    constructor() {
+    constructor(callback) {
         super();
+        this.switchCallback = callback;
     }
 
     build() {
@@ -105,10 +106,7 @@ class Load extends Save {
             btn.classList.add("list-item")
             btn.innerHTML = save
 
-            btn.addEventListener("click", () => {
-                window.$game.switchView(url)
-                this.hide()
-            })
+            btn.addEventListener("click", this.switchCallback.bind(this, url))
 
             container.appendChild(btn)
         })
