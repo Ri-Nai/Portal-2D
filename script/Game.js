@@ -200,8 +200,9 @@ class Game {
         this.isPaused = true;
         await this.rebuild(async () => {
             this.loaded = false;
-            this.map = new MapManager();
             await this.dialogManager.clear()
+            this.eventManager.clear()
+            this.map = new MapManager();
             await this.load(url);
             this.resume();
             this.resetView();

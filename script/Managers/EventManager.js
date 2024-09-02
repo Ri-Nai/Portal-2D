@@ -49,11 +49,21 @@ class EventManager {
             default:
                 break;
         }
+        player.blockMove = false;
+        this.processing = false;
+        if (this.head === null) {
+            return ;
+        }
         this.head = this.head.next; // 移除已处理的事件
         if (this.head === null)
             this.tail = null;
         this.hasProcess = true;
-        player.blockMove = false;
+    }
+
+    clear() {
+        this.hasProcess = false;
         this.processing = false;
+        window.$game.view.player.blockMove = false;
+        this.head = this.tail = null;
     }
 }

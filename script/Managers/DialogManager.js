@@ -130,6 +130,7 @@ class DialogManager {
         this.buffer = [];
         this.name.innerHTML = "";
         this.text.innerHTML = "";
+        this.printing = false;
         await this.close()
     }
 }
