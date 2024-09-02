@@ -20,6 +20,8 @@ class SoundManager {
         const sound = this.sounds[ kind ] && this.sounds[ kind ][ id ];
         if (sound) {
             if (!sound.paused) {
+                if (kind == "walk")
+                    return;
                 /**
                  * @type {HTMLAudioElement}
                  */
