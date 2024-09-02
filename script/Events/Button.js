@@ -18,11 +18,13 @@ class Button extends Tile {
         // console.debug('Button activated')
         this.activated = true;
         this.hitbox = new Hitbox(new Vector(this.position.x, this.position.y + this.size.y / 2), new Vector(this.size.x, this.size.y / 2));
+        window.$game.soundManager.playSound("button", 0);
     }
 
     onDeactivate() {
         this.activated = false;
         this.hitbox = new Hitbox(this.position, this.size);
+        window.$game.soundManager.playSound("button", 1);
     }
 
     draw() {
