@@ -191,7 +191,7 @@ class Game {
             this.loaded = false;
             this.map = new MapManager();
             await this.load(url);
-            this.isPaused = false;
+            this.resume();
             this.resetView();
         });
     }
