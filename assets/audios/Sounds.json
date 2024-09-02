@@ -1,0 +1,29 @@
+window.$game.dataManager.resolve(
+{
+    "portal-shooting" : {
+        "0" : "./assets/audios/portals/Shooting-0.wav",
+        "1" : "./assets/audios/portals/Shooting-1.wav"
+    },
+    "portal-teleporting" : {
+        "0" : "./assets/audios/portals/Teleporting.wav"
+    },
+    "jump" : {
+        "0" : "./assets/audios/player/jump.wav",
+    },
+    "land" : {
+        "0" : "./assets/audios/player/land.wav",
+    },
+    "walk" : {
+        "0" : "./assets/audios/player/walk.wav",
+    },
+    "pause" : {
+        "0" : "./assets/audios/ui/pause.wav",
+    },
+    "unpause" : {
+        "0" : "./assets/audios/ui/unpause.wav"
+    },
+    "select" : {
+        "0" : "./assets/audios/ui/select.wav"
+    }
+}
+)

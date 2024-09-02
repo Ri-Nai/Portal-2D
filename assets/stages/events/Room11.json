@@ -1,0 +1,13 @@
+{
+    "0": {
+        "canInteract": false,
+        "events": [
+            {
+                "type": "dialog",
+                "texts": [
+
+                ]
+            }
+        ]
+    }
+}

@@ -4,12 +4,14 @@ class ViewData {
         this.cubes = null;
         this.gelDispensers = null;
         this.portals = null;
+        this.GlaDOS = false;
     }
     load(data) {
         this.player = copyVector(data.player);
         this.cubes = data.cubes;
         this.gelDispensers = data.gelDispensers;
         this.portals = data.portals;
+        this.GlaDOS = Boolean(data.GlaDOS);
     }
 
     async loadFromURL(url) {
@@ -74,6 +76,7 @@ class PortalView extends View {
         this.cubes = [];
         this.gelDispensers = [];
         this.player = new Player(viewData.player.copy());
+        this.GlaDOS = new GlaDOS(viewData.GlaDOS);
 
         viewData.cubes.forEach(i => this.cubes.push(new Cube(copyVector(i))));
         viewData.gelDispensers.forEach(i => this.gelDispensers.push(new GelDispenser(copyVector(i.position), i.times, i.facing, i.type)));
@@ -95,6 +98,7 @@ class PortalView extends View {
         this.gelDispensers.forEach(i => this.computations.push((t) => i.update(t.interval)));
         this.computations.push((t) => this.events.update(t.interval));
         this.computations.push((t) => this.dramaEvents.update(t.interval));
+        this.computations.push((t) => this.GlaDOS.update(t.interval));
 
         /**
          * @type {PortalGun}
@@ -106,7 +110,7 @@ class PortalView extends View {
         });
         this.computations.push((t) => {
             this.portalGun.update(this.player.getCenter(), this.mouse.position);
-            if (!window.$game.dialogManager.isReading) {
+            if (!this.player.blockMove) {
                 if (this.mouse.left) {
                     this.portalGun.shot(this.player.getCenter(), 0, t);
                 }
@@ -134,10 +138,9 @@ class PortalView extends View {
         this.cubes.forEach(i => this.renderings.push(() => i.draw()));
         this.renderings.push(() => this.gelledEdgeList.draw());
         this.renderings.push(() => this.player.draw());
+        this.renderings.push(() => this.GlaDOS.draw());
         this.renderings.push(() => this.portals[ 0 ].draw());
         this.renderings.push(() => this.portals[ 1 ].draw());
-        this.renderings.push((t) => {
-            this.portalGun.draw(t);
-        });
+        this.renderings.push((t) => {this.portalGun.draw(t);});
     }
 }

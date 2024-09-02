@@ -1,0 +1,16 @@
+window.$game.dataManager.resolve(
+[
+    {
+        "timestamp": 1000,
+        "track": 1
+    },
+    {
+        "timestamp": 2000,
+        "track": 2
+    },
+    {
+        "timestamp": 2500,
+        "track": 1
+    },
+]
+)

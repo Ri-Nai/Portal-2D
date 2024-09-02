@@ -28,15 +28,15 @@ class Game {
         /**
          * @type {MouseManager}
         */
-       let mouse = new MouseManager(this.canvas);
+        let mouse = new MouseManager(this.canvas);
         /**
         * @type {InputManager}
         */
-       this.inputManager = new InputManager(keyboard, mouse);
+        this.inputManager = new InputManager(keyboard, mouse);
         /**
         * @type {DataManager}
         */
-       this.dataManager = new DataManager();
+        this.dataManager = new DataManager();
 
         /**
          * @type {MapManager}
@@ -47,7 +47,15 @@ class Game {
         this.viewData = new ViewData();
         this.dialogManager = new DialogManager();
         this.textureManager = new TextureManager();
+        this.soundManager = new SoundManager();
         this.eventManager = new EventManager();
+
+        this.backgroundMusic = new Audio("./assets/audios/backgroundMusic.mp3");
+        this.backgroundMusic.loop = true;
+        this.backgroundMusic.autoplay = true;
+        this.backgroundMusic.volume = 0.5;
+
+        document.addEventListener('click', autoplay);
 
         this.stop = false;
         this.isPaused = false;
@@ -58,34 +66,35 @@ class Game {
         this.savePopup = new Save();
         this.loadPopup = new Load();
 
-        this.controlMenu = document.querySelector('#control')
+        this.controlMenu = document.querySelector('#control');
         this.resumeBtn = document.querySelector('#control-resume');
-        this.resumeBtn.addEventListener('click', () => this.resume())
-        this.restartBtn = document.querySelector('#control-restart')
-        this.restartBtn.addEventListener('click', () => this.restart())
-        this.backBtn = document.querySelector('#control-back')
-        this.backBtn.addEventListener('click', () => { window.location.href = `./index.html?${window.$store.encode()}`; })
-        this.saveBtn = document.querySelector('#control-save')
-        this.saveBtn.addEventListener('click', () => this.savePopup.show())
-        this.loadBtn = document.querySelector('#control-load')
-        this.loadBtn.addEventListener('click', () => this.loadPopup.show())
+        this.resumeBtn.addEventListener('click', () => this.resume());
+        this.restartBtn = document.querySelector('#control-restart');
+        this.restartBtn.addEventListener('click', () => this.restart());
+        this.backBtn = document.querySelector('#control-back');
+        this.backBtn.addEventListener('click', () => { window.location.href = `./index.html?${window.$store.encode()}`; });
+        this.saveBtn = document.querySelector('#control-save');
+        this.saveBtn.addEventListener('click', () => this.savePopup.show());
+        this.loadBtn = document.querySelector('#control-load');
+        this.loadBtn.addEventListener('click', () => this.loadPopup.show());
 
-        this.chapterNow = 'Room1'
+        this.chapterNow = 'Room1';
     }
 
-    async init(filename = 'Room1.json') {
+    async init(filename = 'Test2.json') {
         await this.textureManager.load();
+        await this.soundManager.load();
         await this.load(filename);
     }
 
-    async load(filename = 'Room1.json') {
+    async load(filename = 'Test2.json') {
         await this.map.loadFromURL('./assets/stages/maps/' + filename);
         // await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
         await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);
         this.loaded = true;
         this.view = new PortalView(this.map, this.viewData);
 
-        this.chapterNow = filename.split('.')[0]
+        this.chapterNow = filename.split('.')[ 0 ];
     }
 
     start(prev = 0) {
@@ -98,14 +107,14 @@ class Game {
         }
 
         this.computations.push((t) => this.view.compute(t));
-        this.renderings.push(() => this.view.draw())
+        this.renderings.push(() => this.view.draw());
 
         const fps = new FrameRate();
         this.computations.push((t) => fps.display(t.timestamp));
 
         this.renderings.push(() => this.inputManager.mouse.draw());
 
-        this.computations.push((t) => { if (this.inputManager.keyboard.isKeyDown('Esc')) { this.pause() } });
+        this.computations.push((t) => { if (this.inputManager.keyboard.isKeyDown('Esc')) { this.pause(); } });
         // this.dialogManager.prints();
         window.requestAnimationFrame((timestamp) => this.loop(timestamp, prev));
     }
@@ -119,8 +128,9 @@ class Game {
         const now = timestamp;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.computations.forEach((comp) => comp({ timestamp, interval }));
         this.eventManager.handle();
+
+        this.computations.forEach((comp) => comp({ timestamp, interval }));
         this.renderings.forEach((render) => render({ timestamp, interval }));
         if (this.stop) {
             while (!this.loaded) {
@@ -163,11 +173,11 @@ class Game {
 
     async restart() {
         this.restartBtn.blur();
-        this.isPaused = true
+        this.isPaused = true;
         await this.rebuild(async () => {
             await this.resetView();
             this.resume();
-        })
+        });
     }
 
     resetView() {
@@ -176,7 +186,7 @@ class Game {
     }
 
     async switchView(url) {
-        this.isPaused = true
+        this.isPaused = true;
         await this.rebuild(async () => {
             this.loaded = false;
             this.map = new MapManager();
@@ -188,6 +198,7 @@ class Game {
 
     pause() {
         if (!this.isPaused) {
+            this.soundManager.playSound('pause');
             this.controlMenu.classList.remove('hidden');
             this.isPaused = true;
         }
@@ -195,6 +206,7 @@ class Game {
 
     resume() {
         if (this.isPaused) {
+            this.soundManager.playSound('unpause');
             this.controlMenu.classList.add('hidden');
             this.isPaused = false;
         }
@@ -202,3 +214,7 @@ class Game {
 }
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+function autoplay() {
+    window.$game.backgroundMusic.play();
+    removeEventListener('click', autoplay);
+}

@@ -58,6 +58,8 @@ class Jumping {
             //蓄力跳
             if (!this.isFalling && isSpaceHeld && this.chargeTime < this.maxJump * this.times) {
                 // console.log("jumpingnow", this.chargeTime);
+                if (this.jumpVelocity < 1e-5)
+                    window.$game.soundManager.playSound("jump");
                 this.chargeTime += deltaTime;
                 this.jumpVelocity = Math.min(this.baseJump + (this.chargeTime / this.maxJump * this.times) * (this.maxJump * this.times - this.baseJump), this.maxJump * this.times);
                 //蓄力跳
@@ -155,18 +157,20 @@ class Entity {
                     else
                         this.velocity.y = Portal.unitDirection[ infacing ].y * this.MaxSpeed * 1.2;
                 }
-                this.velocity = Portal.unitDirection[ infacing ].scale(this.velocity.magnitude());
+                if (!this.isBullet)
+                    this.velocity = Portal.unitDirection[ infacing ].scale(this.velocity.magnitude());
                 this.rotateVelocity(infacing, portals[ i ^ 1 ].facing);
                 if (portals[ i ^ 1 ].facing & 1) {
                     this.isflying = this.flyingBuffer;
                     this.facing = portals[ i ^ 1 ].facing - 2;
                 }
                 this.hitbox.position = newPosition;
-                return true;
+                window.$game.soundManager.playSound("portal-teleporting");
+                return 1 << (i ^ 1);
             }
         }
         this.hitbox.position.addEqual(delta.scale(-1));
-        return false;
+        return 0;
     }
     moveOutPortalPosition(portal) {
         //从碰撞箱顶点开始的offsets
@@ -183,7 +187,7 @@ class Entity {
         else
             newPosition.addEqual(new Vector(Portal.portalRadius - 0.5 * this.hitbox.size.x, 0));
         newPosition = newPosition.round();
-        if (new Hitbox(newPosition, this.hitbox.size).checkHits(window.$game.map.blocks, () => { }))
+        if (new Hitbox(newPosition, this.hitbox.size).checkHits(window.$game.map.superEdges, () => { }))
             return null;
         this.inPortal = this.portalBuffer;
         return newPosition;
@@ -207,7 +211,7 @@ class Entity {
         else
             newPosition.addEqual(new Vector(Portal.portalRadius - 0.5 * this.hitbox.size.x, 0));
         newPosition = newPosition.round();
-        if (new Hitbox(newPosition, this.hitbox.size).checkHits(window.$game.map.blocks, () => { }))
+        if (new Hitbox(newPosition, this.hitbox.size).checkHits(window.$game.map.superEdges, () => { }))
             return null;
         this.inPortal = this.portalBuffer;
         return newPosition;
@@ -220,7 +224,7 @@ class Entity {
         if (this.checkPortal(new Vector(0, 1)))
             return false;
         this.hitbox.position.y += 1;
-        let collided = !!this.hitbox.checkHits(window.$game.map.blocks, () => { });
+        let collided = !!this.hitbox.checkHits(window.$game.map.superEdges, () => { });
         collided |= !!(this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[ 0 ], () => { })) << 1;
         collided |= !!(this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[ 1 ], () => { })) << 2;
         this.hitbox.position.y -= 1;
@@ -261,7 +265,7 @@ class Entity {
                 return true;
             };
             // 判断在这个方向上是否发生碰撞，如果未发生碰撞就向前move
-            let collided = this.hitbox.checkHits(window.$game.map.blocks, () => {
+            let collided = this.hitbox.checkHits(window.$game.map.superEdges, () => {
                 this.hitbox.position.addEqual(delta.scale(-1));
             });
             if (collided)
@@ -295,6 +299,8 @@ class Entity {
             return Math.sqrt(Math.max(now * now - deceleration * deltaTime * now * now, 0)) * Math.sign(now);
         };
         let onGround = this.isOnGround();
+        if (isPlayer && onGround && move)
+            window.$game.soundManager.playSound('walk');
         if (isPlayer && (onGround & 4) && move) {
             nextVelocityX = move * Math.min(Math.sqrt(Math.abs(this.velocity.x * this.velocity.x * this.velocity.x) + 3 * deltaTime), this.MaxSpeed * 3);
         }
@@ -346,8 +352,11 @@ class Entity {
         let side = this.rigidMove(deltaTime);
         if (side & 1)
             this.velocity.x = 0, this.isflying = 0;
-        if (side & 2)
+        if (side & 2) {
+            if (isPlayer && this.velocity.y > 0)
+                window.$game.soundManager.playSound("land", 0);
             this.velocity.y = 0;
+        }
         if (this.velocity.y == 0) {
             this.jumping.jumpVelocity = 0;
             this.jumping.setFalling();

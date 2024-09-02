@@ -30,17 +30,10 @@ class Gel extends Entity {
 
             let centeredPosition = this.hitbox.getCenter();
             for (let edge of window.$game.map.superEdges) {
-                if (edge.hitbox.contains(centeredPosition)) {
+                if (edge.type == -1 && edge.hitbox.contains(centeredPosition)) {
                     centeredPosition = fixPosition(centeredPosition, edge);
                     this.hitbox.position.subVector(this.hitbox.size.scale(0.5));
                     window.$game.view.gelledEdgeList.addEdge(this.type, centeredPosition, edge);
-                    this.destroy();
-                    return;
-                }
-            }
-
-            for (let block of window.$game.map.blocks) {
-                if (block.hitbox.contains(centeredPosition)) {
                     this.destroy();
                     return;
                 }

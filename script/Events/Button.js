@@ -69,7 +69,9 @@ class ButtonEvent extends GameEvent {
             this.deactivate();
         }
     }
-
+    draw() {
+        this.block.draw();
+    }
     onActivate() {
         this.block.onActivate();
     }

@@ -86,7 +86,9 @@ window.$game.dataManager.resolve(
         "-2" : "./assets/imgs/textures/player/jumps/left/jump-left2.png",
         "-3" : "./assets/imgs/textures/player/jumps/left/jump-left3.png",
         "-4" : "./assets/imgs/textures/player/jumps/left/jump-left4.png",
-
+    },
+    "onEvent" : {
+        "0" : "./assets/imgs/textures/player/onEvent/exlamation-point.png"
     },
     "fall" : {
         "1" : "./assets/imgs/textures/player/jumps/right/jump-right5.png",

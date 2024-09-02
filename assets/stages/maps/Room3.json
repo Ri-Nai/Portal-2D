@@ -1003,6 +1003,28 @@ window.$game.dataManager.resolve(
             "toUrl": "Room4.json"
         }
     },
-    "drama_events": []
+    "drama_events": [
+        {
+            "id": 0,
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1280,
+                "y": 720
+            },
+            "canInteract": false,
+            "events": [
+                {
+                    "type": "dialog",
+                    "texts": [
+                        "【要乐奈】这个亮亮的是什么",
+                        "【要乐奈】先进去看看吧"
+                    ]
+                }
+            ]
+        }
+    ]
 }
 )

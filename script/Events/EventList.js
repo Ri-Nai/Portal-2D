@@ -65,7 +65,7 @@ const createEvent = (id, event) => {
             event.affect
         );
 
-        window.$game.map.blocks.push(e.block);
+        window.$game.map.superEdges.push(e.block);
 
         return e;
     }
@@ -99,7 +99,7 @@ const createEvent = (id, event) => {
             event.affect
         );
 
-        window.$game.map.blocks.push(e.block);
+        window.$game.map.superEdges.push(e.block);
         return e;
     }
     return new GameEvent(

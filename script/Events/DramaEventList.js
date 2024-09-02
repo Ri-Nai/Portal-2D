@@ -11,6 +11,7 @@ class DramaEventList {
     }
 
     update(t) {
+        window.$game.view.player.onEvent = false;
         this.events.forEach((event) => {
             event.update(t);
         });

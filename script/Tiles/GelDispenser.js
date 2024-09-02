@@ -1,9 +1,9 @@
 class GelDispenser {
     static shootOffset = [
-        new Vector(basicSize / 2, 0),
-        new Vector(0, basicSize / 2),
-        new Vector(basicSize / 2, basicSize),
-        new Vector(basicSize, basicSize / 2)
+        new Vector(0.1 * basicSize, -0.8 * basicSize),
+        new Vector(-0.8 * basicSize, 0.1 * basicSize),
+        new Vector(0.1 * basicSize, basicSize),
+        new Vector(basicSize, 0.1 * basicSize)
     ];
     static gelDispenserX = basicSize;
     static gelDispenserY = basicSize;
@@ -11,7 +11,7 @@ class GelDispenser {
         this.position = position;
         this.facing = facing;
         this.times = times;
-        this.shootPosition = position.addVector(GelDispenser.shootOffset[ facing ]);
+        this.shootPosition = position.addVector(GelDispenser.shootOffset[ this.facing ]);
         this.gels = [];
         this.bufferTime = 60;
         this.now = 0;
