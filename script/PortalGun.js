@@ -10,7 +10,7 @@ class PortalGun {
         this.prev = 0;
 
         // 发射间隔
-        this.INTERVAL = 500;
+        this.INTERVAL = 250;
         this.isShot = false;
         this.isHit = false;
         this.target = 0;
@@ -39,7 +39,7 @@ class PortalGun {
      */
     shot(player, type, t) {
         const frameRatio = (t.interval / 1000) * 60;
-        const SPEED = 10;
+        const SPEED = 25;
         if (this.status[ type ]) {
             return;
         }
