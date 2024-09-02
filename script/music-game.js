@@ -45,6 +45,27 @@ class MusicGameView extends View {
         }, delayTime);
     }
 
+//检测点击
+document.addEventListener('keydown',(event) =>{
+    const note = document.querySelector('.note');
+    const line = document.querySelector('.line');
+    if (note) {
+        const notePosition = note.getBoundingClientRect();
+        const linePosition = line.getBoundingClientRect();
+        let differPosition = notePosition.left - linePosition.left;
+        if ((event.key === 'a' && notePosition.bottom > 60 && differPosition < 10 && differPosition > -5)
+         || (event.key === 'd' && notePosition.bottom < 60 && differPosition < 10 && differPosition > -5)){
+            score += 100;
+            scoreDisplay.textContent = '得分:' + score;
+            combo += 1;
+            if (combo > maxCombo){
+                maxCombo = combo;
+            }
+            comboDisplay.textContent = 'Combo:' + combo;
+            judgeDisplay.textContent = 'Perfect';
+            note.remove();
+        } else if ((event.key === 'a' && notePosition.bottom > 60 && differPosition < 20 && differPosition > -10)
+            || (event.key === 'd' && notePosition.bottom < 60 && differPosition < 20 && differPosition > -10)){
     //检测点击
     onKeyDown(event) {
         const note = document.querySelector('.note');
