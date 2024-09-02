@@ -25,11 +25,11 @@ class AchievementManager {
 
     static getStatus(title) {
         const achievements = AchievementManager.getAll() ?? this.achievements;
-        achievements.forEach((achievement) => {
+        for (let achievement of achievements) {
             if (achievement.title === title) {
-                return achievement.completed;
+                return achievement._completed;
             }
-        });
+        }
         return false;
     }
 
@@ -74,7 +74,15 @@ class Achievement {
     constructor(title, desc) {
         this.title = title;
         this.desc = desc;
-        this.completed = false;
+        this._completed = false;
+    }
+
+    get completed() {
+        return this._completed;
+    }
+
+    set completed(value) {
+        this._completed = value;
     }
 
     check(t, that) {
