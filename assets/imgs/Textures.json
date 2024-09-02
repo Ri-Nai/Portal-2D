@@ -74,6 +74,26 @@ window.$game.dataManager.resolve(
         "6" : "./assets/imgs/textures/doors/door_0006.png",
         "7" : "./assets/imgs/textures/doors/door_0007.png",
     },
+    "wires-straight-on" : {
+        "0" : "./assets/imgs/textures/wires/on/wire0.png",
+        "1" : "./assets/imgs/textures/wires/on/wire1.png",
+    },
+    "wires-straight-off" : {
+        "0" : "./assets/imgs/textures/wires/off/wire0.png",
+        "1" : "./assets/imgs/textures/wires/off/wire1.png",
+    },
+    "wires-cursed-on" : {
+        "03" : "./assets/imgs/textures/wires/on/wire-cursed03.png",
+        "10" : "./assets/imgs/textures/wires/on/wire-cursed10.png",
+        "21" : "./assets/imgs/textures/wires/on/wire-cursed21.png",
+        "32" : "./assets/imgs/textures/wires/on/wire-cursed32.png",
+    },
+    "wires-cursed-off" : {
+        "03" : "./assets/imgs/textures/wires/off/wire-cursed03.png",
+        "10" : "./assets/imgs/textures/wires/off/wire-cursed10.png",
+        "21" : "./assets/imgs/textures/wires/off/wire-cursed21.png",
+        "32" : "./assets/imgs/textures/wires/off/wire-cursed32.png",
+    },
     "run" : {
         "1" : "./assets/imgs/textures/player/runs/right/run1.png",
         "2" : "./assets/imgs/textures/player/runs/right/run2.png",
