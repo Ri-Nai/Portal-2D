@@ -35,17 +35,19 @@ class Bullet extends Entity {
     }
     draw() {
 
-        // let angle = Math.atan(this.velocity.y / this.velocity.x) / Math.PI * 180;
-        // (this.velocity.x < 0) ? (angle > 0) ? angle -= 180 : angle += 180 : angle;
-        // let color = "blue";
-        // if (this.type != -1)
-        //     color = ["blue", "orange"][this.type];
-        // const texture = window.$game.textureManager.getTexture("portalBullets", color);
-        // const rotated = window.$game.textureManager.rotateTexture(texture, angle);
+        let angle = Math.atan(this.velocity.y / this.velocity.x) / Math.PI * 180;
+        (this.velocity.x < 0) ? (angle > 0) ? angle -= 180 : angle += 180 : angle;
+        if (this.type == -1) {
+            window.$game.ctx.fillStyle = "red";
+            window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
+        }
+        else {
+            let color = ["blue", "orange"][this.type];
+            const texture = window.$game.textureManager.getTexture("portalBullets", color);
+            const rotated = window.$game.textureManager.rotateTexture(texture, angle);
+            window.$game.ctx.drawImage(rotated, 10, 10, 20, 20, this.hitbox.position.x, this.hitbox.position.y, 20, 20);
+        }
 
-        // window.$game.ctx.drawImage(rotated, 10, 10, 20, 20, this.hitbox.position.x, this.hitbox.position.y, 20, 20);
-        window.$game.ctx.fillStyle = "red";
-        window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
 
     }
     destroy() {

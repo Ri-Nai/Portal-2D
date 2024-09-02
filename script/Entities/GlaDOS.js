@@ -27,17 +27,18 @@ class GlaDOS extends Entity {
         this.movingBuffer = Math.max(0, this.movingBuffer - deltaTime - Math.random() * deltaTime);
         if (this.shootingBuffer == 0) {
             let player = window.$game.view.player;
-            let direction = player.hitbox.getCenter().subVector(this.hitbox.getCenter()).normalize();
+            let direction = player.hitbox.getCenter().subVector(this.hitbox.getCenter());
+            direction.x += random(-5, 5);
+            direction.y += random(-5, 5);
+            direction = direction.normalize();
             let velocity = direction.scale(Math.random() * 5);
-            velocity.x += Math.random() - 1;
-            velocity.y += Math.random() - 1;
             this.bullets.push(new Bullet(this.hitbox.getCenter(), velocity));
             this.shootingBuffer = this.shootingBuffetTime;
         }
         if (this.movingBuffer == 0) {
             // this.tragetPosition = this.hitbox.getCenter().add(new Vector(Math.random() * 2 - 1, Math.random() * 2 - 1));
             this.tragetPosition = new Vector(random(0, 30 * basicSize - GlaDOS.GlaDOSX), random(0, 16 * basicSize - GlaDOS.GLaDOSY));
-            this.tragetPosition.addEqual(new Vector(2 * basicSize, 2 * basicSize));
+            this.tragetPosition.addEqual(new Vector(1 * basicSize, 1 * basicSize));
             this.movingBuffer = this.movingBufferTime;
         }
         this.hitbox.position.addEqual(this.tragetPosition.subVector(this.hitbox.position).scale(deltaTime  * random(0.1, 0.5) * random(0.2, 0.5) * random(0.3, 0.5)));
@@ -45,6 +46,10 @@ class GlaDOS extends Entity {
             i.update(deltaTime, this);
             if (i.destroyed)
                 dels.push(i);
+        }
+        if (this.blood <= 0) {
+            //TODO: window.$game.eventManager.add();
+            this.stillAlive = false;
         }
         this.bullets = this.bullets.filter(i => !dels.includes(i));
     }
