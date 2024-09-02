@@ -76,7 +76,9 @@ const createEvent = (id, event) => {
             event.type,
             new Vector(event.position.x, event.position.y),
             new Vector(event.size.x, event.size.y),
-            event.affect
+            event.affect,
+            event.predir,
+            event.nxtdir,
         );
     }
     // ViewSwitch
