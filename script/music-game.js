@@ -8,6 +8,7 @@ videoElement.src = './resources/cry.webm';
 let noteSpeed = 5;
 let score = 0;
 let maxCombo = 0;
+let combo = 0;
 
 // 读取谱面文件
 const fs = require('fs');
@@ -68,7 +69,7 @@ document.addEventListener('keydown',(event) =>{
     if (note) {
         const notePosition = note.getBoundingClientRect();
         const linePosition = line.getBoundingClientRect();
-        let differPosition = notePosition - linePosition.left;
+        let differPosition = notePosition.left - linePosition.left;
         if ((event.key === 'a' && notePosition.bottom > 60 && differPosition < 10 && differPosition > -5)
          || (event.key === 'd' && notePosition.bottom < 60 && differPosition < 10 && differPosition > -5)){
             score += 100;
@@ -115,6 +116,8 @@ for (var i = 0; i < timeStamp.length; i++) {
     var differTime = stamptime - currentTime; // 延迟时间(秒)
     // 如果延迟时间小于0,表示该时间戳已过去,不需要执行
     if (differTime > 0) {
-            setTimeout(releaseNote(trackStamp[i]), delayTime * 1000);
+        setTimeout(() => {
+            releaseNote(trackStamp[i]);
+        }, differTime * 1000); // 使用differTime作为延迟
     }
 }
