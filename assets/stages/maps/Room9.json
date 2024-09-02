@@ -1077,11 +1077,11 @@ window.$game.dataManager.resolve(
             "type": 1,
             "position": {
                 "x": 460,
-                "y": 520
+                "y": 540
             },
             "size": {
                 "x": 80,
-                "y": 40
+                "y": 20
             },
             "affect": [
                 "event-area-12-14"

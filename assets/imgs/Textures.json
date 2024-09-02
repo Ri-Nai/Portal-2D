@@ -61,6 +61,10 @@ window.$game.dataManager.resolve(
         "1" : "./assets/imgs/textures/entities/companion-cube.png",
         "2" : "./assets/imgs/textures/entities/companion-cube-bordered.png"
     },
+    "buttons" : {
+        "0" : "./assets/imgs/textures/buttons/button-off.png",
+        "1" : "./assets/imgs/textures/buttons/button-on.png",
+    },
     "run" : {
         "1" : "./assets/imgs/textures/player/runs/right/run1.png",
         "2" : "./assets/imgs/textures/player/runs/right/run2.png",

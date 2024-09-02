@@ -1999,11 +1999,11 @@ window.$game.dataManager.resolve(
             "type": 1,
             "position": {
                 "x": 140,
-                "y": 600
+                "y": 620
             },
             "size": {
                 "x": 80,
-                "y": 40
+                "y": 20
             },
             "affect": [
                 "event-area-04-16"

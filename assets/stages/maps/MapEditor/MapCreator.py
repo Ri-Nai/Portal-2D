@@ -250,14 +250,18 @@ def get_events():
             x = (rect[f][0] + rect[f][2]) // 2
             y = (rect[f][1] + rect[f][3]) // 2
             print(i, j, f, rect[f], x, y)
+            this_name = get_event_name(x, y)
             if C[x][y] == 1 or C[x][y] == 1.5:
                 bfs(x + 1, y, 2)
-                events[get_event_name(x, y)] = get_event(int(C[x][y]), x, y, [get_event_name(x + 1, y)])
+                events[this_name] = get_event(int(C[x][y]), x, y, [get_event_name(x + 1, y)])
                 if C[x][y] == 1 :
-                    events[get_event_name(x, y)]["position"]["x"] -= basicSize // 2;
-                events[get_event_name(x, y)]["size"]["x"] += basicSize;
+                    events[this_name]["position"]["x"] -= basicSize // 2
+                events[this_name]["size"]["x"] += basicSize
+                events[this_name]["size"]["y"] //= 2
+                events[this_name]["position"]["y"] += basicSize // 2
+
             else:
-                events[get_event_name(x, y)] = get_event(C[x][y], x, y, [])
+                events[this_name] = get_event(C[x][y], x, y, [])
                 if C[x][y] == 3:
                     import re
                     s = filename
@@ -265,7 +269,7 @@ def get_events():
                     if match:
                         name = match.group(1)  # 提取name部分
                         number = int(match.group(2))  # 提取number部分
-                    events[get_event_name(x, y)]["toUrl"] =  f"{name}{number + 1}.json"
+                    events[this_name]["toUrl"] =  f"{name}{number + 1}.json"
     return events
 
 def get_drama_events():

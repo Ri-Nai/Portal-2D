@@ -88,7 +88,6 @@ class Hitbox {
         let newLeftup = new Vector(Math.max(this.position.x, other.position.x), Math.max(this.position.y, other.position.y));
         let newRightdown = new Vector(Math.min(this.position.x + this.size.x, other.position.x + other.size.x), Math.min(this.position.y + this.size.y, other.position.y + other.size.y));
         return createHitbox(newLeftup, newRightdown);
-
     }
 }
 const createHitbox = (leftUp, rightDown) => {
