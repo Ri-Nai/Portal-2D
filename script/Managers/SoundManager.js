@@ -18,6 +18,8 @@ class SoundManager {
         if (sound) {
             if (!sound.paused) {
                 sound.pause();
+                if (kind == "pause" || kind == "unpause")
+                    sound.currentTime = 0;
             }
             sound.play().catch(error => {
                 console.error(`Error playing sound: ${kind + id}`, error);
