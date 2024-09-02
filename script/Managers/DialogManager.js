@@ -125,6 +125,13 @@ class DialogManager {
         this.buffer = [];
         this.printing = false;
     }
+
+    async clear() {
+        this.buffer = [];
+        this.name.innerHTML = "";
+        this.text.innerHTML = "";
+        await this.close()
+    }
 }
 
 // 辅助延迟函数

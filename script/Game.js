@@ -201,6 +201,7 @@ class Game {
         await this.rebuild(async () => {
             this.loaded = false;
             this.map = new MapManager();
+            await this.dialogManager.clear()
             await this.load(url);
             this.resume();
             this.resetView();
