@@ -79,6 +79,14 @@ class Game {
         this.loadBtn.addEventListener('click', () => this.loadPopup.show());
 
         this.chapterNow = 'Room1';
+
+        this.achievementManager = new AchievementManager();
+        this.achievementManager.add(
+            new RoomArrivalAchievement("Arrival", "at Room 11", "Room11")
+        )
+        this.achievementManager.add(
+            new RoomArrivalAchievement("Room 6", "at Room 6", "Room6")
+        )
     }
 
     async init(filename = 'Test2.json') {

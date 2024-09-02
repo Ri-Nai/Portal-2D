@@ -138,3 +138,70 @@ body, html {
         opacity: 0;
     }
 }
+
+.achievement {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+
+    padding: 1rem 2rem;
+    min-width: 120px;
+    background: var(--theme);
+    color: #ffffff;
+
+    animation: slideIn 1s forwards;
+}
+
+.achievement.hide {
+    animation: slideOut 1s forwards;
+}
+
+.achievement.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.achievement::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0.25rem;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: #ffffff;
+}
+
+.achievement > .title {
+    font-size: 1rem;
+    margin: 4px 0;
+}
+
+.achievement > .desc {
+    font-size: 0.8rem;
+}
+
+.achievement > .caption {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateY(0%);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}

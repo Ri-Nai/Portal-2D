@@ -99,6 +99,7 @@ class PortalView extends View {
         this.computations.push((t) => this.events.update(t.interval));
         this.computations.push((t) => this.dramaEvents.update(t.interval));
         this.computations.push((t) => this.GlaDOS.update(t.interval));
+        this.computations.push((t) => window.$game.achievementManager.update(t));
 
         /**
          * @type {PortalGun}
