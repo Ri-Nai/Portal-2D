@@ -37,7 +37,7 @@ class Cube extends Entity {
     }
     draw() {
         window.$game.ctx.drawImage(
-            window.$game.textureManager.getTexture("entities", 1 + (!this.isPicked && this.canPick)),
+            window.$game.textureManager.getTexture("cubes", Number(!this.isPicked && this.canPick)),
             this.hitbox.position.x - offsetSize,
             this.hitbox.position.y - offsetSize,
             Cube.cubeSize + offsetSize * 2,
