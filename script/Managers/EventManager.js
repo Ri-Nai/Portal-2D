@@ -2,7 +2,8 @@ class EventManager {
     constructor() {
         this.head = null; // 指向队列的第一个元素
         this.tail = null;  // 指向队列的最后一个元素
-        this.process = false;
+        this.hasProcess = false;
+        this.processing = false;
     }
 
     add(events) {
@@ -14,23 +15,26 @@ class EventManager {
                 this.tail = event;
             }
         }
-        this.process = true;
+        this.hasProcess = true;
     }
 
     async handle() {
-        if (!this.process)
+        if (!this.hasProcess)
             return;
-        this.process = false;
+        this.hasProcess = false;
         if (this.head === null)
             return;
         let player = window.$game.view.player;
         player.blockMove = true;
         let event = this.head;
+        this.processing = true;
         switch (event.type) {
             case "delay":
                 await wait(event.time);
                 break;
             case "dialog":
+                if (window.$game.dialogManager.printing)
+                    return ;
                 await window.$game.dialogManager.prints(event.texts);
                 break;
             case "fadeIn":
@@ -48,7 +52,8 @@ class EventManager {
         this.head = this.head.next; // 移除已处理的事件
         if (this.head === null)
             this.tail = null;
-        this.process = true;
+        this.hasProcess = true;
         player.blockMove = false;
+        this.processing = false;
     }
 }
