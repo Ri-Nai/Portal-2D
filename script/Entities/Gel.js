@@ -6,10 +6,16 @@ class Gel extends Entity {
         super(position, size, velocity); // 设定一个默认的炮弹大小为5x5
         this.destroyed = false;
         this.type = type;
+        this.frame = 1;
+        this.buffer = this.bufferTime = 3;
     }
 
     update(deltaTime) {
         if (this.destroyed) return;
+        if ((this.buffer -= deltaTime) <= 0) {
+            this.frame = this.frame % 11 + 1;
+            this.buffer = this.bufferTime;
+        }
         this.inPortal = Math.max(this.inPortal - deltaTime, 0);
         this.isflying = 1;
         let nextVelocityX = this.velocity.x;
@@ -46,6 +52,15 @@ class Gel extends Entity {
         this.destroyed = true;
     }
     draw() {
+        if (this.type == 0) {
+            window.$game.ctx.drawImage(
+            window.$game.textureManager.getTexture("gels", this.type + "-" + this.frame),
+            this.hitbox.position.x,
+            this.hitbox.position.y,
+            this.hitbox.size.x,
+            this.hitbox.size.y);
+            return;
+        }
         window.$game.ctx.fillStyle = Gel.gelColors[ this.type ];
         window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
     }
