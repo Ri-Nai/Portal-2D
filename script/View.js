@@ -138,8 +138,8 @@ class PortalView extends View {
         this.gelDispensers.forEach(i => this.renderings.push(() => i.draw()));
         this.cubes.forEach(i => this.renderings.push(() => i.draw()));
         this.renderings.push(() => this.gelledEdgeList.draw());
-        this.renderings.push(() => this.player.draw());
         this.renderings.push(() => this.events.draw());
+        this.renderings.push(() => this.player.draw());
         this.renderings.push(() => this.GlaDOS.draw());
         this.renderings.push(() => this.portals[ 0 ].draw());
         this.renderings.push(() => this.portals[ 1 ].draw());

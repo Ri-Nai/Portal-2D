@@ -9,7 +9,7 @@ class Animation {
         "run": 6,
         "jump": 4,
         "fall": 2,
-        "stand": 1,
+        "stand": 7,
     };
     constructor() {
         this.status = "run";
