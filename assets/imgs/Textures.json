@@ -2,6 +2,9 @@ window.$game.dataManager.resolve(
 {
     "backgrounds" : {
     },
+    "cursor" : {
+        "0" : "./assets/imgs/textures/cursor/cursor.png",
+    },
     "backgroundTextures" : {
         "2" : "./assets/imgs/textures/background-textures/black_floor.png",
         "1" : "./assets/imgs/textures/background-textures/white_floor.png",
@@ -72,6 +75,15 @@ window.$game.dataManager.resolve(
     },
     "gelDispensers" : {
         "0-0" : "./assets/imgs/textures/gelDispensers/blue/jell-emitter.png",
+    },
+    "signs" : {
+        "1" : "./assets/imgs/textures/signs/portal-thru.png",
+        "2" : "./assets/imgs/textures/signs/momentum-1.png",
+        "3" : "./assets/imgs/textures/signs/momentum-2.png",
+        "4" : "./assets/imgs/textures/signs/jump-with-velocity.png",
+        "5" : "./assets/imgs/textures/signs/blue-gell.png",
+        "6" : "./assets/imgs/textures/signs/orange-gell.png",
+
     },
     "cubes": {
         "0" : "./assets/imgs/textures/cubes/companion-cube.png",

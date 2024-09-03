@@ -17,7 +17,7 @@ class Layer {
 }
 class MapManager {
     static mapHitbox = createHitbox(new Vector(0, 0), new Vector(1280, 720));
-    static typename = [ "backgrounds", "", "", "backgroundTextures", "", "", "" ];
+    static typename = [ "backgrounds", "", "", "backgroundTextures", "", "", "signs" ];
     constructor() {
         /**
          * @type {Layer[]}
@@ -79,9 +79,10 @@ class MapManager {
         }
     }
     draw() {
-        for (let i = 0; i < this.layers.length; ++i)
+        for (let i = 0; i < this.layers.length - 1; ++i)
             this.layers[ i ].draw(MapManager.typename[ i ]);
         for (let i of this.blocks)
             i.draw("blocks");
+        this.layers[ this.layers.length - 1 ].draw(MapManager.typename[ this.layers.length - 1 ]);
     }
 }

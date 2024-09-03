@@ -26,12 +26,21 @@ class Tile {
                     // window.$game.ctx.fillStyle = `rgba(0, ${0}, ${this.type * 100}, 1)`;
                     // window.$game.ctx.fillRect(this.hitbox.position.x + i, this.hitbox.position.y + j, basicSize, basicSize);
                     // console.log(window.$game.textureManager.getTexture(kind, this.type));
-                    window.$game.ctx.drawImage(
-                        window.$game.textureManager.getTexture(kind, this.type),
-                        this.hitbox.position.x + i - offsetSize,
-                        this.hitbox.position.y + j - offsetSize,
-                        basicSize + offsetSize * 2,
-                        basicSize + offsetSize * 2);
+                    if (kind != "signs")
+                        window.$game.ctx.drawImage(
+                            window.$game.textureManager.getTexture(kind, this.type),
+                            this.hitbox.position.x + i - offsetSize,
+                            this.hitbox.position.y + j - offsetSize,
+                            basicSize + offsetSize * 2,
+                            basicSize + offsetSize * 2);
+                    else {
+                        window.$game.ctx.drawImage(
+                            window.$game.textureManager.getTexture(kind, this.type),
+                            this.hitbox.position.x + i + offsetSize / 2,
+                            this.hitbox.position.y + j + offsetSize / 2,
+                            basicSize - offsetSize,
+                            basicSize - offsetSize);
+                    }
                 }
         }
     }

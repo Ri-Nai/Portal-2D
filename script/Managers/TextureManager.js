@@ -30,7 +30,7 @@ class TextureManager {
 
         // console.log("texture: ", this.textures);
     }
-    getTexture(kind, id) {
+    getTexture(kind, id = "0") {
         // console.debug("getTexture: ", kind, id);
         return this.textures[ kind ][ id ];
     }
