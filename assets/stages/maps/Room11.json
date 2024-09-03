@@ -1828,7 +1828,7 @@ window.$game.dataManager.resolve(
             "affect": [
                 "event-area-30-05"
             ],
-            "nxtdir": 0,
+            "nxtdir": -1,
             "predir": 0
         },
         "event-area-28-14": {

@@ -35,7 +35,7 @@ class AchievementManager {
 
     update(t) {
         this.achievements.forEach((achievement) => {
-            if (achievement.completed) return ;
+            if (achievement.completed) return;
             achievement.check(t, this);
         });
     }
@@ -51,7 +51,7 @@ class AchievementManager {
             if (a.title === achievement.title) {
                 a.completed = true;
             }
-        })
+        });
         localStorage.setItem("achievements", JSON.stringify(this.achievements));
 
         this.popup.querySelector(".title").innerText = achievement.title;
@@ -86,7 +86,7 @@ class Achievement {
     }
 
     check(t, that) {
-        if (this.completed) return ;
+        if (this.completed) return;
         if (this.condition(t, that)) {
             this.completed = true;
             that.onCompleted(this);
@@ -105,6 +105,6 @@ class RoomArrivalAchievement extends Achievement {
     }
 
     condition(t, that) {
-        return that.game.chapterNow === this.room
+        return that.game.chapterNow === this.room;
     }
 }

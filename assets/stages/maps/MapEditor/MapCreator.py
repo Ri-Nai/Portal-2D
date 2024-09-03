@@ -232,7 +232,8 @@ def get_events():
                     q.put((nx, ny, k))
                 print(x, y, nx, ny)
                 events[get_event_name(x, y)] = get_event(C[x][y], x, y, [get_event_name(nx, ny)])
-                events[get_event_name(x, y)]["nxtdir"] = k
+                events[get_event_name(x, y)]["nxtdir"] = k if C[nx][ny] == 2 else -1
+
             event_name = get_event_name(x, y)
             if event_name not in events:
                 events[event_name] = get_event(C[x][y], x, y, [])
