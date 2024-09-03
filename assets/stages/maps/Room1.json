@@ -1368,6 +1368,18 @@ window.$game.dataManager.resolve(
             },
             "affect": [],
             "toUrl": "Room2.json"
+        },
+        "parfait-1": {
+            "type": 5,
+            "position": {
+                "x": 1160,
+                "y": 520
+            },
+            "size": {
+                "x": 40,
+                "y": 40
+            },
+            "affect": []
         }
     },
     "drama_events": [

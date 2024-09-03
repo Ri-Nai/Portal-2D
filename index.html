@@ -99,8 +99,8 @@
                 document.querySelector(".achievement-container > .list")
             );
 
-            const load = new Load((url) => {
-                Store.set("toLoad", url)
+            const load = new Load((data) => {
+                Store.set("toLoad", JSON.stringify(data));
                 window.location.href = `./game.html?${window.$store.encode()}`;
             })
 

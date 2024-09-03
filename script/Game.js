@@ -64,8 +64,9 @@ class Game {
         window.$store = this.store;
 
         this.savePopup = new Save();
-        this.loadPopup = new Load((url) => {
-            window.$game.switchView(url);
+        this.loadPopup = new Load((data) => {
+            Store.set("parfait", JSON.stringify(data.parfait));
+            window.$game.switchView(data.url);
             this.loadPopup.hide();
         });
 
