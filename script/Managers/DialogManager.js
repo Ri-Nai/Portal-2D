@@ -100,7 +100,7 @@ class DialogManager {
                 let span = document.createElement("span");
                 span.textContent = i;
                 this.text.appendChild(span); // 逐字显示文本
-                if (window.$game.inputManager.isKeyDown("Ctrl"))
+                if (window.$game.inputManager.isKeysDown(["LCtrl", "RCtrl"]))
                 {
                     await delay(10); // 控制打印速度
                     continue;
@@ -111,11 +111,11 @@ class DialogManager {
             }
 
             // 等待用户输入
-            if (!window.$game.inputManager.isKeyDown("Ctrl"))
+            if (!window.$game.inputManager.isKeysDown(["LCtrl", "RCtrl"]))
                 while (
                     await (async () => {
                         await delay(100);
-                        return !getEnd() && !window.$game.inputManager.isKeyDown("Ctrl");
+                        return !getEnd() && !window.$game.inputManager.isKeysDown(["LCtrl", "RCtrl"]);
                     })()
                 );
             else await delay(100);
