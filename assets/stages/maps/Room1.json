@@ -1369,7 +1369,7 @@ window.$game.dataManager.resolve(
             "affect": [],
             "toUrl": "Room2.json"
         },
-        "parfait-1": {
+        "event-area-29-13": {
             "type": 5,
             "position": {
                 "x": 1160,
