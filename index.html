@@ -32,6 +32,7 @@
         <div class="button-container">
             <div class="button" id="start">开始新游戏</div>
             <div class="button" id="load">加载存档</div>
+            <div class="button" id="achievement">成就</div>
             <div class="button" id="about">关于</div>
             <div class="button" id="exit">退出</div>
         </div>
@@ -47,6 +48,16 @@
         </div>
     </div>
 
+    <div class="achievementDisp hide">
+        <div class="achievement-container">
+            <div class="title">成就</div>
+            <div class="list"></div>
+        </div>
+        <div class="button-container">
+            <div class="button" id="achievement-back">返回</div>
+        </div>
+    </div>
+
     <div class="transition hidden">
         <div></div>
         <div></div>
@@ -57,6 +68,7 @@
     <script type="text/javascript" src="script/utils/Store.js"></script>
     <script type="text/javascript" src="script/utils/Auth.js"></script>
     <script type="text/javascript" src="script/utils/Save.js"></script>
+    <script type="text/javascript" src="script/utils/AchievementDisp.js"></script>
 
     <script type="text/javascript">
         const slideIn = () => {
@@ -82,6 +94,11 @@
         window.onload = () => {
             window.$store = new Store();
             Store.remove("toLoad");
+
+            const achievementDisp = new AchievementDisp(
+                document.querySelector(".achievement-container > .list")
+            );
+
             const load = new Load((url) => {
                 Store.set("toLoad", url)
                 window.location.href = `./game.html?${window.$store.encode()}`;
@@ -109,6 +126,24 @@
                 setTimeout(() => {
                     document.querySelector(".save").classList.add("hide");
                     document.querySelector(".save-container").innerHTML = "";
+                    document.querySelector(".menu").classList.remove("hide");
+                    slideIn();
+                }, 1800);
+            });
+            document.querySelector("#achievement").addEventListener("click", () => {
+                slideOut();
+                setTimeout(() => {
+                    document.querySelector(".menu").classList.add("hide");
+                    document.querySelector(".achievementDisp").classList.remove("hide");
+                    achievementDisp.disp();
+                    slideIn();
+                }, 1800);
+            });
+            document.querySelector("#achievement-back").addEventListener("click", () => {
+                slideOut();
+                setTimeout(() => {
+                    document.querySelector(".achievementDisp").classList.add("hide");
+                    document.querySelector(".achievement-container").innerHTML = "";
                     document.querySelector(".menu").classList.remove("hide");
                     slideIn();
                 }, 1800);

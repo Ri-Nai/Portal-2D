@@ -101,6 +101,9 @@ class Load extends Save {
 
         container.appendChild(title)
 
+        const scroll = document.createElement("div");
+        scroll.classList.add("list");
+
         this.getAll().forEach((url, save) => {
             const btn = document.createElement("div")
             btn.classList.add("list-item")
@@ -108,8 +111,10 @@ class Load extends Save {
 
             btn.addEventListener("click", this.switchCallback.bind(this, url))
 
-            container.appendChild(btn)
+            scroll.appendChild(btn)
         })
+
+        container.appendChild(scroll)
 
         if (this.getAll().size === 0) {
             const empty = document.createElement("div");
