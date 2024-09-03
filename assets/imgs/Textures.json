@@ -70,6 +70,9 @@ window.$game.dataManager.resolve(
         "2-2" : "./assets/imgs/textures/gelledEdges/white/white-gelled-edge-2.png",
         "2-3" : "./assets/imgs/textures/gelledEdges/white/white-gelled-edge-3.png",
     },
+    "gelDispensers" : {
+        "0-0" : "./assets/imgs/textures/gelDispensers/blue/jell-emitter.png",
+    },
     "cubes": {
         "0" : "./assets/imgs/textures/cubes/companion-cube.png",
         "1" : "./assets/imgs/textures/cubes/companion-cube-bordered.png"

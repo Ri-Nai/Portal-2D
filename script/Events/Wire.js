@@ -33,6 +33,6 @@ class Wire extends GameEvent {
             texture = window.$game.textureManager.getTexture(status, `straight-${this.predir & 1}`);
         else
             texture = window.$game.textureManager.getTexture(status, "cursed");
-        window.$game.ctx.drawImage(texture, this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
+        window.$game.ctx.drawImage(texture, this.hitbox.position.x - offsetSize / 2, this.hitbox.position.y - offsetSize / 2, this.hitbox.size.x, this.hitbox.size.y);
     }
 }
