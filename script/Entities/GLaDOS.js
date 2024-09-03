@@ -1,11 +1,11 @@
-class GlaDOS extends Entity {
+class GLaDOS extends Entity {
     static GlaDOSX = 4 * basicSize;
     static GLaDOSY = 8 * basicSize;
     static BloodLimit = 20;
     constructor(stillAlive) {
         super(
-            new Vector(16 * basicSize - GlaDOS.GlaDOSX / 2, 9 * basicSize - GlaDOS.GLaDOSY / 2),
-            new Vector(GlaDOS.GlaDOSX, GlaDOS.GLaDOSY),
+            new Vector(16 * basicSize - GLaDOS.GlaDOSX / 2, 9 * basicSize - GLaDOS.GLaDOSY / 2),
+            new Vector(GLaDOS.GlaDOSX, GLaDOS.GLaDOSY),
         )
         this.stillAlive = stillAlive;
         this.shootingBuffetTime = 60;
@@ -13,7 +13,7 @@ class GlaDOS extends Entity {
         this.tragetPosition = this.hitbox.position.copy();
         this.shootingBuffer = 0;
         this.movingBuffer = this.movingBufferTime;
-        this.blood = GlaDOS.BloodLimit;
+        this.blood = GLaDOS.BloodLimit;
         this.bullets = [];
     }
     update(deltaTime) {
@@ -37,7 +37,7 @@ class GlaDOS extends Entity {
         }
         if (this.movingBuffer == 0) {
             // this.tragetPosition = this.hitbox.getCenter().add(new Vector(Math.random() * 2 - 1, Math.random() * 2 - 1));
-            this.tragetPosition = new Vector(random(0, 30 * basicSize - GlaDOS.GlaDOSX), random(0, 16 * basicSize - GlaDOS.GLaDOSY));
+            this.tragetPosition = new Vector(random(0, 30 * basicSize - GLaDOS.GlaDOSX), random(0, 16 * basicSize - GLaDOS.GLaDOSY));
             this.tragetPosition.addEqual(new Vector(1 * basicSize, 1 * basicSize));
             this.movingBuffer = this.movingBufferTime;
         }

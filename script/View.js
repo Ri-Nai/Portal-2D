@@ -4,14 +4,14 @@ class ViewData {
         this.cubes = null;
         this.gelDispensers = null;
         this.portals = null;
-        this.GlaDOS = false;
+        this.GLaDOS = false;
     }
     load(data) {
         this.player = copyVector(data.player);
         this.cubes = data.cubes;
         this.gelDispensers = data.gelDispensers;
         this.portals = data.portals;
-        this.GlaDOS = Boolean(data.GlaDOS);
+        this.GLaDOS = Boolean(data.GLaDOS);
     }
 
     async loadFromURL(url) {
@@ -76,7 +76,7 @@ class PortalView extends View {
         this.cubes = [];
         this.gelDispensers = [];
         this.player = new Player(viewData.player.copy());
-        this.GlaDOS = new GlaDOS(viewData.GlaDOS);
+        this.GLaDOS = new GLaDOS(viewData.GLaDOS);
 
         viewData.cubes.forEach(i => this.cubes.push(new Cube(copyVector(i))));
         viewData.gelDispensers.forEach(i => this.gelDispensers.push(new GelDispenser(copyVector(i.position), i.times, i.facing, i.type)));
@@ -98,7 +98,7 @@ class PortalView extends View {
         this.gelDispensers.forEach(i => this.computations.push((t) => i.update(t.interval)));
         this.computations.push((t) => this.events.update(t.interval));
         this.computations.push((t) => this.dramaEvents.update(t.interval));
-        this.computations.push((t) => this.GlaDOS.update(t.interval));
+        this.computations.push((t) => this.GLaDOS.update(t.interval));
         this.computations.push((t) => window.$game.achievementManager.update(t));
 
         /**
@@ -140,7 +140,7 @@ class PortalView extends View {
         this.renderings.push(() => this.gelledEdgeList.draw());
         this.renderings.push(() => this.events.draw());
         this.renderings.push(() => this.player.draw());
-        this.renderings.push(() => this.GlaDOS.draw());
+        this.renderings.push(() => this.GLaDOS.draw());
         this.renderings.push(() => this.portals[ 0 ].draw());
         this.renderings.push(() => this.portals[ 1 ].draw());
         this.renderings.push((t) => {this.portalGun.draw(t);});
