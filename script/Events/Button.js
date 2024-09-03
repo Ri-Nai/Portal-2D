@@ -9,22 +9,35 @@ class Button extends Tile {
     constructor(type, position, size, event) {
         super(type, position, size);
         this.event = event;
-        this.size = size
-        this.position = position
+        this.size = size;
+        this.position = position;
+        this.activated = false;
     }
 
     onActivate() {
         // console.debug('Button activated')
-        this.hitbox = new Hitbox(new Vector(this.position.x, this.position.y + this.size.y - 20), new Vector(this.size.x, 20));
+        this.activated = true;
+        this.hitbox = new Hitbox(new Vector(this.position.x, this.position.y + this.size.y / 2), new Vector(this.size.x, this.size.y / 2));
+        window.$game.soundManager.playSound("button", 0);
     }
 
     onDeactivate() {
+        this.activated = false;
         this.hitbox = new Hitbox(this.position, this.size);
+        window.$game.soundManager.playSound("button", 1);
     }
 
     draw() {
-        window.$game.ctx.fillStyle = `yellow`;
-        window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
+        // window.$game.ctx.fillStyle = `yellow`;
+        // window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
+        window.$game.ctx.drawImage(
+            window.$game.textureManager.getTexture("buttons", Number(this.activated)),
+            8, 25, 64, 15,
+            this.position.x,
+            this.position.y,
+            this.size.x,
+            this.size.y - offsetSize
+        );
     }
 }
 
@@ -48,11 +61,11 @@ class ButtonEvent extends GameEvent {
      * @return {Entity[]}
      */
     get entities() {
-        return window.$game.view.entities
+        return window.$game.view.entities;
     }
 
     update() {
-        let isActivate = false
+        let isActivate = false;
         this.entities.forEach((entity) => {
             if (
                 this.hitbox.hit(new Hitbox(
@@ -61,9 +74,9 @@ class ButtonEvent extends GameEvent {
                 ))
             ) {
                 this.activate();
-                isActivate = true
+                isActivate = true;
             }
-        })
+        });
 
         if (!isActivate) {
             this.deactivate();

@@ -1835,11 +1835,11 @@ window.$game.dataManager.resolve(
             "type": 1,
             "position": {
                 "x": 1120,
-                "y": 560
+                "y": 580
             },
             "size": {
                 "x": 80,
-                "y": 40
+                "y": 20
             },
             "affect": [
                 "event-area-28-15"

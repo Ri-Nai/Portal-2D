@@ -11,6 +11,7 @@ class DramaEvent extends GameEvent {
         this.canInteract = item.canInteract;
     }
     onActivate() {
-        window.$game.eventManager.add(this.events);
+        if (!window.$game.eventManager.processing)
+            window.$game.eventManager.add(this.events);
     }
 }

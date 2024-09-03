@@ -28,6 +28,6 @@ window.$game.dataManager.resolve(
             "facing": 0
         }
     ],
-    "GlaDOS" : true,
+    "GLaDOS" : true,
 }
 )

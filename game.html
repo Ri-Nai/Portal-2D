@@ -68,7 +68,7 @@
     <script type="text/javascript" src="script/Entities/Cube.js"></script>
     <script type="text/javascript" src="script/Entities/Gel.js"></script>
     <script type="text/javascript" src="script/Entities/Bullet.js"></script>
-    <script type="text/javascript" src="script/Entities/GlaDOS.js"></script>
+    <script type="text/javascript" src="script/Entities/GLaDOS.js"></script>
 
 
     <script type="text/javascript" src="script/Managers/DataManager.js"></script>
@@ -81,6 +81,7 @@
     <script type="text/javascript" src="script/Managers/AchievementManager.js"></script>
 
     <script type="text/javascript" src="script/Events/Event.js"></script>
+    <script type="text/javascript" src="script/Events/Parfait.js"></script>
     <script type="text/javascript" src="script/Events/DramaEvent.js"></script>
     <script type="text/javascript" src="script/Events/EventList.js"></script>
     <script type="text/javascript" src="script/Events/DramaEventList.js"></script>
@@ -103,8 +104,14 @@
                 Auth.toLogin();
             }
 
+            let toLoad = Store.get("toLoad") ?? undefined;
+            if (toLoad) {
+                toLoad = JSON.parse(toLoad);
+                Store.remove("toLoad");
+                Store.set("parfait", JSON.stringify(toLoad.parfait))
+            }
             window.$game = new Game();
-            window.$game.init().then(() => {
+            window.$game.init(toLoad?.url).then(() => {
                 window.$game.start();
             });
         }

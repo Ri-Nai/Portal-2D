@@ -49,7 +49,13 @@ class Save {
         newBtn.style["fontWeight"] = 800;
 
         newBtn.addEventListener("click", () => {
-            this.set(window.$game.chapterNow, `${window.$game.chapterNow}.json`)
+            const parfait = JSON.parse(Store.get("parfait") ?? "[]");
+            let title = window.$game.chapterNow;
+
+            this.set(`${title}-${(new Date()).toISOString()}`, {
+                url: `${window.$game.chapterNow}.json`,
+                parfait
+            })
             this.hide()
         })
 
@@ -74,8 +80,20 @@ class Save {
         saves[key] = value;
         localStorage.setItem("saves", JSON.stringify(saves));
     }
+    /**
+     * @typedef SaveData
+     * @type {{
+     *      url: string,
+     *      parfait: string[]
+     * }}
+     */
+
+    /**
+     * @returns {Map<string, SaveData>}
+     */
     getAll() {
         const data = JSON.parse(localStorage.getItem("saves")) ?? {};
+
         const result = new Map()
         Object.keys(data).forEach((v, k) => {
             result.set(v, data[v])
@@ -86,8 +104,9 @@ class Save {
 }
 
 class Load extends Save {
-    constructor() {
+    constructor(callback) {
         super();
+        this.switchCallback = callback;
     }
 
     build() {
@@ -100,18 +119,20 @@ class Load extends Save {
 
         container.appendChild(title)
 
-        this.getAll().forEach((url, save) => {
+        const scroll = document.createElement("div");
+        scroll.classList.add("list");
+
+        this.getAll().forEach((data, save) => {
             const btn = document.createElement("div")
             btn.classList.add("list-item")
             btn.innerHTML = save
 
-            btn.addEventListener("click", () => {
-                window.$game.switchView(url)
-                this.hide()
-            })
+            btn.addEventListener("click", this.switchCallback.bind(this, data))
 
-            container.appendChild(btn)
+            scroll.appendChild(btn)
         })
+
+        container.appendChild(scroll)
 
         if (this.getAll().size === 0) {
             const empty = document.createElement("div");

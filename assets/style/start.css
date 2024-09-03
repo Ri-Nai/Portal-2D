@@ -13,7 +13,17 @@ body {
     --theme: #3388BB;
 }
 
-.title {
+.hide {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+.menu {
+    height: 100vh;
+    width: 100vw;
+}
+
+.menu > .title {
     display: flex;
     position: absolute;
     top: 0px;
@@ -77,10 +87,10 @@ body {
     position: absolute;
     bottom: 0px;
     right: 0px;
-    padding: 10vh 10vw;
+    padding: 6vh 8vw;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     transform: skew(0, -10deg);
     user-select: none;
 }
@@ -234,4 +244,90 @@ body {
 }
 .transition.slideOut > div:nth-child(4) {
     animation: 1s slideOut calc(4 * 0.2s - 0.2s) cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.save, .achievementDisp {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+    background-color: var(--theme);
+}
+
+.save > .save-container,
+.achievementDisp > .achievement-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    transform: skew(0, -10deg);
+}
+
+.save-container > .title,
+.achievement-container > .title {
+    font-size: 5rem;
+    font-weight: 100;
+}
+
+.save-container > .list,
+.achievement-container > .list {
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.save-container > .list > .list-item,
+.achievement-container > .list > .list-item {
+    padding: 0.5rem 5rem 0.5rem 2rem;
+    text-align: center;
+    font-family: "Noto Serif", "Noto Serif SC", serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    background: var(--theme);
+    border: unset;
+    color: #ffffff;
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    margin-top: 1rem;
+}
+
+.achievement-container > .list > .list-item {
+    flex-direction: column;
+    align-items: start;
+}
+
+.achievement-container > .list > .list-item > .desc {
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+
+.save-container .list-item::before,
+.achievement-container .list-item::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0.25rem;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: #ffffff;
+}
+
+.save-container .list-item:hover,
+.achievement-container .list-item:hover {
+    color: var(--theme);
+    animation: 0.5s spreadBg cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    background: linear-gradient(90deg, #ffffff 0 50%, var(--theme) 50% 100%);
+    background-size: 200% 100%;
+}
+
+.save-container > .button {
+    display: none;
+    visibility: hidden;
 }

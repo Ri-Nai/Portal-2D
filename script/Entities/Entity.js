@@ -141,28 +141,28 @@ class Entity {
     }
     checkPortal(delta) {
         let portals = window.$game.view.portals;
-        if (portals[ 0 ].type == -1 || portals[ 1 ].type == -1)
+        if (portals[0].type == -1 || portals[1].type == -1)
             return false;
         this.hitbox.position.addEqual(delta);
         for (let i = 0; i < 2; ++i) {
-            let flag = portals[ i ].isMoveIn(this.hitbox);
+            let flag = portals[i].isMoveIn(this.hitbox);
             if (flag) {
-                let infacing = portals[ i ].infacing;
-                let newPosition = this.moveOutPortalPosition(portals[ i ^ 1 ]);
+                let infacing = portals[i].infacing;
+                let newPosition = this.moveOutPortalPosition(portals[i ^ 1]);
                 if (newPosition == null)
                     break;
-                if (this.velocity.dot(Portal.unitDirection[ infacing ]) <= this.MaxSpeed * 1.2) {
-                    if (Portal.unitDirection[ infacing ].x != 0)
-                        this.velocity.x = Portal.unitDirection[ infacing ].x * this.MaxSpeed * 1.2;
+                if (this.velocity.dot(Portal.unitDirection[infacing]) <= this.MaxSpeed * 1.2) {
+                    if (Portal.unitDirection[infacing].x != 0)
+                        this.velocity.x = Portal.unitDirection[infacing].x * this.MaxSpeed * 1.2;
                     else
-                        this.velocity.y = Portal.unitDirection[ infacing ].y * this.MaxSpeed * 1.2;
+                        this.velocity.y = Portal.unitDirection[infacing].y * this.MaxSpeed * 1.2;
                 }
                 if (!this.isBullet)
-                    this.velocity = Portal.unitDirection[ infacing ].scale(this.velocity.magnitude());
-                this.rotateVelocity(infacing, portals[ i ^ 1 ].facing);
-                if (portals[ i ^ 1 ].facing & 1) {
+                    this.velocity = Portal.unitDirection[infacing].scale(this.velocity.magnitude());
+                this.rotateVelocity(infacing, portals[i ^ 1].facing);
+                if (portals[i ^ 1].facing & 1) {
                     this.isflying = this.flyingBuffer;
-                    this.facing = portals[ i ^ 1 ].facing - 2;
+                    this.facing = portals[i ^ 1].facing - 2;
                 }
                 this.hitbox.position = newPosition;
                 window.$game.soundManager.playSound("portal-teleporting");
@@ -180,7 +180,7 @@ class Entity {
             new Vector(0, Portal.portalWidth),
             new Vector(Portal.portalWidth, 0)
         ];
-        let newPosition = new Vector(portal.hitbox.position.x, portal.hitbox.position.y).addVector(offsets[ portal.facing ]);
+        let newPosition = new Vector(portal.hitbox.position.x, portal.hitbox.position.y).addVector(offsets[portal.facing]);
         // newPosition.addEqual(diff);
         if (portal.facing & 1)
             newPosition.addEqual(new Vector(0, Portal.portalRadius - 0.5 * this.hitbox.size.y));
@@ -204,7 +204,7 @@ class Entity {
             new Vector(0, Portal.portalWidth),
             new Vector(Portal.portalWidth, 0)
         ];
-        let newPosition = new Vector(portal.hitbox.position.x, portal.hitbox.position.y).addVector(offsets[ portal.facing ]);
+        let newPosition = new Vector(portal.hitbox.position.x, portal.hitbox.position.y).addVector(offsets[portal.facing]);
         // newPosition.addEqual(diff);
         if (portal.facing & 1)
             newPosition.addEqual(new Vector(0, Portal.portalRadius - 0.5 * this.hitbox.size.y));
@@ -225,8 +225,8 @@ class Entity {
             return false;
         this.hitbox.position.y += 1;
         let collided = !!this.hitbox.checkHits(window.$game.map.superEdges, () => { });
-        collided |= !!(this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[ 0 ], () => { })) << 1;
-        collided |= !!(this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[ 1 ], () => { })) << 2;
+        collided |= !!(this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[0], () => { })) << 1;
+        collided |= !!(this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[1], () => { })) << 2;
         this.hitbox.position.y -= 1;
         if (collided)
             this.isflying = 0;
@@ -249,7 +249,7 @@ class Entity {
             }
 
             this.hitbox.position.addEqual(delta);
-            if (this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[ 0 ], () => { })) {
+            if (this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[0], () => { })) {
                 if (this.isOnGround()) {
                     this.jumping.coyoteTimer = this.jumping.coyoteTime * 1; // 重置coyote时间
                     this.jumping.times = 1.5;

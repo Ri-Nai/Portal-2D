@@ -2,7 +2,7 @@ class DialogManager {
     constructor() {
         this.createDialog();
         this.buffer = []; // 文本缓冲区
-        this.isReading = false;
+        this.printing = false;
     }
 
     // 创建对话框的 DOM 元素
@@ -81,7 +81,7 @@ class DialogManager {
     }
     // 打印缓冲区中的文本
     async _prints() {
-        this.isReading = true;
+        this.printing = true;
         for (let text of this.buffer) {
             if (text[0] === "【") {
                 let end = text.indexOf("】");
@@ -123,7 +123,15 @@ class DialogManager {
             this.text.innerHTML = "";
         }
         this.buffer = [];
-        this.isReading = false;
+        this.printing = false;
+    }
+
+    async clear() {
+        this.buffer = [];
+        this.name.innerHTML = "";
+        this.text.innerHTML = "";
+        this.printing = false;
+        await this.close()
     }
 }
 

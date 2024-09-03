@@ -76,7 +76,9 @@ const createEvent = (id, event) => {
             event.type,
             new Vector(event.position.x, event.position.y),
             new Vector(event.size.x, event.size.y),
-            event.affect
+            event.affect,
+            event.predir,
+            event.nxtdir,
         );
     }
     // ViewSwitch
@@ -101,6 +103,16 @@ const createEvent = (id, event) => {
 
         window.$game.map.superEdges.push(e.block);
         return e;
+    }
+    // ParfaitEvent
+    if (event.type === 5) {
+        return new ParfaitEvent(
+            id,
+            event.type,
+            new Vector(event.position.x, event.position.y),
+            new Vector(event.size.x, event.size.y),
+            event.affect
+        );
     }
     return new GameEvent(
         id,

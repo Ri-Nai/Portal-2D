@@ -41,25 +41,71 @@ window.$game.dataManager.resolve(
         "blue": "./assets/imgs/textures/portalBullets/blue-shot.png",
         "orange": "./assets/imgs/textures/portalBullets/orange-shot.png",
     },
-    "gelledEdges" : {
-        "0-0" : "./assets/imgs/textures/gelledEdges/blue-gelled-edge-0.png",
-        "0-1" : "./assets/imgs/textures/gelledEdges/blue-gelled-edge-1.png",
-        "0-2" : "./assets/imgs/textures/gelledEdges/blue-gelled-edge-2.png",
-        "0-3" : "./assets/imgs/textures/gelledEdges/blue-gelled-edge-3.png",
-
-        "1-0" : "./assets/imgs/textures/gelledEdges/orange-gelled-edge-0.png",
-        "1-1" : "./assets/imgs/textures/gelledEdges/orange-gelled-edge-1.png",
-        "1-2" : "./assets/imgs/textures/gelledEdges/orange-gelled-edge-2.png",
-        "1-3" : "./assets/imgs/textures/gelledEdges/orange-gelled-edge-3.png",
-
-        "2-0" : "./assets/imgs/textures/gelledEdges/white-gelled-edge-0.png",
-        "2-1" : "./assets/imgs/textures/gelledEdges/white-gelled-edge-1.png",
-        "2-2" : "./assets/imgs/textures/gelledEdges/white-gelled-edge-2.png",
-        "2-3" : "./assets/imgs/textures/gelledEdges/white-gelled-edge-3.png",
+    "gels" : {
+        "0-1" : "./assets/imgs/textures/gels/blue/bullet1_0001.png",
+        "0-2" : "./assets/imgs/textures/gels/blue/bullet1_0002.png",
+        "0-3" : "./assets/imgs/textures/gels/blue/bullet1_0003.png",
+        "0-4" : "./assets/imgs/textures/gels/blue/bullet1_0004.png",
+        "0-5" : "./assets/imgs/textures/gels/blue/bullet1_0005.png",
+        "0-6" : "./assets/imgs/textures/gels/blue/bullet1_0006.png",
+        "0-7" : "./assets/imgs/textures/gels/blue/bullet1_0007.png",
+        "0-8" : "./assets/imgs/textures/gels/blue/bullet1_0008.png",
+        "0-9" : "./assets/imgs/textures/gels/blue/bullet1_0009.png",
+        "0-10" : "./assets/imgs/textures/gels/blue/bullet1_0010.png",
+        "0-11" : "./assets/imgs/textures/gels/blue/bullet1_0011.png",
     },
-    "entities": {
-        "1" : "./assets/imgs/textures/entities/companion-cube.png",
-        "2" : "./assets/imgs/textures/entities/companion-cube-bordered.png"
+    "gelledEdges" : {
+        "0-0" : "./assets/imgs/textures/gelledEdges/blue/blue-gelled-edge-0.png",
+        "0-1" : "./assets/imgs/textures/gelledEdges/blue/blue-gelled-edge-1.png",
+        "0-2" : "./assets/imgs/textures/gelledEdges/blue/blue-gelled-edge-2.png",
+        "0-3" : "./assets/imgs/textures/gelledEdges/blue/blue-gelled-edge-3.png",
+
+        "1-0" : "./assets/imgs/textures/gelledEdges/orange/orange-gelled-edge-0.png",
+        "1-1" : "./assets/imgs/textures/gelledEdges/orange/orange-gelled-edge-1.png",
+        "1-2" : "./assets/imgs/textures/gelledEdges/orange/orange-gelled-edge-2.png",
+        "1-3" : "./assets/imgs/textures/gelledEdges/orange/orange-gelled-edge-3.png",
+
+        "2-0" : "./assets/imgs/textures/gelledEdges/white/white-gelled-edge-0.png",
+        "2-1" : "./assets/imgs/textures/gelledEdges/white/white-gelled-edge-1.png",
+        "2-2" : "./assets/imgs/textures/gelledEdges/white/white-gelled-edge-2.png",
+        "2-3" : "./assets/imgs/textures/gelledEdges/white/white-gelled-edge-3.png",
+    },
+    "cubes": {
+        "0" : "./assets/imgs/textures/cubes/companion-cube.png",
+        "1" : "./assets/imgs/textures/cubes/companion-cube-bordered.png"
+    },
+    "buttons" : {
+        "0" : "./assets/imgs/textures/buttons/button-off.png",
+        "1" : "./assets/imgs/textures/buttons/button-on.png",
+    },
+    "doors" : {
+        "1" : "./assets/imgs/textures/doors/door_0001.png",
+        "2" : "./assets/imgs/textures/doors/door_0002.png",
+        "3" : "./assets/imgs/textures/doors/door_0003.png",
+        "4" : "./assets/imgs/textures/doors/door_0004.png",
+        "5" : "./assets/imgs/textures/doors/door_0005.png",
+        "6" : "./assets/imgs/textures/doors/door_0006.png",
+        "7" : "./assets/imgs/textures/doors/door_0007.png",
+    },
+    "wires-straight-on" : {
+        "0" : "./assets/imgs/textures/wires/on/wire0.png",
+        "1" : "./assets/imgs/textures/wires/on/wire1.png",
+    },
+    "wires-straight-off" : {
+        "0" : "./assets/imgs/textures/wires/off/wire0.png",
+        "1" : "./assets/imgs/textures/wires/off/wire1.png",
+    },
+    "wires-cursed-on" : {
+        "03" : "./assets/imgs/textures/wires/on/wire-cursed03.png",
+        "10" : "./assets/imgs/textures/wires/on/wire-cursed10.png",
+        "21" : "./assets/imgs/textures/wires/on/wire-cursed21.png",
+        "32" : "./assets/imgs/textures/wires/on/wire-cursed32.png",
+    },
+    "wires-cursed-off" : {
+        "03" : "./assets/imgs/textures/wires/off/wire-cursed03.png",
+        "10" : "./assets/imgs/textures/wires/off/wire-cursed10.png",
+        "21" : "./assets/imgs/textures/wires/off/wire-cursed21.png",
+        "32" : "./assets/imgs/textures/wires/off/wire-cursed32.png",
     },
     "run" : {
         "1" : "./assets/imgs/textures/player/runs/right/run1.png",
@@ -98,8 +144,20 @@ window.$game.dataManager.resolve(
         "-2" : "./assets/imgs/textures/player/jumps/left/jump-left6.png",
     },
     "stand" : {
-        "1" : "./assets/imgs/textures/player/runs/right/run3.png",
-        "-1" : "./assets/imgs/textures/player/runs/left/run3.png",
+        "1" : "./assets/imgs/textures/player/stands/right/stand-right_0001.png",
+        "2" : "./assets/imgs/textures/player/stands/right/stand-right_0002.png",
+        "3" : "./assets/imgs/textures/player/stands/right/stand-right_0003.png",
+        "4" : "./assets/imgs/textures/player/stands/right/stand-right_0004.png",
+        "5" : "./assets/imgs/textures/player/stands/right/stand-right_0005.png",
+        "6" : "./assets/imgs/textures/player/stands/right/stand-right_0006.png",
+        "7" : "./assets/imgs/textures/player/stands/right/stand-right_0007.png",
+        "-1" : "./assets/imgs/textures/player/stands/left/stand_0001.png",
+        "-2" : "./assets/imgs/textures/player/stands/left/stand_0002.png",
+        "-3" : "./assets/imgs/textures/player/stands/left/stand_0003.png",
+        "-4" : "./assets/imgs/textures/player/stands/left/stand_0004.png",
+        "-5" : "./assets/imgs/textures/player/stands/left/stand_0005.png",
+        "-6" : "./assets/imgs/textures/player/stands/left/stand_0006.png",
+        "-7" : "./assets/imgs/textures/player/stands/left/stand_0007.png",
     },
 
 }

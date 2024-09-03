@@ -17,7 +17,7 @@ window.$game.dataManager.resolve(
                 "y" : 240,
             },
             "facing" : 2,
-            "times" : 6,
+            "times" : 0,
             "type" : 0
 
         }

@@ -64,7 +64,11 @@ class Game {
         window.$store = this.store;
 
         this.savePopup = new Save();
-        this.loadPopup = new Load();
+        this.loadPopup = new Load((data) => {
+            Store.set("parfait", JSON.stringify(data.parfait));
+            window.$game.switchView(data.url);
+            this.loadPopup.hide();
+        });
 
         this.controlMenu = document.querySelector('#control');
         this.resumeBtn = document.querySelector('#control-resume');
@@ -89,13 +93,13 @@ class Game {
         )
     }
 
-    async init(filename = 'Test2.json') {
+    async init(filename = 'Room1.json') {
         await this.textureManager.load();
         await this.soundManager.load();
         await this.load(filename);
     }
 
-    async load(filename = 'Test2.json') {
+    async load(filename = 'Room1.json') {
         await this.map.loadFromURL('./assets/stages/maps/' + filename);
         // await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
         await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);
@@ -197,6 +201,8 @@ class Game {
         this.isPaused = true;
         await this.rebuild(async () => {
             this.loaded = false;
+            await this.dialogManager.clear()
+            this.eventManager.clear()
             this.map = new MapManager();
             await this.load(url);
             this.resume();
@@ -214,7 +220,7 @@ class Game {
 
     resume() {
         if (this.isPaused) {
-            this.soundManager.playSound('unpause');
+            this.soundManager.playSound('resume');
             this.controlMenu.classList.add('hidden');
             this.isPaused = false;
         }
