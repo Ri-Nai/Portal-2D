@@ -53,9 +53,9 @@ class Game {
         this.bgms = [
             new Audio("./assets/audios/bgms/村上純 - かえり道.mp3"),
             new Audio("./assets/audios/bgms/阿保剛 - Christina I.mp3"),
-        ]
+        ];
 
-        this.backgroundMusic = null
+        this.backgroundMusic = null;
 
         document.addEventListener('click', autoplay);
 
@@ -89,18 +89,18 @@ class Game {
         this.achievementManager = new AchievementManager();
         this.achievementManager.add(
             new RoomArrivalAchievement("Arrival", "at Room 11", "Room11")
-        )
+        );
         this.achievementManager.add(
             new RoomArrivalAchievement("Room 6", "at Room 6", "Room6")
-        )
+        );
         this.achievementManager.add(
             new GelledEdgeAchievement("Gelled Edge", "Length up to 1000")
-        )
+        );
         this.achievementManager.add(
             new PlayerFallingSpeedAchievement("HighSpeed!", "速度达到一万三千点")
-        )
+        );
 
-        this.splash = new Splash()
+        this.splash = new Splash();
     }
 
     async init(filename = 'Room1.json') {
@@ -211,8 +211,9 @@ class Game {
         this.isPaused = true;
         await this.rebuild(async () => {
             this.loaded = false;
-            await this.dialogManager.clear()
-            this.eventManager.clear()
+            await this.dialogManager.clear();
+            await this.splash.hide();
+            this.eventManager.clear();
             this.map = new MapManager();
             await this.load(url);
             this.resume();

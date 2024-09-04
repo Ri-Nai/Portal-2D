@@ -305,7 +305,52 @@ window.$game.dataManager.resolve(
             "opacity": 1
         },
         {
-            "tiles": [],
+            "tiles": [
+                {
+                    "type": 0,
+                    "position": {
+                        "x": 120,
+                        "y": 120
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 80
+                    }
+                },
+                {
+                    "type": 2,
+                    "position": {
+                        "x": 160,
+                        "y": 120
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 80
+                    }
+                },
+                {
+                    "type": 0,
+                    "position": {
+                        "x": 1080,
+                        "y": 480
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 80
+                    }
+                },
+                {
+                    "type": 2,
+                    "position": {
+                        "x": 1120,
+                        "y": 480
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 80
+                    }
+                }
+            ],
             "opacity": 1
         },
         {
@@ -2620,10 +2665,7 @@ window.$game.dataManager.resolve(
             "events": [
                 {
                     "type": "dialog",
-                    "texts": [
-                        "【要乐奈】路好远，又好高",
-                        "【要乐奈】不过没关系，好像可以直接跳上去"
-                    ]
+                    "texts": []
                 }
             ]
         }

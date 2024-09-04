@@ -107,7 +107,52 @@ window.$game.dataManager.resolve(
             "opacity": 1
         },
         {
-            "tiles": [],
+            "tiles": [
+                {
+                    "type": 0,
+                    "position": {
+                        "x": 600,
+                        "y": 120
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 80
+                    }
+                },
+                {
+                    "type": 4,
+                    "position": {
+                        "x": 640,
+                        "y": 120
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 80
+                    }
+                },
+                {
+                    "type": 0,
+                    "position": {
+                        "x": 600,
+                        "y": 520
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 80
+                    }
+                },
+                {
+                    "type": 4,
+                    "position": {
+                        "x": 640,
+                        "y": 520
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 80
+                    }
+                }
+            ],
             "opacity": 1
         },
         {
@@ -116,6 +161,17 @@ window.$game.dataManager.resolve(
         },
         {
             "tiles": [
+                {
+                    "type": 7,
+                    "position": {
+                        "x": 1240,
+                        "y": 120
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 40
+                    }
+                },
                 {
                     "type": 1,
                     "position": {
@@ -1045,10 +1101,7 @@ window.$game.dataManager.resolve(
             "events": [
                 {
                     "type": "dialog",
-                    "texts": [
-                        "【要乐奈】这个亮亮的是什么",
-                        "【要乐奈】先进去看看吧"
-                    ]
+                    "texts": []
                 }
             ]
         }

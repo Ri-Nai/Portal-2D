@@ -2092,11 +2092,7 @@ window.$game.dataManager.resolve(
             "events": [
                 {
                     "type": "dialog",
-                    "texts": [
-                        "【要乐奈】整个房间都是白色的",
-                        "【要乐奈】是雪呢",
-                        "【要乐奈】看来有好玩的了"
-                    ]
+                    "texts": []
                 }
             ]
         }

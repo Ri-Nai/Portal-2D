@@ -283,7 +283,30 @@ window.$game.dataManager.resolve(
             "opacity": 1
         },
         {
-            "tiles": [],
+            "tiles": [
+                {
+                    "type": 0,
+                    "position": {
+                        "x": 800,
+                        "y": 440
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 80
+                    }
+                },
+                {
+                    "type": 3,
+                    "position": {
+                        "x": 840,
+                        "y": 440
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 80
+                    }
+                }
+            ],
             "opacity": 1
         },
         {
@@ -2400,10 +2423,7 @@ window.$game.dataManager.resolve(
             "events": [
                 {
                     "type": "dialog",
-                    "texts": [
-                        "【要乐奈】抹茶巴菲！",
-                        "【要乐奈】好想吃"
-                    ]
+                    "texts": []
                 }
             ]
         }
