@@ -46,6 +46,12 @@ class EventManager {
             case "turn":
                 player.facing = event.facing;
                 break;
+            case "showImg":
+                await window.$game.splash.showImg(event.url);
+                break;
+            case "hideImg":
+                await window.$game.splash.hide();
+                break;
             default:
                 break;
         }

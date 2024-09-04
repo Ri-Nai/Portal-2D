@@ -3,10 +3,17 @@
         "canInteract": false,
         "events": [
             {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/black_background.png"
+            },
+            {
                 "type": "dialog",
                 "texts": [
                     "【要乐奈】这是哪，好黑"
                 ]
+            },
+            {
+                "type": "hideImg"
             },
             {
                 "type": "turn",

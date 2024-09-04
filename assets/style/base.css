@@ -24,6 +24,7 @@ body, html {
     --padding: 40px;
     height: calc(min(100vh, calc(100vw / 16 * 9)) - var(--padding));
     aspect-ratio: 16 / 9;
+    user-select: none;
 }
 
 #game > .splash {
@@ -39,6 +40,8 @@ body, html {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .control {

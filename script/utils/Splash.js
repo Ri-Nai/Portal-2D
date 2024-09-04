@@ -25,7 +25,7 @@ class Splash {
 
     async fadeOut() {
         this.ele.classList.add("fadeOut");
-        await this.wait(250);
+        await this.wait(500);
         window.$game.fadeIn()
         await this.wait(250);
         this.ele.classList.add("hidden");

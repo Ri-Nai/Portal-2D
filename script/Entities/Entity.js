@@ -119,7 +119,7 @@ class Entity {
          * @type {Hitbox}
          */
         this.hitbox = new Hitbox(position, size);  // 实体的碰撞盒
-        this.jumping = new Jumping(4, 9, 0.5, 10, 15);
+        this.jumping = new Jumping(4, 9, 0.5, 8, 15);
         this.MaxSpeed = 6;
         this.portalBuffer = 3;
         this.inPortal = 0;
@@ -251,7 +251,7 @@ class Entity {
             this.hitbox.position.addEqual(delta);
             if (this.hitbox.checkHits(window.$game.view.gelledEdgeList.gelledEdges[0], () => { })) {
                 if (this.isOnGround()) {
-                    this.jumping.coyoteTimer = this.jumping.coyoteTime * 1; // 重置coyote时间
+                    this.jumping.coyoteTimer = this.jumping.coyoteTime * 1.3; // 重置coyote时间
                     this.jumping.times = 1.5;
                     this.jumping.isJumping = false;
                 }
