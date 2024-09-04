@@ -214,7 +214,30 @@ window.$game.dataManager.resolve(
             "opacity": 1
         },
         {
-            "tiles": [],
+            "tiles": [
+                {
+                    "type": 3,
+                    "position": {
+                        "x": 0,
+                        "y": 80
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 40
+                    }
+                },
+                {
+                    "type": 2,
+                    "position": {
+                        "x": 120,
+                        "y": 560
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 40
+                    }
+                }
+            ],
             "opacity": 1
         }
     ],

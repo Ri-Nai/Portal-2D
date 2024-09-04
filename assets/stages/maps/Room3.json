@@ -304,10 +304,10 @@ window.$game.dataManager.resolve(
         {
             "tiles": [
                 {
-                    "type": 8,
+                    "type": 7,
                     "position": {
-                        "x": 1160,
-                        "y": 40
+                        "x": 1200,
+                        "y": 480
                     },
                     "size": {
                         "x": 40,
@@ -315,10 +315,10 @@ window.$game.dataManager.resolve(
                     }
                 },
                 {
-                    "type": 8,
+                    "type": 7,
                     "position": {
-                        "x": 1120,
-                        "y": 360
+                        "x": 1240,
+                        "y": 480
                     },
                     "size": {
                         "x": 40,
