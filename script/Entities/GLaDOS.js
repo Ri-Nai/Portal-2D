@@ -1,7 +1,7 @@
 class GLaDOS extends Entity {
     static GLaDOSX = 4 * basicSize;
     static GLaDOSY = 8 * basicSize;
-    static BloodLimit = 120;
+    static bloodLimit = 120;
     constructor(stillAlive) {
         super(
             new Vector(16 * basicSize - GLaDOS.GLaDOSX / 2, 9 * basicSize - GLaDOS.GLaDOSY / 2),
@@ -13,7 +13,7 @@ class GLaDOS extends Entity {
         this.tragetPosition = this.hitbox.position.copy();
         this.shootingBuffer = 0;
         this.movingBuffer = this.movingBufferTime;
-        this.blood = GLaDOS.BloodLimit;
+        this.blood = GLaDOS.bloodLimit;
         this.bullets = [];
         this.shootingStyle = 0;
         this.shootingFormat = [
@@ -40,7 +40,7 @@ class GLaDOS extends Entity {
                 // direction.x += random(-5, 5);
                 // direction.y += random(-5, 5);
                 direction = direction.normalize();
-                let velocity = direction.scale(Math.random() * 5);
+                let velocity = direction.scale(random(0.5, 5));
                 this.bullets.push(new Bullet(newPosition, velocity));
             }
             this.shootingBuffer = this.shootingBuffetTime;
@@ -130,7 +130,7 @@ class GLaDOS extends Entity {
         this.shootingFormat[this.shootingStyle](deltaTime);
         this.hitbox.position.addEqual(this.tragetPosition.subVector(this.hitbox.position).scale(deltaTime  * random(0.1, 0.5) * random(0.2, 0.5) * random(0.3, 0.5)));
         for (let i of this.bullets) {
-            i.update(deltaTime, this);
+            i.update(deltaTime, this, window.$game.view.player);
             if (i.destroyed)
                 dels.push(i);
         }
@@ -138,6 +138,15 @@ class GLaDOS extends Entity {
             //TODO: window.$game.eventManager.add();
             this.stillAlive = false;
         }
+        const gladosBar = document.getElementById('glados-health-bar');
+        gladosBar.style.display = this.stillAlive ? 'block' : 'none';
+        const gladosHealth = document.getElementById('glados-health');
+        gladosHealth.style.width = (this.blood / GLaDOS.bloodLimit * 100) + '%';
+
+        const playerBar = document.getElementById('player-health-bar');
+        playerBar.style.display = 'block';
+        const playerHealth = document.getElementById('player-health');
+        playerHealth.style.width = (window.$game.view.player.blood / Player.bloodLimit * 100) + '%';
         this.bullets = this.bullets.filter(i => !dels.includes(i));
     }
     draw() {

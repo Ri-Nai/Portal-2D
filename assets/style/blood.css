@@ -1,0 +1,24 @@
+.health-bar {
+    position: fixed; /* 固定在页面顶部 */
+    top: 20px; /* 距离页面顶部 */
+    left: 50%; /* 居中显示 */
+    transform: translateX(-50%); /* 居中对齐 */
+    width: 300px; /* 血条的总宽度 */
+    height: 20px; /* 血条的高度 */
+    background-color: #555; /* 血条背景色 */
+    border: 2px solid #000; /* 边框 */
+    border-radius: 5px; /* 圆角边框 */
+    overflow: hidden; /* 防止超出部分显示 */
+    display: none;
+}
+
+.health {
+    width: 100%; /* 初始血量为100% */
+    height: 100%; /* 高度与容器一致 */
+    background-color: #f00; /* 红色代表血量 */
+    transition: width 0.2s; /* 动画效果 */
+}
+#player-health-bar {
+    top: auto;
+    bottom: 20px;
+}

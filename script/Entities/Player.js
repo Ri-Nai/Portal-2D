@@ -51,12 +51,14 @@ class Animation {
 class Player extends Entity {
     static PlayerSize = new Vector(1.2 * basicSize, 1.8 * basicSize);
     static PlayerOffset = new Vector(0.7 * basicSize, 0.4 * basicSize);
+    static bloodLimit = 120;
     constructor(position) {
         super(position, Player.PlayerSize);
         this.facing = 1;
         this.animation = new Animation();
         this.blockMove = false;
         this.onEvent = false;
+        this.blood = Player.bloodLimit;
     }
 
     async update(deltaTime) {
