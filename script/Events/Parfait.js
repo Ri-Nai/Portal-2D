@@ -7,6 +7,19 @@ class ParfaitEvent extends GameEvent {
     onActivate() {
         this.exist = false
         this.setHistory(this.id)
+
+        const popup = document.querySelector(".parfait");
+
+        popup.querySelector(".title").innerText = this.getHistory().length;
+
+        popup.classList.remove("hidden");
+
+        setTimeout(() => {
+            popup.classList.add("hide");
+            setTimeout(() => {
+                popup.classList.replace("hide", "hidden");
+            }, 1000)
+        }, 5000);
     }
 
     draw() {

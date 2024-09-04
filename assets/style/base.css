@@ -139,6 +139,7 @@ body, html {
     }
 }
 
+.parfait,
 .achievement {
     position: absolute;
     bottom: 0px;
@@ -152,16 +153,19 @@ body, html {
     animation: slideIn 1s forwards;
 }
 
-.achievement.hide {
+.achievement.hide,
+.parfait.hide {
     animation: slideOut 1s forwards;
 }
 
-.achievement.hidden {
+.achievement.hidden,
+.parfait.hidden {
     display: none;
     visibility: hidden;
 }
 
-.achievement::before {
+.achievement::before,
+.parfait::before {
     content: '';
     display: block;
     position: absolute;
@@ -172,16 +176,19 @@ body, html {
     background: #ffffff;
 }
 
-.achievement > .title {
+.achievement > .title,
+.parfait > .title {
     font-size: 1rem;
     margin: 4px 0;
 }
 
-.achievement > .desc {
+.achievement > .desc,
+.parfait > .desc {
     font-size: 0.8rem;
 }
 
-.achievement > .caption {
+.achievement > .caption,
+.parfait > .caption {
     font-size: 0.8rem;
     opacity: 0.8;
 }

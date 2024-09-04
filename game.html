@@ -43,6 +43,13 @@
         <div class="desc"></div>
     </div>
 
+    <div class="parfait hidden">
+        <div class="icon"></div>
+        <div class="caption">已收集芭菲数量</div>
+        <div class="title"></div>
+        <div class="desc">要乐奈最喜欢的食物</div>
+    </div>
+
     <div id="resource" style="display: none;"></div>
     <canvas id="buffer" style="display: none;"></canvas>
 
@@ -109,6 +116,9 @@
                 toLoad = JSON.parse(toLoad);
                 Store.remove("toLoad");
                 Store.set("parfait", JSON.stringify(toLoad.parfait))
+            }
+            else {
+                Store.remove("parfait");
             }
             window.$game = new Game();
             window.$game.init(toLoad?.url).then(() => {
