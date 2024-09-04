@@ -10,12 +10,12 @@ window.$game.dataManager.resolve(
     "gelDispensers": [
         {
             "position" : {
-                "x" : 600,
+                "x" : 1100,
                 "y" : 360,
             },
             "facing" : 2,
             "times" : 5,
-            "type" : 2
+            "type" : 1
 
         }
     ],

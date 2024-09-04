@@ -37,8 +37,11 @@ class GelDispenser {
         this.gels = this.gels.filter(i => !dels.includes(i));
     }
     draw() {
-        window.$game.ctx.fillStyle = Gel.gelColors[ this.type ];
-        window.$game.ctx.fillRect(this.position.x, this.position.y, GelDispenser.gelDispenserX, GelDispenser.gelDispenserY);
+        // window.$game.ctx.fillStyle = Gel.gelColors[ this.type ];
+        // window.$game.ctx.fillRect(this.position.x, this.position.y, GelDispenser.gelDispenserX, GelDispenser.gelDispenserY);
+        window.$game.ctx.drawImage(
+            window.$game.textureManager.getTexture("gelDispensers", "0-0"),
+            this.position.x, this.position.y, GelDispenser.gelDispenserX, GelDispenser.gelDispenserY);
         for (let i of this.gels)
             i.draw();
     }

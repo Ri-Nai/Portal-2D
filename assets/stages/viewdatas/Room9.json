@@ -5,10 +5,6 @@ window.$game.dataManager.resolve(
         "y": 488
     },
     "cubes": [
-        {
-            "x": 920,
-            "y": 528
-        }
     ],
     "gelDispensers": [],
     "portals": [

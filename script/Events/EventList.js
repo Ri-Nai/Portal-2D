@@ -32,7 +32,7 @@ class EventList {
          */
         this.events = new Map();
 
-        for (let [k, v] of Object.entries(events)) {
+        for (let [ k, v ] of Object.entries(events)) {
             this.events.set(k, createEvent(k, v));
         }
     }
@@ -120,5 +120,5 @@ const createEvent = (id, event) => {
         new Vector(event.position.x, event.position.y),
         new Vector(event.size.x, event.size.y),
         event.affect
-    )
+    );
 };

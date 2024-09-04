@@ -2,7 +2,7 @@ window.$game.dataManager.resolve(
 {
     "player": {
         "x": 80,
-        "y": 488
+        "y": 568
     },
     "cubes": [
     ],
@@ -17,10 +17,10 @@ window.$game.dataManager.resolve(
             "facing": 0
         },
         {
-            "type": -1,
+            "type": 1,
             "position": {
-                "x": 0,
-                "y": 0
+                "x": 400,
+                "y": 600
             },
             "facing": 1
         }

@@ -21,7 +21,7 @@ class Cube extends Entity {
         if (this.isPicked) {
             this.hitbox.position.x = player.hitbox.position.x;
             this.hitbox.position.y = player.hitbox.position.y;
-            let offset = new Vector(-0.5 * Cube.cubeSize + (player.facing + 1) * (Player.PlayerSize.x) / 2, 0.2 * Player.PlayerSize.y);
+            let offset = new Vector(player.facing * Cube.cubeSize + (player.facing + 1) * (Player.PlayerSize.x - Cube.cubeSize) / 2, 0.32 * Player.PlayerSize.y);
             this.hitbox.position.addEqual(offset);
             this.velocity.x = player.velocity.x;
             this.velocity.y = player.velocity.y;

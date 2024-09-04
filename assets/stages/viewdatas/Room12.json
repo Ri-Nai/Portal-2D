@@ -10,18 +10,7 @@ window.$game.dataManager.resolve(
             "y": 528
         },
     ],
-    "gelDispensers": [
-        {
-            "position" : {
-                "x" : 300,
-                "y" : 240,
-            },
-            "facing" : 2,
-            "times" : 0,
-            "type" : 0
-
-        }
-    ],
+    "gelDispensers": [],
     "portals": [
         {
             "type": -1,

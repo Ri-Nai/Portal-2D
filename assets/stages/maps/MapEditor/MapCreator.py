@@ -24,7 +24,8 @@ basicSize = 40
 layer_background_texture = 3
 layer_block = 4
 layer_edge = 5
-layers = [{"tiles" : [], "opacity" : 1} for i in range(6)]
+layer_upper_texture = 6
+layers = [{"tiles" : [], "opacity" : 1} for i in range(7)]
 blocks = []
 edges = []
 super_edges = []
@@ -232,7 +233,8 @@ def get_events():
                     q.put((nx, ny, k))
                 print(x, y, nx, ny)
                 events[get_event_name(x, y)] = get_event(C[x][y], x, y, [get_event_name(nx, ny)])
-                events[get_event_name(x, y)]["nxtdir"] = k
+                events[get_event_name(x, y)]["nxtdir"] = k if C[nx][ny] == 2 else -1
+
             event_name = get_event_name(x, y)
             if event_name not in events:
                 events[event_name] = get_event(C[x][y], x, y, [])
@@ -313,6 +315,35 @@ def get_drama_events():
             events.append(get_event(int(C[i][j]), f))
     return events
 
+def get_signs():
+    df = pd.read_excel(path_filename, index_col = None, header = None, sheet_name="SignArea")
+    C = df.values.tolist()
+    while len(C) < 18:
+        C.append([0] * 32)
+    for i in range(18):
+        while (len(C[i]) < 32):
+            C[i].append(0)
+        for j in range(32):
+            if np.isnan(C[i][j]):
+                C[i][j] = 0  # 将 NaN 转换为 0 # 将浮点数转换为整数
+            C[i][j] = int(C[i][j])
+    for i in range(18):
+        for j in range(32):
+            if C[i][j] == 0:
+                continue
+            layers[layer_upper_texture]["tiles"].append({
+                "type" : C[i][j],
+                "position" :
+                {
+                    "x" : j * basicSize,
+                    "y" : i * basicSize
+                },
+                "size" :
+                {
+                    "x" : basicSize,
+                    "y" : basicSize
+                }})
+get_signs()
 answer = {"layers" : layers, "blocks" : blocks, "edges" : edges, "super_edges" : super_edges, "events" : get_events(), "drama_events" : get_drama_events()}
 print(answer["drama_events"])
 s = json.dumps(answer, indent = 4, ensure_ascii=False)

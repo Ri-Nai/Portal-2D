@@ -36,7 +36,7 @@ class AchievementManager {
 
     update(t) {
         this.achievements.forEach((achievement) => {
-            if (achievement.completed) return ;
+            if (achievement.completed) return;
             achievement.check(t, this);
         });
     }
@@ -53,8 +53,13 @@ class AchievementManager {
             if (a.title === achievement.title) {
                 a.completed = true;
             }
+<<<<<<< HEAD
         })
         this.refresh();
+=======
+        });
+        localStorage.setItem("achievements", JSON.stringify(this.achievements));
+>>>>>>> 3cafd292712da986f2c71fedd3ca35479540c19e
 
         this.popup.querySelector(".title").innerText = achievement.title;
         this.popup.querySelector(".desc").innerText = achievement.desc;
@@ -94,7 +99,7 @@ class Achievement {
     }
 
     check(t, that) {
-        if (this.completed) return ;
+        if (this.completed) return;
         if (this.condition(t, that)) {
             this.completed = true;
             that.onCompleted(this);
@@ -113,6 +118,37 @@ class RoomArrivalAchievement extends Achievement {
     }
 
     condition(t, that) {
-        return that.game.chapterNow === this.room
+        return that.game.chapterNow === this.room;
+    }
+}
+
+class GelledEdgeAchievement extends Achievement {
+    constructor(title, desc) {
+        super(title, desc);
+    }
+    condition(t, that) {
+        // return that.player.gelled;
+        let gelledEdgeList = that.game.view.gelledEdgeList;
+        let gelledEdges = gelledEdgeList.gelledEdges;
+        let length = 0;
+        for (let edges of gelledEdges) {
+            for (let edge of edges) {
+                // if (edge.gelled) return true;
+                if (edge.facing & 1)
+                    length += edge.hitbox.size.y;
+                else
+                    length += edge.hitbox.size.x;
+            }
+        }
+        return length >= 100;
+    }
+}
+
+class PlayerFallingSpeedAchievement extends Achievement {
+    constructor(title, desc) {
+        super(title, desc);
+    }
+    condition(t, that) {
+        return that.player.velocity.x > that.player.jumping.baseJump * 5.98;
     }
 }

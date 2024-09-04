@@ -8,6 +8,7 @@ class Gel extends Entity {
         this.type = type;
         this.frame = 1;
         this.buffer = this.bufferTime = 3;
+        this.isBullet = true
     }
 
     update(deltaTime) {

@@ -14,7 +14,6 @@ class InputManager {
             "Enter" : false,
             "ClickLeft" : false,
             "ClickRight" : false,
-            "Ctrl" : false,
         }
     }
     isKeyDown(key) {

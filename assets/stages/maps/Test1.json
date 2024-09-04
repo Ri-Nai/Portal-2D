@@ -245,6 +245,10 @@ window.$game.dataManager.resolve(
         {
             "tiles": [],
             "opacity": 1
+        },
+        {
+            "tiles": [],
+            "opacity": 1
         }
     ],
     "blocks": [
@@ -1992,7 +1996,7 @@ window.$game.dataManager.resolve(
             "affect": [
                 "event-area-30-12"
             ],
-            "nxtdir": 0,
+            "nxtdir": -1,
             "predir": 0
         },
         "event-area-04-15": {
