@@ -1,13 +1,32 @@
 class AchievementManager {
     static getAll() {
-        return JSON.parse(localStorage.getItem("achievements"))?.[this.user] || [];
+        return JSON.parse(localStorage.getItem("achievements"))?.[Auth.getToken()] || [];
+    }
+
+    /**
+     * @returns {Map<string, boolean>}
+     */
+    getAllStatus() {
+        const all = AchievementManager.getAll();
+
+        const status = new Map();
+        all.forEach((achievement) => {
+            status.set(achievement.title, achievement._completed);
+        });
+
+        return status;
     }
 
     constructor() {
         /**
          * @type {Achievement[]}
          */
-        this.achievements = AchievementManager.getAll();
+        this.achievements = [];
+
+        /**
+         * @type {Map<string, boolean>}
+         */
+        this.status = this.getAllStatus();
         this.popup = document.querySelector(".achievement");
         this.user = Auth.getToken();
     }
@@ -24,14 +43,8 @@ class AchievementManager {
         return this.view.player;
     }
 
-    static getStatus(title) {
-        const achievements = AchievementManager.getAll() ?? this.achievements;
-        for (let achievement of achievements) {
-            if (achievement.title === title) {
-                return achievement._completed;
-            }
-        }
-        return false;
+    getStatus(title) {
+        return this.getAllStatus().get(title) || false;
     }
 
     update(t) {
@@ -42,16 +55,22 @@ class AchievementManager {
     }
 
     add(achievement) {
-        const status = AchievementManager.getStatus(achievement.title);
+        debugger;
+        if (!this.getAllStatus().has(achievement.title)) {
+            this.status.set(achievement.title, false);
+        }
+        const status = this.getStatus(achievement.title);
         achievement.completed = status;
         this.achievements.push(achievement);
-        this.refresh();
+
+        console.debug(this.achievements, this.status);
     }
 
     onCompleted(achievement) {
         this.achievements.forEach((a) => {
             if (a.title === achievement.title) {
                 a.completed = true;
+                this.status.set(a.title, true);
             }
         })
         this.refresh();
@@ -70,7 +89,12 @@ class AchievementManager {
 
     refresh() {
         const all = JSON.parse(localStorage.getItem("achievements")) ?? {};
-        all[this.user] = this.achievements;
+        all[this.user] = all[this.user].map((achievement) => {
+            return {
+                ...achievement,
+                _completed: this.status.get(achievement.title) || false
+            }
+        })
         localStorage.setItem("achievements", JSON.stringify(all));
     }
 }
