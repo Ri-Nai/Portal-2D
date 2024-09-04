@@ -2774,8 +2774,48 @@ window.$game.dataManager.resolve(
                     "type": "dialog",
                     "texts": [
                         "【要乐奈】昨天晚上做了个梦，梦里全都是抹茶芭菲",
-                        "【要乐奈】我最近老想吃芭菲了，可是巴菲太贵了",
+                        "【要乐奈】我最近老想吃芭菲了，可是芭菲太贵了",
                         "【要乐奈】今天让Rikki帮我带点吧"
+                    ]
+                },
+                {
+                    "type": "hideImg"
+                },
+                {
+                    "type": "delay",
+                    "time": 500
+                },
+                {
+                    "type": "showImg",
+                    "url": "./assets/imgs/CG/GLaDOS.png"
+                },
+                {
+                    "type": "dialog",
+                    "texts": [
+                        "【GLaDOS】您好，再一次地，欢迎光临光圈科技计算机辅助丰富学习中心",
+                        "【GLaDOS】希望您在休息室的短暂停留能带给您愉快的体验",
+                        "【GLaDOS】您的样本正在处理中，我们已经准备开始测试"
+                    ]
+                },
+                {
+                    "type": "showImg",
+                    "url": "./assets/imgs/CG/Rana_Wakeup.png"
+                },
+                {
+                    "type": "dialog",
+                    "texts": [
+                        "【要乐奈】（什么B动静。。。）"
+                    ]
+                },
+                {
+                    "type": "showImg",
+                    "url": "./assets/imgs/CG/GLaDOS.png"
+                },
+                {
+                    "type": "dialog",
+                    "texts": [
+                        "【GLaDOS】但在开始前，请记住，虽然所有丰富学习中心的活动主要目标，是享受乐趣与学习，但也可能造成重大伤害",
+                        "【GLaDOS】为了您自身及他人的安全，请勿碰触"
                     ]
                 },
                 {
