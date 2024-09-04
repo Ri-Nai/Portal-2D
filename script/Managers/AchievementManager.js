@@ -1,10 +1,15 @@
 class AchievementManager {
+    static getAll() {
+        return JSON.parse(localStorage.getItem("achievements"))?.[this.user] || [];
+    }
+
     constructor() {
         /**
          * @type {Achievement[]}
          */
-        this.achievements = [];
+        this.achievements = AchievementManager.getAll();
         this.popup = document.querySelector(".achievement");
+        this.user = Auth.getToken();
     }
 
     get game() {
@@ -17,10 +22,6 @@ class AchievementManager {
 
     get player() {
         return this.view.player;
-    }
-
-    static getAll() {
-        return JSON.parse(localStorage.getItem("achievements")) || [];
     }
 
     static getStatus(title) {
@@ -44,6 +45,7 @@ class AchievementManager {
         const status = AchievementManager.getStatus(achievement.title);
         achievement.completed = status;
         this.achievements.push(achievement);
+        this.refresh();
     }
 
     onCompleted(achievement) {
@@ -51,8 +53,8 @@ class AchievementManager {
             if (a.title === achievement.title) {
                 a.completed = true;
             }
-        });
-        localStorage.setItem("achievements", JSON.stringify(this.achievements));
+        })
+        this.refresh();
 
         this.popup.querySelector(".title").innerText = achievement.title;
         this.popup.querySelector(".desc").innerText = achievement.desc;
@@ -64,6 +66,12 @@ class AchievementManager {
                 this.popup.classList.remove("hide");
             }, 1000);
         }, 5000);
+    }
+
+    refresh() {
+        const all = JSON.parse(localStorage.getItem("achievements")) ?? {};
+        all[this.user] = this.achievements;
+        localStorage.setItem("achievements", JSON.stringify(all));
     }
 }
 
