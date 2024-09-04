@@ -1433,11 +1433,15 @@ window.$game.dataManager.resolve(
             },
             "canInteract": false,
             "events": [
+                {},
                 {
                     "type": "dialog",
                     "texts": [
                         "【要乐奈】这是哪，好黑"
                     ]
+                },
+                {
+                    "type": "hideImg"
                 },
                 {
                     "type": "turn",
