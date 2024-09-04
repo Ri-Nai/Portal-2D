@@ -44,6 +44,7 @@ class ParfaitEvent extends GameEvent {
 
     setHistory(id) {
         let history = this.getHistory()
+        if (history.includes(id)) return
         history.push(id)
         Store.set("parfait", JSON.stringify(history))
     }
