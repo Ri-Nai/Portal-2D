@@ -51,8 +51,8 @@ class Game {
         this.eventManager = new EventManager();
 
         this.bgms = [
-            new Audio("./assets/audios/backgroundMusic.mp3"),
-            new Audio("./assets/audios/阿保剛 - Christina I.mp3"),
+            new Audio("./assets/audios/bgms/村上純 - かえり道.mp3"),
+            new Audio("./assets/audios/bgms/阿保剛 - Christina I.mp3"),
         ]
 
         this.backgroundMusic = null
@@ -238,6 +238,7 @@ class Game {
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 function autoplay() {
     window.$game.backgroundMusic = window.$game.bgms[ Math.floor(Math.random() * window.$game.bgms.length) ];
+    window.$game.backgroundMusic.volume = 0.5;
     window.$game.backgroundMusic.play();
     window.$game.backgroundMusic.addEventListener('ended', () => {
         window.$game.backgroundMusic.play();
