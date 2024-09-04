@@ -1,6 +1,6 @@
 class Splash {
     constructor() {
-        this.ele = document.querySelector("#game .splash");
+        this.ele = document.querySelector("#game #game-container .splash");
         this.isShowing = false;
     }
 

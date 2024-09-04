@@ -19,24 +19,33 @@ body, html {
     left: 0;
 }
 
-#game > canvas,
-#game > .splash {
+#game > #game-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#game > #game-container > canvas,
+#game > #game-container > .splash {
     --padding: 40px;
     height: calc(min(100vh, calc(100vw / 16 * 9)) - var(--padding));
     aspect-ratio: 16 / 9;
     user-select: none;
 }
 
-#game > .splash {
+#game > #game-container > .splash {
     position: absolute;
 }
 
-#game > .splash.hidden {
+#game > #game-container > .splash.hidden {
     display: none;
     visibility: hidden;
 }
 
-#game > .splash > img {
+#game > #game-container > .splash > img {
     width: 100%;
     height: 100%;
     object-fit: contain;

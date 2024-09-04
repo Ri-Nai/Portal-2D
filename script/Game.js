@@ -28,7 +28,7 @@ class Game {
         /**
          * @type {MouseManager}
         */
-        let mouse = new MouseManager(this.canvas);
+        let mouse = new MouseManager(document.querySelector("#game-container"));
         /**
         * @type {InputManager}
         */

@@ -1,48 +1,48 @@
 class MouseManager {
     /**
      * Control mouse lock and input
-     * @param {HTMLCanvasElement} ctx
+     * @param {HTMLElement} container
      */
-    constructor(ctx) {
-        this.ctx = ctx;
+    constructor(container) {
+        this.container = container;
         this.isCapture = false;
 
-        this.x = this.ctx.width / 2;
-        this.y = this.ctx.height / 2;
+        this.x = this.container.clientWidth / 2;
+        this.y = this.container.clientHeight / 2;
 
         /**
          * @readonly
          * @type {boolean}
          */
-        this.left = false
+        this.left = false;
 
         /**
          * @readonly
          * @type {boolean}
          */
-        this.right = false
+        this.right = false;
 
-        this.clickable = false
+        this.clickable = false;
 
-        this.ctx.addEventListener('click', () => this.capture());
-        this.ctx.addEventListener('mousemove', (e) => this.move(e))
-        this.ctx.addEventListener('mousedown', (e) => this.mouseDown(e))
-        this.ctx.addEventListener('mouseup', (e) => this.mouseUp(e))
+        this.container.addEventListener('click', () => this.capture());
+        this.container.addEventListener('mousemove', (e) => this.move(e));
+        this.container.addEventListener('mousedown', (e) => this.mouseDown(e));
+        this.container.addEventListener('mouseup', (e) => this.mouseUp(e));
 
-        document.addEventListener('pointerlockchange', () => this.uncapture())
-        document.addEventListener('visibilitychange', () => this.blur())
+        document.addEventListener('pointerlockchange', () => this.uncapture());
+        document.addEventListener('visibilitychange', () => this.blur());
     }
 
     async capture() {
         if (!this.isCapture) {
-            await this.ctx.requestPointerLock({
+            await this.container.requestPointerLock({
                 unadjustedMovement: false,
-            })
+            });
 
             this.isCapture = true;
             setTimeout(() => {
-                this.clickable = true
-            }, 200)
+                this.clickable = true;
+            }, 200);
         }
     }
 
@@ -54,9 +54,9 @@ class MouseManager {
     }
 
     uncapture() {
-        console.debug("uncapture: ", document.pointerLockElement, this.ctx);
-        console.debug("uncapture: ", document.pointerLockElement !== this.ctx)
-        if (document.pointerLockElement !== this.ctx) {
+        console.debug("uncapture: ", document.pointerLockElement, this.container);
+        console.debug("uncapture: ", document.pointerLockElement !== this.container);
+        if (document.pointerLockElement !== this.container) {
             this.isCapture = false;
             window.$game.pause();
         }
@@ -68,8 +68,8 @@ class MouseManager {
      * @param {MouseEvent} e
      */
     mouseDown(e) {
-        e.preventDefault()
-        if (!this.clickable) return ;
+        e.preventDefault();
+        if (!this.clickable) return;
         if (e.button === 0) {
             this.left = true;
         }
@@ -79,7 +79,7 @@ class MouseManager {
     }
 
     mouseUp(e) {
-        e.preventDefault()
+        e.preventDefault();
         if (e.button === 0) {
             this.left = false;
         }
@@ -93,7 +93,7 @@ class MouseManager {
      * @param {MouseEvent} e
      */
     move(e) {
-        e.preventDefault()
+        e.preventDefault();
         if (this.isCapture) {
             this.x += e.movementX;
             this.y += e.movementY;
@@ -104,20 +104,16 @@ class MouseManager {
             if (this.y < 0) {
                 this.y = 0;
             }
-            if (this.x > this.ctx.width) {
-                this.x = this.ctx.width;
+            if (this.x > this.container.clientWidth) {
+                this.x = this.container.clientWidth;
             }
-            if (this.y > this.ctx.height) {
-                this.y = this.ctx.height;
+            if (this.y > this.container.clientHeight) {
+                this.y = this.container.clientHeight;
             }
         }
     }
 
     draw() {
-        // window.$game.ctx.fillStyle = 'white';
-        // window.$game.ctx.fillRect(this.x, this.y, 6, 6);
-        // window.$game.ctx.fillStyle = 'black';
-        // window.$game.ctx.fillRect(this.x + 1, this.y + 1, 4, 4);
         window.$game.ctx.drawImage(window.$game.textureManager.getTexture("cursor"), 12, 9, 16, 22, this.x - 4, this.y - 5, 16, 22);
     }
 
