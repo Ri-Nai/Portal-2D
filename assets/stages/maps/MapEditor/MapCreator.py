@@ -271,7 +271,12 @@ def get_events():
                     if match:
                         name = match.group(1)  # 提取name部分
                         number = int(match.group(2))  # 提取number部分
-                    events[this_name]["toUrl"] =  f"{name}{number + 1}.json"
+                    if name == "Haruhikage":
+                        events[this_name]["toUrl"] =  f"Room18.json"
+                    else:
+                        events[this_name]["toUrl"] =  f"{name}{number + 1}.json"
+                elif C[x][y] == 3.5:
+                    events[this_name]["toUrl"] =  "Haruhikage.json"
     return events
 
 def get_drama_events():

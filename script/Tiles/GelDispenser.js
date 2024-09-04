@@ -39,9 +39,12 @@ class GelDispenser {
     draw() {
         // window.$game.ctx.fillStyle = Gel.gelColors[ this.type ];
         // window.$game.ctx.fillRect(this.position.x, this.position.y, GelDispenser.gelDispenserX, GelDispenser.gelDispenserY);
+        const texture = window.$game.textureManager.getTexture("gelDispensers", "0-0");
+        let angle = -(this.facing - 1 + 4 & 3) * 90;
+        const rotated = window.$game.textureManager.rotateTexture(texture, angle);
         window.$game.ctx.drawImage(
-            window.$game.textureManager.getTexture("gelDispensers", "0-0"),
-            this.position.x, this.position.y, GelDispenser.gelDispenserX, GelDispenser.gelDispenserY);
+            rotated,
+            this.position.x + offsetSize, this.position.y + offsetSize, GelDispenser.gelDispenserX, GelDispenser.gelDispenserY);
         for (let i of this.gels)
             i.draw();
     }

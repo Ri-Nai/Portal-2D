@@ -1,6 +1,6 @@
 class GLaDOS extends Entity {
-    static GLaDOSX = 4 * basicSize;
-    static GLaDOSY = 8 * basicSize;
+    static GLaDOSX = 2 * basicSize;
+    static GLaDOSY = 4 * basicSize;
     static bloodLimit = 120;
     constructor(stillAlive) {
         super(

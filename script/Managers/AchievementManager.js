@@ -1,6 +1,6 @@
 class AchievementManager {
     static getAll() {
-        return JSON.parse(localStorage.getItem("achievements"))?.[Auth.getToken()] || [];
+        return JSON.parse(localStorage.getItem("achievements"))?.[ Auth.getToken() ] || [];
     }
 
     /**
@@ -71,7 +71,7 @@ class AchievementManager {
                 a.completed = true;
                 this.status.set(a.title, true);
             }
-        })
+        });
         this.refresh();
 
         this.popup.querySelector(".title").innerText = achievement.title;
@@ -88,13 +88,13 @@ class AchievementManager {
 
     refresh() {
         const all = JSON.parse(localStorage.getItem("achievements")) ?? {};
-        all[this.user] = this.achievements.map((achievement) => {
+        all[ this.user ] = this.achievements.map((achievement) => {
             return {
                 title: achievement.title,
                 desc: achievement.desc,
                 _completed: this.status.get(achievement.title) || false
-            }
-        })
+            };
+        });
         localStorage.setItem("achievements", JSON.stringify(all));
     }
 }
@@ -169,5 +169,18 @@ class PlayerFallingSpeedAchievement extends Achievement {
     }
     condition(t, that) {
         return that.player.velocity.x > that.player.jumping.baseJump * 5.98;
+    }
+}
+class CubeUntouchedAchievement extends Achievement {
+    constructor(title, desc) {
+        super(title, desc);
+    }
+    condition(t, that) {
+        // return that.player.velocity.x > that.player.jumping.baseJump * 5.98;
+        if (that.game.chapterNow != "Room11")
+            return false;
+        const event = that.view.events.getEvent("event-area-02-14");
+        const cube = that.view.cubes[ 0 ];
+        return event.activated && cube.hasPicked == 0;
     }
 }
