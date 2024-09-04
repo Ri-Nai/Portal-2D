@@ -2685,6 +2685,14 @@ window.$game.dataManager.resolve(
                     "url": "./assets/imgs/CG/black_background.png"
                 },
                 {
+                    "type": "delay",
+                    "time": 500
+                },
+                {
+                    "type": "showImg",
+                    "url": "./assets/imgs/CG/Rana_Sleep.png"
+                },
+                {
                     "type": "dialog",
                     "texts": [
                         "【要乐奈】这是哪，好黑"
@@ -2708,6 +2716,33 @@ window.$game.dataManager.resolve(
                 {
                     "type": "delay",
                     "time": 1000
+                },
+                {
+                    "type": "showImg",
+                    "url": "./assets/imgs/CG/Rana_Cut.png"
+                },
+                {
+                    "type": "dialog",
+                    "texts": [
+                        "【要乐奈】昨天晚上还在和有趣的女人做衣服"
+                    ]
+                },
+                {
+                    "type": "showImg",
+                    "url": "./assets/imgs/CG/Rana_Wakeup.png"
+                },
+                {
+                    "type": "dialog",
+                    "texts": [
+                        "【要乐奈】今天怎么就不见了"
+                    ]
+                },
+                {
+                    "type": "delay",
+                    "time": 500
+                },
+                {
+                    "type": "hideImg"
                 },
                 {
                     "type": "dialog",
