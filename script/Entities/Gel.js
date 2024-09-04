@@ -53,16 +53,12 @@ class Gel extends Entity {
         this.destroyed = true;
     }
     draw() {
-        if (this.type == 0) {
-            window.$game.ctx.drawImage(
+        window.$game.ctx.drawImage(
             window.$game.textureManager.getTexture("gels", this.type + "-" + this.frame),
             this.hitbox.position.x,
             this.hitbox.position.y,
             this.hitbox.size.x,
-            this.hitbox.size.y);
-            return;
-        }
-        window.$game.ctx.fillStyle = Gel.gelColors[ this.type ];
-        window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
+            this.hitbox.size.y
+        );
     }
 }
