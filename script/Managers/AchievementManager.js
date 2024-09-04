@@ -158,7 +158,7 @@ class GelledEdgeAchievement extends Achievement {
                     length += edge.hitbox.size.x;
             }
         }
-        return length >= 100;
+        return length >= 1000;
     }
 }
 

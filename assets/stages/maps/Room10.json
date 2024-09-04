@@ -129,7 +129,30 @@ window.$game.dataManager.resolve(
             "opacity": 1
         },
         {
-            "tiles": [],
+            "tiles": [
+                {
+                    "type": 1,
+                    "position": {
+                        "x": 520,
+                        "y": 200
+                    },
+                    "size": {
+                        "x": 120,
+                        "y": 240
+                    }
+                },
+                {
+                    "type": 0,
+                    "position": {
+                        "x": 640,
+                        "y": 200
+                    },
+                    "size": {
+                        "x": 120,
+                        "y": 240
+                    }
+                }
+            ],
             "opacity": 1
         },
         {
