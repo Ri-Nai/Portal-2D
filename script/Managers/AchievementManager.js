@@ -55,7 +55,6 @@ class AchievementManager {
     }
 
     add(achievement) {
-        debugger;
         if (!this.getAllStatus().has(achievement.title)) {
             this.status.set(achievement.title, false);
         }
