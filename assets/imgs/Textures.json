@@ -169,7 +169,7 @@ window.$game.dataManager.resolve(
         "-7" : "./assets/imgs/textures/player/stands/left/stand_0007.png",
     },
     "parfait" : {
-        "1" : "./assets/imgs/textures/parfait/parfait1.png",
+        "0" : "./assets/imgs/textures/parfait/parfait0.png",
     },
 }
 )

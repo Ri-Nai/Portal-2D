@@ -24,9 +24,14 @@ class ParfaitEvent extends GameEvent {
 
     draw() {
         if (this.exist) {
-            window.$game.ctx.fillStyle = 'rgba(0, 255, 0, 1)';
-            window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
-            window.$game.ctx.drawImage(window.$game.textureManager.getTexture("parfait"), 16, 15, 8, 10, this.x - 4, this.y - 5, 8, 10);
+            // window.$game.ctx.fillStyle = 'rgba(0, 255, 0, 1)';
+            // window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
+            window.$game.ctx.drawImage(
+                window.$game.textureManager.getTexture("parfait"),
+                this.hitbox.position.x - offsetSize,
+                this.hitbox.position.y - offsetSize * 2,
+                this.hitbox.size.x + offsetSize * 2,
+                this.hitbox.size.y + offsetSize * 2);
         }
     }
 
