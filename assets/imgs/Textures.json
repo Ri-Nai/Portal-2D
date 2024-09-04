@@ -9,6 +9,18 @@ window.$game.dataManager.resolve(
         "2" : "./assets/imgs/textures/background-textures/black_floor.png",
         "1" : "./assets/imgs/textures/background-textures/white-wall.png",
     },
+    "backgroundObjects" : {
+        "0" : "./assets/imgs/textures/numbers/bts_sign_number_00.png",
+        "1" : "./assets/imgs/textures/numbers/bts_sign_number_01.png",
+        "2" : "./assets/imgs/textures/numbers/bts_sign_number_02.png",
+        "3" : "./assets/imgs/textures/numbers/bts_sign_number_03.png",
+        "4" : "./assets/imgs/textures/numbers/bts_sign_number_04.png",
+        "5" : "./assets/imgs/textures/numbers/bts_sign_number_05.png",
+        "6" : "./assets/imgs/textures/numbers/bts_sign_number_06.png",
+        "7" : "./assets/imgs/textures/numbers/bts_sign_number_07.png",
+        "8" : "./assets/imgs/textures/numbers/bts_sign_number_08.png",
+        "9" : "./assets/imgs/textures/numbers/bts_sign_number_09.png",
+    },
     "blocks": {
         "1" : "./assets/imgs/textures/blocks/black-floor.png",
         "2" : "./assets/imgs/textures/blocks/white-wall1.png",
