@@ -78,9 +78,10 @@ class MapManager {
             console.error('There has been a problem with your fetch operation:', error);
         }
     }
-    draw() {
+    draw(underBlock) {
         for (let i = 0; i < this.layers.length - 1; ++i)
             this.layers[ i ].draw(MapManager.typename[ i ]);
+        underBlock();
         for (let i of this.blocks)
             i.draw("blocks");
         this.layers[ this.layers.length - 1 ].draw(MapManager.typename[ this.layers.length - 1 ]);

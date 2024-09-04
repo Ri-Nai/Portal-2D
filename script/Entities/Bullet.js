@@ -1,10 +1,11 @@
 class Bullet extends Entity {
     static bulletSize = new Vector(0.2 * basicSize, 0.2 * basicSize);
-    constructor(position, velocity) {
+    constructor(position, velocity, style = 0) {
         super(position.subVector(Bullet.bulletSize.scale(0.5)), Bullet.bulletSize, velocity);
         this.destroyed = false;
         this.isBullet = true;
         this.type = -1;
+        this.style = style;
     }
     update(deltaTime, GLaDOS, player) {
         if (this.destroyed) return;
@@ -42,16 +43,10 @@ class Bullet extends Entity {
 
         let angle = Math.atan(this.velocity.y / this.velocity.x) / Math.PI * 180;
         (this.velocity.x < 0) ? (angle > 0) ? angle -= 180 : angle += 180 : angle;
-        if (this.type == -1) {
-            window.$game.ctx.fillStyle = "red";
-            window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
-        }
-        else {
-            let color = ["blue", "orange"][this.type];
-            const texture = window.$game.textureManager.getTexture("portalBullets", color);
-            const rotated = window.$game.textureManager.rotateTexture(texture, angle);
-            window.$game.ctx.drawImage(rotated, 10, 10, 20, 20, this.hitbox.position.x, this.hitbox.position.y, 20, 20);
-        }
+        angle += 90;
+        const texture = window.$game.textureManager.getTexture("GLaDOSbullets", `${this.type}-${this.style}`);
+        const rotated = window.$game.textureManager.rotateTexture(texture, angle);
+        window.$game.ctx.drawImage(rotated, this.hitbox.position.x, this.hitbox.position.y, 20, 20);
 
 
     }
