@@ -91,6 +91,12 @@ class Game {
         this.achievementManager.add(
             new RoomArrivalAchievement("Room 6", "at Room 6", "Room6")
         )
+        this.achievementManager.add(
+            new GelledEdgeAchievement("Gelled Edge", "Length up to 1000")
+        )
+        this.achievementManager.add(
+            new PlayerFallingSpeedAchievement("HighSpeed!", "速度达到一万三千点")
+        )
     }
 
     async init(filename = 'Room1.json') {
