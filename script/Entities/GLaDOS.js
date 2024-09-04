@@ -1,11 +1,11 @@
 class GLaDOS extends Entity {
-    static GlaDOSX = 4 * basicSize;
+    static GLaDOSX = 4 * basicSize;
     static GLaDOSY = 8 * basicSize;
-    static BloodLimit = 20;
+    static BloodLimit = 120;
     constructor(stillAlive) {
         super(
-            new Vector(16 * basicSize - GLaDOS.GlaDOSX / 2, 9 * basicSize - GLaDOS.GLaDOSY / 2),
-            new Vector(GLaDOS.GlaDOSX, GLaDOS.GLaDOSY),
+            new Vector(16 * basicSize - GLaDOS.GLaDOSX / 2, 9 * basicSize - GLaDOS.GLaDOSY / 2),
+            new Vector(GLaDOS.GLaDOSX, GLaDOS.GLaDOSY),
         )
         this.stillAlive = stillAlive;
         this.shootingBuffetTime = 60;
@@ -15,32 +15,119 @@ class GLaDOS extends Entity {
         this.movingBuffer = this.movingBufferTime;
         this.blood = GLaDOS.BloodLimit;
         this.bullets = [];
+        this.shootingStyle = 0;
+        this.shootingFormat = [
+            (deltaTime) => this.shootingTrack(deltaTime),
+            (deltaTime) => this.shootingRound(deltaTime),
+            (deltaTime) => this.shootingRect(deltaTime),
+            (deltaTime) => this.shootingFlower(deltaTime)
+        ];
+    }
+    shootingTrack(deltaTime) {
+        this.shootingBuffer -= deltaTime + Math.random() * deltaTime / 2;
+        if (this.shootingBuffer <= 0) {
+            let player = window.$game.view.player;
+            let width = Math.random() * 100 + GLaDOS.GLaDOSX;
+            let height = Math.random() * 100 + GLaDOS.GLaDOSY;
+            let left = this.hitbox.getCenter().x - width / 2;
+            let top = this.hitbox.getCenter().y - height / 2;
+            let right = this.hitbox.getCenter().x + width / 2;
+            let bottom = this.hitbox.getCenter().y + height / 2;
+            let bulletNumber = 10 + random(0, 20);
+            for (let i = 0; i < bulletNumber; i++) {
+                let newPosition = new Vector(random(left, right), random(top, bottom));
+                let direction = player.hitbox.getCenter().subVector(newPosition);
+                // direction.x += random(-5, 5);
+                // direction.y += random(-5, 5);
+                direction = direction.normalize();
+                let velocity = direction.scale(Math.random() * 5);
+                this.bullets.push(new Bullet(newPosition, velocity));
+            }
+            this.shootingBuffer = this.shootingBuffetTime;
+        }
+    }
+    shootingRound(deltaTime) {
+        this.shootingBuffer -= deltaTime + Math.random() * deltaTime / 2;
+        if (this.shootingBuffer <= 0) {
+            let radius = Math.random() * 10;
+            let space = random(20, 40)
+            let l = random(-270, -150), r = random(-30, 90);
+            for (let i = l; i < r; i += space) {
+                let direction = new Vector(cos(i), -sin(i)).scale(radius);
+                // let velocity = direction.scale(Math.random() * 5);
+                this.bullets.push(new Bullet(this.hitbox.getCenter().addVector(direction), direction));
+            }
+            this.shootingBuffer = this.shootingBuffetTime;
+        }
+    }
+    shootingRect(deltaTime) {
+        this.shootingBuffer -= deltaTime + Math.random() * deltaTime / 2;
+        if (this.shootingBuffer <= 0) {
+            let width = Math.random() * 100 + GLaDOS.GLaDOSX;
+            let height = Math.random() * 100 + GLaDOS.GLaDOSY;
+            let left = this.hitbox.getCenter().x - width / 2;
+            let top = this.hitbox.getCenter().y - height / 2;
+            let right = this.hitbox.getCenter().x + width / 2;
+            let bottom = this.hitbox.getCenter().y + height / 2;
+            let space = random(20, 40);
+            let velocity = random(3, 5);
+            if (random(0, 1) < 0.2)
+                velocity = -velocity;
+            for (let i = left; i < right; i += space) {
+                // let direction = new Vector(i - this.hitbox.getCenter().x, top - this.hitbox.getCenter().y);
+                let direction = new Vector(0, -1);
+                // let velocity = direction.scale(Math.random() * 5);
+                this.bullets.push(new Bullet(new Vector(i, top), direction.scale(velocity)));
+                direction = new Vector(0, 1);
+                this.bullets.push(new Bullet(new Vector(i, bottom), direction.scale(velocity)));
+            }
+            for (let i = top; i < bottom; i += space) {
+                let direction = new Vector(-1, 0);
+                this.bullets.push(new Bullet(new Vector(left, i), direction.scale(velocity)));
+                direction = new Vector(1, 0);
+                this.bullets.push(new Bullet(new Vector(right, i), direction.scale(velocity)));
+            }
+            this.shootingBuffer = this.shootingBuffetTime;
+        }
+    }
+    shootingFlower(deltaTime) {
+        this.shootingBuffer -= deltaTime + Math.random() * deltaTime / 2;
+        if (this.shootingBuffer <= 0) {
+            const center = this.hitbox.getCenter();
+            const numBullets = 36 + random(0, 20); // 子弹数量决定螺旋密度
+            const angleStep = 27;  // 每个子弹的角度偏移步长
+            let baseAngle = 0;     // 初始角度，从0度开始
+            let angleOffset = random(0, 360);
+            for (let i = 0; i < numBullets; i++) {
+                let currentAngle = angleOffset + baseAngle + i * angleStep; // 当前子弹的角度
+                let radius = i * 2;  // 半径随着子弹序号增大而增大，形成螺旋效果
+
+                // 计算当前子弹的位置
+                let direction = new Vector(cos(currentAngle), -sin(currentAngle)).scale(radius);
+                let velocity = direction.normalize().scale(radius / 100); // 子弹速度，方向归一化
+
+                // 创建并添加子弹
+                this.bullets.push(new Bullet(center.addVector(direction), velocity.scale(1 + i / 100)));
+            }
+
+            baseAngle += angleStep;  // 每次发射后基础角度增加，用于下一次射击产生螺旋效果
+            this.shootingBuffer = this.shootingBuffetTime;
+        }
     }
     update(deltaTime) {
         if (!this.stillAlive) return;
         deltaTime = 60 * deltaTime / 1000;
         let dels = [];
-        function random(min, max) {
-            return Math.random() * (max - min) + min;
-        }
-        this.shootingBuffer = Math.max(0, this.shootingBuffer - deltaTime - Math.random() * deltaTime / 2);
+
         this.movingBuffer = Math.max(0, this.movingBuffer - deltaTime - Math.random() * deltaTime);
-        if (this.shootingBuffer == 0) {
-            let player = window.$game.view.player;
-            let direction = player.hitbox.getCenter().subVector(this.hitbox.getCenter());
-            direction.x += random(-5, 5);
-            direction.y += random(-5, 5);
-            direction = direction.normalize();
-            let velocity = direction.scale(Math.random() * 5);
-            this.bullets.push(new Bullet(this.hitbox.getCenter(), velocity));
-            this.shootingBuffer = this.shootingBuffetTime;
-        }
         if (this.movingBuffer == 0) {
             // this.tragetPosition = this.hitbox.getCenter().add(new Vector(Math.random() * 2 - 1, Math.random() * 2 - 1));
-            this.tragetPosition = new Vector(random(0, 30 * basicSize - GLaDOS.GlaDOSX), random(0, 16 * basicSize - GLaDOS.GLaDOSY));
+            this.tragetPosition = new Vector(random(0, 30 * basicSize - GLaDOS.GLaDOSX), random(0, 16 * basicSize - GLaDOS.GLaDOSY - Player.PlayerSize.y - 100));
             this.tragetPosition.addEqual(new Vector(1 * basicSize, 1 * basicSize));
             this.movingBuffer = this.movingBufferTime;
+            this.shootingStyle = Math.floor(Math.random() * this.shootingFormat.length);
         }
+        this.shootingFormat[this.shootingStyle](deltaTime);
         this.hitbox.position.addEqual(this.tragetPosition.subVector(this.hitbox.position).scale(deltaTime  * random(0.1, 0.5) * random(0.2, 0.5) * random(0.3, 0.5)));
         for (let i of this.bullets) {
             i.update(deltaTime, this);
@@ -61,3 +148,6 @@ class GLaDOS extends Entity {
             i.draw();
     }
 }
+const random = (min, max) => min + Math.random() * (max - min);
+const cos = (a) => Math.cos(a * Math.PI / 180);
+const sin = (a) => Math.sin(a * Math.PI / 180);

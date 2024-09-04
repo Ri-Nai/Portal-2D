@@ -6,7 +6,7 @@ class Bullet extends Entity {
         this.isBullet = true;
         this.type = -1;
     }
-    update(deltaTime, glados) {
+    update(deltaTime, GLaDOS) {
         if (this.destroyed) return;
         let direction = this.velocity.normalize();
         let length = this.velocity.scale(deltaTime).magnitude();
@@ -19,8 +19,8 @@ class Bullet extends Entity {
             }
             this.hitbox.position.addEqual(direction);
             let centeredPosition = this.hitbox.getCenter();
-            if (this.type != -1 && glados.hitbox.contains(centeredPosition)) {
-                --glados.blood;
+            if (this.type != -1 && GLaDOS.hitbox.contains(centeredPosition)) {
+                --GLaDOS.blood;
                 this.destroy();
                 return;
             }
