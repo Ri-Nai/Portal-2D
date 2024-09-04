@@ -134,9 +134,8 @@ class GLaDOS extends Entity {
             if (i.destroyed)
                 dels.push(i);
         }
-        if (this.blood <= 0) {
-            //TODO: window.$game.eventManager.add();
-            this.stillAlive = false;
+        if (this.blood <= 0 || window.$game.view.player.blood <= 0) {
+            this.gameEnd();
         }
         const gladosBar = document.getElementById('glados-health-bar');
         gladosBar.style.display = this.stillAlive ? 'block' : 'none';
@@ -155,6 +154,19 @@ class GLaDOS extends Entity {
         window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
         for (let i of this.bullets)
             i.draw();
+    }
+    gameEnd() {
+        if (this.blood <= 0) {
+            window.$game.eventManager.add({
+                type: "gladosDeath"
+            });
+            this.stillAlive = false;
+        }
+        if (window.$game.view.player.blood <= 0) {
+            window.$game.eventManager.add({
+                type: "playerDeath"
+            });
+        }
     }
 }
 const random = (min, max) => min + Math.random() * (max - min);

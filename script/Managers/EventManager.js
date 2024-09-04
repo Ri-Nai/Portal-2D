@@ -52,6 +52,12 @@ class EventManager {
             case "hideImg":
                 await window.$game.splash.hide();
                 break;
+            case "gladosDeath":
+                // TODO: to game end
+                break;
+            case "playerDeath":
+                // TODO: switch to death CG
+                break;
             default:
                 break;
         }
