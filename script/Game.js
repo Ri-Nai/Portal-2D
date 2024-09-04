@@ -99,6 +99,8 @@ class Game {
         this.achievementManager.add(
             new PlayerFallingSpeedAchievement("HighSpeed!", "速度达到一万三千点")
         )
+
+        this.splash = new Splash()
     }
 
     async init(filename = 'Room1.json') {
