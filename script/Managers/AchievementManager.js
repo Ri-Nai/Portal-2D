@@ -88,9 +88,10 @@ class AchievementManager {
 
     refresh() {
         const all = JSON.parse(localStorage.getItem("achievements")) ?? {};
-        all[this.user] = all[this.user].map((achievement) => {
+        all[this.user] = this.achievements.map((achievement) => {
             return {
-                ...achievement,
+                title: achievement.title,
+                desc: achievement.desc,
                 _completed: this.status.get(achievement.title) || false
             }
         })
