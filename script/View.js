@@ -134,13 +134,12 @@ class PortalView extends View {
         });
 
         // 在这里执行所有渲染便于控制渲染顺序
-        this.renderings.push(() => this.map.draw());
+        this.renderings.push(() => this.map.draw(() => this.GLaDOS.draw()));
         this.gelDispensers.forEach(i => this.renderings.push(() => i.draw()));
         this.cubes.forEach(i => this.renderings.push(() => i.draw()));
         this.renderings.push(() => this.gelledEdgeList.draw());
         this.renderings.push(() => this.events.draw());
         this.renderings.push(() => this.player.draw());
-        this.renderings.push(() => this.GLaDOS.draw());
         this.renderings.push(() => this.portals[ 0 ].draw());
         this.renderings.push(() => this.portals[ 1 ].draw());
         this.renderings.push((t) => {this.portalGun.draw(t);});
