@@ -22,7 +22,7 @@ print(A)
 print(len(A), len(A[0]))
 basicSize = 40
 layer_background_texture = 3
-layer_block = 4
+layer_background_objects = 4
 layer_edge = 5
 layer_upper_texture = 6
 layers = [{"tiles" : [], "opacity" : 1} for i in range(7)]
@@ -145,17 +145,17 @@ def valid(x, y):
         return x >= 0 and x < 18 and y >= 0 and y < 32
 def get_id(x, y):
     return x * 32 + y
-def read_and_run_DSU(sheetname, check2):
+def read_and_run_DSU(sheetname, check2, tovalue=0):
     df = pd.read_excel(path_filename, index_col = None, header = None, sheet_name=sheetname)
     C = df.values.tolist()
     while (len(C) < 18):
-        C.append([0] * 32)
+        C.append([tovalue] * 32)
     for i in range(18):
         while (len(C[i]) < 32):
-            C[i].append(0)
+            C[i].append(tovalue)
         for j in range(32):
             if np.isnan(C[i][j]):
-                C[i][j] = 0  # 将 NaN 转换为 0 # 将浮点数转换为整数
+                C[i][j] = tovalue  # 将 NaN 转换为 0 # 将浮点数转换为整数
     print(C)
     print(len(C), len(C[0]))
     fa = [i for i in range(18 * 32)]
@@ -165,7 +165,7 @@ def read_and_run_DSU(sheetname, check2):
             rect.append([i, j, i, j])
     for i in range(18):
         for j in range(32):
-            if C[i][j] == 0 or check2 and C[i][j] == 2:
+            if C[i][j] == tovalue or check2 and C[i][j] == 2:
                 continue
             for k in range(4):
                 nx = i + dx[k]
@@ -344,6 +344,36 @@ def get_signs():
                     "y" : basicSize
                 }})
 get_signs()
+
+def get_background_objects():
+    C, fa, rect = read_and_run_DSU("backgroundObjects", False, -1)
+    def get_range(type_, f):
+        item = {
+            "type" : type_,
+            "position" :
+            {
+                "x" : rect[f][1] * basicSize,
+                "y" : rect[f][0] * basicSize
+            },
+            "size" :
+            {
+                "x" : (rect[f][3] - rect[f][1] + 1) * basicSize,
+                "y" : (rect[f][2] - rect[f][0] + 1) * basicSize
+            },
+        }
+        return item
+    vis = [False] * (18 * 32)
+    for i in range(18):
+        for j in range(32):
+            if C[i][j] == -1:
+                continue
+            f = get_fa(fa, get_id(i, j))
+            if vis[f]:
+                continue
+            vis[f] = True
+            layers[layer_background_objects]["tiles"].append(get_range(int(C[i][j]), f))
+get_background_objects()
+
 answer = {"layers" : layers, "blocks" : blocks, "edges" : edges, "super_edges" : super_edges, "events" : get_events(), "drama_events" : get_drama_events()}
 print(answer["drama_events"])
 s = json.dumps(answer, indent = 4, ensure_ascii=False)

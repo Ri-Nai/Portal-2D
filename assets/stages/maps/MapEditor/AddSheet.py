@@ -31,7 +31,7 @@ def add_sheet_to_excel(file_name, sheet_name):
 
 # 使用示例
 file_name = input() + ".xlsx"  # 你的Excel文件名
-sheet_name = 'SignArea'    # 你想要添加的工作表名
+sheet_name = 'backgroundObjects'    # 你想要添加的工作表名
 this_path = os.path.dirname(__file__)
 
 add_sheet_to_excel(os.path.join(this_path, file_name), sheet_name)

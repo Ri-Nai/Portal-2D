@@ -140,7 +140,19 @@ window.$game.dataManager.resolve(
             "opacity": 1
         },
         {
-            "tiles": [],
+            "tiles": [
+                {
+                    "type": 0,
+                    "position": {
+                        "x": 280,
+                        "y": 120
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 80
+                    }
+                }
+            ],
             "opacity": 1
         },
         {
@@ -2668,7 +2680,10 @@ window.$game.dataManager.resolve(
             },
             "canInteract": false,
             "events": [
-                {},
+                {
+                    "type": "showImg",
+                    "url": "./assets/imgs/CG/black_background.png"
+                },
                 {
                     "type": "dialog",
                     "texts": [

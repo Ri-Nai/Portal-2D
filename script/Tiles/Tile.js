@@ -20,6 +20,14 @@ class Tile {
                 1280);
                 window.$game.ctx.globalAlpha = 1;
             }
+        else if (kind == "backgroundObjects") {
+            window.$game.ctx.drawImage(
+                window.$game.textureManager.getTexture(kind, this.type),
+                this.hitbox.position.x,
+                this.hitbox.position.y,
+                this.hitbox.size.x,
+                this.hitbox.size.y);
+        }
         else {
             for (let i = 0; i < this.hitbox.size.x; i += basicSize)
                 for (let j = 0; j < this.hitbox.size.y; j += basicSize) {
