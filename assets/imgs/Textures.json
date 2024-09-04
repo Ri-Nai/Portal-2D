@@ -17,10 +17,6 @@ window.$game.dataManager.resolve(
         "12" : "./assets/imgs/textures/blocks/window2.png",
         "13" : "./assets/imgs/textures/blocks/window3.png",
     },
-    "edges": {
-        "1" : "./assets/imgs/textures/blocks/Black.png",
-        "2" : "./assets/imgs/textures/blocks/White.png",
-    },
     "portals": {
         "1-in-0" : "./assets/imgs/textures/portals/orange-portal-inner-0.png",
         "1-out-0" : "./assets/imgs/textures/portals/orange-portal-outside-0.png",
