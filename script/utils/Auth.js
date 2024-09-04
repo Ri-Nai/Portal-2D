@@ -1,6 +1,10 @@
 class Auth {
+    static getToken() {
+        return localStorage.getItem('token');
+    }
+
     static isAuthenticated() {
-        return localStorage.getItem('token') !== null;
+        return this.getToken() !== null;
     }
 
     static toLogin() {

@@ -5,10 +5,11 @@ class AchievementDisp {
      */
     constructor(ele) {
         this.container = ele
+        this.user = Auth.getToken();
     }
 
     getAll() {
-        return JSON.parse(localStorage.getItem("achievements")) || [];
+        return JSON.parse(localStorage.getItem("achievements"))?.[this.user] ?? [];
     }
 
     disp() {
@@ -41,6 +42,11 @@ class AchievementDisp {
         desc.classList.add("desc");
         desc.innerText = achievement.desc;
         ele.appendChild(desc);
+
+        const status = document.createElement("div");
+        status.classList.add("status");
+        status.innerText = achievement.completed ? "已完成" : "未完成";
+        ele.appendChild(status);
 
         return ele;
     }
