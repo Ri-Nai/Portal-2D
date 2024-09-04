@@ -53,13 +53,8 @@ class AchievementManager {
             if (a.title === achievement.title) {
                 a.completed = true;
             }
-<<<<<<< HEAD
         })
         this.refresh();
-=======
-        });
-        localStorage.setItem("achievements", JSON.stringify(this.achievements));
->>>>>>> 3cafd292712da986f2c71fedd3ca35479540c19e
 
         this.popup.querySelector(".title").innerText = achievement.title;
         this.popup.querySelector(".desc").innerText = achievement.desc;
