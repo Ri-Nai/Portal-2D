@@ -7,7 +7,7 @@ window.$game.dataManager.resolve(
     },
     "backgroundTextures" : {
         "2" : "./assets/imgs/textures/background-textures/black_floor.png",
-        "1" : "./assets/imgs/textures/background-textures/white_floor.png",
+        "1" : "./assets/imgs/textures/background-textures/white-wall.png",
     },
     "blocks": {
         "1" : "./assets/imgs/textures/blocks/black-floor.png",
@@ -168,6 +168,8 @@ window.$game.dataManager.resolve(
         "-6" : "./assets/imgs/textures/player/stands/left/stand_0006.png",
         "-7" : "./assets/imgs/textures/player/stands/left/stand_0007.png",
     },
-
+    "parfait" : {
+        "1" : "./assets/imgs/textures/parfait/parfait1.png",
+    },
 }
 )
