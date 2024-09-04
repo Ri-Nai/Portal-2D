@@ -16,7 +16,12 @@
             },
             {
                 "type": "dialog",
-                "texts": ["【要乐奈】这是哪，好黑"]
+                "texts": [
+                    {
+                        "text":"【要乐奈】这是哪，好黑",
+                        "url":"../../assets/audios/dialog/1.mp3"
+                    }
+                ]
             },
             {
                 "type": "hideImg"

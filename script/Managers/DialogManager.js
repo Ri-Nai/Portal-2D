@@ -8,6 +8,7 @@ class DialogManager {
     // 创建对话框的 DOM 元素
     createDialog() {
         let dialog = document.createElement("div");
+        let audio =document.createElement("audio");
         let textContainer = document.createElement("div");
         let name = document.createElement("div");
         let text = document.createElement("p");
@@ -36,6 +37,7 @@ class DialogManager {
         this.dialog = dialog;
         this.name = name;
         this.text = text;
+        this.audio = audio;
     }
     load(data) {
         this.buffer = data.texts;
@@ -50,6 +52,12 @@ class DialogManager {
             console.error('There has been a problem with your fetch operation:', error);
         }
     }
+    async play_audio(src){
+        this.audio.src = src;
+        this.audio.currentTime = 0;
+        this.audio.play();
+    }
+
     // 打开对话框动画
     async open() {
         this.dialog.classList.remove('fadeOut');
@@ -83,10 +91,10 @@ class DialogManager {
     async _prints() {
         this.printing = true;
         for (let text of this.buffer) {
-            if (text[0] === "【") {
-                let end = text.indexOf("】");
-                this.name.textContent = text.slice(0, end + 1); // 设置角色名称
-                text = text.slice(end + 1); // 移除名称部分
+            if (text['text'][0] === "【") {
+                let end = text['text'].indexOf("】");
+                this.name.textContent = text['text'].slice(0, end + 1); // 设置角色名称
+                text['text'] = text['text'].slice(end + 1); // 移除名称部分
             }
             let getEnd = () => {
                 let res = false;
@@ -96,7 +104,8 @@ class DialogManager {
                 return res;
             };
             let toEnd = false;
-            for (let i of text.split("")) {
+            this.play_audio(text['url']);
+            for (let i of text['text'].split("")) {
                 let span = document.createElement("span");
                 span.textContent = i;
                 this.text.appendChild(span); // 逐字显示文本
