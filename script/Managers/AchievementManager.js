@@ -108,3 +108,34 @@ class RoomArrivalAchievement extends Achievement {
         return that.game.chapterNow === this.room;
     }
 }
+
+class GelledEdgeAchievement extends Achievement {
+    constructor(title, desc) {
+        super(title, desc);
+    }
+    condition(t, that) {
+        // return that.player.gelled;
+        let gelledEdgeList = that.game.view.gelledEdgeList;
+        let gelledEdges = gelledEdgeList.gelledEdges;
+        let length = 0;
+        for (let edges of gelledEdges) {
+            for (let edge of edges) {
+                // if (edge.gelled) return true;
+                if (edge.facing & 1)
+                    length += edge.hitbox.size.y;
+                else
+                    length += edge.hitbox.size.x;
+            }
+        }
+        return length >= 100;
+    }
+}
+
+class PlayerFallingSpeedAchievement extends Achievement {
+    constructor(title, desc) {
+        super(title, desc);
+    }
+    condition(t, that) {
+        return that.player.velocity.x > that.player.jumping.baseJump * 5.98;
+    }
+}
