@@ -276,6 +276,7 @@ body {
 .achievement-container > .list {
     max-height: 300px;
     overflow-y: auto;
+    overflow-x: hidden;
     scrollbar-width: thin;
 }
 
@@ -300,6 +301,12 @@ body {
 .achievement-container > .list > .list-item {
     flex-direction: column;
     align-items: start;
+    min-width: 250px;
+    box-sizing: border-box;
+}
+
+.achievement-container>.list>.list-item > div {
+    text-align: start;
 }
 
 .achievement-container > .list > .list-item > .desc {

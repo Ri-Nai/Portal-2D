@@ -45,7 +45,7 @@ class AchievementDisp {
 
         const status = document.createElement("div");
         status.classList.add("status");
-        status.innerText = achievement.completed ? "已完成" : "未完成";
+        status.innerText = achievement._completed ? "已完成" : "未完成";
         ele.appendChild(status);
 
         return ele;
