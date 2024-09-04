@@ -245,6 +245,10 @@ window.$game.dataManager.resolve(
         {
             "tiles": [],
             "opacity": 1
+        },
+        {
+            "tiles": [],
+            "opacity": 1
         }
     ],
     "blocks": [

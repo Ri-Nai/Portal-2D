@@ -311,6 +311,33 @@ window.$game.dataManager.resolve(
         {
             "tiles": [],
             "opacity": 1
+        },
+        {
+            "tiles": [
+                {
+                    "type": 8,
+                    "position": {
+                        "x": 1160,
+                        "y": 40
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 40
+                    }
+                },
+                {
+                    "type": 8,
+                    "position": {
+                        "x": 1120,
+                        "y": 360
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 40
+                    }
+                }
+            ],
+            "opacity": 1
         }
     ],
     "blocks": [

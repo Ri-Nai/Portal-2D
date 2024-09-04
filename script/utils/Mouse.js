@@ -118,7 +118,7 @@ class MouseManager {
         // window.$game.ctx.fillRect(this.x, this.y, 6, 6);
         // window.$game.ctx.fillStyle = 'black';
         // window.$game.ctx.fillRect(this.x + 1, this.y + 1, 4, 4);
-        window.$game.ctx.drawImage(window.$game.textureManager.getTexture("cursor"), 17, 16, 6, 8, this.x, this.y, 6, 8);
+        window.$game.ctx.drawImage(window.$game.textureManager.getTexture("cursor"), 16, 15, 8, 10, this.x - 4, this.y - 5, 8, 10);
     }
 
     get position() {

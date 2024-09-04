@@ -83,6 +83,8 @@ window.$game.dataManager.resolve(
         "4" : "./assets/imgs/textures/signs/jump-with-velocity.png",
         "5" : "./assets/imgs/textures/signs/blue-gell.png",
         "6" : "./assets/imgs/textures/signs/orange-gell.png",
+        "7" : "./assets/imgs/textures/signs/right.png",
+        "8" : "./assets/imgs/textures/signs/up.png"
 
     },
     "cubes": {

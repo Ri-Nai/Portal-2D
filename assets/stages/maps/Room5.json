@@ -44,7 +44,18 @@ window.$game.dataManager.resolve(
                         "y": 160
                     },
                     "size": {
-                        "x": 1200,
+                        "x": 960,
+                        "y": 40
+                    }
+                },
+                {
+                    "type": 1,
+                    "position": {
+                        "x": 1120,
+                        "y": 160
+                    },
+                    "size": {
+                        "x": 160,
                         "y": 40
                     }
                 },
@@ -278,6 +289,22 @@ window.$game.dataManager.resolve(
         {
             "tiles": [],
             "opacity": 1
+        },
+        {
+            "tiles": [
+                {
+                    "type": 7,
+                    "position": {
+                        "x": 1240,
+                        "y": 280
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 40
+                    }
+                }
+            ],
+            "opacity": 1
         }
     ],
     "blocks": [
@@ -432,6 +459,17 @@ window.$game.dataManager.resolve(
             },
             "size": {
                 "x": 40,
+                "y": 40
+            }
+        },
+        {
+            "type": 2,
+            "position": {
+                "x": 1040,
+                "y": 160
+            },
+            "size": {
+                "x": 80,
                 "y": 40
             }
         },
@@ -1062,6 +1100,18 @@ window.$game.dataManager.resolve(
             }
         },
         {
+            "type": 2,
+            "facing": 3,
+            "position": {
+                "y": 160,
+                "x": 1100
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
             "type": 1,
             "facing": 3,
             "position": {
@@ -1105,7 +1155,19 @@ window.$game.dataManager.resolve(
                 "y": 140
             },
             "size": {
-                "x": 400,
+                "x": 200,
+                "y": 20
+            }
+        },
+        {
+            "type": 2,
+            "facing": 2,
+            "position": {
+                "x": 1120,
+                "y": 140
+            },
+            "size": {
+                "x": 120,
                 "y": 20
             }
         },
@@ -1118,6 +1180,18 @@ window.$game.dataManager.resolve(
             },
             "size": {
                 "x": 40,
+                "y": 20
+            }
+        },
+        {
+            "type": 2,
+            "facing": 2,
+            "position": {
+                "x": 1040,
+                "y": 180
+            },
+            "size": {
+                "x": 80,
                 "y": 20
             }
         },
@@ -1319,6 +1393,18 @@ window.$game.dataManager.resolve(
             "position": {
                 "y": 320,
                 "x": 960
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": 2,
+            "facing": 1,
+            "position": {
+                "y": 160,
+                "x": 1040
             },
             "size": {
                 "y": 40,
@@ -1559,6 +1645,18 @@ window.$game.dataManager.resolve(
             "type": -1,
             "facing": 3,
             "position": {
+                "y": 160,
+                "x": 1100
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 3,
+            "position": {
                 "y": 0,
                 "x": 1260
             },
@@ -1599,7 +1697,31 @@ window.$game.dataManager.resolve(
                 "y": 140
             },
             "size": {
-                "x": 440,
+                "x": 200,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 1120,
+                "y": 140
+            },
+            "size": {
+                "x": 160,
+                "y": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 2,
+            "position": {
+                "x": 1040,
+                "y": 180
+            },
+            "size": {
+                "x": 80,
                 "y": 20
             }
         },
@@ -1789,6 +1911,18 @@ window.$game.dataManager.resolve(
             "position": {
                 "y": 320,
                 "x": 960
+            },
+            "size": {
+                "y": 40,
+                "x": 20
+            }
+        },
+        {
+            "type": -1,
+            "facing": 1,
+            "position": {
+                "y": 160,
+                "x": 1040
             },
             "size": {
                 "y": 40,
