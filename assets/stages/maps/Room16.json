@@ -206,7 +206,30 @@ window.$game.dataManager.resolve(
             "opacity": 1
         },
         {
-            "tiles": [],
+            "tiles": [
+                {
+                    "type": 1,
+                    "position": {
+                        "x": 440,
+                        "y": 280
+                    },
+                    "size": {
+                        "x": 160,
+                        "y": 320
+                    }
+                },
+                {
+                    "type": 6,
+                    "position": {
+                        "x": 600,
+                        "y": 280
+                    },
+                    "size": {
+                        "x": 160,
+                        "y": 320
+                    }
+                }
+            ],
             "opacity": 1
         },
         {
@@ -214,7 +237,19 @@ window.$game.dataManager.resolve(
             "opacity": 1
         },
         {
-            "tiles": [],
+            "tiles": [
+                {
+                    "type": 7,
+                    "position": {
+                        "x": 1240,
+                        "y": 120
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 40
+                    }
+                }
+            ],
             "opacity": 1
         }
     ],

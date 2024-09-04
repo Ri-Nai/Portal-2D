@@ -44,8 +44,7 @@ class GelDispenser {
         const rotated = window.$game.textureManager.rotateTexture(texture, angle);
         window.$game.ctx.drawImage(
             rotated,
-            0, 0, rotated.width, rotated.height,
-            this.position.x, this.position.y, GelDispenser.gelDispenserX, GelDispenser.gelDispenserY);
+            this.position.x + offsetSize, this.position.y + offsetSize, GelDispenser.gelDispenserX, GelDispenser.gelDispenserY);
         for (let i of this.gels)
             i.draw();
     }

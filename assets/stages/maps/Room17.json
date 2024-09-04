@@ -338,7 +338,30 @@ window.$game.dataManager.resolve(
             "opacity": 1
         },
         {
-            "tiles": [],
+            "tiles": [
+                {
+                    "type": 1,
+                    "position": {
+                        "x": 400,
+                        "y": 200
+                    },
+                    "size": {
+                        "x": 80,
+                        "y": 160
+                    }
+                },
+                {
+                    "type": 7,
+                    "position": {
+                        "x": 480,
+                        "y": 200
+                    },
+                    "size": {
+                        "x": 80,
+                        "y": 160
+                    }
+                }
+            ],
             "opacity": 1
         },
         {
@@ -346,7 +369,30 @@ window.$game.dataManager.resolve(
             "opacity": 1
         },
         {
-            "tiles": [],
+            "tiles": [
+                {
+                    "type": 8,
+                    "position": {
+                        "x": 840,
+                        "y": 120
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 40
+                    }
+                },
+                {
+                    "type": 8,
+                    "position": {
+                        "x": 1160,
+                        "y": 120
+                    },
+                    "size": {
+                        "x": 40,
+                        "y": 40
+                    }
+                }
+            ],
             "opacity": 1
         }
     ],
@@ -2158,6 +2204,19 @@ window.$game.dataManager.resolve(
         }
     ],
     "events": {
+        "event-area-25-00": {
+            "type": 3,
+            "position": {
+                "x": 880,
+                "y": 0
+            },
+            "size": {
+                "x": 280,
+                "y": 40
+            },
+            "affect": [],
+            "toUrl": "Haruhikage.json"
+        },
         "event-area-31-05": {
             "type": 3,
             "position": {
