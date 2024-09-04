@@ -2706,11 +2706,11 @@ window.$game.dataManager.resolve(
                 {
                     "type": "dialog",
                     "texts": [
-                    {
-                        "text":"【要乐奈】这是哪，好黑",
-                        "url":"../../assets/audios/dialog/1.mp3"
-                    }
-                ]
+                        {
+                            "text": "【要乐奈】这是哪，好黑",
+                            "url": "./assets/audios/dialog/1.mp3"
+                        }
+                    ]
                 },
                 {
                     "type": "hideImg"
@@ -2738,7 +2738,10 @@ window.$game.dataManager.resolve(
                 {
                     "type": "dialog",
                     "texts": [
-                        "【要乐奈】昨天晚上还在和有趣的女人做衣服"
+                        {
+                            "text": "【要乐奈】昨天晚上还在和有趣的女人做衣服",
+                            "url": "./assets/audios/button/button_down.wav"
+                        }
                     ]
                 },
                 {
@@ -2748,7 +2751,9 @@ window.$game.dataManager.resolve(
                 {
                     "type": "dialog",
                     "texts": [
-                        "【要乐奈】今天怎么就不见了"
+                        {
+                            "text": "【要乐奈】今天怎么就不见了"
+                        }
                     ]
                 },
                 {
@@ -2777,7 +2782,9 @@ window.$game.dataManager.resolve(
                 {
                     "type": "dialog",
                     "texts": [
-                        "【要乐奈】饿了，想吃东西了"
+                        {
+                            "text": "【要乐奈】饿了，想吃东西了"
+                        }
                     ]
                 },
                 {
@@ -2787,9 +2794,15 @@ window.$game.dataManager.resolve(
                 {
                     "type": "dialog",
                     "texts": [
-                        "【要乐奈】昨天晚上做了个梦，梦里全都是抹茶芭菲",
-                        "【要乐奈】我最近老想吃芭菲了，可是芭菲太贵了",
-                        "【要乐奈】今天让Rikki帮我带点吧"
+                        {
+                            "text": "【要乐奈】昨天晚上做了个梦，梦里全都是抹茶芭菲"
+                        },
+                        {
+                            "text": "【要乐奈】我最近老想吃芭菲了，可是芭菲太贵了"
+                        },
+                        {
+                            "text": "【要乐奈】今天让Rikki帮我带点吧"
+                        }
                     ]
                 },
                 {
@@ -2806,9 +2819,15 @@ window.$game.dataManager.resolve(
                 {
                     "type": "dialog",
                     "texts": [
-                        "【GLaDOS】您好，再一次地，欢迎光临光圈科技计算机辅助丰富学习中心",
-                        "【GLaDOS】希望您在休息室的短暂停留能带给您愉快的体验",
-                        "【GLaDOS】您的样本正在处理中，我们已经准备开始测试"
+                        {
+                            "text": "【GLaDOS】您好，再一次地，欢迎光临光圈科技计算机辅助丰富学习中心"
+                        },
+                        {
+                            "text": "【GLaDOS】希望您在休息室的短暂停留能带给您愉快的体验"
+                        },
+                        {
+                            "text": "【GLaDOS】您的样本正在处理中，我们已经准备开始测试"
+                        }
                     ]
                 },
                 {
@@ -2818,7 +2837,9 @@ window.$game.dataManager.resolve(
                 {
                     "type": "dialog",
                     "texts": [
-                        "【要乐奈】（什么B动静。。。）"
+                        {
+                            "text": "【要乐奈】（什么B动静。。。）"
+                        }
                     ]
                 },
                 {
@@ -2828,45 +2849,16 @@ window.$game.dataManager.resolve(
                 {
                     "type": "dialog",
                     "texts": [
-                        "【GLaDOS】但在开始前，请记住，虽然所有丰富学习中心的活动主要目标，是享受乐趣与学习，但也可能造成重大伤害",
-                        "【GLaDOS】为了您自身及他人的安全，请勿碰触"
+                        {
+                            "text": "【GLaDOS】但在开始前，请记住，虽然所有丰富学习中心的活动主要目标，是享受乐趣与学习，但也可能造成重大伤害"
+                        },
+                        {
+                            "text": "【GLaDOS】为了您自身及他人的安全，请勿碰触"
+                        }
                     ]
                 },
                 {
                     "type": "hideImg"
-                },
-                {
-                    "type": "dialog",
-                    "texts": [
-                        "【要乐奈】PS：按下 Enter / 空格 / 鼠标左键 可以点到对话下一句",
-                        "【要乐奈】按住 Ctrl 快进（目前 Ctrl 监听有问题导致很多时候文本都会莫名其妙快进）",
-                        "【要乐奈】按住 A / 小键盘左键 向左移动",
-                        "【要乐奈】按住 D / 小键盘右键 向右移动",
-                        "【要乐奈】按住空格跳跃",
-                        "【要乐奈】按下 Esc 暂停"
-                    ]
-                }
-            ]
-        },
-        {
-            "id": 1,
-            "position": {
-                "x": 0,
-                "y": 0
-            },
-            "size": {
-                "x": 160,
-                "y": 360
-            },
-            "canInteract": false,
-            "events": [
-                {
-                    "type": "dialog",
-                    "texts": [
-                        "【要乐奈】这是哪，好黑",
-                        "【要乐奈】饿了，想吃东西了",
-                        "【要乐奈】我最近老想吃草莓了，但是草莓太贵了"
-                    ]
                 }
             ]
         },
@@ -2884,11 +2876,7 @@ window.$game.dataManager.resolve(
             "events": [
                 {
                     "type": "dialog",
-                    "texts": [
-                        "【要乐奈】这是哪，好黑",
-                        "【要乐奈】饿了，想吃东西了",
-                        "【要乐奈】我最近老想吃草莓了，但是草莓太贵了"
-                    ]
+                    "texts": []
                 }
             ]
         }

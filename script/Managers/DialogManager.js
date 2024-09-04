@@ -3,12 +3,12 @@ class DialogManager {
         this.createDialog();
         this.buffer = []; // 文本缓冲区
         this.printing = false;
+        this.audio = new Audio();
     }
 
     // 创建对话框的 DOM 元素
     createDialog() {
         let dialog = document.createElement("div");
-        let audio =document.createElement("audio");
         let textContainer = document.createElement("div");
         let name = document.createElement("div");
         let text = document.createElement("p");
@@ -37,7 +37,6 @@ class DialogManager {
         this.dialog = dialog;
         this.name = name;
         this.text = text;
-        this.audio = audio;
     }
     load(data) {
         this.buffer = data.texts;
@@ -52,9 +51,10 @@ class DialogManager {
             console.error('There has been a problem with your fetch operation:', error);
         }
     }
-    async play_audio(src){
-        this.audio.src = src;
-        this.audio.currentTime = 0;
+    async play_audio(src) {
+        if (src === null) return;
+        if (this.audio) this.audio.pause();
+        this.audio = new Audio(src);
         this.audio.play();
     }
 
@@ -79,8 +79,8 @@ class DialogManager {
     }
 
     // 打印文本
-    async prints(texts = []) {
-        this.buffer.push(...texts);
+    async prints(contents = []) {
+        this.buffer.push(...contents);
         if (this.buffer.length == 0)
             return;
         await this.open(); // 打开对话框
@@ -90,27 +90,26 @@ class DialogManager {
     // 打印缓冲区中的文本
     async _prints() {
         this.printing = true;
-        for (let text of this.buffer) {
-            if (text['text'][0] === "【") {
-                let end = text['text'].indexOf("】");
-                this.name.textContent = text['text'].slice(0, end + 1); // 设置角色名称
-                text['text'] = text['text'].slice(end + 1); // 移除名称部分
+        for (let content of this.buffer) {
+            if (content.text[ 0 ] === "【") {
+                let end = content.text.indexOf("】");
+                this.name.textContent = content.text.slice(0, end + 1); // 设置角色名称
+                content.text = content.text.slice(end + 1); // 移除名称部分
             }
             let getEnd = () => {
                 let res = false;
-                window.$game.inputManager.firstDown("Enter", () => {res = true;});
-                window.$game.inputManager.firstDown("Space", () => {res = true;});
-                window.$game.inputManager.firstDown("ClickLeft", () => {res = true;});
+                window.$game.inputManager.firstDown("Enter", () => { res = true; });
+                window.$game.inputManager.firstDown("Space", () => { res = true; });
+                window.$game.inputManager.firstDown("ClickLeft", () => { res = true; });
                 return res;
             };
             let toEnd = false;
-            this.play_audio(text['url']);
-            for (let i of text['text'].split("")) {
+            this.play_audio(content.url);
+            for (let i of content.text.split("")) {
                 let span = document.createElement("span");
                 span.textContent = i;
                 this.text.appendChild(span); // 逐字显示文本
-                if (window.$game.inputManager.isKeysDown(["LCtrl", "RCtrl"]))
-                {
+                if (window.$game.inputManager.isKeysDown([ "LCtrl", "RCtrl" ])) {
                     await delay(10); // 控制打印速度
                     continue;
                 }
@@ -120,11 +119,11 @@ class DialogManager {
             }
 
             // 等待用户输入
-            if (!window.$game.inputManager.isKeysDown(["LCtrl", "RCtrl"]))
+            if (!window.$game.inputManager.isKeysDown([ "LCtrl", "RCtrl" ]))
                 while (
                     await (async () => {
                         await delay(100);
-                        return !getEnd() && !window.$game.inputManager.isKeysDown(["LCtrl", "RCtrl"]);
+                        return !getEnd() && !window.$game.inputManager.isKeysDown([ "LCtrl", "RCtrl" ]);
                     })()
                 );
             else await delay(100);
@@ -140,7 +139,7 @@ class DialogManager {
         this.name.innerHTML = "";
         this.text.innerHTML = "";
         this.printing = false;
-        await this.close()
+        await this.close();
     }
 }
 
