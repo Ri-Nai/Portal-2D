@@ -2708,7 +2708,7 @@ window.$game.dataManager.resolve(
                     "texts": [
                         {
                             "text": "【要乐奈】这是哪，好黑",
-                            "url": "./assets/audios/dialog/1.mp3"
+                            "url": "./assets/audios/dialog/Room1/Rana1.wav"
                         }
                     ]
                 },
@@ -2740,7 +2740,7 @@ window.$game.dataManager.resolve(
                     "texts": [
                         {
                             "text": "【要乐奈】昨天晚上还在和有趣的女人做衣服",
-                            "url": "./assets/audios/button/button_down.wav"
+                            "url": "./assets/audios/dialog/Room1/Rana2.wav"
                         }
                     ]
                 },
@@ -2752,7 +2752,8 @@ window.$game.dataManager.resolve(
                     "type": "dialog",
                     "texts": [
                         {
-                            "text": "【要乐奈】今天怎么就不见了"
+                            "text": "【要乐奈】今天怎么就不见了",
+                            "url": "./assets/audios/dialog/Room1/Rana3.wav"
                         }
                     ]
                 },
@@ -2783,7 +2784,8 @@ window.$game.dataManager.resolve(
                     "type": "dialog",
                     "texts": [
                         {
-                            "text": "【要乐奈】饿了，想吃东西了"
+                            "text": "【要乐奈】饿了，想吃东西了",
+                            "url": "./assets/audios/dialog/Room1/Rana4.wav"
                         }
                     ]
                 },
@@ -2795,13 +2797,16 @@ window.$game.dataManager.resolve(
                     "type": "dialog",
                     "texts": [
                         {
-                            "text": "【要乐奈】昨天晚上做了个梦，梦里全都是抹茶芭菲"
+                            "text": "【要乐奈】昨天晚上做了个梦，梦里全都是抹茶芭菲",
+                            "url": "./assets/audios/dialog/Room1/Rana5.wav"
                         },
                         {
-                            "text": "【要乐奈】我最近老想吃芭菲了，可是芭菲太贵了"
+                            "text": "【要乐奈】我最近老想吃芭菲了，可是芭菲太贵了",
+                            "url": "./assets/audios/dialog/Room1/Rana6.wav"
                         },
                         {
-                            "text": "【要乐奈】今天让Rikki帮我带点吧"
+                            "text": "【要乐奈】今天让Rikki帮我带点吧",
+                            "url": "./assets/audios/dialog/Room1/Rana7.wav"
                         }
                     ]
                 },
@@ -2820,13 +2825,16 @@ window.$game.dataManager.resolve(
                     "type": "dialog",
                     "texts": [
                         {
-                            "text": "【GLaDOS】您好，再一次地，欢迎光临光圈科技计算机辅助丰富学习中心"
+                            "text": "【GLaDOS】您好，再一次地，欢迎光临光圈科技计算机辅助丰富学习中心",
+                            "url": "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-1.wav"
                         },
                         {
-                            "text": "【GLaDOS】希望您在休息室的短暂停留能带给您愉快的体验"
+                            "text": "【GLaDOS】希望您在休息室的短暂停留能带给您愉快的体验",
+                            "url": "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-2.wav"
                         },
                         {
-                            "text": "【GLaDOS】您的样本正在处理中，我们已经准备开始测试"
+                            "text": "【GLaDOS】您的样本正在处理中，我们已经准备开始测试",
+                            "url": "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-3.wav"
                         }
                     ]
                 },
@@ -2838,7 +2846,8 @@ window.$game.dataManager.resolve(
                     "type": "dialog",
                     "texts": [
                         {
-                            "text": "【要乐奈】（什么B动静。。。）"
+                            "text": "【要乐奈】（什么B动静。。。）",
+                            "url": "./assets/audios/dialog/Room1/Rana8.wav"
                         }
                     ]
                 },
@@ -2850,10 +2859,12 @@ window.$game.dataManager.resolve(
                     "type": "dialog",
                     "texts": [
                         {
-                            "text": "【GLaDOS】但在开始前，请记住，虽然所有丰富学习中心的活动主要目标，是享受乐趣与学习，但也可能造成重大伤害"
+                            "text": "【GLaDOS】但在开始前，请记住，虽然所有丰富学习中心的活动主要目标，是享受乐趣与学习，但也可能造成重大伤害",
+                            "url": "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-4.wav"
                         },
                         {
-                            "text": "【GLaDOS】为了您自身及他人的安全，请勿碰触"
+                            "text": "【GLaDOS】为了您自身及他人的安全，请勿碰触",
+                            "url": "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-5.wav"
                         }
                     ]
                 },
