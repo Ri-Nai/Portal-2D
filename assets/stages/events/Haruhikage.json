@@ -1,6 +1,11 @@
 {
     "0": {
         "canInteract": false,
+        "events" : []
+
+    },
+    "1": {
+        "canInteract": true,
         "events": [
             {
                 "type": "showImg",
@@ -11,12 +16,36 @@
                 "texts": [
                     {
                         "text" : "【要乐奈】吉他，奶奶的"
-                    },
-                    {
-                        "text" : "【要乐奈】吉他，奶奶的",
-                        "url" : "更关键"
                     }
                 ]
+            },
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/Haruhikage2.png"
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text" : "【要乐奈】随便弹弹吧",
+                        "url" : "./assets/audios/dialog/Haruhikage/MyGO!!!!! - 春日影 (MyGO!!!!! ver.).mp3"
+                    }
+                ]
+            },
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/Haruhikage3.png"
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text" : "【画外音】此时有壁外之人黑下了脸"
+                    }
+                ]
+            },
+            {
+                "type": "hideImg"
             }
         ]
     }

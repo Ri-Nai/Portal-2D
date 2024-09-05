@@ -1628,7 +1628,7 @@ window.$game.dataManager.resolve(
                 "y": 160
             },
             "affect": [],
-            "toUrl": "Room19.json"
+            "toUrl": "Boss.json"
         }
     },
     "drama_events": [

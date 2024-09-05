@@ -790,8 +790,7 @@ window.$game.dataManager.resolve(
                 "x": 40,
                 "y": 160
             },
-            "affect": [],
-            "toUrl": "Test3.json"
+            "affect": []
         }
     },
     "drama_events": []

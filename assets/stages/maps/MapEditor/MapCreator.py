@@ -156,8 +156,8 @@ def read_and_run_DSU(sheetname, check2, tovalue=0):
         for j in range(32):
             if np.isnan(C[i][j]):
                 C[i][j] = tovalue  # 将 NaN 转换为 0 # 将浮点数转换为整数
-    print(C)
-    print(len(C), len(C[0]))
+    # print(C)
+    # print(len(C), len(C[0]))
     fa = [i for i in range(18 * 32)]
     rect = []
     for i in range(18):
@@ -211,7 +211,7 @@ def get_events():
         return item
     def bfs(SX, SY, predir):
         import queue
-        print(SX, SY, predir)
+        # print(SX, SY, predir)
         q = queue.Queue()
         q.put((SX, SY, predir))
         while not q.empty():
@@ -219,7 +219,7 @@ def get_events():
             x = u[0]
             y = u[1]
             predir = u[2]
-            print(x, y)
+            # print(x, y)
             for k in range(4):
                 if k == (predir + 2 & 3):
                     continue
@@ -231,7 +231,7 @@ def get_events():
                     continue
                 if C[nx][ny] == C[x][y]:
                     q.put((nx, ny, k))
-                print(x, y, nx, ny)
+                # print(x, y, nx, ny)
                 events[get_event_name(x, y)] = get_event(C[x][y], x, y, [get_event_name(nx, ny)])
                 events[get_event_name(x, y)]["nxtdir"] = k if C[nx][ny] == 2 else -1
 
@@ -264,19 +264,23 @@ def get_events():
 
             else:
                 events[this_name] = get_event(C[x][y], x, y, [])
-                if C[x][y] == 3:
+                print("?")
+                if int(C[x][y]) == 3:
                     import re
                     s = filename
+                    print("!!!")
                     match = re.match(r"([a-zA-Z]+)(\d+)", s)
+                    print(filename)
                     if match:
                         name = match.group(1)  # 提取name部分
                         number = int(match.group(2))  # 提取number部分
-                    if name == "Haruhikage":
+                        if number == 18:
+                            events[this_name]["toUrl"] =  "Boss.json"
+                        else:
+                            events[this_name]["toUrl"] =  f"{name}{number + 1}.json"
+                    elif filename == "Haruhikage.xlsx":
+                        print("!!?")
                         events[this_name]["toUrl"] =  "Room18.json"
-                    elif number == 18:
-                        events[this_name]["toUrl"] =  "Boss.json"
-                    else:
-                        events[this_name]["toUrl"] =  f"{name}{number + 1}.json"
                 elif C[x][y] == 3.5:
                     events[this_name]["toUrl"] =  "Haruhikage.json"
     return events
@@ -314,7 +318,7 @@ def get_drama_events():
             if C[i][j] == 0:
                 continue
             f = get_fa(fa, get_id(i, j))
-            print(f, i, j, C[i][j])
+            # print(f, i, j, C[i][j])
             if vis[f]:
                 continue
             vis[f] = True

@@ -13,8 +13,9 @@ class Gel extends Entity {
 
     update(deltaTime) {
         if (this.destroyed) return;
+        let frameLength = this.type == 2 ? 7 : 11;
         if ((this.buffer -= deltaTime) <= 0) {
-            this.frame = this.frame % 11 + 1;
+            this.frame = this.frame % frameLength + 1;
             this.buffer = this.bufferTime;
         }
         this.inPortal = Math.max(this.inPortal - deltaTime, 0);
