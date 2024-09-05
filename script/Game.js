@@ -105,13 +105,13 @@ class Game {
         this.splash = new Splash();
     }
 
-    async init(filename = 'Test2.json') {
+    async init(filename = 'Boss.json') {
         await this.textureManager.load();
         await this.soundManager.load();
         await this.load(filename);
     }
 
-    async load(filename = 'Test2.json') {
+    async load(filename = 'Boss.json') {
         await this.map.loadFromURL('./assets/stages/maps/' + filename);
         // await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
         await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);

@@ -1,0 +1,23 @@
+{
+    "0": {
+        "canInteract": false,
+        "events": [
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/Haruhikage1.png"
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text" : "【要乐奈】吉他，奶奶的"
+                    },
+                    {
+                        "text" : "【要乐奈】吉他，奶奶的",
+                        "url" : "更关键"
+                    }
+                ]
+            }
+        ]
+    }
+}

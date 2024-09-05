@@ -12,7 +12,7 @@ class GLaDOS extends Entity {
         this.shootingBuffetTime = 60;
         this.movingBufferTime = 600;
         this.tragetPosition = this.hitbox.position.copy();
-        this.shootingBuffer = 0;
+        this.shootingBuffer = this.shootingBuffetTime * 2;
         this.movingBuffer = this.movingBufferTime;
         this.blood = GLaDOS.bloodLimit;
         this.bullets = [];
@@ -74,7 +74,7 @@ class GLaDOS extends Entity {
             let top = this.hitbox.getCenter().y - height / 2;
             let right = this.hitbox.getCenter().x + width / 2;
             let bottom = this.hitbox.getCenter().y + height / 2;
-            let space = random(20, 40);
+            let space = random(10, 30);
             let velocity = random(3, 5);
 
             let style = 1;
@@ -107,7 +107,7 @@ class GLaDOS extends Entity {
             let baseAngle = 0;     // 初始角度，从0度开始
             let angleOffset = random(0, 360);
             let style = 2;
-            for (let i = 0; i < numBullets; i++) {
+            for (let i = 1; i <= numBullets; i++) {
                 let currentAngle = angleOffset + baseAngle + i * angleStep; // 当前子弹的角度
                 let radius = i * 2;  // 半径随着子弹序号增大而增大，形成螺旋效果
 
@@ -169,15 +169,15 @@ class GLaDOS extends Entity {
     }
     gameEnd() {
         if (this.blood <= 0) {
-            window.$game.eventManager.add({
+            window.$game.eventManager.add([{
                 type: "gladosDeath"
-            });
+            }]);
             this.stillAlive = false;
         }
         if (window.$game.view.player.blood <= 0) {
-            window.$game.eventManager.add({
+            window.$game.eventManager.add([{
                 type: "playerDeath"
-            });
+            }]);
         }
     }
 }

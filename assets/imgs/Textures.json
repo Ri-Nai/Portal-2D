@@ -20,6 +20,7 @@ window.$game.dataManager.resolve(
         "7" : "./assets/imgs/textures/numbers/bts_sign_number_07.png",
         "8" : "./assets/imgs/textures/numbers/bts_sign_number_08.png",
         "9" : "./assets/imgs/textures/numbers/bts_sign_number_09.png",
+        "11" : "./assets/imgs/textures/guitar.png",
     },
     "blocks": {
         "1" : "./assets/imgs/textures/blocks/black-floor.png",

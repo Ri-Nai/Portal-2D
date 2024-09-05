@@ -1101,7 +1101,16 @@ window.$game.dataManager.resolve(
             "events": [
                 {
                     "type": "dialog",
-                    "texts": []
+                    "texts": [
+                        {
+                            "text": "【GLaDOS】我们的传送门技术能让你瞬间跨越空间，体验前所未有的冒险。只需简单地穿过一个光圈，你就能在不同地点间无缝转移——不需要飞机、火车，甚至不需要你的双脚。",
+                            "url": "./assets/audios/dialog/Room4/GLaDOS1.wav"
+                        },
+                        {
+                            "text": "【GLaDOS】想象一下，在你甚至来不及思考时，已经从一个不知名的实验室到了另一个不知名的实验室。是不是很神奇？当然，前提是你能正确使用它。",
+                            "url": "./assets/audios/dialog/Room4/GLaDOS2.wav"
+                        }
+                    ]
                 }
             ]
         }

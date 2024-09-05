@@ -91,10 +91,11 @@ class DialogManager {
     async _prints() {
         this.printing = true;
         for (let content of this.buffer) {
-            if (content.text[ 0 ] === "【") {
-                let end = content.text.indexOf("】");
-                this.name.textContent = content.text.slice(0, end + 1); // 设置角色名称
-                content.text = content.text.slice(end + 1); // 移除名称部分
+            let text = content.text;
+            if (text[ 0 ] === "【") {
+                let end = text.indexOf("】");
+                this.name.textContent = text.slice(0, end + 1); // 设置角色名称
+                text = text.slice(end + 1); // 移除名称部分
             }
             let getEnd = () => {
                 let res = false;
@@ -105,7 +106,7 @@ class DialogManager {
             };
             let toEnd = false;
             this.play_audio(content.url);
-            for (let i of content.text.split("")) {
+            for (let i of text.split("")) {
                 let span = document.createElement("span");
                 span.textContent = i;
                 this.text.appendChild(span); // 逐字显示文本

@@ -3,6 +3,20 @@
         "canInteract": false,
         "events": [
             {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text" : "【Tips】单击屏幕进入游戏"
+                    },
+                    {
+                        "text" : "【Tips】PS：按下 Enter / 空格 / 鼠标左键 可以点到对话下一句"
+                    },
+                    {
+                        "text" : "【Tips】按住 Ctrl 快进（尽量不要按Ctrl的时候切出游戏不然会有监听bug）"
+                    }
+                ]
+            },
+            {
                 "type": "showImg",
                 "url": "./assets/imgs/CG/black_background.png"
             },
@@ -52,7 +66,6 @@
                     {
                         "text": "【要乐奈】昨天晚上还在和有趣的女人做衣服",
                         "url": "./assets/audios/dialog/Room1/Rana2.wav"
-
                     }
                 ]
             },
@@ -119,7 +132,6 @@
                     {
                         "text": "【要乐奈】今天让Rikki帮我带点吧",
                         "url": "./assets/audios/dialog/Room1/Rana7.wav"
-
                     }
                 ]
             },
@@ -139,15 +151,15 @@
                 "texts": [
                     {
                         "text": "【GLaDOS】您好，再一次地，欢迎光临光圈科技计算机辅助丰富学习中心",
-                        "url" : "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-1.wav"
+                        "url": "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-1.wav"
                     },
                     {
                         "text": "【GLaDOS】希望您在休息室的短暂停留能带给您愉快的体验",
-                        "url" : "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-2.wav"
+                        "url": "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-2.wav"
                     },
                     {
                         "text": "【GLaDOS】您的样本正在处理中，我们已经准备开始测试",
-                        "url" : "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-3.wav"
+                        "url": "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-3.wav"
                     }
                 ]
             },
@@ -173,17 +185,81 @@
                 "texts": [
                     {
                         "text": "【GLaDOS】但在开始前，请记住，虽然所有丰富学习中心的活动主要目标，是享受乐趣与学习，但也可能造成重大伤害",
-                        "url" : "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-4.wav"
+                        "url": "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-4.wav"
                     },
                     {
                         "text": "【GLaDOS】为了您自身及他人的安全，请勿碰触",
-                        "url" : "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-5.wav"
-
+                        "url": "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-5.wav"
+                    },
+                    {
+                        "text": "【GLaDOS】Test中出现的绿色甜品是给顺利完成测试的实验者的奖励,由光圈美食研发,保证安全无害,且美味",
+                        "url": "./assets/audios/dialog/Room1/GLaDOS1.wav"
+                    }
+                ]
+            },
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/Rana_Wakeup.png"
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】Test？实验？"
+                    }
+                ]
+            },
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/GLaDOS.png"
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【GLaDOS】很高兴你成为光圈科技“爱猫实验”的第114个研究对象。原因呢？一个特别锋利的选择。",
+                        "url": "./assets/audios/dialog/Room1/GLaDOS2.wav"
+                    },
+                    {
+                        "text": "【GLaDOS】门即将开启。祝你在接下来的旅程中好运……你会需要的。",
+                        "url": "./assets/audios/dialog/Room1/GLaDOS3.wav"
                     }
                 ]
             },
             {
                 "type": "hideImg"
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】莫名其妙被卷入奇怪的实验了"
+                    },
+                    {
+                        "text": "【要乐奈】那边有抹茶芭菲，去看看吧"
+                    }
+                ]
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text" : "【Tips】按住 A / 小键盘左键 向左移动"
+                    },
+                    {
+                        "text" : "【Tips】按住 D / 小键盘右键 向右移动"
+                    },
+                    {
+                        "text" : "【Tips】按住空格跳跃"
+                    },
+                    {
+                        "text" : "【Tips】按下 E键 与物品交互"
+                    }
+                ]
             }
         ]
     },
@@ -191,8 +267,20 @@
         "canInteract": true,
         "events": [
             {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/Rana_Matcha.png"
+            },
+            {
                 "type": "dialog",
-                "texts": []
+                "texts": [
+                    {
+                        "text": "【要乐奈】像是梦里的抹茶芭菲，这里是梦吗",
+                        "url": "./assets/audios/dialog/Room1/Rana9.wav"
+                    }
+                ]
+            },
+            {
+                "type": "hideImg"
             }
         ]
     }

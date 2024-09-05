@@ -12,20 +12,20 @@ window.$game.dataManager.resolve(
     ],
     "portals": [
         {
-            "type": -1,
+            "type": 0,
             "position": {
-                "x": 0,
-                "y": 0
+                "x": 40,
+                "y": 560
             },
-            "facing": 0
+            "facing": 3
         },
         {
-            "type": -1,
+            "type": 1,
             "position": {
-                "x": 0,
-                "y": 0
+                "x": 1240,
+                "y": 560
             },
-            "facing": 0
+            "facing": 1
         }
     ],
     "GLaDOS" : true,

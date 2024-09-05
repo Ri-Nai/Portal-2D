@@ -2040,7 +2040,23 @@ window.$game.dataManager.resolve(
             "events": [
                 {
                     "type": "dialog",
-                    "texts": []
+                    "texts": [
+                        {
+                            "text": "【GLaDOS】我已经为你配备了一把传送枪。不过请注意，只有在白墙上你才能发挥它的作用。所以，如果你渴望逃脱，最好专注于寻找那些纯白的墙面。",
+                            "url": "./assets/audios/dialog/Room5/GLaDOS1.wav"
+                        }
+                    ]
+                },
+                {
+                    "type": "dialog",
+                    "texts": [
+                        {
+                            "text": "【Tips】按下鼠标左键设置蓝色传送门"
+                        },
+                        {
+                            "text": "【Tips】按下鼠标右键设置橙色传送门"
+                        }
+                    ]
                 }
             ]
         }

@@ -11,7 +11,7 @@ window.$game.dataManager.resolve(
         {
             "position" : {
                 "x" : 280,
-                "y" : 80,
+                "y" : 120,
             },
             "facing" : 2,
             "times" : 10,

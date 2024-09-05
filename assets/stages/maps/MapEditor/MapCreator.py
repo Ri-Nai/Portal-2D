@@ -272,7 +272,9 @@ def get_events():
                         name = match.group(1)  # 提取name部分
                         number = int(match.group(2))  # 提取number部分
                     if name == "Haruhikage":
-                        events[this_name]["toUrl"] =  f"Room18.json"
+                        events[this_name]["toUrl"] =  "Room18.json"
+                    elif number == 18:
+                        events[this_name]["toUrl"] =  "Boss.json"
                     else:
                         events[this_name]["toUrl"] =  f"{name}{number + 1}.json"
                 elif C[x][y] == 3.5:
