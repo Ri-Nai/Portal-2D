@@ -42,6 +42,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Noto Sans SC', sans-serif;
 }
 
 /* 内层的对话框 */
@@ -53,7 +54,6 @@ body {
 
     padding: 1rem 5rem;
 
-    font-size: 1.125rem;
     /* text-align: center; */
     min-width: 20rem;
     min-height: 2rem;
@@ -64,7 +64,6 @@ body {
     margin-top: 1.25rem;
     text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
     font-size: 1.25rem;
-    font-weight: 600;
 
     display: flex;
     justify-content: center;
@@ -76,4 +75,8 @@ body {
     margin: 0;
     word-break: break-all;
     width: 100%
+}
+.dialogue-box span {
+    font-size: 1rem;
+    font-weight: 500;
 }
