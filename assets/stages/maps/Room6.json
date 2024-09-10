@@ -2115,7 +2115,16 @@ window.$game.dataManager.resolve(
             "events": [
                 {
                     "type": "dialog",
-                    "texts": []
+                    "texts": [
+                        {
+                            "text": "【GLaDOS】欢迎来到纯白房间，这里简约与完美相遇。每一个元素都经过精心设计，确保一个无干扰的环境。",
+                            "url": "./assets/audios/dialog/Room6/GLaDOS1.wav"
+                        },
+                        {
+                            "text": "【GLaDOS】看看这精致的空旷、无暇的白墙、完全没有家具的设计——每一个选择都是为了最大化你的...孤独感。",
+                            "url": "./assets/audios/dialog/Room6/GLaDOS2.wav"
+                        }
+                    ]
                 }
             ]
         }
