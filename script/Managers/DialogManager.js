@@ -94,7 +94,7 @@ class DialogManager {
             let text = content.text;
             if (text[ 0 ] === "【") {
                 let end = text.indexOf("】");
-                this.name.textContent = text.slice(0, end + 1); // 设置角色名称
+                this.name.textContent = text.slice(1, end); // 设置角色名称
                 text = text.slice(end + 1); // 移除名称部分
             }
             let getEnd = () => {
