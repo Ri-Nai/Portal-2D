@@ -169,6 +169,7 @@ body, html {
 }
 
 .parfait,
+.camera,
 .achievement {
     position: absolute;
     bottom: 0px;
@@ -182,17 +183,20 @@ body, html {
     animation: slideIn 1s forwards;
 }
 
+.camera.hide,
 .achievement.hide,
 .parfait.hide {
     animation: slideOut 1s forwards;
 }
 
+.camera.hidden,
 .achievement.hidden,
 .parfait.hidden {
     display: none;
     visibility: hidden;
 }
 
+.camera::before,
 .achievement::before,
 .parfait::before {
     content: '';
@@ -205,6 +209,7 @@ body, html {
     background: #ffffff;
 }
 
+.camera > .title,
 .achievement > .title,
 .parfait > .title {
     font-size: 1rem;
