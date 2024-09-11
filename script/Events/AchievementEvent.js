@@ -9,7 +9,7 @@ class AchivementEvent extends GameEvent {
         if (this.exist) {
             this.exist = false;
             this.setHistory(this.id);
-
+            window.$game.soundManager.playSound("achievement");
             const popup = document.querySelector("." + this.name);
 
             popup.querySelector(".title").innerText = this.getHistory().length;

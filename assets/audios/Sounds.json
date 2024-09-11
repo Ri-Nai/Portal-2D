@@ -28,7 +28,9 @@ window.$game.dataManager.resolve(
     "button": {
         "0" : "./assets/audios/button/button_down.wav",
         "1" : "./assets/audios/button/button_up.wav",
-
     },
+    "achievement": {
+        "0" : "./assets/audios/achievement/achievement.wav"
+    }
 }
 )
