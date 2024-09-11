@@ -86,22 +86,6 @@ class Game {
 
         this.chapterNow = 'Room1';
 
-        this.achievementManager = new AchievementManager();
-        this.achievementManager.add(
-            new RoomArrivalAchievement("Arrival", "at Room 11", "Room11")
-        );
-        this.achievementManager.add(
-            new RoomArrivalAchievement("Room 6", "at Room 6", "Room6")
-        );
-        this.achievementManager.add(
-            new GelledEdgeAchievement("Gelled Edge", "Length up to 1000")
-        );
-        this.achievementManager.add(
-            new PlayerFallingSpeedAchievement("HighSpeed!", "速度达到一万三千点")
-        );
-        this.achievementManager.add(
-            new CubeUntouchedAchievement("爱方块TV", "在没有触碰到方块的情况下通过本关")
-        );
         this.splash = new Splash();
     }
 
@@ -109,6 +93,7 @@ class Game {
         await this.textureManager.load();
         await this.soundManager.load();
         await this.load(filename);
+        this.achievementManager = new AchievementManager();
     }
 
     async load(filename = 'Room6.json') {

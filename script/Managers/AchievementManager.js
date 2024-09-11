@@ -29,6 +29,26 @@ class AchievementManager {
         this.status = this.getAllStatus();
         this.popup = document.querySelector(".achievement");
         this.user = Auth.getToken();
+
+        this.load();
+    }
+
+    async load() {
+        const achievements = await window.$game.dataManager.loadJSON("./assets/stages/achievements.json")
+        achievements.forEach((a) => {
+            if (a.type == 0) {
+                this.add(new RoomArrivalAchievement(a.title, a.desc, a.room));
+            }
+            if (a.type == 1) {
+                this.add(new GelledEdgeAchievement(a.title, a.desc));
+            }
+            if (a.type == 2) {
+                this.add(new PlayerFallingSpeedAchievement(a.title, a.desc));
+            }
+            if (a.type == 3) {
+                this.add(new CubeUntouchedAchievement(a.title, a.desc));
+            }
+        })
     }
 
     get game() {

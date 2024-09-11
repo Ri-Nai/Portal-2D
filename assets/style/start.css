@@ -257,6 +257,14 @@ body {
     background-color: var(--theme);
 }
 
+.achievementDisp {
+    justify-content: start;
+    padding: 5vh 10vw;
+    box-sizing: border-box;
+    overflow-x: auto;
+    --offsetY: 0px;
+}
+
 .save > .save-container,
 .achievementDisp > .achievement-container {
     display: flex;
@@ -266,18 +274,32 @@ body {
     transform: skew(0, -10deg);
 }
 
+.achievementDisp > .achievement-container {
+    flex-direction: row;
+    gap: 4rem;
+    position: relative;
+    top: var(--offsetY)
+}
+
 .save-container > .title,
 .achievement-container > .title {
     font-size: 5rem;
     font-weight: 100;
+    flex-shrink: 0;
 }
 
-.save-container > .list,
-.achievement-container > .list {
+.save-container > .list {
     max-height: 300px;
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin;
+}
+
+.achievement-container > .list {
+    max-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .save-container > .list > .list-item,

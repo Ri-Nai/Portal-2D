@@ -65,10 +65,14 @@
         <div></div>
     </div>
 
+    <div id="resource" style="display: none;"></div>
+
     <script type="text/javascript" src="script/utils/Store.js"></script>
     <script type="text/javascript" src="script/utils/Auth.js"></script>
     <script type="text/javascript" src="script/utils/Save.js"></script>
     <script type="text/javascript" src="script/utils/AchievementDisp.js"></script>
+    <script type="text/javascript" src="script/Managers/AchievementManager.js"></script>
+    <script type="text/javascript" src="script/Managers/DataManager.js"></script>
 
     <script type="text/javascript">
         const slideIn = () => {
@@ -95,6 +99,10 @@
             window.$store = new Store();
             Store.remove("toLoad");
 
+            window.$game = {
+                dataManager: new DataManager(),
+            }
+
             const achievementDisp = new AchievementDisp(
                 document.querySelector(".achievement-container > .list")
             );
@@ -108,6 +116,10 @@
             if (!Auth.isAuthenticated()) {
                 Auth.toLogin();
             }
+
+            let canScroll = false;
+
+            const achievementManager = new AchievementManager();
 
             document.querySelector("#start").addEventListener("click", () => {
                 window.location.href = `./game.html?${window.$store.encode()}`;
@@ -132,15 +144,20 @@
             });
             document.querySelector("#achievement").addEventListener("click", () => {
                 slideOut();
+                if (!Store.get("achievements") || !AchievementManager.getAll().length) {
+                    achievementManager.refresh();
+                }
                 setTimeout(() => {
                     document.querySelector(".menu").classList.add("hide");
                     document.querySelector(".achievementDisp").classList.remove("hide");
                     achievementDisp.disp();
                     slideIn();
+                    canScroll = true;
                 }, 1800);
             });
             document.querySelector("#achievement-back").addEventListener("click", () => {
                 slideOut();
+                canScroll = false;
                 setTimeout(() => {
                     document.querySelector(".achievementDisp").classList.add("hide");
                     document.querySelector(".achievement-container > .list").innerHTML = "";
@@ -155,6 +172,13 @@
                 Auth.logout();
                 Auth.toLogin();
             });
+
+            document.querySelector(".achievementDisp").addEventListener("scroll", (e) => {
+                if (canScroll) {
+                    let offsetY = e.target.scrollLeft * Math.tan(10 / 180 * Math.PI)
+                    document.querySelector(".achievementDisp").style.setProperty("--offsetY", `${offsetY}px`);
+                }
+            })
         }
     </script>
 </body>
