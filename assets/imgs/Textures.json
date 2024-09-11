@@ -215,5 +215,9 @@ window.$game.dataManager.resolve(
     "parfait" : {
         "0" : "./assets/imgs/textures/parfait/parfait0.png",
     },
+    "camera" : {
+        "0" : "./assets/imgs/textures/camera/camera-0.png",
+        "1" : "./assets/imgs/textures/camera/camera-1.png"
+    }
 }
 )

@@ -8,7 +8,7 @@ class PortalGun {
         this.status = [ false, false ];
         this.direction = new Vector(1, 0);
         this.prev = 0;
-
+        this.position = new Vector(0, 0);
         // 发射间隔
         this.INTERVAL = 250;
         this.isShot = false;

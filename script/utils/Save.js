@@ -50,11 +50,13 @@ class Save {
 
         newBtn.addEventListener("click", () => {
             const parfait = JSON.parse(Store.get("parfait") ?? "[]");
+            const camera = JSON.parse(Store.get("camera") ?? "[]");
             let title = window.$game.chapterNow;
 
             this.set(`${title}-${(new Date()).toISOString()}`, {
                 url: `${window.$game.chapterNow}.json`,
-                parfait
+                parfait,
+                camera
             })
             this.hide()
         })
@@ -85,6 +87,7 @@ class Save {
      * @type {{
      *      url: string,
      *      parfait: string[]
+     *      camera: string[]
      * }}
      */
 

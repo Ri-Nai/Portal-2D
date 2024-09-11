@@ -2648,6 +2648,18 @@ window.$game.dataManager.resolve(
             },
             "affect": [],
             "toUrl": "Room3.json"
+        },
+        "event-area-02-02": {
+            "type": 7,
+            "position": {
+                "x": 80,
+                "y": 80
+            },
+            "size": {
+                "x": 40,
+                "y": 40
+            },
+            "affect": []
         }
     },
     "drama_events": [
