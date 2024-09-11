@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -23,7 +24,9 @@
                 <div>送</div>
             </div>
             <div class="horizontal">
-                <div class="text"> 乐奈与抹茶奇境 </div>
+                <div class="text">
+                    乐奈与抹茶奇境
+                </div>
             </div>
         </div>
         <div class="button-container">
@@ -33,14 +36,18 @@
             <div class="button" id="about">关于</div>
             <div class="button" id="exit">退出</div>
         </div>
-        <div class="side"> Portal! It's MyGO!!!!! </div>
+        <div class="side">
+            Portal! It's MyGO!!!!!
+        </div>
     </div>
+
     <div class="save hide" id="save-load">
         <div class="save-container"></div>
         <div class="button-container">
             <div class="button" id="save-back">返回</div>
         </div>
     </div>
+
     <div class="achievementDisp hide">
         <div class="achievement-container">
             <div class="title">成就</div>
@@ -50,18 +57,106 @@
             <div class="button" id="achievement-back">返回</div>
         </div>
     </div>
+
     <div class="transition hidden">
         <div></div>
         <div></div>
         <div></div>
         <div></div>
     </div>
+
     <script type="text/javascript" src="script/utils/Store.js"></script>
     <script type="text/javascript" src="script/utils/Auth.js"></script>
     <script type="text/javascript" src="script/utils/Save.js"></script>
     <script type="text/javascript" src="script/utils/AchievementDisp.js"></script>
-    <script
-        type="text/javascript"> const slideIn = () => { const transition = document.querySelector(".transition"); transition.classList.remove("hidden"); transition.classList.add("slideIn"); setTimeout(() => { transition.classList.add("hidden"); transition.classList.remove("slideIn"); }, 1800); }; const slideOut = () => { const transition = document.querySelector(".transition"); transition.classList.remove("hidden"); transition.classList.add("slideOut"); setTimeout(() => { transition.classList.add("hidden"); transition.classList.remove("slideOut"); }, 1800); }; window.onload = () => { window.$store = new Store(); Store.remove("toLoad"); const achievementDisp = new AchievementDisp(document.querySelector(".achievement-container > .list")); const load = new Load((data) => { Store.set("toLoad", JSON.stringify(data)); window.location.href = `./game.html?${window.$store.encode()}`; }); slideIn(); if (!Auth.isAuthenticated()) { Auth.toLogin(); } document.querySelector("#start").addEventListener("click", () => { window.location.href = `./game.html?${window.$store.encode()}`; }); document.querySelector("#load").addEventListener("click", () => { slideOut(); setTimeout(() => { document.querySelector(".menu").classList.add("hide"); document.querySelector(".save").classList.remove("hide"); load.build(); slideIn(); }, 1800); }); document.querySelector("#save-back").addEventListener("click", () => { slideOut(); setTimeout(() => { document.querySelector(".save").classList.add("hide"); document.querySelector(".save-container").innerHTML = ""; document.querySelector(".menu").classList.remove("hide"); slideIn(); }, 1800); }); document.querySelector("#achievement").addEventListener("click", () => { slideOut(); setTimeout(() => { document.querySelector(".menu").classList.add("hide"); document.querySelector(".achievementDisp").classList.remove("hide"); achievementDisp.disp(); slideIn(); }, 1800); }); document.querySelector("#achievement-back").addEventListener("click", () => { slideOut(); setTimeout(() => { document.querySelector(".achievementDisp").classList.add("hide"); document.querySelector(".achievement-container > .list").innerHTML = ""; document.querySelector(".menu").classList.remove("hide"); slideIn(); }, 1800); }); document.querySelector("#about").addEventListener("click", () => { window.location.href = `./pages/about-us/index.html`; }); document.querySelector("#exit").addEventListener("click", () => { Auth.logout(); Auth.toLogin(); }); } </script>
+
+    <script type="text/javascript">
+        const slideIn = () => {
+            const transition = document.querySelector(".transition");
+            transition.classList.remove("hidden");
+            transition.classList.add("slideIn");
+            setTimeout(() => {
+                transition.classList.add("hidden");
+                transition.classList.remove("slideIn");
+            }, 1800);
+        };
+
+        const slideOut = () => {
+            const transition = document.querySelector(".transition");
+            transition.classList.remove("hidden");
+            transition.classList.add("slideOut");
+            setTimeout(() => {
+                transition.classList.add("hidden");
+                transition.classList.remove("slideOut");
+            }, 1800);
+        };
+
+        window.onload = () => {
+            window.$store = new Store();
+            Store.remove("toLoad");
+
+            const achievementDisp = new AchievementDisp(
+                document.querySelector(".achievement-container > .list")
+            );
+
+            const load = new Load((data) => {
+                Store.set("toLoad", JSON.stringify(data));
+                window.location.href = `./game.html?${window.$store.encode()}`;
+            })
+
+            slideIn();
+            if (!Auth.isAuthenticated()) {
+                Auth.toLogin();
+            }
+
+            document.querySelector("#start").addEventListener("click", () => {
+                window.location.href = `./game.html?${window.$store.encode()}`;
+            });
+            document.querySelector("#load").addEventListener("click", () => {
+                slideOut();
+                setTimeout(() => {
+                    document.querySelector(".menu").classList.add("hide");
+                    document.querySelector(".save").classList.remove("hide");
+                    load.build();
+                    slideIn();
+                }, 1800);
+            });
+            document.querySelector("#save-back").addEventListener("click", () => {
+                slideOut();
+                setTimeout(() => {
+                    document.querySelector(".save").classList.add("hide");
+                    document.querySelector(".save-container").innerHTML = "";
+                    document.querySelector(".menu").classList.remove("hide");
+                    slideIn();
+                }, 1800);
+            });
+            document.querySelector("#achievement").addEventListener("click", () => {
+                slideOut();
+                setTimeout(() => {
+                    document.querySelector(".menu").classList.add("hide");
+                    document.querySelector(".achievementDisp").classList.remove("hide");
+                    achievementDisp.disp();
+                    slideIn();
+                }, 1800);
+            });
+            document.querySelector("#achievement-back").addEventListener("click", () => {
+                slideOut();
+                setTimeout(() => {
+                    document.querySelector(".achievementDisp").classList.add("hide");
+                    document.querySelector(".achievement-container > .list").innerHTML = "";
+                    document.querySelector(".menu").classList.remove("hide");
+                    slideIn();
+                }, 1800);
+            });
+            document.querySelector("#about").addEventListener("click", () => {
+                window.location.href = `./pages/about-us/index.html`;
+            });
+            document.querySelector("#exit").addEventListener("click", () => {
+                Auth.logout();
+                Auth.toLogin();
+            });
+        }
+    </script>
 </body>
 
 </html>
