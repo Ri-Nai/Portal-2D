@@ -32,6 +32,7 @@ class GelledEdge extends Edge {
 class GelledEdgeList {
     constructor() {
         this.gelledEdges = [ [], [], [] ];
+        this.length = 0;
     }
     addEdge(type, position, edge) {
         let dels = [ [], [], [] ];
@@ -77,6 +78,15 @@ class GelledEdgeList {
             for (let newEdge of adds[ now ])
                 this.gelledEdges[ now ].push(newEdge);
             this.gelledEdges[ now ] = this.gelledEdges[ now ].filter(i => !dels[ now ].includes(i));
+        }
+        this.length = 0;
+        for (let edges of this.gelledEdges) {
+            for (let edge of edges) {
+                if (edge.facing & 1)
+                    this.length += edge.hitbox.size.y;
+                else
+                    this.length += edge.hitbox.size.x;
+            }
         }
     }
     draw() {

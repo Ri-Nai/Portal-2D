@@ -14,7 +14,7 @@ class GelDispenser {
         this.shootPosition = position.addVector(GelDispenser.shootOffset[ this.facing ]);
         this.gels = [];
         this.bufferTime = 60;
-        this.now = 0;
+        this.now = 120;
         this.type = type;
     }
     getType() {

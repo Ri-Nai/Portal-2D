@@ -2048,6 +2048,10 @@ window.$game.dataManager.resolve(
                     ]
                 },
                 {
+                    "type": "delay",
+                    "time": 200
+                },
+                {
                     "type": "dialog",
                     "texts": [
                         {

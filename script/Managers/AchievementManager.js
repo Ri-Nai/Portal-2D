@@ -48,6 +48,9 @@ class AchievementManager {
             if (a.type == 3) {
                 this.add(new CubeUntouchedAchievement(a.title, a.desc));
             }
+            if (a.type == 4) {
+                this.add(new UngelledAchievement(a.title, a.desc));
+            }
         })
     }
 
@@ -167,19 +170,8 @@ class GelledEdgeAchievement extends Achievement {
     }
     condition(t, that) {
         // return that.player.gelled;
-        let gelledEdgeList = that.game.view.gelledEdgeList;
-        let gelledEdges = gelledEdgeList.gelledEdges;
-        let length = 0;
-        for (let edges of gelledEdges) {
-            for (let edge of edges) {
-                // if (edge.gelled) return true;
-                if (edge.facing & 1)
-                    length += edge.hitbox.size.y;
-                else
-                    length += edge.hitbox.size.x;
-            }
-        }
-        return length >= 100;
+        let length = that.game.view.gelledEdgeList.length;
+        return length >= 1000;
     }
 }
 
@@ -202,5 +194,18 @@ class CubeUntouchedAchievement extends Achievement {
         const event = that.view.events.getEvent("event-area-02-14");
         const cube = that.view.cubes[ 0 ];
         return event.activated && cube.hasPicked == 0;
+    }
+}
+class UngelledAchievement extends Achievement {
+    constructor(title, desc) {
+        super(title, desc);
+    }
+    condition(t, that) {
+        // return that.player.velocity.x > that.player.jumping.baseJump * 5.98;
+        if (that.game.chapterNow != "Room18")
+            return false;
+        let length = that.game.view.gelledEdgeList.length;
+        let player = that.game.view.player;
+        return player.hitbox.position.x > 1180 && player.hitbox.position.y < 480 && length < 100;
     }
 }

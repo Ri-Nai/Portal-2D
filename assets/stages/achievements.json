@@ -15,7 +15,7 @@ window.$game.dataManager.resolve(
     {
         "type": 1,
         "title": "Gelled Edge",
-        "desc": "Length up to 1000"
+        "desc": "把房间弄得到处都是！"
     },
     {
         "type": 2,
@@ -25,7 +25,12 @@ window.$game.dataManager.resolve(
     {
         "type": 3,
         "title": "爱方块TV",
-        "desc": "在没有触碰到方块的情况下通过本关"
+        "desc": "在没有触碰到方块的情况下通过Room11"
+    },
+    {
+        "type": 4,
+        "title": "爱凝胶TV",
+        "desc": "你竟然无视白色凝胶！"
     }
 ]
 )
