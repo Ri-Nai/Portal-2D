@@ -1,4 +1,5 @@
 class Store {
+    static prefix = "portal-2d-"
     constructor() {
         const p = new URLSearchParams(window.location.search);
         p.forEach((v, k) => {
@@ -10,15 +11,15 @@ class Store {
     }
 
     static get(key) {
-        return localStorage.getItem(key);
+        return localStorage.getItem(`${Store.prefix}${key}`);
     }
 
     static set(key, value) {
-        localStorage.setItem(key, value);
+        localStorage.setItem(`${Store.prefix}${key}`, value);
     }
 
     static remove(key) {
-        localStorage.removeItem(key);
+        localStorage.removeItem(`${Store.prefix}${key}`);
     }
 
     export() {
