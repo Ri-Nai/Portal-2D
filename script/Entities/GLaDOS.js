@@ -23,6 +23,7 @@ class GLaDOS extends Entity {
             (deltaTime) => this.shootingRect(deltaTime),
             (deltaTime) => this.shootingFlower(deltaTime)
         ];
+        this.baseAngle = 0;
     }
     shootingTrack(deltaTime) {
         this.shootingBuffer -= deltaTime + Math.random() * deltaTime / 2;
@@ -59,7 +60,6 @@ class GLaDOS extends Entity {
             let l = random(-270, -150), r = random(-30, 90);
             for (let i = l; i < r; i += space) {
                 let direction = new Vector(cos(i), -sin(i)).scale(radius);
-                // let velocity = direction.scale(Math.random() * 5);
                 this.bullets.push(new Bullet(this.hitbox.getCenter().addVector(direction), direction, style));
             }
             this.shootingBuffer = this.shootingBuffetTime;
@@ -104,11 +104,10 @@ class GLaDOS extends Entity {
             const center = this.hitbox.getCenter();
             const numBullets = 36 + random(0, 20); // 子弹数量决定螺旋密度
             const angleStep = 27;  // 每个子弹的角度偏移步长
-            let baseAngle = 0;     // 初始角度，从0度开始
             let angleOffset = random(0, 360);
             let style = 2;
             for (let i = 1; i <= numBullets; i++) {
-                let currentAngle = angleOffset + baseAngle + i * angleStep; // 当前子弹的角度
+                let currentAngle = angleOffset + this.baseAngle + i * angleStep; // 当前子弹的角度
                 let radius = i * 2;  // 半径随着子弹序号增大而增大，形成螺旋效果
 
                 // 计算当前子弹的位置
@@ -119,7 +118,7 @@ class GLaDOS extends Entity {
                 this.bullets.push(new Bullet(center.addVector(direction), velocity.scale(1 + i / 100), style));
             }
 
-            baseAngle += angleStep;  // 每次发射后基础角度增加，用于下一次射击产生螺旋效果
+            this.baseAngle += angleStep;  // 每次发射后基础角度增加，用于下一次射击产生螺旋效果
             this.shootingBuffer = this.shootingBuffetTime;
         }
     }
@@ -159,8 +158,6 @@ class GLaDOS extends Entity {
     }
     draw() {
         if (!this.stillAlive) return;
-        // window.$game.ctx.fillStyle = "black";
-        // window.$game.ctx.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.size.x, this.hitbox.size.y);
         const texture = window.$game.textureManager.getTexture("GLaDOS");
         window.$game.ctx.drawImage(texture, this.hitbox.position.x, this.hitbox.position.y - GLaDOS.PictureSizeY + this.hitbox.size.y, this.hitbox.size.x, GLaDOS.PictureSizeY);
 
