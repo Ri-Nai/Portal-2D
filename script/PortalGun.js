@@ -49,7 +49,6 @@ class PortalGun {
             this.position = new Vector(player.x, player.y);
             this.isShot = true;
             this.isHit = false;
-
             this.target = this.direction.scale(SPEED * frameRatio).magnitude();
             this.flyingType = type;
             this.edge = null;

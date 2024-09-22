@@ -34,7 +34,7 @@ class EventManager {
                 break;
             case "dialog":
                 if (window.$game.dialogManager.printing)
-                    return ;
+                    return;
                 await window.$game.dialogManager.prints(event.texts);
                 break;
             case "fadeIn":
@@ -64,7 +64,7 @@ class EventManager {
         player.blockMove = false;
         this.processing = false;
         if (this.head === null) {
-            return ;
+            return;
         }
         this.head = this.head.next; // 移除已处理的事件
         if (this.head === null)

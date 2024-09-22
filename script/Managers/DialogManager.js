@@ -12,7 +12,6 @@ class DialogManager {
         let textContainer = document.createElement("div");
         let name = document.createElement("div");
         let text = document.createElement("p");
-
         // 设置 ID 和样式
         dialog.id = "dialogue-container";
         dialog.classList.add("dialogue-container"); // 使用 CSS 类来应用样式
@@ -52,7 +51,7 @@ class DialogManager {
         }
     }
     async play_audio(src) {
-        if (src === null) return;
+        if (src == null) return;
         if (this.audio) this.audio.pause();
         this.audio = new Audio(src);
         this.audio.play();
@@ -90,6 +89,7 @@ class DialogManager {
     // 打印缓冲区中的文本
     async _prints() {
         this.printing = true;
+
         for (let content of this.buffer) {
             let text = content.text;
             if (text[ 0 ] === "【") {

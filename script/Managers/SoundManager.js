@@ -1,6 +1,38 @@
 class SoundManager {
     constructor() {
+        this.bgms = [
+            new Audio("./assets/audios/bgms/村上純 - かえり道.mp3"),
+            new Audio("./assets/audios/bgms/阿保剛 - Christina I.mp3"),
+        ];
+        this.bossBGM = new Audio("./assets/audios/bgms/上海アリス幻樂団 - 月まで届け、不死の煙.mp3");
+        this.bossBGM.loop = true;
+        this.backgroundMusic = null;
+        this.init();
     }
+
+    playBGM(isBoss = false) {
+        if (this.backgroundMusic)
+            this.backgroundMusic.pause();
+        if (isBoss)
+            this.backgroundMusic = this.bossBGM;
+        else
+            this.backgroundMusic = this.bgms[ Math.floor(Math.random() * this.bgms.length) ];
+        this.backgroundMusic.volume = 0.5;
+        this.backgroundMusic.play();
+        if (!isBoss)
+            this.backgroundMusic.addEventListener('ended', this.handleClick);
+        document.removeEventListener('click', this.handleClick);
+    }
+
+    handleClick = () => {
+        this.playBGM();
+    };
+
+    init() {
+        document.addEventListener('click', this.handleClick);
+    }
+
+
     async load() {
         this.sounds = {};
         this.soundsURL = await window.$game.dataManager.loadJSON("./assets/audios/Sounds.json");
@@ -25,7 +57,7 @@ class SoundManager {
                 /**
                  * @type {HTMLAudioElement}
                  */
-                const copy = sound.cloneNode()
+                const copy = sound.cloneNode();
                 copy.currentTime = 0;
                 copy.play().catch(error => {
                     console.error(`Error playing sound: ${kind + id}`, error);

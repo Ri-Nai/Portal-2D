@@ -263,6 +263,33 @@
             }
         ]
     },
+    "1": {
+        "canInteract": true,
+        "events": [
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【GLaDOS】作为光圈科技的‘爱猫实验’一部分，这张床不仅仅是休息的地方。它模仿猫咪的舒适窝，记录你在睡眠中的每一个细微变化。",
+                        "url": "./assets/audios/dialog/Room1/GLaDOS_bed1.wav"
+                    },
+                    {
+                        "text": "【GLaDOS】毕竟，猫总是喜欢寻找最舒适的地方，而你的反应数据正是我们了解这一点的关键。准备好迎接接下来的实验吧，身为实验对象其实并不比当一只猫差",
+                        "url": "./assets/audios/dialog/Room1/GLaDOS_bed2.wav"
+                    }
+                ]
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】感觉比起在床上睡觉，我还是觉得在树上睡更像一只猫......",
+                        "url": "./assets/audios/dialog/Room1/Rana10.wav"
+                    }
+                ]
+            }
+        ]
+    },
     "2": {
         "canInteract": true,
         "events": [
