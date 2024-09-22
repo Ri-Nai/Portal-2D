@@ -75,12 +75,12 @@ class Save {
     }
 
     get(key) {
-        return JSON.parse(localStorage.getItem("saves"))[key];
+        return JSON.parse(Store.get("saves"))[key];
     }
     set(key, value) {
-        const saves = JSON.parse(localStorage.getItem("saves")) || {};
+        const saves = JSON.parse(Store.get("saves")) || {};
         saves[key] = value;
-        localStorage.setItem("saves", JSON.stringify(saves));
+        Store.set("saves", JSON.stringify(saves));
     }
     /**
      * @typedef SaveData
@@ -95,7 +95,7 @@ class Save {
      * @returns {Map<string, SaveData>}
      */
     getAll() {
-        const data = JSON.parse(localStorage.getItem("saves")) ?? {};
+        const data = JSON.parse(Store.get("saves")) ?? {};
 
         const result = new Map()
         Object.keys(data).forEach((v, k) => {

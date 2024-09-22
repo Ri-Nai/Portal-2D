@@ -83,7 +83,7 @@ function signup() {
     const passwordCheck = document.getElementById("password-signup-check").value;
     const strength = document.getElementById("strength");
 
-    if (localStorage.getItem(username)) {
+    if (Store.get(username)) {
         showAlertWithCountdown("用户名已存在，请选择其他用户名。", 1);
         return ;
     }
@@ -100,7 +100,7 @@ function signup() {
         showAlertWithCountdown("两次密码输入不相等", 1);
         return ;
     }
-    localStorage.setItem(username, password);
+    Store.set(username, password);
     showAlertWithCountdown("注册成功！", 1);
 
     toLogin(username, password);
@@ -120,13 +120,13 @@ const toLogin = (usernameVal, passwordVal) => {
 function login() {
     const username = document.getElementById("text").value;
     const password = document.getElementById("password").value;
-    const storedPassword = localStorage.getItem(username);
+    const storedPassword = Store.get(username);
 
     if (storedPassword === null) {
         showAlertWithCountdown("用户名不存在。", 1);
     } else if (storedPassword === password) {
         showAlertWithCountdown("登录成功！", 1);
-        localStorage.setItem("token", username);
+        Store.set("token", username);
 
         // 跳转到主页
         window.location.href = `../../index.html?${window.$store.encode()}`;
