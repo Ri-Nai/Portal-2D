@@ -1,6 +1,6 @@
 class AchievementManager {
     static getAll() {
-        return JSON.parse(Store.get("achievements"))?.[ Auth.getToken() ] || [];
+        return JSON.parse(localStorage.getItem("achievements"))?.[ Auth.getToken() ] || [];
     }
 
     /**
@@ -110,7 +110,7 @@ class AchievementManager {
     }
 
     refresh() {
-        const all = JSON.parse(Store.get("achievements")) ?? {};
+        const all = JSON.parse(localStorage.getItem("achievements")) ?? {};
         all[ this.user ] = this.achievements.map((achievement) => {
             return {
                 title: achievement.title,
@@ -118,7 +118,7 @@ class AchievementManager {
                 _completed: this.status.get(achievement.title) || false
             };
         });
-        Store.set("achievements", JSON.stringify(all));
+        localStorage.setItem("achievements", JSON.stringify(all));
     }
 }
 

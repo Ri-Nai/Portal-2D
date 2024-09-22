@@ -9,7 +9,7 @@ class AchievementDisp {
     }
 
     getAll() {
-        return JSON.parse(Store.get("achievements"))?.[this.user] ?? [];
+        return JSON.parse(localStorage.getItem("achievements"))?.[this.user] ?? [];
     }
 
     disp() {

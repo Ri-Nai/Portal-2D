@@ -1,6 +1,6 @@
 class Auth {
     static getToken() {
-        return Store.get('token');
+        return localStorage.getItem('token');
     }
 
     static isAuthenticated() {
@@ -12,11 +12,11 @@ class Auth {
     }
 
     static login() {
-        Store.set('token', 'test');
+        localStorage.setItem('token', 'test');
     }
 
     static logout() {
-        Store.remove('token');
+        localStorage.removeItem('token');
         this.toLogin()
     }
 }
