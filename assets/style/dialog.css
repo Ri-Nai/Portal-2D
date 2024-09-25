@@ -17,11 +17,10 @@ body {
 
 .character-name {
     position: absolute;
-    top: 10%;
-    left: 10%;
+    top: calc(20% - 0.4rem);
+    left: 15%;
     transform: rotate(-13deg);
     color: black;
-    padding: 0.7rem 1.25rem;
     font-size: 0.8rem;
     z-index: 1;
     font-weight: 900;
