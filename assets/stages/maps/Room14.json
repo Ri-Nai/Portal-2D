@@ -1694,12 +1694,7 @@ window.$game.dataManager.resolve(
                 "y": 720
             },
             "canInteract": false,
-            "events": [
-                {
-                    "type": "dialog",
-                    "texts": []
-                }
-            ]
+            "events": []
         }
     ]
 }

@@ -357,10 +357,10 @@ def get_signs():
 get_signs()
 
 def get_background_objects():
-    C, fa, rect = read_and_run_DSU("backgroundObjects", False, -1)
+    C, fa, rect = read_and_run_DSU("backgroundObjects", False, -2)
     def get_range(type_, f):
         item = {
-            "type" : type_,
+            "type" : abs(type_),
             "position" :
             {
                 "x" : rect[f][1] * basicSize,
@@ -376,7 +376,7 @@ def get_background_objects():
     vis = [False] * (18 * 32)
     for i in range(18):
         for j in range(32):
-            if C[i][j] == -1:
+            if C[i][j] == -2:
                 continue
             f = get_fa(fa, get_id(i, j))
             if vis[f]:

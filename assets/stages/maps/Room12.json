@@ -217,7 +217,30 @@ window.$game.dataManager.resolve(
             "opacity": 1
         },
         {
-            "tiles": [],
+            "tiles": [
+                {
+                    "type": 1,
+                    "position": {
+                        "x": 480,
+                        "y": 280
+                    },
+                    "size": {
+                        "x": 80,
+                        "y": 160
+                    }
+                },
+                {
+                    "type": 2,
+                    "position": {
+                        "x": 560,
+                        "y": 280
+                    },
+                    "size": {
+                        "x": 80,
+                        "y": 160
+                    }
+                }
+            ],
             "opacity": 1
         },
         {
@@ -1865,7 +1888,12 @@ window.$game.dataManager.resolve(
             "events": [
                 {
                     "type": "dialog",
-                    "texts": []
+                    "texts": [
+                        {
+                            "text": "【GLaDOS】请记住，你的朋友，同伴方块，比你灵活得多。它从不会跌倒，也不需要考虑如何着陆",
+                            "url": "./assets/audios/dialog/Room12/GLaDOS1.wav"
+                        }
+                    ]
                 }
             ]
         }

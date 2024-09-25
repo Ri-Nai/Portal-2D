@@ -5,7 +5,14 @@
             {
                 "type": "dialog",
                 "texts": [
-
+                    {
+                        "text": "【GLaDOS】接下来的房间？简单，你只需要跳一下，像踩在猫抓板上一样轻松",
+                        "url": "./assets/audios/dialog/Room9/GLaDOS1.wav"
+                    },
+                    {
+                        "text": "【GLaDOS】只不过，这次如果失败，你可不会优雅地落地",
+                        "url": "./assets/audios/dialog/Room9/GLaDOS2.wav"
+                    }
                 ]
             }
         ]

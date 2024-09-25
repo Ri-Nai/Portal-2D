@@ -3,12 +3,14 @@ class MouseManager {
      * Control mouse lock and input
      * @param {HTMLElement} container
      */
-    constructor(container) {
+    constructor(container, canvas) {
+        this.canvas = canvas;
         this.container = container;
         this.isCapture = false;
-
-        this.x = this.container.clientWidth / 2;
-        this.y = this.container.clientHeight / 2;
+        // console.log(this.canvas.width, this.container.clientWidth)
+        this.ratio = this.canvas.width / this.container.clientWidth;
+        this.x = this.canvas.width / 2;
+        this.y = this.canvas.height / 2;
 
         /**
          * @readonly
@@ -95,20 +97,22 @@ class MouseManager {
     move(e) {
         e.preventDefault();
         if (this.isCapture) {
-            this.x += e.movementX;
-            this.y += e.movementY;
+            this.ratio = this.canvas.width / this.container.clientWidth;
 
+            this.x += e.movementX * this.ratio;
+            this.y += e.movementY * this.ratio;
+            // console.log(this.x, this.y, this.ratio);
             if (this.x < 0) {
                 this.x = 0;
             }
             if (this.y < 0) {
                 this.y = 0;
             }
-            if (this.x > this.container.clientWidth) {
-                this.x = this.container.clientWidth;
+            if (this.x > this.canvas.width) {
+                this.x = this.canvas.width;
             }
-            if (this.y > this.container.clientHeight) {
-                this.y = this.container.clientHeight;
+            if (this.y > this.canvas.height) {
+                this.y = this.canvas.height;
             }
         }
     }

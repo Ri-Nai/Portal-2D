@@ -28,7 +28,7 @@ class Game {
         /**
          * @type {MouseManager}
         */
-        let mouse = new MouseManager(document.querySelector("#game-container"));
+        let mouse = new MouseManager(document.querySelector("#game-container"), this.canvas);
         /**
         * @type {InputManager}
         */
@@ -81,14 +81,14 @@ class Game {
         this.splash = new Splash();
     }
 
-    async init(filename = 'Room6.json') {
+    async init(filename = 'Room1.json') {
         await this.textureManager.load();
         await this.soundManager.load();
         await this.load(filename);
         this.achievementManager = new AchievementManager();
     }
 
-    async load(filename = 'Room6.json') {
+    async load(filename = 'Room1.json') {
         await this.map.loadFromURL('./assets/stages/maps/' + filename);
         // await this.dialogManager.loadFromURL('./assets/stages/dialogs/' + filename);
         await this.viewData.loadFromURL('./assets/stages/viewdatas/' + filename);

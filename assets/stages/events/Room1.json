@@ -192,8 +192,12 @@
                         "url": "./assets/audios/dialog/Room1/GLaDOS_00_part1_entry-5.wav"
                     },
                     {
-                        "text": "【GLaDOS】Test中出现的绿色甜品是给顺利完成测试的实验者的奖励,由光圈美食研发,保证安全无害,且美味",
+                        "text": "【GLaDOS】Test中出现的绿色甜品是给顺利完成测试的实验者的奖励，由光圈美食研发，保证安全无害且美味",
                         "url": "./assets/audios/dialog/Room1/GLaDOS1.wav"
+                    },
+                    {
+                        "text": "【GLaDOS】我们在每个角落都安装了摄像头来监控你的行为。请不要攻击它们，它们不像猫那样擅长逃跑",
+                        "url": "./assets/audios/dialog/Room1/GLaDOS1_2.wav"
                     }
                 ]
             },
@@ -217,11 +221,11 @@
                 "type": "dialog",
                 "texts": [
                     {
-                        "text": "【GLaDOS】很高兴你成为光圈科技“爱猫实验”的第114个研究对象。原因呢？一个特别锋利的选择。",
+                        "text": "【GLaDOS】很高兴你成为光圈科技“爱猫实验”的第114个研究对象。原因呢？一个特别锋利的选择",
                         "url": "./assets/audios/dialog/Room1/GLaDOS2.wav"
                     },
                     {
-                        "text": "【GLaDOS】门即将开启。祝你在接下来的旅程中好运……你会需要的。",
+                        "text": "【GLaDOS】门即将开启。祝你在接下来的旅程中好运...你会需要的",
                         "url": "./assets/audios/dialog/Room1/GLaDOS3.wav"
                     }
                 ]
@@ -270,7 +274,7 @@
                 "type": "dialog",
                 "texts": [
                     {
-                        "text": "【GLaDOS】作为光圈科技的‘爱猫实验’一部分，这张床不仅仅是休息的地方。它模仿猫咪的舒适窝，记录你在睡眠中的每一个细微变化。",
+                        "text": "【GLaDOS】作为光圈科技的‘爱猫实验’一部分，这张床不仅仅是休息的地方。它模仿猫咪的舒适窝，记录你在睡眠中的每一个细微变化",
                         "url": "./assets/audios/dialog/Room1/GLaDOS_bed1.wav"
                     },
                     {

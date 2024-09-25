@@ -2425,7 +2425,7 @@ window.$game.dataManager.resolve(
                     "type": "dialog",
                     "texts": [
                         {
-                            "text": "【GLaDOS】猫咪们可以在空中悬浮，这样才能够获得你所渴望的绿色食品，你当然是明白的。",
+                            "text": "【GLaDOS】猫咪们可以在空中悬浮，这样才能够获得你所渴望的绿色食品，你当然是明白的",
                             "url": "./assets/audios/dialog/Room3/GLaDOS1.wav"
                         }
                     ]

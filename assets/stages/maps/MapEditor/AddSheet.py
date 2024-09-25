@@ -4,7 +4,7 @@ from openpyxl import Workbook, load_workbook
 def add_sheet_to_excel(file_name, sheet_name):
     # 检查文件是否存在
     if not os.path.exists(file_name):
-        print(f"文件 {file_name} 不存在。")
+        print(f"文件 {file_name} 不存在")
         return
 
     # 尝试打开Excel文件
@@ -16,16 +16,16 @@ def add_sheet_to_excel(file_name, sheet_name):
 
     # 检查工作表是否已存在
     if sheet_name in workbook.sheetnames:
-        print(f"工作表 '{sheet_name}' 已存在。")
+        print(f"工作表 '{sheet_name}' 已存在")
     else:
         # 创建新的工作表
         workbook.create_sheet(title=sheet_name)
-        print(f"工作表 '{sheet_name}' 已添加。")
+        print(f"工作表 '{sheet_name}' 已添加")
 
     # 保存文件
     try:
         workbook.save(file_name)
-        print(f"文件 '{file_name}' 已更新。")
+        print(f"文件 '{file_name}' 已更新")
     except Exception as e:
         print(f"保存文件时出错: {e}")
 

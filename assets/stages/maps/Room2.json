@@ -2679,7 +2679,7 @@ window.$game.dataManager.resolve(
                     "type": "dialog",
                     "texts": [
                         {
-                            "text": "【GLaDOS】我们为实验中的小猫咪们精心准备了一个平台，可以用于观察、研究……和其他各种有趣的猫科行为。请尽情探索，尽管你没有太多选择。",
+                            "text": "【GLaDOS】我们为实验中的小猫咪们精心准备了一个平台，可以用于观察、研究...和其他各种有趣的猫科行为。请尽情探索，尽管你没有太多选择",
                             "url": "./assets/audios/dialog/Room2/GLaDOS1.wav"
                         }
                     ]

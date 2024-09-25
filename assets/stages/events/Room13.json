@@ -5,6 +5,22 @@
             {
                 "type": "dialog",
                 "texts": [
+                    {
+                        "text": "【GLaDOS】前方是蓝色凝胶，一种能让你弹跳的神奇物质",
+                        "url": "./assets/audios/dialog/Room13/GLaDOS1.wav"
+                    },
+                    {
+                        "text": "【GLaDOS】只需踏上去，你会像弹簧一样被反弹回空中",
+                        "url": "./assets/audios/dialog/Room13/GLaDOS2.wav"
+                    },
+                    {
+                        "text": "【GLaDOS】试试看，谁知道呢，也许你会享受这种飞跃的感觉",
+                        "url": "./assets/audios/dialog/Room13/GLaDOS3.wav"
+                    },
+                    {
+                        "text": "【GLaDOS】注意，蓝色凝胶不能食用。虽然它看起来像糖果，但信我，你不会喜欢它的味道。",
+                        "url": "./assets/audios/dialog/Room13/GLaDOS4.wav"
+                    }
 
                 ]
             }

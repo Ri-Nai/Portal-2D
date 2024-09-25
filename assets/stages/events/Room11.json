@@ -5,7 +5,18 @@
             {
                 "type": "dialog",
                 "texts": [
-
+                    {
+                        "text": "【GLaDOS】即使你自己无法通过某个传送门，别担心——",
+                        "url": "./assets/audios/dialog/Room11/GLaDOS1.wav"
+                    },
+                    {
+                        "text": "【GLaDOS】你的朋友，同伴方块，可以轻松穿过，并帮你打开那扇门",
+                        "url": "./assets/audios/dialog/Room11/GLaDOS2.wav"
+                    },
+                    {
+                        "text": "【GLaDOS】方块从不抱怨，它也不需要九条命",
+                        "url": "./assets/audios/dialog/Room11/GLaDOS3.wav"
+                    }
                 ]
             }
         ]

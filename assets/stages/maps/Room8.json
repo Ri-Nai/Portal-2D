@@ -1628,7 +1628,40 @@ window.$game.dataManager.resolve(
             "events": [
                 {
                     "type": "dialog",
-                    "texts": []
+                    "texts": [
+                        {
+                            "text": "【GLaDOS】欢迎来到这个房间。你可能已经注意到，它几乎和你刚刚通过的房间一模一样",
+                            "url": "./assets/audios/dialog/Room8/GLaDOS1.wav"
+                        },
+                        {
+                            "text": "【GLaDOS】是的，我们光圈科技深信重复是学习的最佳途径——或者，至少是最有趣的",
+                            "url": "./assets/audios/dialog/Room8/GLaDOS2.wav"
+                        },
+                        {
+                            "text": "【GLaDOS】每一次进入这样的房间，都能带来无尽的期待和...熟悉感",
+                            "url": "./assets/audios/dialog/Room8/GLaDOS3.wav"
+                        },
+                        {
+                            "text": "【GLaDOS】不过，这一次有点不一样。你需要在空中稍微多花点力气",
+                            "url": "./assets/audios/dialog/Room8/GLaDOS4.wav"
+                        },
+                        {
+                            "text": "【GLaDOS】对了，猫通常不需要这样的努力，它们总能优雅地着陆，但你不是猫，对吧？",
+                            "url": "./assets/audios/dialog/Room8/GLaDOS5.wav"
+                        }
+                    ]
+                },
+                {
+                    "type": "delay",
+                    "time": 500
+                },
+                {
+                    "type": "dialog",
+                    "texts": [
+                        {
+                            "text": "【Tips】在本关中，需要在空中持续保持水平横向移动才能到达右端"
+                        }
+                    ]
                 }
             ]
         }

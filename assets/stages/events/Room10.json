@@ -5,7 +5,14 @@
             {
                 "type": "dialog",
                 "texts": [
-
+                    {
+                        "text": "【GLaDOS】欢迎认识你的新同伴——同伴方块",
+                        "url": "./assets/audios/dialog/Room10/GLaDOS1.wav"
+                    },
+                    {
+                        "text": "【GLaDOS】它不会说话，不会移动，但它会忠诚地陪伴你，直到你决定把它放在按钮上，打开那扇门",
+                        "url": "./assets/audios/dialog/Room10/GLaDOS2.wav"
+                    }
                 ]
             }
         ]

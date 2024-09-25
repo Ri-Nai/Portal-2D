@@ -31,4 +31,4 @@ for file_name in files:
     if error:
         print(f"错误: {error}")
 
-print("所有文件已处理完毕。")
+print("所有文件已处理完毕")

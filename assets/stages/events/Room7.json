@@ -6,15 +6,15 @@
                 "type": "dialog",
                 "texts": [
                     {
-                        "text": "【GLaDOS】欢迎进入我们的传送门系统。这里的规则非常简单：当你在竖直方向上通过传送门多次后，经过水平传送门时，你会以原来的速度被射出。",
+                        "text": "【GLaDOS】欢迎进入我们的传送门系统。这里的规则非常简单：当你在竖直方向上通过传送门多次后，经过水平传送门时，你会以原来的速度被射出",
                         "url": "./assets/audios/dialog/Room7/GLaDOS1.wav"
                     },
                     {
-                        "text": "【GLaDOS】仿佛你是一只猫，灵活地跃向猎物。只不过，考虑到你的灵活性，可能会撞上墙——但这正是实验的乐趣所在。",
+                        "text": "【GLaDOS】仿佛你是一只猫，灵活地跃向猎物。只不过，考虑到你的灵活性，可能会撞上墙——但这正是实验的乐趣所在",
                         "url": "./assets/audios/dialog/Room7/GLaDOS2.wav"
                     },
                     {
-                        "text": "【GLaDOS】毕竟，观察你的反应比看一只懒猫打盹要有趣得多。",
+                        "text": "【GLaDOS】毕竟，观察你的反应比看一只懒猫打盹要有趣得多",
                         "url": "./assets/audios/dialog/Room7/GLaDOS3.wav"
                     }
                 ]

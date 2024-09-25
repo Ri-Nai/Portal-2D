@@ -5,7 +5,18 @@
             {
                 "type": "dialog",
                 "texts": [
-
+                    {
+                        "text": "【GLaDOS】相信我，这一关涂抹蓝色凝胶将会是你测试生涯中“最有趣”的时刻之一。",
+                        "url": "./assets/audios/dialog/Room15/GLaDOS1.wav"
+                    },
+                    {
+                        "text": "【GLaDOS】当然，“有趣”通常伴随着失败，尤其是当你不得不精确计算凝胶的轨迹才能达到你期望的位置时。",
+                        "url": "./assets/audios/dialog/Room15/GLaDOS2.wav"
+                    },
+                    {
+                        "text": "【GLaDOS】别担心，失败也能带来深刻的经验——虽然你可能不再需要那些经验了。",
+                        "url": "./assets/audios/dialog/Room15/GLaDOS3.wav"
+                    }
                 ]
             }
         ]
