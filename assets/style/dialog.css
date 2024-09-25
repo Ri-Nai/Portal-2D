@@ -33,6 +33,11 @@ body {
     align-items: center;
 }
 
+.character-name > span {
+    color: white;
+    background: black;
+}
+
 /* 内层的对话框 */
 .dialogue-box {
     min-width: 40vw;
