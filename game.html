@@ -17,15 +17,20 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+SC:wght@100..900&family=Noto+Serif+SC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-</head>
-
-<body style="background-color: black">
-    <span class="fps-count">FPS: <span id="fps"></span></span>
-    <div id="game">
-        <div id="game-container">
-            <canvas class="" id="game-canvas" width="1280" height="720"></canvas>
-            <div class="splash hidden"></div>
-        </div>
+    </head>
+    
+    <body style="background-color: black">
+        <span class="fps-count">FPS: <span id="fps"></span></span>
+        <div id="game">
+            <div id="game-container">
+                <canvas class="" id="game-canvas" width="1280" height="720"></canvas>
+                <div class="splash hidden"></div>
+            </div>
+            <div class="dialogue-container">
+                <div class="dialogue-box">
+                    <img src="./assets/dialog.svg" />
+                </div>
+            </div>
     </div>
 
     <div class="control hidden" id="control">
@@ -83,7 +88,6 @@
     <script type="text/javascript" src="script/utils/Save.js"></script>
     <script type="text/javascript" src="script/utils/Splash.js"></script>
 
-
     <script type="text/javascript" src="script/Tiles/Tile.js"></script>
     <script type="text/javascript" src="script/Tiles/Edge.js"></script>
     <script type="text/javascript" src="script/Tiles/Portal.js"></script>
@@ -96,7 +100,6 @@
     <script type="text/javascript" src="script/Entities/Gel.js"></script>
     <script type="text/javascript" src="script/Entities/Bullet.js"></script>
     <script type="text/javascript" src="script/Entities/GLaDOS.js"></script>
-
 
     <script type="text/javascript" src="script/Managers/DataManager.js"></script>
     <script type="text/javascript" src="script/Managers/InputManager.js"></script>
@@ -118,9 +121,6 @@
     <script type="text/javascript" src="script/Events/AchievementEvent.js"></script>
     <script type="text/javascript" src="script/Events/Parfait.js"></script>
     <script type="text/javascript" src="script/Events/Camera.js"></script>
-
-
-
 
     <script type="text/javascript" src="script/PortalGun.js"></script>
     <script type="text/javascript" src="script/View.js"></script>

@@ -8,13 +8,12 @@ class DialogManager {
 
     // 创建对话框的 DOM 元素
     createDialog() {
-        let dialog = document.createElement("div");
-        let textContainer = document.createElement("div");
+        let dialog = document.querySelector(".dialogue-container");
+        let textContainer = document.querySelector(".dialogue-box");
         let name = document.createElement("div");
         let text = document.createElement("p");
         // 设置 ID 和样式
         dialog.id = "dialogue-container";
-        dialog.classList.add("dialogue-container"); // 使用 CSS 类来应用样式
         dialog.style.display = "none";
 
         textContainer.id = "dialogue-box";
