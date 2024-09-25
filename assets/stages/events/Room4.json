@@ -16,5 +16,48 @@
                 ]
             }
         ]
+    },
+    "1": {
+        "canInteract": true,
+        "events": [
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/Crychic.jpg"
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】好像是一张乐队的合影"
+                    }
+                ]
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】..."
+                    },
+                    {
+                        "text": "【要乐奈】有趣的女人...有好多"
+                    }
+                ]
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "hideImg"
+            }
+        ]
     }
 }

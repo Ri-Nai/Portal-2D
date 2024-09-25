@@ -6,14 +6,127 @@
                 "type": "dialog",
                 "texts": [
                     {
-                        "text" : "【GLaDOS】欢迎来到纯白房间，这里简约与完美相遇。每一个元素都经过精心设计，确保一个无干扰的环境。",
-                        "url" : "./assets/audios/dialog/Room6/GLaDOS1.wav"
+                        "text": "【GLaDOS】欢迎来到纯白房间，这里简约与完美相遇。每一个元素都经过精心设计，确保一个无干扰的环境。",
+                        "url": "./assets/audios/dialog/Room6/GLaDOS1.wav"
                     },
                     {
-                        "text" : "【GLaDOS】看看这精致的空旷、无暇的白墙、完全没有家具的设计——每一个选择都是为了最大化你的...孤独感。",
-                        "url" : "./assets/audios/dialog/Room6/GLaDOS2.wav"
+                        "text": "【GLaDOS】看看这精致的空旷、无暇的白墙、完全没有家具的设计——每一个选择都是为了最大化你的...孤独感。",
+                        "url": "./assets/audios/dialog/Room6/GLaDOS2.wav"
                     }
                 ]
+            }
+        ]
+    },
+    "1": {
+        "canInteract": true,
+        "events": [
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/HaruhikageNote.jpg"
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】春日影"
+                    }
+                ]
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】..."
+                    },
+                    {
+                        "text": "【要乐奈】我们的歌"
+                    }
+                ]
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "hideImg"
+            }
+        ]
+    },
+    "2": {
+        "canInteract": true,
+        "events": [
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/Problem_1.png"
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】好申必的题目"
+                    },
+                    {
+                        "text": "【要乐奈】墨茶巴菲又是什么"
+                    }
+                ]
+            },
+            {
+                "type": "delay",
+                "time": 100
+            },
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/Problem_2.png"
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】..."
+                    }
+                ]
+            },
+            {
+                "type": "delay",
+                "time": 100
+            },
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/Problem_3.png"
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【Tips】想提交题目的话可以在洛谷 https://www.luogu.com.cn/problem/U477435 提交"
+                    },
+                    {
+                        "text": "【Tips】因为本人不会在游戏里实现评测机功能🤣"
+                    }
+                ]
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "hideImg"
             }
         ]
     }

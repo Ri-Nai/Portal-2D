@@ -109,25 +109,14 @@ window.$game.dataManager.resolve(
         {
             "tiles": [
                 {
-                    "type": 0,
+                    "type": 16,
                     "position": {
-                        "x": 600,
-                        "y": 120
+                        "x": 560,
+                        "y": 80
                     },
                     "size": {
-                        "x": 40,
-                        "y": 80
-                    }
-                },
-                {
-                    "type": 4,
-                    "position": {
-                        "x": 640,
+                        "x": 160,
                         "y": 120
-                    },
-                    "size": {
-                        "x": 40,
-                        "y": 80
                     }
                 },
                 {
@@ -1111,6 +1100,49 @@ window.$game.dataManager.resolve(
                             "url": "./assets/audios/dialog/Room4/GLaDOS2.wav"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "position": {
+                "x": 560,
+                "y": 80
+            },
+            "size": {
+                "x": 160,
+                "y": 160
+            },
+            "canInteract": true,
+            "events": [
+                {
+                    "type": "showImg",
+                    "url": "./assets/imgs/CG/Crychic.jpg"
+                },
+                {
+                    "type": "delay",
+                    "time": 500
+                },
+                {
+                    "type": "dialog",
+                    "texts": [
+                        {
+                            "text": "【要乐奈】好像是一张乐队的合影"
+                        },
+                        {
+                            "text": "【要乐奈】..."
+                        },
+                        {
+                            "text": "【要乐奈】有趣的女人...有好多"
+                        }
+                    ]
+                },
+                {
+                    "type": "delay",
+                    "time": 500
+                },
+                {
+                    "type": "hideImg"
                 }
             ]
         }

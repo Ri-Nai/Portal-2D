@@ -2049,7 +2049,7 @@ window.$game.dataManager.resolve(
                 },
                 {
                     "type": "delay",
-                    "time": 200
+                    "time": 500
                 },
                 {
                     "type": "dialog",

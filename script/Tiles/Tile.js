@@ -21,10 +21,13 @@ class Tile {
                 window.$game.ctx.globalAlpha = 1;
             }
         else if (kind == "backgroundObjects") {
+            let offset = 0;
+            if (this.type <= 19 && this.type >= 17)
+                offset = offsetSize * 1.6
             window.$game.ctx.drawImage(
                 window.$game.textureManager.getTexture(kind, this.type),
                 this.hitbox.position.x,
-                this.hitbox.position.y,
+                this.hitbox.position.y + offset,
                 this.hitbox.size.x,
                 this.hitbox.size.y);
         }
