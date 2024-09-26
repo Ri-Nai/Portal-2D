@@ -18,10 +18,10 @@ body {
 .character-name {
     position: absolute;
     top: calc(20% - 0.4rem);
-    left: 15%;
+    left: 17%;
     transform: rotate(-13deg);
     color: black;
-    font-size: 0.8rem;
+    font-size: 2.25vh;
     z-index: 1;
     font-weight: 900;
     height: 1rem;
@@ -47,7 +47,7 @@ body {
     position: relative;
     z-index: 0;
     text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
-    font-size: 1.25rem;
+    font-size: 2vh;
 
     aspect-ratio: 10/3;
 
@@ -70,6 +70,6 @@ body {
 }
 
 .dialogue-box span {
-    font-size: 1rem;
+    font-size: 2vh;
     font-weight: 500;
 }

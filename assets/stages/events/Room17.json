@@ -4,8 +4,24 @@
         "events": [
             {
                 "type": "dialog",
+                "texts": []
+            }
+        ]
+    },
+    "1": {
+        "canInteract": true,
+        "events": [
+            {
+                "type": "dialog",
                 "texts": [
-
+                    {
+                        "text" : "【要乐奈】红茶的香味...",
+                        "url" : "./assets/audios/dialog/Room17/Rana_Tea_1.wav"
+                    },
+                    {
+                        "text" : "【要乐奈】好像是Soyo喜欢喝的",
+                        "url" : "./assets/audios/dialog/Room17/Rana_Tea_2.wav"
+                    }
                 ]
             }
         ]

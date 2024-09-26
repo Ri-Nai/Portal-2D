@@ -7,7 +7,7 @@ class MouseManager {
         this.canvas = canvas;
         this.container = container;
         this.isCapture = false;
-
+        this.ratio = this.canvas.width / this.container.clientWidth;
         this.x = 0;
         this.y = 0;
         this.prevX = 0;
@@ -98,6 +98,7 @@ class MouseManager {
     move(e) {
         e.preventDefault();
         if (this.isCapture) {
+            this.ratio = this.canvas.width / this.container.clientWidth;
             this.x += e.layerX - this.prevX;
             this.y += e.layerY - this.prevY;
 

@@ -1,0 +1,27 @@
+{
+    "0": {
+        "canInteract": false,
+        "events": []
+    },
+    "1": {
+        "canInteract": true,
+        "events": [
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】..."
+                    },
+                    {
+                        "text": "【要乐奈】一颗土豆",
+                        "url": "./assets/audios/dialog/Room19/Rana_Potato_1.wav"
+                    },
+                    {
+                        "text": "【要乐奈】有趣",
+                        "url": "./assets/audios/dialog/Room19/Rana_Potato_2.wav"
+                    }
+                ]
+            }
+        ]
+    }
+}

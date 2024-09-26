@@ -197,15 +197,18 @@ class CubeUntouchedAchievement extends Achievement {
     }
 }
 class UngelledAchievement extends Achievement {
-    constructor(title, desc) {
+    constructor(title, desc, room) {
         super(title, desc);
+        this.room = room;
     }
     condition(t, that) {
         // return that.player.velocity.x > that.player.jumping.baseJump * 5.98;
-        if (that.game.chapterNow != "Room18")
+        if (that.game.chapterNow != this.room)
             return false;
         let length = that.game.view.gelledEdgeList.length;
         let player = that.game.view.player;
-        return player.hitbox.position.x > 1180 && player.hitbox.position.y < 480 && length < 100;
+        if (length > 100)
+            return false;
+        return player.hitbox.position.x > 1280 - 48 - 40 - 40 || player.hitbox.position.y < 40 + 72 + 40;
     }
 }

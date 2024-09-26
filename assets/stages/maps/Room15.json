@@ -206,6 +206,17 @@ window.$game.dataManager.resolve(
                         "x": 80,
                         "y": 160
                     }
+                },
+                {
+                    "type": 19,
+                    "position": {
+                        "x": 1120,
+                        "y": 480
+                    },
+                    "size": {
+                        "x": 80,
+                        "y": 80
+                    }
                 }
             ],
             "opacity": 1
@@ -1413,6 +1424,39 @@ window.$game.dataManager.resolve(
                             "url": "./assets/audios/dialog/Room15/GLaDOS3.wav"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "position": {
+                "x": 1120,
+                "y": 480
+            },
+            "size": {
+                "x": 80,
+                "y": 80
+            },
+            "canInteract": true,
+            "events": [
+                {
+                    "type": "showImg",
+                    "url": "./assets/imgs/CG/Room15_Hint.png"
+                },
+                {
+                    "type": "dialog",
+                    "texts": [
+                        {
+                            "text": "【要乐奈】好像是前人的笔记..."
+                        }
+                    ]
+                },
+                {
+                    "type": "delay",
+                    "time": 800
+                },
+                {
+                    "type": "hideImg"
                 }
             ]
         }

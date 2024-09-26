@@ -1651,7 +1651,7 @@ window.$game.dataManager.resolve(
                 "y": 160
             },
             "affect": [],
-            "toUrl": "Boss.json"
+            "toUrl": "Room19.json"
         }
     },
     "drama_events": [
@@ -1669,7 +1669,16 @@ window.$game.dataManager.resolve(
             "events": [
                 {
                     "type": "dialog",
-                    "texts": []
+                    "texts": [
+                        {
+                            "text": "【GLaDOS】白色凝胶，光圈科技的另一个奇迹。它可以让你在任何表面上创造出传送门的连接点——当然，前提是你不介意满地涂抹这种神秘物质。",
+                            "url": "./assets/audios/dialog/Room18/GLaDOS1.wav"
+                        },
+                        {
+                            "text": "【GLaDOS】顺便一提，这种凝胶的成分是严格保密的，但我可以保证，它绝对不是以前测试者的残留物质。",
+                            "url": "./assets/audios/dialog/Room18/GLaDOS2.wav"
+                        }
+                    ]
                 }
             ]
         }

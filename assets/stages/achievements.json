@@ -29,8 +29,15 @@ window.$game.dataManager.resolve(
     },
     {
         "type": 4,
+        "title": "偷跑领域大神",
+        "desc": "用不涂抹凝胶的方式通过我精心设计的地图",
+        "room": "Room15"
+    },
+    {
+        "type": 4,
         "title": "爱凝胶TV",
-        "desc": "你竟然无视白色凝胶！"
+        "desc": "你竟然无视白色凝胶！",
+        "room": "Room18"
     }
 ]
 )

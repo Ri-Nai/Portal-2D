@@ -79,11 +79,12 @@ class MapManager {
         }
     }
     draw(underBlock) {
-        for (let i = 0; i < this.layers.length - 1; ++i)
+        for (let i = 0; i < this.layers.length - 3; ++i)
             this.layers[ i ].draw(MapManager.typename[ i ]);
         underBlock();
         for (let i of this.blocks)
             i.draw("blocks");
-        this.layers[ this.layers.length - 1 ].draw(MapManager.typename[ this.layers.length - 1 ]);
+        for (let i = this.layers.length - 3; i < this.layers.length; ++i)
+            this.layers[ i ].draw(MapManager.typename[ i ]);
     }
 }

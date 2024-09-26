@@ -22,7 +22,7 @@ class Tile {
             }
         else if (kind == "backgroundObjects") {
             let offset = 0;
-            if (this.type <= 19 && this.type >= 17)
+            if (this.type <= 19 && this.type >= 17 || this.type === 15)
                 offset = offsetSize * 1.6
             window.$game.ctx.drawImage(
                 window.$game.textureManager.getTexture(kind, this.type),

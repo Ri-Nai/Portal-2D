@@ -20,5 +20,29 @@
                 ]
             }
         ]
+    },
+    "1": {
+        "canInteract": true,
+        "events": [
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/Room15_Hint.png"
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】好像是前人的笔记..."
+                    }
+                ]
+            },
+            {
+                "type": "delay",
+                "time": 800
+            },
+            {
+                "type": "hideImg"
+            }
+        ]
     }
 }

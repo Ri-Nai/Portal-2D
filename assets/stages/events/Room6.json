@@ -32,7 +32,8 @@
                 "type": "dialog",
                 "texts": [
                     {
-                        "text": "【要乐奈】春日影"
+                        "text": "【要乐奈】春日影",
+                        "url": "./assets/audios/dialog/Room6/Rana_Haruhikage_1.wav"
                     }
                 ]
             },
@@ -47,7 +48,8 @@
                         "text": "【要乐奈】..."
                     },
                     {
-                        "text": "【要乐奈】我们的歌"
+                        "text": "【要乐奈】我们的歌",
+                        "url": "./assets/audios/dialog/Room6/Rana_Haruhikage_2.wav"
                     }
                 ]
             },
@@ -75,10 +77,12 @@
                 "type": "dialog",
                 "texts": [
                     {
-                        "text": "【要乐奈】好申必的题目"
+                        "text": "【要乐奈】好申必的题目",
+                        "url": "./assets/audios/dialog/Room6/Rana_Problem_1.wav"
                     },
                     {
-                        "text": "【要乐奈】墨茶巴菲又是什么"
+                        "text": "【要乐奈】墨茶巴菲又是什么",
+                        "url": "./assets/audios/dialog/Room6/Rana_Problem_2.wav"
                     }
                 ]
             },

@@ -37,10 +37,32 @@
                 "url": "./assets/imgs/CG/Haruhikage3.png"
             },
             {
+                "type": "delay",
+                "time": 1000
+            },
+            {
                 "type": "dialog",
                 "texts": [
                     {
                         "text" : "【画外音】此时有壁外之人黑下了脸"
+                    }
+                ]
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text" : "【Tips】恭喜你发现GLaDOS其实是Soyo的真相"
+                    },
+                    {
+                        "text" : "【Tips】这是一场由剪切线引起的爱猫故事"
+                    },
+                    {
+                        "text" : "【Tips】游戏即将开启真结局『剪切线』"
                     }
                 ]
             },

@@ -250,6 +250,17 @@ window.$game.dataManager.resolve(
                         "x": 80,
                         "y": 160
                     }
+                },
+                {
+                    "type": 20,
+                    "position": {
+                        "x": 560,
+                        "y": 440
+                    },
+                    "size": {
+                        "x": 240,
+                        "y": 160
+                    }
                 }
             ],
             "opacity": 1
@@ -2189,6 +2200,58 @@ window.$game.dataManager.resolve(
                             "url": "./assets/audios/dialog/Room11/GLaDOS3.wav"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "position": {
+                "x": 560,
+                "y": 440
+            },
+            "size": {
+                "x": 240,
+                "y": 160
+            },
+            "canInteract": true,
+            "events": [
+                {
+                    "type": "showImg",
+                    "url": "./assets/imgs/CG/MyGO.png"
+                },
+                {
+                    "type": "delay",
+                    "time": 500
+                },
+                {
+                    "type": "dialog",
+                    "texts": [
+                        {
+                            "text": "【要乐奈】好像是我们"
+                        }
+                    ]
+                },
+                {
+                    "type": "delay",
+                    "time": 500
+                },
+                {
+                    "type": "dialog",
+                    "texts": [
+                        {
+                            "text": "【要乐奈】..."
+                        },
+                        {
+                            "text": "【要乐奈】It's MyGO!!!!!"
+                        }
+                    ]
+                },
+                {
+                    "type": "delay",
+                    "time": 500
+                },
+                {
+                    "type": "hideImg"
                 }
             ]
         }

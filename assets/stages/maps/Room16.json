@@ -1411,7 +1411,20 @@ window.$game.dataManager.resolve(
             "events": [
                 {
                     "type": "dialog",
-                    "texts": []
+                    "texts": [
+                        {
+                            "text": "【GLaDOS】橙色凝胶，专为追求速度的测试者设计",
+                            "url": "./assets/audios/dialog/Room16/GLaDOS1.wav"
+                        },
+                        {
+                            "text": "【GLaDOS】踏上去，你会如同溜冰一样飞快地前进",
+                            "url": "./assets/audios/dialog/Room16/GLaDOS2.wav"
+                        },
+                        {
+                            "text": "【GLaDOS】不过，请小心，速度太快可能会让你失去控制——就像那些第一次穿上溜冰鞋的可怜人一样，只是这次没有软垫等着你。",
+                            "url": "./assets/audios/dialog/Room16/GLaDOS3.wav"
+                        }
+                    ]
                 }
             ]
         }

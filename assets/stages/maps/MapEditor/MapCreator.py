@@ -265,7 +265,7 @@ def get_events():
             else:
                 events[this_name] = get_event(C[x][y], x, y, [])
                 print("?")
-                if int(C[x][y]) == 3:
+                if C[x][y] == 3:
                     import re
                     s = filename
                     print("!!!")
@@ -274,7 +274,7 @@ def get_events():
                     if match:
                         name = match.group(1)  # 提取name部分
                         number = int(match.group(2))  # 提取number部分
-                        if number == 18:
+                        if number == 19:
                             events[this_name]["toUrl"] =  "Boss.json"
                         else:
                             events[this_name]["toUrl"] =  f"{name}{number + 1}.json"

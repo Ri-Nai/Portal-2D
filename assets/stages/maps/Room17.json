@@ -338,6 +338,17 @@ window.$game.dataManager.resolve(
                         "x": 80,
                         "y": 160
                     }
+                },
+                {
+                    "type": 15,
+                    "position": {
+                        "x": 760,
+                        "y": 320
+                    },
+                    "size": {
+                        "x": 80,
+                        "y": 40
+                    }
                 }
             ],
             "opacity": 1
@@ -2060,7 +2071,7 @@ window.$game.dataManager.resolve(
                 "y": 40
             },
             "affect": [],
-            "toUrl": "Room18.json"
+            "toUrl": "Haruhikage.json"
         },
         "event-area-31-05": {
             "type": 3,
@@ -2092,6 +2103,31 @@ window.$game.dataManager.resolve(
                 {
                     "type": "dialog",
                     "texts": []
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "position": {
+                "x": 760,
+                "y": 320
+            },
+            "size": {
+                "x": 80,
+                "y": 40
+            },
+            "canInteract": true,
+            "events": [
+                {
+                    "type": "dialog",
+                    "texts": [
+                        {
+                            "text": "【GLaDOS】红茶的香味..."
+                        },
+                        {
+                            "text": "【GLaDOS】好像是Soyo喜欢喝的"
+                        }
+                    ]
                 }
             ]
         }

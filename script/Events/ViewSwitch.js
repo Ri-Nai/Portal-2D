@@ -28,4 +28,7 @@ class ViewSwitch extends GameEvent {
     onActivate() {
         window.$game.switchView(this.toUrl);
     }
+    onDeactivate() {
+
+    }
 }

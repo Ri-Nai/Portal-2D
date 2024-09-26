@@ -20,5 +20,50 @@
                 ]
             }
         ]
+    },
+    "1": {
+        "canInteract": true,
+        "events": [
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/MyGO.png"
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】好像是我们",
+                        "url": "./assets/audios/dialog/Room11/Rana_MyGO_1.wav"
+                    }
+                ]
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】..."
+                    },
+                    {
+                        "text": "【要乐奈】It's MyGO!!!!!",
+                        "url": "./assets/audios/dialog/Room11/Rana_MyGO_2.wav"
+                    }
+                ]
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "hideImg"
+            }
+        ]
     }
 }

@@ -24,10 +24,12 @@ window.$game.dataManager.resolve(
         "12" : "./assets/imgs/textures/interacts/bed.png",
         "13" : "./assets/imgs/textures/interacts/frame.png",
         "14" : "./assets/imgs/textures/interacts/potato.png",
+        "15" : "./assets/imgs/textures/interacts/tea1.png",
         "16" : "./assets/imgs/textures/interacts/Crychic.png",
         "17" : "./assets/imgs/textures/interacts/paper.png",
         "18" : "./assets/imgs/textures/interacts/paper2.png",
         "19" : "./assets/imgs/textures/interacts/paper3.png",
+        "20" : "./assets/imgs/textures/interacts/MyGO.png"
     },
     "blocks": {
         "1" : "./assets/imgs/textures/blocks/black-floor.png",
