@@ -7,10 +7,11 @@ class MouseManager {
         this.canvas = canvas;
         this.container = container;
         this.isCapture = false;
-        // console.log(this.canvas.width, this.container.clientWidth)
-        this.ratio = this.canvas.width / this.container.clientWidth;
-        this.x = this.canvas.width / 2;
-        this.y = this.canvas.height / 2;
+
+        this.x = 0;
+        this.y = 0;
+        this.prevX = 0;
+        this.prevY = 0;
 
         /**
          * @readonly
@@ -97,7 +98,11 @@ class MouseManager {
     move(e) {
         e.preventDefault();
         if (this.isCapture) {
-            this.ratio = this.canvas.width / this.container.clientWidth;
+            this.x += e.layerX - this.prevX;
+            this.y += e.layerY - this.prevY;
+
+            this.prevX = e.layerX;
+            this.prevY = e.layerY;
 
             this.x += e.movementX * this.ratio;
             this.y += e.movementY * this.ratio;
