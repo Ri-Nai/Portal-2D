@@ -1220,7 +1220,12 @@ window.$game.dataManager.resolve(
                 "y": 720
             },
             "canInteract": false,
-            "events": []
+            "events": [
+                {
+                    "type": "playBGM",
+                    "name": "found"
+                }
+            ]
         },
         {
             "id": 1,
@@ -1254,14 +1259,21 @@ window.$game.dataManager.resolve(
                     "type": "dialog",
                     "texts": [
                         {
-                            "text": "【要乐奈】随便弹弹吧",
-                            "url": "./assets/audios/dialog/Haruhikage/MyGO!!!!! - 春日影 (MyGO!!!!! ver.).mp3"
+                            "text": "【要乐奈】随便弹弹吧"
                         }
                     ]
                 },
                 {
+                    "type": "playBGM",
+                    "name": "Haruhikage"
+                },
+                {
                     "type": "showImg",
                     "url": "./assets/imgs/CG/Haruhikage3.png"
+                },
+                {
+                    "type": "delay",
+                    "time": 1000
                 },
                 {
                     "type": "dialog",
@@ -1272,7 +1284,29 @@ window.$game.dataManager.resolve(
                     ]
                 },
                 {
+                    "type": "delay",
+                    "time": 500
+                },
+                {
+                    "type": "dialog",
+                    "texts": [
+                        {
+                            "text": "【Tips】恭喜你发现GLaDOS其实是Soyo的真相"
+                        },
+                        {
+                            "text": "【Tips】这是一场由剪切线引起的爱猫故事"
+                        },
+                        {
+                            "text": "【Tips】游戏即将开启真结局『剪切线』"
+                        }
+                    ]
+                },
+                {
                     "type": "hideImg"
+                },
+                {
+                    "type": "playBGM",
+                    "name": "found"
                 }
             ]
         }

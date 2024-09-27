@@ -2180,10 +2180,12 @@ window.$game.dataManager.resolve(
                             "text": "【要乐奈】..."
                         },
                         {
-                            "text": "【要乐奈】一颗土豆"
+                            "text": "【要乐奈】一颗土豆",
+                            "url": "./assets/audios/dialog/Room19/Rana_Potato_1.wav"
                         },
                         {
-                            "text": "【要乐奈】有趣"
+                            "text": "【要乐奈】有趣",
+                            "url": "./assets/audios/dialog/Room19/Rana_Potato_2.wav"
                         }
                     ]
                 }

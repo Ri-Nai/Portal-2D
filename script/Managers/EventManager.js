@@ -52,6 +52,9 @@ class EventManager {
             case "hideImg":
                 await window.$game.splash.hide();
                 break;
+            case "playBGM":
+                window.$game.soundManager.playBGM(event.name);
+                break;
             case "gladosDeath":
                 // TODO: to game end
                 break;
