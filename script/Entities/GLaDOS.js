@@ -24,6 +24,7 @@ class GLaDOS extends Entity {
             (deltaTime) => this.shootingFlower(deltaTime)
         ];
         this.baseAngle = 0;
+        this.paused = false;
     }
     shootingTrack(deltaTime) {
         this.shootingBuffer -= deltaTime + Math.random() * deltaTime / 2;
@@ -166,16 +167,18 @@ class GLaDOS extends Entity {
         for (let i of this.bullets)
             i.draw();
     }
-    gameEnd() {
+    async gameEnd() {
+        if (this.paused) return;
+        this.paused = true;
+        const stages = await window.$game.dataManager.loadJSON("./assets/stages/events/GLaDOS.json");
         if (this.blood <= 0) {
-            window.$game.eventManager.add([{
-                type: "gladosDeath"
-            }]);
             this.stillAlive = false;
+            window.$game.eventManager.add(stages[1].events);
         }
         if (window.$game.view.player.blood <= 0) {
+            window.$game.eventManager.add(stages[0].events);
             window.$game.eventManager.add([{
-                type: "playerDeath"
+                type: "deathSelect",
             }]);
         }
     }

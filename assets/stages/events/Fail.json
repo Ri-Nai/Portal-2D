@@ -1,0 +1,21 @@
+{
+    "0": {
+        "canInteract": false,
+        "events": [
+            {
+                "type": "fadeOut"
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【GLaDOS】Test"
+                    }
+                ]
+            },
+            {
+                "type": "gameEnd"
+            }
+        ]
+    }
+}

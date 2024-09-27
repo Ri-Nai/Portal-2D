@@ -2122,10 +2122,12 @@ window.$game.dataManager.resolve(
                     "type": "dialog",
                     "texts": [
                         {
-                            "text": "【GLaDOS】红茶的香味..."
+                            "text": "【要乐奈】红茶的香味...",
+                            "url": "./assets/audios/dialog/Room17/Rana_Tea_1.wav"
                         },
                         {
-                            "text": "【GLaDOS】好像是Soyo喜欢喝的"
+                            "text": "【要乐奈】好像是Soyo喜欢喝的",
+                            "url": "./assets/audios/dialog/Room17/Rana_Tea_2.wav"
                         }
                     ]
                 }

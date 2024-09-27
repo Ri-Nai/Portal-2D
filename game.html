@@ -41,6 +41,12 @@
             <div class="button" id="control-save">保存</div>
             <div class="button" id="control-back">返回菜单</div>
         </div>
+        <div class="dead-screen hidden">
+            <div class="button-container">
+                <div class="button" id="retry">Retry</div>
+                <div class="button" id="cancel">Cancel</div>
+            </div>
+        </div>
     </div>
     <div class="control hidden" id="save-load">
         <div class="save-container"></div>
@@ -74,6 +80,7 @@
     <div class="health-bar" id="player-health-bar">
         <div class="health" id="player-health"></div>
     </div>
+
     <div id="resource" style="display: none;"></div>
     <canvas id="buffer" style="display: none;"></canvas>
 
@@ -87,6 +94,7 @@
     <script type="text/javascript" src="script/utils/Hitbox.js"></script>
     <script type="text/javascript" src="script/utils/Save.js"></script>
     <script type="text/javascript" src="script/utils/Splash.js"></script>
+    <script type="text/javascript" src="script/utils/DeadScreen.js"></script>
 
     <script type="text/javascript" src="script/Tiles/Tile.js"></script>
     <script type="text/javascript" src="script/Tiles/Edge.js"></script>

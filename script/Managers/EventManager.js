@@ -22,7 +22,7 @@ class EventManager {
         if (!this.hasProcess)
             return;
         this.hasProcess = false;
-        if (this.head === null)
+        if (!this.head || this.head === null)
             return;
         let player = window.$game.view.player;
         player.blockMove = true;
@@ -52,11 +52,17 @@ class EventManager {
             case "hideImg":
                 await window.$game.splash.hide();
                 break;
-            case "gladosDeath":
-                // TODO: to game end
+            case "deathSelect":
+                window.$game.deadScreen.show().then(() => {
+                    // retry
+                    window.$game.restart();
+                }, () => {
+                    // cancel
+                    window.$game.switchView("Fail.json");
+                })
                 break;
-            case "playerDeath":
-                // TODO: switch to death CG
+            case "gameEnd":
+                await window.$game.gameEnd();
                 break;
             default:
                 break;

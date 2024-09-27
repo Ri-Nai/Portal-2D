@@ -247,3 +247,22 @@ body, html {
         transform: translateY(100%);
     }
 }
+
+.dead-screen {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: #000000;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dead-screen.hidden {
+    display: none;
+    visibility: hidden;
+}

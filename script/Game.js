@@ -76,6 +76,8 @@ class Game {
         this.loadBtn = document.querySelector('#control-load');
         this.loadBtn.addEventListener('click', () => this.loadPopup.show());
 
+        this.deadScreen = new DeadScreen();
+
         this.chapterNow = 'Room1';
 
         this.splash = new Splash();
@@ -177,11 +179,13 @@ class Game {
         this.isPaused = true;
         await this.rebuild(async () => {
             await this.resetView();
+            this.eventManager.clear();
             this.resume();
         });
     }
 
-    resetView() {
+    async resetView() {
+        this.load(this.chapterNow + '.json');
         this.stop = true;
         this.view = new PortalView(this.map, this.viewData);
     }
@@ -214,6 +218,10 @@ class Game {
             this.controlMenu.classList.add('hidden');
             this.isPaused = false;
         }
+    }
+
+    gameEnd() {
+        window.location.href = `./outro.html?${window.$store.encode()}`;
     }
 }
 
