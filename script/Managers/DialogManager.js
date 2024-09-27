@@ -95,7 +95,8 @@ class DialogManager {
                 let end = text.indexOf("】");
                 let name = text.slice(1, end);
                 if (name == "要乐奈") name = "要<span>乐</span>奈"
-                if (name == "GLaDOS") name = "GL<span>a</span>DOS"
+                else if (name == "GLaDOS") name = "GL<span>a</span>DOS"
+                else name = name[0] + "<span>" + name[1] + "</span>" + name.slice(2);
                 this.name.innerHTML = name; // 设置角色名称
                 text = text.slice(end + 1); // 移除名称部分
             }

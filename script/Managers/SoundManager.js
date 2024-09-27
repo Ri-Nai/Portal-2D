@@ -1,25 +1,23 @@
 class SoundManager {
     constructor() {
-        this.bgms = [
+        this.bgmsFormal = [
             new Audio("./assets/audios/bgms/村上純 - かえり道.mp3"),
             new Audio("./assets/audios/bgms/阿保剛 - Christina I.mp3"),
         ];
-        this.bossBGM = new Audio("./assets/audios/bgms/上海アリス幻樂団 - 月まで届け、不死の煙.mp3");
-        this.bossBGM.loop = true;
         this.backgroundMusic = null;
         this.init();
     }
 
-    playBGM(isBoss = false) {
+    playBGM(name = null) {
         if (this.backgroundMusic)
             this.backgroundMusic.pause();
-        if (isBoss)
-            this.backgroundMusic = this.bossBGM;
+        if (name)
+            this.backgroundMusic = this.bgms[ name ];
         else
-            this.backgroundMusic = this.bgms[ Math.floor(Math.random() * this.bgms.length) ];
+            this.backgroundMusic = this.bgmsFormal[ Math.floor(Math.random() * this.bgmsFormal.length) ];
         this.backgroundMusic.volume = 0.5;
         this.backgroundMusic.play();
-        if (!isBoss)
+        if (name === null)
             this.backgroundMusic.addEventListener('ended', this.handleClick);
         document.removeEventListener('click', this.handleClick);
     }
@@ -43,6 +41,14 @@ class SoundManager {
                 audio.loop = false;
                 this.sounds[ kind ][ id ] = audio;
             });
+        });
+
+        this.bgms = {};
+        this.bgmsURL = await window.$game.dataManager.loadJSON("./assets/audios/BGMs.json");
+        Object.keys(this.bgmsURL).forEach((id) => {
+            const audio = new Audio(this.bgmsURL[ id ]);
+            audio.loop = true;
+            this.bgms[ id ] = audio;
         });
     }
     async playSound(kind, id = 0) {

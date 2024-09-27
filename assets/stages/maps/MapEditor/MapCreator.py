@@ -1,3 +1,4 @@
+#encoding=utf-8
 import pandas as pd
 import numpy as np
 import json
@@ -10,7 +11,7 @@ father = os.path.join(this_path, "..")
 df = pd.read_excel(path_filename, index_col = None, header = None)
 # data = op.load_workbook(path_filename)
 A = df.values.tolist()
-print(A)
+# print(A)
 for i in range(len(A)):
     for j in range(len(A[i])):
         if np.isnan(A[i][j]):
@@ -18,8 +19,8 @@ for i in range(len(A)):
         else:
             A[i][j] = int(A[i][j])  # 将浮点数转换为整数
     A[i].append(-1.5)
-print(A)
-print(len(A), len(A[0]))
+# print(A)
+# print(len(A), len(A[0]))
 basicSize = 40
 layer_background_texture = 3
 layer_background_objects = 4
@@ -59,7 +60,7 @@ def fill_edge():
     for i in range(18):
         for j in range(32):
             B[i + 1][j + 1] = A[i][j]
-    print(B)
+    # print(B)
     def write_seg(i, j, last, type, facing, diff, axis):
         now_pos = (i - 1) * basicSize + (1 + diff) * basicSize // 4
         arr_edges = []
@@ -251,7 +252,7 @@ def get_events():
             # 二维数组的x, y
             x = (rect[f][0] + rect[f][2]) // 2
             y = (rect[f][1] + rect[f][3]) // 2
-            print(i, j, f, rect[f], x, y)
+            # print(i, j, f, rect[f], x, y)
             this_name = get_event_name(x, y)
             if C[x][y] == 1 or C[x][y] == 1.5:
                 bfs(x + 1, y, 2)
@@ -264,11 +265,11 @@ def get_events():
 
             else:
                 events[this_name] = get_event(C[x][y], x, y, [])
-                print("?")
+                # print("?")
                 if C[x][y] == 3:
                     import re
                     s = filename
-                    print("!!!")
+                    # print("!!!")
                     match = re.match(r"([a-zA-Z]+)(\d+)", s)
                     print(filename)
                     if match:
@@ -279,7 +280,7 @@ def get_events():
                         else:
                             events[this_name]["toUrl"] =  f"{name}{number + 1}.json"
                     elif filename == "Haruhikage.xlsx":
-                        print("!!?")
+                        # print("!!?")
                         events[this_name]["toUrl"] =  "Room18.json"
                 elif C[x][y] == 3.5:
                     events[this_name]["toUrl"] =  "Haruhikage.json"
@@ -386,7 +387,7 @@ def get_background_objects():
 get_background_objects()
 
 answer = {"layers" : layers, "blocks" : blocks, "edges" : edges, "super_edges" : super_edges, "events" : get_events(), "drama_events" : get_drama_events()}
-print(answer["drama_events"])
+# print(answer["drama_events"])
 s = json.dumps(answer, indent = 4, ensure_ascii=False)
 with open(os.path.join(father, name + ".json"), "w", encoding='utf-8') as f:
     f.write("window.$game.dataManager.resolve(\n" + s + '\n)\n')

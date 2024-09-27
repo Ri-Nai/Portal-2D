@@ -1220,7 +1220,12 @@ window.$game.dataManager.resolve(
                 "y": 720
             },
             "canInteract": false,
-            "events": []
+            "events": [
+                {
+                    "type": "playBGM",
+                    "name": "found"
+                }
+            ]
         },
         {
             "id": 1,
@@ -1254,10 +1259,13 @@ window.$game.dataManager.resolve(
                     "type": "dialog",
                     "texts": [
                         {
-                            "text": "【要乐奈】随便弹弹吧",
-                            "url": "./assets/audios/dialog/Haruhikage/MyGO!!!!! - 春日影 (MyGO!!!!! ver.).mp3"
+                            "text": "【要乐奈】随便弹弹吧"
                         }
                     ]
+                },
+                {
+                    "type": "playBGM",
+                    "name": "Haruhikage"
                 },
                 {
                     "type": "showImg",
@@ -1295,6 +1303,10 @@ window.$game.dataManager.resolve(
                 },
                 {
                     "type": "hideImg"
+                },
+                {
+                    "type": "playBGM",
+                    "name": "found"
                 }
             ]
         }

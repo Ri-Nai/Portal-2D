@@ -1,0 +1,9 @@
+window.$game.dataManager.resolve(
+{
+    "boss": "./assets/audios/bgms/上海アリス幻樂団 - 月まで届け、不死の煙.mp3",
+    "Haruhikage": "./assets/audios/bgms/MyGO!!!!! - 春日影 (MyGO!!!!! ver.).mp3",
+    "fakeEnd": "./assets/audios/bgms/阿保剛 - Believe me -zero-.mp3",
+    "trueEnd": "./assets/audios/bgms/佐々木恵梨 - GATE OF STEINER (game size).mp3",
+    "found": "./assets/audios/bgms/阿保剛 - Gate of steiner -piano-.mp3"
+}
+)
