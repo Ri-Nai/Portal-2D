@@ -34,7 +34,7 @@ class AchievementManager {
     }
 
     async load() {
-        const achievements = await window.$game.dataManager.loadJSON("./assets/stages/achievements.json")
+        const achievements = await window.$game.dataManager.loadJSON("./assets/stages/achievements.json");
         achievements.forEach((a) => {
             if (a.type == 0) {
                 this.add(new RoomArrivalAchievement(a.title, a.desc, a.room));
@@ -49,9 +49,12 @@ class AchievementManager {
                 this.add(new CubeUntouchedAchievement(a.title, a.desc));
             }
             if (a.type == 4) {
-                this.add(new UngelledAchievement(a.title, a.desc));
+                this.add(new UngelledAchievement(a.title, a.desc, a.room, a.hitbox));
             }
-        })
+            if (a.type == 5) {
+                this.add(new PlayerFlyingAchievement(a.title, a.desc));
+            }
+        });
     }
 
     get game() {
@@ -197,9 +200,13 @@ class CubeUntouchedAchievement extends Achievement {
     }
 }
 class UngelledAchievement extends Achievement {
-    constructor(title, desc, room) {
+    constructor(title, desc, room, hitbox) {
         super(title, desc);
         this.room = room;
+        this.hitbox = new Hitbox(
+            copyVector(hitbox.position),
+            copyVector(hitbox.size)
+        );
     }
     condition(t, that) {
         // return that.player.velocity.x > that.player.jumping.baseJump * 5.98;
@@ -209,6 +216,19 @@ class UngelledAchievement extends Achievement {
         let player = that.game.view.player;
         if (length > 100)
             return false;
-        return player.hitbox.position.x > 1280 - 48 - 40 - 40 || player.hitbox.position.y < 40 + 72 + 40;
+        return this.hitbox.hit(player.hitbox);
+    }
+}
+class PlayerFlyingAchievement extends Achievement {
+    constructor(title, desc) {
+        super(title, desc);
+        this.flyingTime = 0;
+    }
+    condition(t, that) {
+        let player = that.game.view.player;
+        if (player.isOnGround())
+            this.flyingTime = 0;
+        else this.flyingTime += t.interval;
+        return this.flyingTime > 15000;
     }
 }

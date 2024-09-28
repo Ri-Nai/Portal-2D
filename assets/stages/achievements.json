@@ -31,13 +31,40 @@ window.$game.dataManager.resolve(
         "type": 4,
         "title": "偷跑领域大神",
         "desc": "用不涂抹凝胶的方式通过我精心设计的地图",
-        "room": "Room15"
+        "room": "Room15",
+        "hitbox":
+        {
+            "position": {
+                "x": 920,
+                "y": 40
+            },
+            "size": {
+                "x": 80,
+                "y": 40
+            }
+        }
     },
     {
         "type": 4,
         "title": "爱凝胶TV",
         "desc": "你竟然无视白色凝胶！",
-        "room": "Room18"
+        "room": "Room18",
+        "hitbox":
+        {
+            "position": {
+                "x": 1200,
+                "y": 120
+            },
+            "size": {
+                "x": 40,
+                "y": 160
+            }
+        }
+    },
+    {
+        "type": 5,
+        "title": "飞行冠军",
+        "desc": "空中滞留时间长达15秒",
     }
 ]
 )
