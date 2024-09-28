@@ -48,6 +48,15 @@ window.$game.dataManager.resolve(
                 ]
             }
         ]
+    },
+    "2": {
+        "canInteract": false,
+        "events": [
+            {
+                "type": "playBGM",
+                "name": "found"
+            },
+        ]
     }
 }
 )
