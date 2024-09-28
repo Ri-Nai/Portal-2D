@@ -1,4 +1,4 @@
-class KeyboardMananger {
+class KeyboardManager {
     /**
      * @type {Map<string, boolean>}
      */

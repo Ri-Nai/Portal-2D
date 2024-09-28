@@ -1,0 +1,27 @@
+body {
+    background: black;
+    color: white;
+}
+
+.scroll-container {
+    --height: 100vh;
+    position: absolute;
+    top: var(--height);
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: 10s linear rise infinite;
+}
+
+.scroll-container > .para {
+    font-size: 2rem;
+    font-weight: 600;
+    max-width: min(600px, 80vw);
+}
+
+.para > div {
+    margin: 1rem 0;
+    --offset: 0px;
+    filter: blur(max(0px, min(20px, calc((var(--height) - 60vh + var(--offset)) / 20)))) blur(max(0px, min(20px, calc((20vh - var(--height) - var(--offset)) / 20))));
+}

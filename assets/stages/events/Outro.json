@@ -1,0 +1,53 @@
+window.$game.dataManager.resolve(
+{
+    // Player Death
+    "0": {
+        "canInteract": false,
+        "events": [
+            {
+                "type": "fadeOut"
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【GLaDOS】你怎么似了"
+                    },
+                    {
+                        "text": "【GLaDOS】你怎么似了"
+                    },
+                    {
+                        "text": "【GLaDOS】你怎么似了"
+                    },
+                    {
+                        "text": "【】要重新挑战吗？"
+                    }
+                ]
+            }
+        ]
+    },
+    // GLaDOS Death
+    "1": {
+        "canInteract": false,
+        "events": [
+            {
+                "type": "fadeOut"
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】你怎么似了"
+                    },
+                    {
+                        "text": "【要乐奈】你怎么似了"
+                    },
+                    {
+                        "text": "【要乐奈】你怎么似了"
+                    }
+                ]
+            }
+        ]
+    }
+}
+)

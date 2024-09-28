@@ -21,9 +21,9 @@ class Game {
         this.ctx = this.canvas.getContext('2d');
 
         /**
-         * @type {KeyboardMananger}
+         * @type {KeyboardManager}
          */
-        let keyboard = new KeyboardMananger();
+        let keyboard = new KeyboardManager();
 
         /**
          * @type {MouseManager}
