@@ -20,7 +20,7 @@ window.$game.dataManager.resolve(
                         "text": "【GLaDOS】你怎么似了"
                     },
                     {
-                        "text": "【】要重新挑战吗？"
+                        "text": "【画外音】要重新挑战吗？"
                     }
                 ]
             }
@@ -54,7 +54,7 @@ window.$game.dataManager.resolve(
         "events": [
             {
                 "type": "playBGM",
-                "name": "found"
+                "name": "trueEnd"
             },
         ]
     }

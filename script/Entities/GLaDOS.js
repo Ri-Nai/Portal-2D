@@ -175,7 +175,7 @@ class GLaDOS extends Entity {
             this.stillAlive = false;
             window.$game.eventManager.add(stages[1].events);
         }
-        if (window.$game.view.player.blood <= 0) {
+        else if (window.$game.view.player.blood <= 0) {
             window.$game.eventManager.add(stages[0].events);
             window.$game.eventManager.add([{
                 type: "deathSelect",

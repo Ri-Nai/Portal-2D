@@ -34,7 +34,8 @@ class EventManager {
                 break;
             case "dialog":
                 if (window.$game.dialogManager.printing)
-                    return;
+                    window.$game.dialogManager.clear();
+                window.$game.dialogManager.printing = false;
                 await window.$game.dialogManager.prints(event.texts);
                 break;
             case "fadeIn":
@@ -56,13 +57,33 @@ class EventManager {
                 window.$game.soundManager.playBGM(event.name);
                 break;
             case "deathSelect":
-                window.$game.deadScreen.show().then(() => {
+                await window.$game.deadScreen.show().then(async () => {
                     // retry
-                    window.$game.restart();
-                }, () => {
+                    await window.$game.restart();
+                    this.add(
+                        [
+                            {},
+                            {
+                                type: "dialog",
+                                texts: [
+                                    {
+                                        text: "【要乐奈】我不会就这样放弃！你不会赢的，我一定会再次站起来！",
+                                    },
+                                    {
+                                        text: "【要乐奈】这一次...我会找到通往胜利的路！"
+                                    }
+                                ]
+                            },
+                            {
+                                type: "delay",
+                                time: 2000
+                            }
+                        ]
+                    );
+                }, async () => {
                     // cancel
-                    window.$game.switchView("Fail.json");
-                })
+                    await window.$game.switchView("Fail.json");
+                });
                 break;
             case "gameEnd":
                 await window.$game.gameEnd();

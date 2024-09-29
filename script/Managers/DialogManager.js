@@ -85,6 +85,9 @@ class DialogManager {
         await this._prints(); // 打印文本
         await this.close(); // 关闭对话框
     }
+    clear() {
+        this.buffer = [];
+    }
     // 打印缓冲区中的文本
     async _prints() {
         this.printing = true;
