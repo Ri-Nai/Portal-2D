@@ -8,7 +8,9 @@ class EventManager {
 
     add(events) {
         for (let event of events) {
-            if (this.tail === null) {
+            if (event == undefined)
+                debugger
+            if (this.tail == null) {
                 this.head = this.tail = event;
             } else {
                 this.tail.next = event;
@@ -22,7 +24,7 @@ class EventManager {
         if (!this.hasProcess)
             return;
         this.hasProcess = false;
-        if (!this.head || this.head === null)
+        if (!this.head || this.head == null)
             return;
         let player = window.$game.view.player;
         player.blockMove = true;
@@ -62,7 +64,9 @@ class EventManager {
                     await window.$game.restart();
                     this.add(
                         [
-                            {},
+                            {
+                                type: "empty"
+                            },
                             {
                                 type: "dialog",
                                 texts: [
@@ -73,10 +77,6 @@ class EventManager {
                                         text: "【要乐奈】这一次...我会找到通往胜利的路！"
                                     }
                                 ]
-                            },
-                            {
-                                type: "delay",
-                                time: 2000
                             }
                         ]
                     );
@@ -93,11 +93,13 @@ class EventManager {
         }
         player.blockMove = false;
         this.processing = false;
-        if (this.head === null) {
+        if (this.head == null) {
             return;
         }
+        if (this.head.next == undefined)
+            debugger
         this.head = this.head.next; // 移除已处理的事件
-        if (this.head === null)
+        if (this.head == null)
             this.tail = null;
         this.hasProcess = true;
     }
