@@ -8,6 +8,10 @@ window.$game.dataManager.resolve(
                 "type": "fadeOut"
             },
             {
+                "type": "playBGM",
+                "name": "fakeEnd"
+            },
+            {
                 "type": "dialog",
                 "texts": [
                     {

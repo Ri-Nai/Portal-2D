@@ -87,12 +87,14 @@ class DialogManager {
     }
     clear() {
         this.buffer = [];
+        this.printing = false;
     }
     // 打印缓冲区中的文本
     async _prints() {
         this.printing = true;
 
         for (let content of this.buffer) {
+            if (!this.printing) return;
             let text = content.text;
             if (text[ 0 ] === "【") {
                 let end = text.indexOf("】");
@@ -113,6 +115,8 @@ class DialogManager {
             let toEnd = false;
             this.play_audio(content.url);
             for (let i of text.split("")) {
+                if (!this.printing) return;
+
                 let span = document.createElement("span");
                 span.textContent = i;
                 this.text.appendChild(span); // 逐字显示文本

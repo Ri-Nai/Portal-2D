@@ -15,6 +15,7 @@ class SoundManager {
             this.backgroundMusic = this.bgms[ name ];
         else
             this.backgroundMusic = this.bgmsFormal[ Math.floor(Math.random() * this.bgmsFormal.length) ];
+        this.backgroundMusic.currentTime = 0;
         this.backgroundMusic.volume = 0.5;
         this.backgroundMusic.play();
         if (name === null)

@@ -180,6 +180,7 @@ class Game {
         await this.rebuild(async () => {
             await this.resetView();
             this.eventManager.clear();
+            this.dialogManager.clear();
             this.resume();
         });
     }
