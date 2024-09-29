@@ -8,8 +8,6 @@ class EventManager {
 
     add(events) {
         for (let event of events) {
-            if (event == undefined)
-                debugger
             if (this.tail == null) {
                 this.head = this.tail = event;
             } else {
@@ -96,8 +94,6 @@ class EventManager {
         if (this.head == null) {
             return;
         }
-        if (this.head.next == undefined)
-            debugger
         this.head = this.head.next; // 移除已处理的事件
         if (this.head == null)
             this.tail = null;
