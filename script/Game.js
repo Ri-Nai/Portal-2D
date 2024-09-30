@@ -70,7 +70,7 @@ class Game {
         this.restartBtn = document.querySelector('#control-restart');
         this.restartBtn.addEventListener('click', () => this.restart());
         this.backBtn = document.querySelector('#control-back');
-        this.backBtn.addEventListener('click', () => { window.location.href = `./index.html?${window.$store.encode()}`; });
+        this.backBtn.addEventListener('click', () => this.exit());
         this.saveBtn = document.querySelector('#control-save');
         this.saveBtn.addEventListener('click', () => this.savePopup.show());
         this.loadBtn = document.querySelector('#control-load');
@@ -219,6 +219,11 @@ class Game {
             this.controlMenu.classList.add('hidden');
             this.isPaused = false;
         }
+    }
+
+    exit() {
+        this.savePopup.save("Autosave");
+        window.location.href = `./index.html?${window.$store.encode()}`;
     }
 
     gameEnd() {

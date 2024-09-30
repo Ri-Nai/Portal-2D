@@ -48,18 +48,7 @@ class Save {
         newBtn.innerHTML = "新建存档";
         newBtn.style["fontWeight"] = 800;
 
-        newBtn.addEventListener("click", () => {
-            const parfait = JSON.parse(Store.get("parfait") ?? "[]");
-            const camera = JSON.parse(Store.get("camera") ?? "[]");
-            let title = window.$game.chapterNow;
-
-            this.set(`${title}-${(new Date()).toISOString()}`, {
-                url: `${window.$game.chapterNow}.json`,
-                parfait,
-                camera
-            })
-            this.hide()
-        })
+        newBtn.addEventListener("click", this.save())
 
         container.appendChild(newBtn)
 
@@ -72,6 +61,19 @@ class Save {
         container.appendChild(backBtn)
 
         this.ctx.appendChild(container)
+    }
+
+    save(title = null) {
+        const parfait = JSON.parse(Store.get("parfait") ?? "[]");
+        const camera = JSON.parse(Store.get("camera") ?? "[]");
+        title ??= `${window.$game.chapterNow}-${(new Date()).toISOString()}`;
+
+        this.set(title, {
+            url: `${window.$game.chapterNow}.json`,
+            parfait,
+            camera
+        });
+        this.hide();
     }
 
     get(key) {
