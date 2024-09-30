@@ -1,18 +1,6 @@
 window.$game.dataManager.resolve(
 [
     {
-        "type": 0,
-        "title": "Arrival",
-        "desc": "at Room 11",
-        "room": "Room11"
-    },
-    {
-        "type": 0,
-        "title": "Room 6",
-        "desc": "Arrive at Room 6",
-        "room": "Room6"
-    },
-    {
         "type": 1,
         "title": "Gelled Edge",
         "desc": "把房间弄得到处都是！"
@@ -70,6 +58,24 @@ window.$game.dataManager.resolve(
         "type": 6,
         "title": "春日影",
         "desc": "何で春日影やったの??!",
+    },
+    {
+        "type": 7,
+        "title": "真结局",
+        "desc": "真结局",
+        "ending": 2,
+    },
+    {
+        "type": 7,
+        "title": "好结局",
+        "desc": "好结局",
+        "ending": 1,
+    },
+    {
+        "type": 7,
+        "title": "坏结局",
+        "desc": "坏结局",
+        "ending": 0,
     }
 ]
 )

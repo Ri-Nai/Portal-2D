@@ -57,6 +57,9 @@ class AchievementManager {
             if (a.type == 6) {
                 this.add(new HaruhikageAchievement(a.title, a.desc));
             }
+            if (a.type == 7) {
+                this.add(new EndingAchievement(a.title, a.desc, a.ending));
+            }
         });
     }
 
@@ -247,5 +250,14 @@ class HaruhikageAchievement extends Achievement {
             Store.set("haruhikage", true)
             return true;
         }
+    }
+}
+class EndingAchievement extends Achievement {
+    constructor(title, desc, ending) {
+        super(title, desc);
+        this.ending = ending;
+    }
+    condition(t, that) {
+        return that.game.chapterNow === "Outro" && that.game.ending == this.ending;
     }
 }

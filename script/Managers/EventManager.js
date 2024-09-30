@@ -83,7 +83,7 @@ class EventManager {
                 }, async () => {
                     // cancel
                     Store.set("ending", "bad")
-                    await window.$game.switchView("Fail.json");
+                    await window.$game.gameEnd();
                 });
                 break;
             case "gameEnd":
