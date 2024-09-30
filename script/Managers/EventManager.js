@@ -69,10 +69,12 @@ class EventManager {
                                 type: "dialog",
                                 texts: [
                                     {
-                                        text: "【要乐奈】我不会就这样放弃！你不会赢的，我一定会再次站起来！",
+                                        text: "【要乐奈】我不会就这样放弃！你不会赢的，我一定会再次站起来",
+                                        url: "./assets/audios/dialog/Boss/Rana_retry_1.wav"
                                     },
                                     {
-                                        text: "【要乐奈】这一次...我会找到通往胜利的路！"
+                                        text: "【要乐奈】这一次...我会找到通往胜利的路",
+                                        url: "./assets/audios/dialog/Boss/Rana_retry_2.wav"
                                     }
                                 ]
                             }
