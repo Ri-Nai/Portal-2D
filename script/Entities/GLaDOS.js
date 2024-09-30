@@ -173,6 +173,7 @@ class GLaDOS extends Entity {
         const stages = await window.$game.dataManager.loadJSON("./assets/stages/events/GLaDOS.json");
         if (this.blood <= 0) {
             this.stillAlive = false;
+            Store.set("ending", "good")
             window.$game.eventManager.add(stages[1].events);
         }
         else if (window.$game.view.player.blood <= 0) {

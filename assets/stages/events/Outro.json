@@ -1,6 +1,6 @@
 window.$game.dataManager.resolve(
 {
-    // Player Death
+    // Bad Ending
     "0": {
         "canInteract": false,
         "events": [
@@ -13,20 +13,11 @@ window.$game.dataManager.resolve(
                     {
                         "text": "【GLaDOS】你怎么似了"
                     },
-                    {
-                        "text": "【GLaDOS】你怎么似了"
-                    },
-                    {
-                        "text": "【GLaDOS】你怎么似了"
-                    },
-                    {
-                        "text": "【画外音】要重新挑战吗？"
-                    }
                 ]
             }
         ]
     },
-    // GLaDOS Death
+    // Good Ending
     "1": {
         "canInteract": false,
         "events": [
@@ -49,6 +40,7 @@ window.$game.dataManager.resolve(
             }
         ]
     },
+    // True Ending
     "2": {
         "canInteract": false,
         "events": [
@@ -56,6 +48,14 @@ window.$game.dataManager.resolve(
                 "type": "playBGM",
                 "name": "trueEnd"
             },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【长崎素世】乐奈酱...?"
+                    }
+                ]
+            }
         ]
     }
 }

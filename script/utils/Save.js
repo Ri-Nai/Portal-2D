@@ -48,7 +48,7 @@ class Save {
         newBtn.innerHTML = "新建存档";
         newBtn.style["fontWeight"] = 800;
 
-        newBtn.addEventListener("click", this.save())
+        newBtn.addEventListener("click", () => this.save())
 
         container.appendChild(newBtn)
 
