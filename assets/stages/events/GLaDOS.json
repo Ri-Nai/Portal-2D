@@ -5,11 +5,11 @@ window.$game.dataManager.resolve(
         "canInteract": false,
         "events" : [
             {
-                "type": "fadeOut"
-            },
-            {
                 "type": "playBGM",
                 "name": "fakeEnd"
+            },
+            {
+                "type": "fadeOut"
             },
             {
                 "type": "dialog",
@@ -34,6 +34,10 @@ window.$game.dataManager.resolve(
     "1": {
         "canInteract": false,
         "events" : [
+            {
+                "type": "playBGM",
+                "name": "trueEnd"
+            },
             {
                 "type": "fadeOut"
             },

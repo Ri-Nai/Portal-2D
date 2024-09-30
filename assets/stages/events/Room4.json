@@ -32,7 +32,8 @@
                 "type": "dialog",
                 "texts": [
                     {
-                        "text": "【要乐奈】好像是一张乐队的合影"
+                        "text": "【要乐奈】好像是一张乐队的合影",
+                        "url": "./assets/audios/dialog/Room4/Rana1.wav"
                     }
                 ]
             },
@@ -47,7 +48,8 @@
                         "text": "【要乐奈】..."
                     },
                     {
-                        "text": "【要乐奈】有趣的女人...有好多"
+                        "text": "【要乐奈】有趣的女人...有好多",
+                        "url": "./assets/audios/dialog/Room4/Rana2.wav"
                     }
                 ]
             },
