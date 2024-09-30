@@ -54,12 +54,23 @@ class Game {
         this.isPaused = false;
 
         this.store = new Store();
+        this.statistics = {
+            portal: 0,
+            bullet: 0,
+            restart: 0,
+            jump: 0,
+            jumpTime: 0,
+        };
         window.$store = this.store;
 
         this.savePopup = new Save();
         this.loadPopup = new Load((data) => {
             Store.set("parfait", JSON.stringify(data.parfait));
             Store.set("camera", JSON.stringify(data.camera));
+            Store.set("statistics", JSON.stringify(data.statistics ?? {}));
+            Object.keys(data.statistics ?? {}).forEach((key) => {
+                window.$game.statistics[key] = data.statistics[key];
+            });
             window.$game.switchView(data.url);
             this.loadPopup.hide();
         });
@@ -177,6 +188,7 @@ class Game {
     async restart() {
         this.restartBtn.blur();
         this.isPaused = true;
+        this.statistics.restart++;
         await this.rebuild(async () => {
             await this.resetView();
             this.eventManager.clear();
@@ -186,12 +198,14 @@ class Game {
     }
 
     async resetView() {
+        Store.set("statistics", JSON.stringify(this.statistics));
         this.load(this.chapterNow + '.json');
         this.stop = true;
         this.view = new PortalView(this.map, this.viewData);
     }
 
     async switchView(url) {
+        Store.set("statistics", JSON.stringify(this.statistics));
         this.isPaused = true;
         await this.rebuild(async () => {
             this.loaded = false;
@@ -210,6 +224,7 @@ class Game {
             this.soundManager.playSound('pause');
             this.controlMenu.classList.remove('hidden');
             this.isPaused = true;
+            Store.set("statistics", JSON.stringify(this.statistics));
         }
     }
 
@@ -222,11 +237,13 @@ class Game {
     }
 
     exit() {
+        Store.set("statistics", JSON.stringify(this.statistics));
         this.savePopup.save("Autosave");
         window.location.href = `./index.html?${window.$store.encode()}`;
     }
 
     gameEnd() {
+        Store.set("statistics", JSON.stringify(this.statistics));
         window.location.href = `./outro.html?${window.$store.encode()}`;
     }
 }

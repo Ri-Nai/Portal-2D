@@ -6,6 +6,7 @@ class Bullet extends Entity {
         this.isBullet = true;
         this.type = -1;
         this.style = style;
+        window.$game.statistics.bullet++;
     }
     update(deltaTime, GLaDOS, player) {
         if (this.destroyed) return;

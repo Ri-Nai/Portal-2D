@@ -62,9 +62,9 @@ class Player extends Entity {
     }
 
     async update(deltaTime) {
-        deltaTime = 60 * deltaTime / 1000;
+        const deltaFrame = 60 * deltaTime / 1000;
         let move = 0;
-        this.updateXY(deltaTime,
+        this.updateXY(deltaFrame,
             () => {
                 if (this.blockMove) return 0;
                 let moveLeft = window.$game.inputManager.isKeysDown([ "A", "Left" ]);
@@ -80,6 +80,9 @@ class Player extends Entity {
             () => {
                 if (this.blockMove) return 0;
                 return window.$game.inputManager.firstDown("Space", () => {
+                    if (this.isOnGround()) {
+                        window.$game.statistics.jump++;
+                    }
                     this.jumping.setJumpBuffer();
                 });
             },
@@ -87,8 +90,10 @@ class Player extends Entity {
         );
         if (this.jumping.jumpVelocity > 0) {
             this.animation.setStatus("jump", this.facing);
-        } else if (!this.isOnGround() && this.jumping.jumpVelocity < 0) {
-            this.animation.setStatus("fall", this.facing);
+        } else if (!this.isOnGround()) {
+            window.$game.statistics.jumpTime += deltaTime;
+            if (this.jumping.jumpVelocity < 0)
+                this.animation.setStatus("fall", this.facing);
         } else {
             if (move) {
                 this.animation.setStatus("run", this.facing);
@@ -96,7 +101,7 @@ class Player extends Entity {
             else
                 this.animation.setStatus("stand", this.facing);
         }
-        this.animation.update(deltaTime);
+        this.animation.update(deltaFrame);
         this.checkOutOfMap();
     }
     draw() {

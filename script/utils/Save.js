@@ -66,12 +66,14 @@ class Save {
     save(title = null) {
         const parfait = JSON.parse(Store.get("parfait") ?? "[]");
         const camera = JSON.parse(Store.get("camera") ?? "[]");
+        const statistics = window.$game.statistics ?? {};
         title ??= `${window.$game.chapterNow}-${(new Date()).toISOString()}`;
 
         this.set(title, {
             url: `${window.$game.chapterNow}.json`,
             parfait,
-            camera
+            camera,
+            statistics
         });
         this.hide();
     }

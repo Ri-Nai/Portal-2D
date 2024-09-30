@@ -90,6 +90,7 @@ class PortalGun {
                     this.isHit = true;
                     this.edge = edge;
                     this.position = fixPosition(this.position, edge);
+                    window.$game.statistics.portal++;
                     done = true;
                     break;
                 }
