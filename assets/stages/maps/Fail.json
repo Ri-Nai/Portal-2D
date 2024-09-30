@@ -807,12 +807,7 @@ window.$game.dataManager.resolve(
             "canInteract": false,
             "events": [
                 {
-                    "type": "dialog",
-                    "texts": [
-                        {
-                            "text": "【GLaDOS】Test"
-                        }
-                    ]
+                    "type": "fadeOut"
                 },
                 {
                     "type": "gameEnd"

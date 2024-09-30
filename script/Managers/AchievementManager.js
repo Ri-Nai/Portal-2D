@@ -54,6 +54,9 @@ class AchievementManager {
             if (a.type == 5) {
                 this.add(new PlayerFlyingAchievement(a.title, a.desc));
             }
+            if (a.type == 6) {
+                this.add(new HaruhikageAchievement(a.title, a.desc));
+            }
         });
     }
 
@@ -230,5 +233,19 @@ class PlayerFlyingAchievement extends Achievement {
             this.flyingTime = 0;
         else this.flyingTime += t.interval;
         return this.flyingTime > 15000;
+    }
+}
+class HaruhikageAchievement extends Achievement {
+    constructor(title, desc) {
+        super(title, desc);
+    }
+    condition(t, that) {
+        if (that.game.chapterNow != "Haruhikage")
+            return false;
+        const event = that.view.events.getEvent("event-area-24-12");
+        if (event.activated && that.game.chapterNow === "Haruhikage") {
+            Store.set("haruhikage", true)
+            return true;
+        }
     }
 }

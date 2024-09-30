@@ -65,6 +65,11 @@ window.$game.dataManager.resolve(
         "type": 5,
         "title": "飞行冠军",
         "desc": "空中滞留时间长达15秒",
+    },
+    {
+        "type": 6,
+        "title": "春日影",
+        "desc": "何で春日影やったの??!",
     }
 ]
 )
