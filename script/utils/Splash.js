@@ -12,6 +12,11 @@ class Splash {
         this.ele.appendChild(img);
         this.fadeIn()
     }
+    async fadeHalf() {
+        this.ele.classList.add("fadeHalf");
+        await this.wait(500);
+        // this.ele.classList.remove("fadeHalf");
+    }
     async moveImg() {
         this.ele.classList.add("fadeOut");
         await this.wait(500);

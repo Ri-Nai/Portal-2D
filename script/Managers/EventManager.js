@@ -22,9 +22,12 @@ class EventManager {
         if (!this.hasProcess)
             return;
         this.hasProcess = false;
-        if (!this.head || this.head == null)
-            return;
         let player = window.$game.view.player;
+        if (!this.head || this.head == null)
+        {
+            player.blockMove = false;
+            return;
+        }
         player.blockMove = true;
         let event = this.head;
         this.processing = true;
@@ -52,6 +55,9 @@ class EventManager {
                 break;
             case "hideImg":
                 await window.$game.splash.hide();
+                break;
+            case "fadeHalf":
+                await window.$game.splash.fadeHalf();
                 break;
             case "playBGM":
                 window.$game.soundManager.playBGM(event.name);
@@ -92,7 +98,7 @@ class EventManager {
             default:
                 break;
         }
-        player.blockMove = false;
+        // player.blockMove = false;
         this.processing = false;
         if (this.head == null) {
             return;
@@ -106,7 +112,7 @@ class EventManager {
     clear() {
         this.hasProcess = false;
         this.processing = false;
-        window.$game.view.player.blockMove = false;
+        window.$game.view.player.blockMove = true;
         this.head = this.tail = null;
     }
 }

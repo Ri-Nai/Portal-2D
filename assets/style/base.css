@@ -148,7 +148,18 @@ body, html {
 .fadeIn {
     animation: fadeIn 0.5s forwards;
 }
+.fadeHalf {
+    animation: fadeHalf 0.5s forwards;
+}
+@keyframes fadeHalf {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.3;
+    }
 
+}
 @keyframes fadeIn {
     from {
         opacity: 0;

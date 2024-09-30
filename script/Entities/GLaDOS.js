@@ -2,7 +2,7 @@ class GLaDOS extends Entity {
     static GLaDOSX = 4 * basicSize;
     static GLaDOSY = 8 * basicSize;
     static PictureSizeY = 287 * 2;
-    static bloodLimit = 120;
+    static bloodLimit = 1;
     constructor(stillAlive) {
         super(
             new Vector(16 * basicSize - GLaDOS.GLaDOSX / 2, 9 * basicSize - GLaDOS.GLaDOSY / 2),

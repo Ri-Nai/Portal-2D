@@ -11,9 +11,32 @@ window.$game.dataManager.resolve(
                 "type": "dialog",
                 "texts": [
                     {
+                        "text": "【要乐奈】..."
+                    },
+                ]
+            },
+            {
+                "type": "playBGM",
+                "name": "trueEnd"
+            },
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/deadEnd.png"
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
                         "text": "【GLaDOS】你怎么似了"
                     },
                 ]
+            },
+            {
+                "type": "fadeHalf"
             }
         ]
     },

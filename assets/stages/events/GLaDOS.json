@@ -35,10 +35,6 @@ window.$game.dataManager.resolve(
         "canInteract": false,
         "events" : [
             {
-                "type": "playBGM",
-                "name": "trueEnd"
-            },
-            {
                 "type": "fadeOut"
             },
             {

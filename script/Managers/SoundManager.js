@@ -9,6 +9,8 @@ class SoundManager {
     }
 
     playBGM(name = null) {
+        if (window.$game.chapterNow === "Outro" && name === null)
+            return;
         if (this.backgroundMusic)
             this.backgroundMusic.pause();
         if (name)
