@@ -2725,6 +2725,9 @@ window.$game.dataManager.resolve(
                         },
                         {
                             "text": "【Tips】按住 Ctrl 快进（尽量不要按Ctrl的时候切出游戏不然会有监听bug）"
+                        },
+                        {
+                            "text": "【Tips】如果你真的切出游戏了，记得回到游戏的时候再按一遍 Ctrl"
                         }
                     ]
                 },
@@ -2909,7 +2912,7 @@ window.$game.dataManager.resolve(
                         },
                         {
                             "text": "【GLaDOS】我们在每个角落都安装了摄像头来监控你的行为。请不要攻击它们，它们不像猫那样擅长逃跑",
-                            "url": "./assets/audios/dialog/Room1/GLaDOS1_2.wav"
+                            "url": "./assets/audios/dialog/Room1/GLaDOS1_1.wav"
                         }
                     ]
                 },

@@ -49,6 +49,7 @@ class Game {
         this.textureManager = new TextureManager();
         this.soundManager = new SoundManager();
         this.eventManager = new EventManager();
+        this.achievementManager = new AchievementManager();
 
         this.stop = false;
         this.isPaused = false;
@@ -97,8 +98,8 @@ class Game {
     async init(filename = 'Room1.json') {
         await this.textureManager.load();
         await this.soundManager.load();
+        await this.achievementManager.load();
         await this.load(filename);
-        this.achievementManager = new AchievementManager();
     }
 
     async load(filename = 'Room1.json') {

@@ -29,12 +29,15 @@ class AchievementManager {
         this.popup = document.querySelector(".achievement");
         this.user = Auth.getToken();
 
-        this.load();
+        // await this.load();
+        // console.log("?");
     }
 
     async load() {
         const achievements = await window.$game.dataManager.loadJSON("./assets/stages/achievements.json");
+        // console.log("achive", achievements)
         achievements.forEach((a) => {
+            // console.log("?");
             if (a.type == 0) {
                 this.add(new RoomArrivalAchievement(a.title, a.desc, a.room));
             }

@@ -30,6 +30,7 @@ class EventManager {
         }
         player.blockMove = true;
         let event = this.head;
+        // console.log(event);
         this.processing = true;
         switch (event.type) {
             case "delay":
@@ -39,6 +40,7 @@ class EventManager {
                 if (window.$game.dialogManager.printing)
                     window.$game.dialogManager.clear();
                 window.$game.dialogManager.printing = false;
+                // console.log("printing dialog", event.texts);
                 await window.$game.dialogManager.prints(event.texts);
                 break;
             case "fadeIn":

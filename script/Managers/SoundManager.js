@@ -9,6 +9,7 @@ class SoundManager {
     }
 
     playBGM(name = null) {
+        // console.log(name)
         if (window.$game.chapterNow === "Outro" && name === null)
             return;
         if (this.backgroundMusic)
@@ -17,6 +18,7 @@ class SoundManager {
             this.backgroundMusic = this.bgms[ name ];
         else
             this.backgroundMusic = this.bgmsFormal[ Math.floor(Math.random() * this.bgmsFormal.length) ];
+        // console.log(this.backgroundMusic);
         this.backgroundMusic.currentTime = 0;
         this.backgroundMusic.volume = 0.5;
         this.backgroundMusic.play();
@@ -51,8 +53,13 @@ class SoundManager {
         Object.keys(this.bgmsURL).forEach((id) => {
             const audio = new Audio(this.bgmsURL[ id ]);
             audio.loop = true;
+            console.log(audio);
             this.bgms[ id ] = audio;
         });
+        // console.log("haveDone");
+        console.log("sounds", this.sounds);
+        console.log("bgms", this.bgms);
+
     }
     async playSound(kind, id = 0) {
         /**

@@ -11,6 +11,7 @@ class Store {
     }
 
     static get(key) {
+        // console.log(`get ${key}`);
         return localStorage.getItem(`${Store.prefix}${key}`);
     }
 
