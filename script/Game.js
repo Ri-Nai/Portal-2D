@@ -138,6 +138,7 @@ class Game {
      * @param {number} prev previous frame timestamp
      */
     async loop(timestamp, prev) {
+        // console.log(Store.get("achievements"));
         const interval = timestamp - prev;
         const now = timestamp;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

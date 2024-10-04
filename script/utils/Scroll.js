@@ -15,7 +15,9 @@ class Scroll {
     start() {
         this.texts.forEach((t) => {
             t.style.setProperty("--offset", `${this.heightAll}px`);
-            this.heightAll += t.clientHeight;
+            const marginTop = parseInt(getComputedStyle(t).marginTop.slice(0, -2));
+            // console.log(t, marginTop);
+            this.heightAll += t.clientHeight + marginTop;
         });
         this.scrolling = true;
         return new Promise((resolve, reject) => {
@@ -23,7 +25,7 @@ class Scroll {
                 if (!this.scrolling) return;
                 let prev = parseInt(this.container.style.getPropertyValue("--height").slice(0, -2));
                 this.container.style.setProperty("--height", `${prev - 1}px`);
-                if (-prev > window.innerHeight) {
+                if (-prev > this.heightAll)  {
                     this.scrolling = false;
                     this.stop();
                     resolve();

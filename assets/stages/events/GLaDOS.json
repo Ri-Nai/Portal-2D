@@ -15,16 +15,20 @@ window.$game.dataManager.resolve(
                 "type": "dialog",
                 "texts": [
                     {
-                        "text": "【要乐奈】我...失败了？这一切都结束了吗？"
+                        "text": "【要乐奈】我...失败了？这一切都结束了吗？",
+                        "url": "./assets/audios/dialog/Boss/Rana_Dead_1.wav"
                     },
                     {
-                        "text": "【要乐奈】我本以为我可以找到归宿...可现在，我只是在迷路"
+                        "text": "【要乐奈】我本以为我可以找到归宿...可现在，我只是在迷路",
+                        "url": "./assets/audios/dialog/Boss/Rana_Dead_2.wav"
                     },
                     {
-                        "text": "【GLaDOS】哎呀，真是意外！你竟然失败了。不过别担心，失败也是测试的一部分。我们会再见面的，亲爱的实验对象。"
+                        "text": "【GLaDOS】哎呀，真是意外！你竟然失败了。不过别担心，失败也是测试的一部分。我们会再见面的，亲爱的实验对象。",
+                        "url": "./assets/audios/dialog/Boss/GLaDOS_Dead.wav"
                     },
                     {
-                        "text": "【要乐奈】我要重新挑战吗？"
+                        "text": "【要乐奈】我要重新挑战吗？",
+                        "url": "./assets/audios/dialog/Boss/Rana_Dead_3.wav"
                     }
                 ]
             }

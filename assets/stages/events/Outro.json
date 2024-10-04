@@ -11,13 +11,14 @@ window.$game.dataManager.resolve(
                 "type": "dialog",
                 "texts": [
                     {
-                        "text": "【要乐奈】..."
+                        "text": "【要乐奈】...",
+                        "url": "./assets/audios/dialog/End/Rana___.wav"
                     },
                 ]
             },
             {
                 "type": "playBGM",
-                "name": "trueEnd"
+                "name": "deadEnd"
             },
             {
                 "type": "showImg",
@@ -31,8 +32,17 @@ window.$game.dataManager.resolve(
                 "type": "dialog",
                 "texts": [
                     {
-                        "text": "【GLaDOS】你怎么似了"
+                        "text": "【要乐奈】我...不能就这样结束",
+                        "url": "./assets/audios/dialog/End/DeadEnd/Rana_DeadEnd_1.wav"
                     },
+                    {
+                        "text": "【GLaDOS】这就是你的命运。没有人能逃脱",
+                        "url": "./assets/audios/dialog/End/DeadEnd/GLaDOS_DeadEnd_1.wav"
+                    },
+                    {
+                        "text": "【要乐奈】我还想找到我的归所...即使只有无路可走",
+                        "url": "./assets/audios/dialog/End/DeadEnd/Rana_DeadEnd_2.wav"
+                    }
                 ]
             },
             {
@@ -51,15 +61,50 @@ window.$game.dataManager.resolve(
                 "type": "dialog",
                 "texts": [
                     {
-                        "text": "【要乐奈】你怎么似了"
+                        "text": "【要乐奈】...",
+                        "url": "./assets/audios/dialog/End/Rana___.wav"
+                    },
+                ]
+            },
+            {
+                "type": "playBGM",
+                "name": "found"
+            },
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/fakeEnd.png"
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【GLaDOS】虽然你击败了我，看来你依旧无法理解真相的复杂性。光明与黑暗的交织，只是这个实验的表象。",
+                        "url": "./assets/audios/dialog/End/FakeEnd/GLaDOS_FakeEnd_1.wav"
                     },
                     {
-                        "text": "【要乐奈】你怎么似了"
+                        "text": "【要乐奈】我真的赢了吗？",
+                        "url": "./assets/audios/dialog/End/FakeEnd/Rana_FakeEnd_1.wav"
                     },
                     {
-                        "text": "【要乐奈】你怎么似了"
+                        "text": "【GLaDOS】继续在这个迷失的世界中徘徊吧，也许终有一天你会明白， 归宿与自由之间的界限是多么模糊",
+                        "url": "./assets/audios/dialog/End/FakeEnd/GLaDOS_FakeEnd_2.wav"
+                    },
+                    {
+                        "text": "【要乐奈】外面的光，让我感到温暖",
+                        "url": "./assets/audios/dialog/End/FakeEnd/Rana_FakeEnd_2.wav"
+                    },
+                    {
+                        "text": "【要乐奈】我会继续走下去的",
+                        "url": "./assets/audios/dialog/End/FakeEnd/Rana_FakeEnd_3.wav"
                     }
                 ]
+            },
+            {
+                "type": "fadeHalf"
             }
         ]
     },
@@ -68,17 +113,99 @@ window.$game.dataManager.resolve(
         "canInteract": false,
         "events": [
             {
-                "type": "playBGM",
-                "name": "trueEnd"
+                "type": "fadeOut"
             },
             {
                 "type": "dialog",
                 "texts": [
                     {
-                        "text": "【长崎素世】乐奈酱...?"
-                    }
+                        "text": "【要乐奈】...",
+                        "url": "./assets/audios/dialog/End/Rana___.wav"
+                    },
                 ]
-            }
+            },
+            {
+                "type": "playBGM",
+                "name": "trueEnd"
+            },
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/fakeEnd.png"
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/trueEnd.png"
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【长崎素世】乐奈酱...?",
+                        "url": "./assets/audios/dialog/End/TrueEnd/Soyo_trueEnd_1.wav"
+                    },
+                    {
+                        "text": "【要乐奈】这里是哪...?",
+                        "url": "./assets/audios/dialog/End/TrueEnd/Rana_TrueEnd_1.wav"
+                    },
+                    {
+                        "text": "【要乐奈】抹茶巴菲？想吃",
+                        "url": "./assets/audios/dialog/End/TrueEnd/Rana_TrueEnd_2.wav"
+                    },
+                    {
+                        "text": "【长崎素世】当然可以吃啦！",
+                        "url": "./assets/audios/dialog/End/TrueEnd/Soyo_trueEnd_2.wav"
+                    },
+                    {
+                        "text": "【长崎素世】但是在你享受之前，有些事情我需要告诉你",
+                        "url": "./assets/audios/dialog/End/TrueEnd/Soyo_trueEnd_3.wav"
+                    },
+                    {
+                        "text": "【长崎素世】你一直以来的旅程，其实是一个实验",
+                        "url": "./assets/audios/dialog/End/TrueEnd/Soyo_trueEnd_4.wav"
+                    },
+                    {
+                        "text": "【长崎素世】你一直以来面对的人，其实是我",
+                        "url": "./assets/audios/dialog/End/TrueEnd/Soyo_trueEnd_5.wav"
+                    },
+                    {
+                        "text": "【长崎素世】乐奈在被困住的时候真的超~可爱呢~",
+                        "url": "./assets/audios/dialog/End/TrueEnd/Soyo_trueEnd_6.wav"
+                    },
+                    {
+                        "text": "【长崎素世】记住咯，以后不要乱剪我的衣服",
+                        "url": "./assets/audios/dialog/End/TrueEnd/Soyo_trueEnd_7.wav"
+                    },
+                    {
+                        "text": "【要乐奈】?",
+                        "url": "./assets/audios/dialog/End/TrueEnd/Rana_TrueEnd_3.wav"
+                    },
+                ]
+            },
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/Rana_Cut.png"
+            },
+            {
+                "type": "delay",
+                "time": 500
+            },
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/trueEnd.png"
+            },
+            {
+                "type": "dialog",
+                "texts": [
+                    {
+                        "text": "【要乐奈】抹茶巴菲，好吃",
+                        "url": "./assets/audios/dialog/End/TrueEnd/Rana_TrueEnd_4.wav"
+                    },
+                ]
+            },
         ]
     }
 }

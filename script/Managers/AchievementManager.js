@@ -8,7 +8,6 @@ class AchievementManager {
      */
     getAllStatus() {
         const all = AchievementManager.getAll();
-
         const status = new Map();
         all.forEach((achievement) => {
             status.set(achievement.title, achievement._completed);

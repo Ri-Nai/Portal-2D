@@ -809,6 +809,27 @@ window.$game.dataManager.resolve(
                 {
                     "type": "playBGM",
                     "name": "boss"
+                },
+                {
+                    "type": "dialog",
+                    "texts": [
+                        {
+                            "text": "【GLaDOS】欢迎来到最后的试炼，亲爱的实验对象。你准备好面对我了吗？",
+                            "url": "./assets/audios/dialog/Boss/GLaDOS01.wav"
+                        },
+                        {
+                            "text": "【GLaDOS】要想打败我，可不是随便发发子弹就能行的。不过，我很期待看到你的表现",
+                            "url": "./assets/audios/dialog/Boss/GLaDOS02.wav"
+                        },
+                        {
+                            "text": "【要乐奈】无聊的试炼",
+                            "url": "./assets/audios/dialog/Boss/Rana01.wav"
+                        },
+                        {
+                            "text": "【要乐奈】打败你，简单",
+                            "url": "./assets/audios/dialog/Boss/Rana02.wav"
+                        }
+                    ]
                 }
             ]
         }
