@@ -97,7 +97,7 @@
             }, 1800);
         };
 
-        window.onload = () => {
+        window.onload = async () => {
             window.$store = new Store();
             Store.remove("toLoad");
 
@@ -181,6 +181,7 @@
                     document.querySelector(".achievementDisp").style.setProperty("--offsetY", `${offsetY}px`);
                 }
             })
+            await achievementManager.load()
         }
     </script>
 </body>
