@@ -58,6 +58,10 @@ class DialogManager {
 
     // 打开对话框动画
     async open() {
+
+        this.name.innerHTML = ""; // 清空名称和文本
+        this.text.innerHTML = "";
+
         this.dialog.classList.remove('fadeOut');
         this.dialog.classList.add('fadeIn');
         this.dialog.style.display = "block";
@@ -74,6 +78,9 @@ class DialogManager {
         await wait(300);
         this.dialog.classList.remove('fadeOut');
         this.dialog.style.display = "none";
+
+        this.name.innerHTML = ""; // 清空名称和文本
+        this.text.innerHTML = "";
     }
 
     // 打印文本
@@ -95,6 +102,8 @@ class DialogManager {
 
         for (let content of this.buffer) {
             if (!this.printing) return;
+            this.name.innerHTML = ""; // 清空名称和文本
+            this.text.innerHTML = "";
             let text = content.text;
             if (text[ 0 ] === "【") {
                 let end = text.indexOf("】");
@@ -139,8 +148,6 @@ class DialogManager {
                     })()
                 );
             else await delay(100);
-            this.name.innerHTML = ""; // 清空名称和文本
-            this.text.innerHTML = "";
         }
         this.buffer = [];
         this.printing = false;
