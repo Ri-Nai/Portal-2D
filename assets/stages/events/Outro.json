@@ -134,11 +134,7 @@ window.$game.dataManager.resolve(
             },
             {
                 "type": "delay",
-                "time": 500
-            },
-            {
-                "type": "showImg",
-                "url": "./assets/imgs/CG/trueEnd.png"
+                "time": 2000
             },
             {
                 "type": "dialog",
@@ -150,7 +146,16 @@ window.$game.dataManager.resolve(
                     {
                         "text": "【要乐奈】这里是哪...?",
                         "url": "./assets/audios/dialog/End/TrueEnd/Rana_TrueEnd_1.wav"
-                    },
+                    }
+                ]
+            },
+            {
+                "type": "showImg",
+                "url": "./assets/imgs/CG/trueEnd.png"
+            },
+            {
+                "type": "dialog",
+                "texts": [
                     {
                         "text": "【要乐奈】抹茶巴菲？想吃",
                         "url": "./assets/audios/dialog/End/TrueEnd/Rana_TrueEnd_2.wav"
@@ -191,7 +196,7 @@ window.$game.dataManager.resolve(
             },
             {
                 "type": "delay",
-                "time": 500
+                "time": 2000
             },
             {
                 "type": "showImg",
@@ -206,6 +211,9 @@ window.$game.dataManager.resolve(
                     },
                 ]
             },
+            {
+                "type": "fadeHalf"
+            }
         ]
     }
 }

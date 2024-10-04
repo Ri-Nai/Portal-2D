@@ -28,39 +28,34 @@ class AchievementManager {
         this.status = this.getAllStatus();
         this.popup = document.querySelector(".achievement");
         this.user = Auth.getToken();
-
-        // await this.load();
-        // console.log("?");
     }
 
     async load() {
         const achievements = await window.$game.dataManager.loadJSON("./assets/stages/achievements.json");
-        // console.log("achive", achievements)
         achievements.forEach((a) => {
-            // console.log("?");
             if (a.type == 0) {
-                this.add(new RoomArrivalAchievement(a.title, a.desc, a.room));
+                this.add(new RoomArrivalAchievement(a));
             }
             if (a.type == 1) {
-                this.add(new GelledEdgeAchievement(a.title, a.desc));
+                this.add(new GelledEdgeAchievement(a));
             }
             if (a.type == 2) {
-                this.add(new PlayerFallingSpeedAchievement(a.title, a.desc));
+                this.add(new PlayerFallingSpeedAchievement(a));
             }
             if (a.type == 3) {
-                this.add(new CubeUntouchedAchievement(a.title, a.desc));
+                this.add(new CubeUntouchedAchievement(a));
             }
             if (a.type == 4) {
-                this.add(new UngelledAchievement(a.title, a.desc, a.room, a.hitbox));
+                this.add(new UngelledAchievement(a));
             }
             if (a.type == 5) {
-                this.add(new PlayerFlyingAchievement(a.title, a.desc));
+                this.add(new PlayerFlyingAchievement(a));
             }
             if (a.type == 6) {
-                this.add(new HaruhikageAchievement(a.title, a.desc));
+                this.add(new HaruhikageAchievement(a));
             }
             if (a.type == 7) {
-                this.add(new EndingAchievement(a.title, a.desc, a.ending));
+                this.add(new EndingAchievement(a));
             }
         });
     }
@@ -95,7 +90,7 @@ class AchievementManager {
         const status = this.getStatus(achievement.title);
         achievement.completed = status;
         this.achievements.push(achievement);
-
+        console.log(achievement);
         console.debug(this.achievements, this.status);
     }
 
@@ -126,6 +121,7 @@ class AchievementManager {
             return {
                 title: achievement.title,
                 desc: achievement.desc,
+                _condition: achievement._condition,
                 _completed: this.status.get(achievement.title) || false
             };
         });
@@ -137,9 +133,11 @@ class AchievementManager {
  * @abstract
  */
 class Achievement {
-    constructor(title, desc) {
-        this.title = title;
-        this.desc = desc;
+    constructor(a) {
+        this.title = a.title;
+        this.desc = a.desc;
+        this._condition = a.condition;
+        console.log(a);
         this._completed = false;
     }
 
@@ -165,9 +163,9 @@ class Achievement {
 }
 
 class RoomArrivalAchievement extends Achievement {
-    constructor(title, desc, room) {
-        super(title, desc);
-        this.room = room;
+    constructor(a) {
+        super(a);
+        this.room = a.room;
     }
 
     condition(t, that) {
@@ -176,8 +174,8 @@ class RoomArrivalAchievement extends Achievement {
 }
 
 class GelledEdgeAchievement extends Achievement {
-    constructor(title, desc) {
-        super(title, desc);
+    constructor(a) {
+        super(a);
     }
     condition(t, that) {
         // return that.player.gelled;
@@ -187,16 +185,16 @@ class GelledEdgeAchievement extends Achievement {
 }
 
 class PlayerFallingSpeedAchievement extends Achievement {
-    constructor(title, desc) {
-        super(title, desc);
+    constructor(a) {
+        super(a);
     }
     condition(t, that) {
         return that.player.velocity.x > that.player.jumping.baseJump * 5.98;
     }
 }
 class CubeUntouchedAchievement extends Achievement {
-    constructor(title, desc) {
-        super(title, desc);
+    constructor(a) {
+        super(a);
     }
     condition(t, that) {
         // return that.player.velocity.x > that.player.jumping.baseJump * 5.98;
@@ -208,12 +206,12 @@ class CubeUntouchedAchievement extends Achievement {
     }
 }
 class UngelledAchievement extends Achievement {
-    constructor(title, desc, room, hitbox) {
-        super(title, desc);
-        this.room = room;
+    constructor(a) {
+        super(a);
+        this.room = a.room;
         this.hitbox = new Hitbox(
-            copyVector(hitbox.position),
-            copyVector(hitbox.size)
+            copyVector(a.hitbox.position),
+            copyVector(a.hitbox.size)
         );
     }
     condition(t, that) {
@@ -228,8 +226,8 @@ class UngelledAchievement extends Achievement {
     }
 }
 class PlayerFlyingAchievement extends Achievement {
-    constructor(title, desc) {
-        super(title, desc);
+    constructor(a) {
+        super(a);
         this.flyingTime = 0;
     }
     condition(t, that) {
@@ -241,8 +239,8 @@ class PlayerFlyingAchievement extends Achievement {
     }
 }
 class HaruhikageAchievement extends Achievement {
-    constructor(title, desc) {
-        super(title, desc);
+    constructor(a) {
+        super(a);
     }
     condition(t, that) {
         if (that.game.chapterNow != "Haruhikage")
@@ -255,9 +253,9 @@ class HaruhikageAchievement extends Achievement {
     }
 }
 class EndingAchievement extends Achievement {
-    constructor(title, desc, ending) {
-        super(title, desc);
-        this.ending = ending;
+    constructor(a) {
+        super(a);
+        this.ending = a.ending;
     }
     condition(t, that) {
         return that.game.chapterNow === "Outro" && that.game.ending == this.ending;

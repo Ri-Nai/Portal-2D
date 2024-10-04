@@ -3,21 +3,25 @@ window.$game.dataManager.resolve(
     {
         "type": 1,
         "title": "Gelled Edge",
+        "condition": "覆盖凝胶长度达到 1000 像素",
         "desc": "把房间弄得到处都是！"
     },
     {
         "type": 2,
         "title": "HighSpeed!",
+        "condition": "速度达到高速",
         "desc": "速度达到一万三千点"
     },
     {
         "type": 3,
         "title": "爱方块TV",
-        "desc": "在没有触碰到方块的情况下通过Room11"
+        "condition": "在没有触碰到方块的情况下通过Room11",
+        "desc": "爱护好你的朋友"
     },
     {
         "type": 4,
         "title": "偷跑领域大神",
+        "condition": "用不涂抹凝胶的方式通过Room15",
         "desc": "用不涂抹凝胶的方式通过我精心设计的地图",
         "room": "Room15",
         "hitbox":
@@ -36,6 +40,7 @@ window.$game.dataManager.resolve(
         "type": 4,
         "title": "爱凝胶TV",
         "desc": "你竟然无视白色凝胶！",
+        "condition": "用不涂抹凝胶的方式通过Room18",
         "room": "Room18",
         "hitbox":
         {
@@ -52,29 +57,34 @@ window.$game.dataManager.resolve(
     {
         "type": 5,
         "title": "飞行冠军",
-        "desc": "空中滞留时间长达15秒",
+        "condition": "在空中滞留15秒",
+        "desc": "闲的无聊",
     },
     {
         "type": 6,
         "title": "春日影",
+        "condition": "发现关卡的秘密",
         "desc": "何で春日影やったの??!",
     },
     {
         "type": 7,
-        "title": "真结局",
-        "desc": "真结局",
+        "title": "剪切线",
+        "desc": "紧紧封闭的感情 我想要全部说出来",
+        "condition": "达成真结局",
         "ending": 2,
     },
     {
         "type": 7,
-        "title": "好结局",
-        "desc": "好结局",
+        "title": "无路矢",
+        "condition": "达成假结局",
+        "desc": "消散于漫无边际的空虚",
         "ending": 1,
     },
     {
         "type": 7,
-        "title": "坏结局",
-        "desc": "坏结局",
+        "title": "孤坏牢",
+        "condition": "达成死亡结局",
+        "desc": "不存在的明天 无法描绘的未来",
         "ending": 0,
     }
 ]

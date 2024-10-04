@@ -38,6 +38,11 @@ class AchievementDisp {
         title.innerText = achievement.title;
         ele.appendChild(title);
 
+        const condition = document.createElement("div");
+        condition.classList.add("condition");
+        condition.innerText = achievement._condition;
+        ele.appendChild(condition);
+
         const desc = document.createElement("div");
         desc.classList.add("desc");
         desc.innerText = achievement.desc;

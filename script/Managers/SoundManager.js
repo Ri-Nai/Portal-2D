@@ -53,12 +53,8 @@ class SoundManager {
         Object.keys(this.bgmsURL).forEach((id) => {
             const audio = new Audio(this.bgmsURL[ id ]);
             audio.loop = true;
-            console.log(audio);
             this.bgms[ id ] = audio;
         });
-        // console.log("haveDone");
-        console.log("sounds", this.sounds);
-        console.log("bgms", this.bgms);
 
     }
     async playSound(kind, id = 0) {
