@@ -32,31 +32,20 @@ class AchievementManager {
 
     async load() {
         const achievements = await window.$game.dataManager.loadJSON("./assets/stages/achievements.json");
+        const Achievements = [
+            RoomArrivalAchievement,
+            GelledEdgeAchievement,
+            PlayerFallingSpeedAchievement,
+            CubeUntouchedAchievement,
+            UngelledAchievement,
+            PlayerFlyingAchievement,
+            HaruhikageAchievement,
+            EndingAchievement,
+            ParfaitAchievement,
+            CameraAchievement
+        ];
         achievements.forEach((a) => {
-            if (a.type == 0) {
-                this.add(new RoomArrivalAchievement(a));
-            }
-            if (a.type == 1) {
-                this.add(new GelledEdgeAchievement(a));
-            }
-            if (a.type == 2) {
-                this.add(new PlayerFallingSpeedAchievement(a));
-            }
-            if (a.type == 3) {
-                this.add(new CubeUntouchedAchievement(a));
-            }
-            if (a.type == 4) {
-                this.add(new UngelledAchievement(a));
-            }
-            if (a.type == 5) {
-                this.add(new PlayerFlyingAchievement(a));
-            }
-            if (a.type == 6) {
-                this.add(new HaruhikageAchievement(a));
-            }
-            if (a.type == 7) {
-                this.add(new EndingAchievement(a));
-            }
+            this.add(new Achievements[ a.type ](a));
         });
     }
 
@@ -189,6 +178,8 @@ class PlayerFallingSpeedAchievement extends Achievement {
         super(a);
     }
     condition(t, that) {
+        if (!that.player.velocity)
+            return false;
         return that.player.velocity.x > that.player.jumping.baseJump * 5.98;
     }
 }
@@ -247,7 +238,7 @@ class HaruhikageAchievement extends Achievement {
             return false;
         const event = that.view.events.getEvent("event-area-24-12");
         if (event.activated && that.game.chapterNow === "Haruhikage") {
-            Store.set("haruhikage", true)
+            Store.set("haruhikage", true);
             return true;
         }
     }
@@ -259,5 +250,23 @@ class EndingAchievement extends Achievement {
     }
     condition(t, that) {
         return that.game.chapterNow === "Outro" && that.game.ending == this.ending;
+    }
+}
+class ParfaitAchievement extends Achievement {
+    constructor(a) {
+        super(a);
+    }
+    condition(t, that) {
+        let parfait = JSON.parse(Store.get("parfait"))?.length ?? 0;
+        return that.game.chapterNow === "Outro" && that.game.ending == 2 && parfait == 8;
+    }
+}
+class CameraAchievement extends Achievement {
+    constructor(a) {
+        super(a);
+    }
+    condition(t, that) {
+        let camera = JSON.parse(Store.get("camera"))?.length ?? 0;
+        return that.game.chapterNow === "Outro" && that.game.ending == 2 && camera == 7;
     }
 }

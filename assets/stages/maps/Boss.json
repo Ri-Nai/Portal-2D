@@ -780,6 +780,54 @@ window.$game.dataManager.resolve(
         }
     ],
     "events": {
+        "event-area-01-01": {
+            "type": 7,
+            "position": {
+                "x": 40,
+                "y": 40
+            },
+            "size": {
+                "x": 40,
+                "y": 40
+            },
+            "affect": []
+        },
+        "event-area-30-01": {
+            "type": 6,
+            "position": {
+                "x": 1200,
+                "y": 40
+            },
+            "size": {
+                "x": 40,
+                "y": 40
+            },
+            "affect": []
+        },
+        "event-area-04-04": {
+            "type": 5,
+            "position": {
+                "x": 160,
+                "y": 160
+            },
+            "size": {
+                "x": 40,
+                "y": 40
+            },
+            "affect": []
+        },
+        "event-area-27-04": {
+            "type": 5,
+            "position": {
+                "x": 1080,
+                "y": 160
+            },
+            "size": {
+                "x": 40,
+                "y": 40
+            },
+            "affect": []
+        },
         "event-area-31-11": {
             "type": 3,
             "position": {
@@ -789,6 +837,30 @@ window.$game.dataManager.resolve(
             "size": {
                 "x": 40,
                 "y": 160
+            },
+            "affect": []
+        },
+        "event-area-04-13": {
+            "type": 5,
+            "position": {
+                "x": 160,
+                "y": 520
+            },
+            "size": {
+                "x": 40,
+                "y": 40
+            },
+            "affect": []
+        },
+        "event-area-27-13": {
+            "type": 5,
+            "position": {
+                "x": 1080,
+                "y": 520
+            },
+            "size": {
+                "x": 40,
+                "y": 40
             },
             "affect": []
         }

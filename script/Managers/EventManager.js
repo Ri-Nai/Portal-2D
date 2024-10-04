@@ -40,7 +40,6 @@ class EventManager {
                 if (window.$game.dialogManager.printing)
                     window.$game.dialogManager.clear();
                 window.$game.dialogManager.printing = false;
-                // console.log("printing dialog", event.texts);
                 await window.$game.dialogManager.prints(event.texts);
                 break;
             case "fadeIn":
@@ -68,26 +67,6 @@ class EventManager {
                 await window.$game.deadScreen.show().then(async () => {
                     // retry
                     await window.$game.restart();
-                    this.add(
-                        [
-                            {
-                                type: "empty"
-                            },
-                            {
-                                type: "dialog",
-                                texts: [
-                                    {
-                                        text: "【要乐奈】我不会就这样放弃！你不会赢的，我一定会再次站起来",
-                                        url: "./assets/audios/dialog/Boss/Rana_retry_1.wav"
-                                    },
-                                    {
-                                        text: "【要乐奈】这一次...我会找到通往胜利的路",
-                                        url: "./assets/audios/dialog/Boss/Rana_retry_2.wav"
-                                    }
-                                ]
-                            }
-                        ]
-                    );
                 }, async () => {
                     // cancel
                     Store.set("ending", "bad")

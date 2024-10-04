@@ -86,6 +86,18 @@ window.$game.dataManager.resolve(
         "condition": "达成死亡结局",
         "desc": "不存在的明天 无法描绘的未来",
         "ending": 0,
+    },
+    {
+        "type": 8,
+        "title": "芭菲暴食者",
+        "condition": "收集到了所有的芭菲",
+        "desc": "啊啊啊宝宝你真的是一个好好的胖宝宝"
+    },
+    {
+        "type": 9,
+        "title": "摄像摧毁者",
+        "condition": "破坏了所有的摄像头",
+        "desc": "友情提示：本次游戏没有任何摄像头受到伤害"
     }
 ]
 )

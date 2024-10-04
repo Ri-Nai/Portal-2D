@@ -1194,6 +1194,18 @@ window.$game.dataManager.resolve(
         }
     ],
     "events": {
+        "event-area-28-03": {
+            "type": 6,
+            "position": {
+                "x": 1120,
+                "y": 120
+            },
+            "size": {
+                "x": 40,
+                "y": 40
+            },
+            "affect": []
+        },
         "event-area-24-12": {
             "type": -1,
             "position": {
@@ -1203,6 +1215,18 @@ window.$game.dataManager.resolve(
             "size": {
                 "x": 80,
                 "y": 160
+            },
+            "affect": []
+        },
+        "event-area-03-14": {
+            "type": 5,
+            "position": {
+                "x": 120,
+                "y": 560
+            },
+            "size": {
+                "x": 40,
+                "y": 40
             },
             "affect": []
         },

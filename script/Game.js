@@ -192,9 +192,8 @@ class Game {
         this.isPaused = true;
         this.statistics.restart++;
         await this.rebuild(async () => {
+            await this.eventManager.clear();
             await this.resetView();
-            this.eventManager.clear();
-            this.dialogManager.clear();
             this.resume();
         });
     }

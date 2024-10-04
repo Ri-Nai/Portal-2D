@@ -6,7 +6,7 @@ window.$game.dataManager.resolve(
         "events" : [
             {
                 "type": "playBGM",
-                "name": "fakeEnd"
+                "name": "deadEnd"
             },
             {
                 "type": "fadeOut"
