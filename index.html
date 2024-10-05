@@ -33,7 +33,6 @@
             <div class="button" id="start">开始新游戏</div>
             <div class="button" id="load">加载存档</div>
             <div class="button" id="achievement">成就</div>
-            <div class="button" id="about">关于</div>
             <div class="button" id="exit">退出</div>
         </div>
         <div class="side">
@@ -166,9 +165,6 @@
                     document.querySelector(".menu").classList.remove("hide");
                     slideIn();
                 }, 1800);
-            });
-            document.querySelector("#about").addEventListener("click", () => {
-                window.location.href = `./pages/about-us/index.html`;
             });
             document.querySelector("#exit").addEventListener("click", () => {
                 Auth.logout();
